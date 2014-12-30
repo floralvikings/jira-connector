@@ -21,6 +21,7 @@ var INVALID_AUTHENTICATION_PROPERTY_ERROR = 'Invalid \'auth\' property.';
  *
  * @constructor
  * @param config The information needed to access the Jira API
+ * @param {string} host The hostname of the Jira API.
  * @param {string} [config.protocol=https] The protocol used to accses the Jira API.
  * @param {number} [config.port=443] The port number used to connect to Jira.
  * @param {string} [config.version=2] The version of the Jira API to which you will be connecting.  Currently, only version 2 is supported.
