@@ -1,0 +1,11 @@
+{
+  "name": "jira-wrapper",
+  "version": "0.0.0",
+  "description": "Easy to use NodeJS wrapper for the Jira REST API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Caleb Brinkman <floralvikings@gmail.com>",
+  "license": "MIT"
+}
