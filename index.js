@@ -71,7 +71,7 @@ var Client = module.exports = function(config) {
     }else {
         throw new Error(INVALID_AUTHENTICATION_PROPERTY_ERROR);
     }
-}
+};
 
 /**
  * Attempts to get an OAuth verification URL using the given API configuration.
