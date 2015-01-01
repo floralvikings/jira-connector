@@ -36,39 +36,39 @@ var INVALID_AUTHENTICATION_PROPERTY_ERROR = 'Invalid \'auth\' property.';
  * @param {string} [config.auth.oauth_token] The VERIFIED token used to connect to the Jira API.  MUST be included if using OAuth.
  * @param {string} [config.auth.oauth_token_secret] The secret for the above token.  MUST be included if using Oauth.
  */
-var Client = module.exports = function(config) {
+var Client = module.exports = function (config) {
     this.protocol = config.protocol ? config.protocol : 'https';
     this.port = config.port ? config.port : 443;
     this.version = 2; // TODO Add support for other versions.
 
-    if(!config.auth) {
+    if (!config.auth) {
         throw new Error(NO_AUTHENTICATION_ERROR);
     }
 
-    if(config.auth.oauth_consumer_key || config.auth.oauth_private_key || config.auth.oauth_token || config.auth.oauth_token_secret) {
-        if(!config.auth.oauth_consumer_key) {
+    if (config.auth.oauth_consumer_key || config.auth.oauth_private_key || config.auth.oauth_token || config.auth.oauth_token_secret) {
+        if (!config.auth.oauth_consumer_key) {
             throw new Error(NO_CONSUMER_KEY_ERROR);
-        }else if(!config.auth.oauth_private_key) {
+        } else if (!config.auth.oauth_private_key) {
             throw new Error(NO_PRIVATE_KEY_ERROR);
-        }else if(!config.auth.oauth_token) {
+        } else if (!config.auth.oauth_token) {
             throw new Error(NO_OAUTH_TOKEN_ERROR);
-        }else if(!config.auth.oauth_token_secret) {
+        } else if (!config.auth.oauth_token_secret) {
             throw new Error(NO_OAUTH_TOKEN_SECRET_ERROR);
         }
 
         this.oauthConfig = auth;
         this.oauthConfig.oauth_signature_method = 'RSA-SHA1';
 
-    }else if(config.auth.username || config.auth.password) {
-        if(!config.auth.username) {
+    } else if (config.auth.username || config.auth.password) {
+        if (!config.auth.username) {
             throw new Error(NO_USERNAME_ERROR);
-        }else if(!config.auth.password){
+        } else if (!config.auth.password) {
             throw new Error(NO_PASSWORD_ERROR);
         }
 
         this.basicAuth = auth;
 
-    }else {
+    } else {
         throw new Error(INVALID_AUTHENTICATION_PROPERTY_ERROR);
     }
 };
@@ -89,24 +89,24 @@ var Client = module.exports = function(config) {
  *        callback to the application.
  * @param {getOauthUrlCallback} callback The function called when the URL has been retrieved.
  */
-exports.getAuthorizeURL = function(config, callback) {
+exports.getAuthorizeURL = function (config, callback) {
     var SERVLET_BASE_URL = '/plugins/servlet';
     var REQ_TOKEN_APPEND = '/oauth/request-token';
     var AUTH_TOKEN_APPEND = '/oauth/authorize';
     var sig = 'RSA-SHA1';
 
-    if(!config.host) {
+    if (!config.host) {
         throw new Error(NO_HOST_ERROR);
-    }else if(!config.oauth.consumer_key) {
+    } else if (!config.oauth.consumer_key) {
         throw new Error(NO_CONSUMER_KEY_ERROR);
-    } else if(!config.oauth.private_key) {
+    } else if (!config.oauth.private_key) {
         throw new Error(NO_PRIVATE_KEY_ERROR);
     }
 
     var consumer_key = config.oauth.consumer_key;
     var private_key = config.oauth.private_key;
 
-    var reqURL = url.format( {
+    var reqURL = url.format({
         protocol: config.protocol ? config.protocol : 'https',
         hostname: config.host,
         port: config.port ? config.port : null,
@@ -126,8 +126,8 @@ exports.getAuthorizeURL = function(config, callback) {
 
     var oauth = new Oauth.OAuth(reqURL, authURL, consumer_key, private_key, '1.0', cb, sig);
 
-    oauth.getOAuthRequestToken(function(err, token, token_secret) {
-        if(err) {
+    oauth.getOAuthRequestToken(function (err, token, token_secret) {
+        if (err) {
             return callback(err);
         }
         return callback(null, {url: authURL + "?oauth_token=" + token, token: token, token_secret: token_secret});
