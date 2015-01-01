@@ -2,17 +2,7 @@
 
 // Custom packages
 var oauth_util = require('./lib/oauth_util');
-
-var NO_HOST_ERROR = 'Missing \'host\' property.';
-var NO_CONSUMER_KEY_ERROR = 'Missing \'oauth_consumer_key\' property.';
-var NO_PRIVATE_KEY_ERROR = 'Missing \'oauth_private_key\' property.';
-var NO_OAUTH_TOKEN_ERROR = 'Missing \'oauth_token\' property.';
-var NO_OAUTH_TOKEN_SECRET_ERROR = 'Missing \'oauth_token_secret\' property.';
-var NO_USERNAME_ERROR = 'Missing \'username\' property.';
-var NO_PASSWORD_ERROR = 'Missing \'password\' property.';
-var NO_AUTHENTICATION_ERROR = 'Missing \'auth\' property.';
-var NO_VERIFIER_ERROR = 'Missing \'oauth_verifier\' property.';
-var INVALID_AUTHENTICATION_PROPERTY_ERROR = 'Invalid \'auth\' property.';
+var errorStrings = require('error');
 
 /**
  * Represents a client for the Jira REST API
@@ -38,18 +28,18 @@ var Client = module.exports = function (config) {
     this.version = 2; // TODO Add support for other versions.
 
     if (!config.oauth && !config.basic_auth) {
-        throw new Error(NO_AUTHENTICATION_ERROR);
+        throw new Error(errorStrings.NO_AUTHENTICATION_ERROR);
     }
 
     if (config.oauth) {
         if (!config.oauth.oauth_consumer_key) {
-            throw new Error(NO_CONSUMER_KEY_ERROR);
+            throw new Error(errorStrings.NO_CONSUMER_KEY_ERROR);
         } else if (!config.oauth.oauth_private_key) {
-            throw new Error(NO_PRIVATE_KEY_ERROR);
+            throw new Error(errorStrings.NO_PRIVATE_KEY_ERROR);
         } else if (!config.oauth.oauth_token) {
-            throw new Error(NO_OAUTH_TOKEN_ERROR);
+            throw new Error(errorStrings.NO_OAUTH_TOKEN_ERROR);
         } else if (!config.oauth.oauth_token_secret) {
-            throw new Error(NO_OAUTH_TOKEN_SECRET_ERROR);
+            throw new Error.(errorStrings.NO_OAUTH_TOKEN_SECRET_ERROR);
         }
 
         this.oauthConfig = config.oauth;
@@ -57,35 +47,17 @@ var Client = module.exports = function (config) {
 
     } else if (config.basic_auth.username || config.basic_auth.password) {
         if (!config.basic_auth.username) {
-            throw new Error(NO_USERNAME_ERROR);
+            throw new Error(errorStrings.NO_USERNAME_ERROR);
         } else if (!config.basic_auth.password) {
-            throw new Error(NO_PASSWORD_ERROR);
+            throw new Error(errorStrings.NO_PASSWORD_ERROR);
         }
 
         this.basicAuth = config.basic_auth;
 
     } else {
-        throw new Error(INVALID_AUTHENTICATION_PROPERTY_ERROR);
+        throw new Error(errorStrings.INVALID_AUTHENTICATION_PROPERTY_ERROR);
     }
 };
 
 exports.oauth_util = oauth_util;
 
-// ##### Documentation #####
-
-/**
- * Callback used by getOauthUrl.
- * @callback getOauthUrlCallback
- * @param {*} error The error which occurred, if any.
- * @param {Object} oauth The OAuth information retrieved from the Jira API.
- * @param {String} oauth.url The URL that should be visited by the user to verify the OAuth access.
- * @param {String} oauth.token The OAuth Token retrieved from the Jira API.
- * @param {String} oauth.token_secret The OAuth Token Secret retrieved from the Jira API.
- */
-
-/**
- * Callback used by swapRequestTokenWithAccessToken
- * @callback swapRequestTokenCallback
- * @param {*} error The error which occurred, if any.
- * @param {string} access_token The access token retrieved from Jira.
- */
