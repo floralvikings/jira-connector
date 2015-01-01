@@ -195,6 +195,8 @@ function generateOAuthObject(config) {
     return new Oauth.OAuth(reqURL, accessURL, consumer_key, private_key, '1.0', cb, sig);
 }
 
+// ##### Documentation #####
+
 /**
  * Callback used by getOauthUrl.
  * @callback getOauthUrlCallback
