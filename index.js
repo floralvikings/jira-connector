@@ -138,5 +138,8 @@ exports.getAuthorizeURL = function (config, callback) {
  * Callback used by getOauthUrl.
  * @callback getOauthUrlCallback
  * @param {string} error The error which occurred, if any.
- * @param {string} url The OAuth verification URL retrieved from the Jira API.
+ * @param {Object} oauth The OAuth information retrieved from the Jira API.
+ * @param {String} oauth.url The URL that should be visited by the user to verify the OAuth access.
+ * @param {String} oauth.token The OAuth Token retrieved from the Jira API.
+ * @param {String} oauth.token_secret The OAuth Token Secret retrieved from the Jira API.
  */
