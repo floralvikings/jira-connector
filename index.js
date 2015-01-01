@@ -30,8 +30,6 @@ var INVALID_AUTHENTICATION_PROPERTY_ERROR = 'Invalid \'auth\' property.';
  *        used over username/password authentication.
  * @param {string} [config.basic_auth.username] The username of the user that will be authenticated. MUST be included if using username and password authentication.
  * @param {string} [config.basic_auth.password] The password of the user that will be authenticated. MUST be included if using username and password authentication.
- * @param {string} [config.oauth.oauth_signature_method='RSA-SHA1'] The oauth authentication signature method.  Currently only 'RSA-SHA1' is supported; adding this property
- *        will have no effect. This is because Jira itself only supports RSA-SHA1.
  * @param {string} [config.oauth.oauth_consumer_key] The consumer key used in the Jira Application Link for oauth authentication.  MUST be included if using OAuth.
  * @param {string} [config.oauth.oauth_private_key] The private key used for OAuth security. MUST be included if using OAuth.
  * @param {string} [config.oauth.oauth_token] The VERIFIED token used to connect to the Jira API.  MUST be included if using OAuth.
