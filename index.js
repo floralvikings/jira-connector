@@ -49,7 +49,7 @@ var Client = module.exports = function (config) {
         } else if (!config.oauth.oauth_token) {
             throw new Error(errorStrings.NO_OAUTH_TOKEN_ERROR);
         } else if (!config.oauth.oauth_token_secret) {
-            throw new Error.(errorStrings.NO_OAUTH_TOKEN_SECRET_ERROR);
+            throw new Error(errorStrings.NO_OAUTH_TOKEN_SECRET_ERROR);
         }
 
         this.oauthConfig = config.oauth;
