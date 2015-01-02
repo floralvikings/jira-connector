@@ -21,12 +21,8 @@ var issue = module.exports = function(jiraClient) {
         };
 
         this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err) {
-                return callback(err);
-            }
-
-            if (response.statusCode.toString()[0] !== 2) {
-                return callback(body);
+            if (err || response.statusCode.toString()[0] !== 2) {
+                return callback(err ? err : body);
             }
 
             return callback(null, body);
