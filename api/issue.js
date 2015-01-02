@@ -22,15 +22,11 @@ var issue = module.exports = function(jiraClient) {
 
         this.jiraClient.makeRequest(options, function (err, response, body) {
             if (err) {
-                return callback(err, null);
+                return callback(err);
             }
 
-            if (response.statusCode === 400) {
+            if (response.statusCode.toString()[0] !== 2) {
                 return callback(body);
-            }
-
-            if ((response.statusCode !== 200) && (response.statusCode !== 201)) {
-                return callback(response.statusCode + ': Unable to connect to JIRA during search.');
             }
 
             return callback(null, body);
