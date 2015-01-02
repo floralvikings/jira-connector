@@ -88,7 +88,7 @@ var issue = module.exports = function (jiraClient) {
      * }
      * @param callback Called when the issue has been created.
      */
-    this.create = function (issue, callback) {
+    this.createIssue = function (issue, callback) {
         var options = {
             uri: this.jiraClient.buildURL('/issue'),
             method: 'POST',
