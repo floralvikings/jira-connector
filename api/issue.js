@@ -2,7 +2,7 @@
 
 var errorStrings = require('./../lib/error');
 
-var issue = module.exports = function(jiraClient) {
+var issue = module.exports = function (jiraClient) {
     this.jiraClient = jiraClient;
 };
 
@@ -98,7 +98,7 @@ var issue = module.exports = function(jiraClient) {
         };
 
         this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] !== 2) {
+            if (err || response.statusCode.toString()[0] != 2) {
                 return callback(err ? err : body);
             }
 
@@ -111,7 +111,7 @@ var issue = module.exports = function(jiraClient) {
      * @param issues See "acceptable request representations:" https://docs.atlassian.com/jira/REST/latest/#d2e828
      * @param callback Called when the issues have been created.
      */
-    this.bulkCreate = function(issues, callback) {
+    this.bulkCreate = function (issues, callback) {
         var options = {
             uri: this.jiraClient.buildURL('/issue/bulk'),
             method: 'POST',
@@ -121,7 +121,7 @@ var issue = module.exports = function(jiraClient) {
         };
 
         this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] !== 2) {
+            if (err || response.statusCode.toString()[0] != 2) {
                 return callback(err ? err : body);
             }
 
@@ -139,8 +139,8 @@ var issue = module.exports = function(jiraClient) {
      * @param {Object} [opts.expand] See https://docs.atlassian.com/jira/REST/latest/#d2e611
      * @param callback
      */
-    this.getIssue = function(opts, callback) {
-        if(!opts.issueID && !opts.issueKey) {
+    this.getIssue = function (opts, callback) {
+        if (!opts.issueID && !opts.issueKey) {
             throw new Error(errorStrings.NO_ISSUE_IDENTIFIER);
         }
 
@@ -151,12 +151,16 @@ var issue = module.exports = function(jiraClient) {
             expand: ''
         };
 
-        if(opts.fields) {
-            opts.fields.forEach(function(field) { qs.fields += field + ',' });
+        if (opts.fields) {
+            opts.fields.forEach(function (field) {
+                qs.fields += field + ','
+            });
         }
 
-        if(opts.expand) {
-            opts.expand.forEach(function(ex) {qs.expand += ex + ','});
+        if (opts.expand) {
+            opts.expand.forEach(function (ex) {
+                qs.expand += ex + ','
+            });
         }
 
         var options = {
@@ -167,8 +171,8 @@ var issue = module.exports = function(jiraClient) {
             qs: qs
         };
 
-        this.jiraClient.makeRequest(options, function(err, response, body) {
-            if (err || response.statusCode.toString()[0] !== 2) {
+        this.jiraClient.makeRequest(options, function (err, response, body) {
+            if (err || response.statusCode.toString()[0] != 2) {
                 return callback(err ? err : body);
             }
 
@@ -176,6 +180,39 @@ var issue = module.exports = function(jiraClient) {
         });
 
     };
+
+    /**
+     * Delete an issue.
+     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
+     *        issueKey property; issueID will be used over issueKey if both are present.
+     * @param {string} opts.issueID The ID of the issue.  EX: 10002
+     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {boolean} [opts.deleteSubTasks=false] "a String of true or false indicating that any subtasks should also
+     *        be deleted. If the issue has no subtasks this parameter is ignored. If the issue has subtasks and this
+     *        parameter is missing or false, then the issue will not be deleted and an error will be returned."
+     * @param callback
+     */
+    this.deleteIssue = function (opts, callback) {
+        if (!opts.issueID && !opts.issueKey) {
+            throw new Error(errorStrings.NO_ISSUE_IDENTIFIER);
+        }
+        var idOrKey = opts.issueID || opts.issueKey;
+
+        var options = {
+            uri: this.jiraClient.buildURL('/issue/' + idOrKey),
+            method: 'DELETE',
+            followAllRedirects: true,
+            json: true,
+            qs: {deleteSubTasks: opts.deleteSubTasks ? true : false}
+        };
+
+        this.jiraClient.makeRequest(options, function (err, response, body) {
+            if (err || response.statusCode.toString()[0] != 2) {
+                return callback(err ? err : body);
+            }
+            return callback(null, 'Issue Deleted');
+        });
+    }
 
 }).call(issue.prototype);
 
