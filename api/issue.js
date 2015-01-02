@@ -1,5 +1,7 @@
 "use strict";
 
+var errorStrings = require('./../lib/error');
+
 var issue = module.exports = function(jiraClient) {
     this.jiraClient = jiraClient;
 };
@@ -126,5 +128,54 @@ var issue = module.exports = function(jiraClient) {
             return callback(null, body);
         });
     };
+
+    /**
+     *
+     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
+     *        issueKey property; issueID will be used over issueKey if both are present.
+     * @param {string} opts.issueID The ID of the issue.  EX: 10002
+     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {Object} [opts.fields] See https://docs.atlassian.com/jira/REST/latest/#d2e611
+     * @param {Object} [opts.expand] See https://docs.atlassian.com/jira/REST/latest/#d2e611
+     * @param callback
+     */
+    this.getIssue = function(opts, callback) {
+        if(!opts.issueID && !opts.issueKey) {
+            throw new Error(errorStrings.NO_ISSUE_IDENTIFIER);
+        }
+
+        var idOrKey = opts.issueID || opts.issueKey;
+
+        var qs = {
+            fields: '',
+            expand: ''
+        };
+
+        if(opts.fields) {
+            opts.fields.forEach(function(field) { qs.fields += field + ',' });
+        }
+
+        if(opts.expand) {
+            opts.expand.forEach(function(ex) {qs.expand += ex + ','});
+        }
+
+        var options = {
+            uri: this.jiraClient.buildURL('/issue/' + idOrKey),
+            method: 'GET',
+            followAllRedirects: true,
+            json: true,
+            qs: qs
+        };
+
+        this.jiraClient.makeRequest(options, function(err, response, body) {
+            if (err || response.statusCode.toString()[0] !== 2) {
+                return callback(err ? err : body);
+            }
+
+            return callback(null, body);
+        });
+
+    }
+
 }).call(issue.prototype);
 
