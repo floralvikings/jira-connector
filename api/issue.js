@@ -101,7 +101,7 @@ var issue = module.exports = function(jiraClient) {
             }
 
             return callback(null, body);
-        })
+        });
     };
 }).call(issue.prototype);
 
