@@ -100,5 +100,7 @@ var Client = module.exports = function (config) {
 
 }).call(Client.prototype);
 
+Client.oauth_util = require('./lib/oauth_util');
+
 exports.oauth_util = oauth_util;
 
