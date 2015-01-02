@@ -1,5 +1,11 @@
 "use strict";
 
+// Core packages
+var url = require('url');
+
+// npm Packages
+var request = require('request');
+
 // Custom packages
 var oauth_util = require('./lib/oauth_util');
 var errorStrings = require('error');
@@ -23,6 +29,10 @@ var errorStrings = require('error');
  * @param {string} [config.oauth.oauth_token_secret] The secret for the above token.  MUST be included if using Oauth.
  */
 var Client = module.exports = function (config) {
+    if(!config.host) {
+        throw new Error(errorStrings.NO_HOST_ERROR);
+    }
+    this.host = config.host;
     this.protocol = config.protocol ? config.protocol : 'https';
     this.port = config.port ? config.port : 443;
     this.version = 2; // TODO Add support for other versions.
@@ -45,19 +55,50 @@ var Client = module.exports = function (config) {
         this.oauthConfig = config.oauth;
         this.oauthConfig.oauth_signature_method = 'RSA-SHA1';
 
-    } else if (config.basic_auth.username || config.basic_auth.password) {
+    } else if (config.basic_auth) {
         if (!config.basic_auth.username) {
             throw new Error(errorStrings.NO_USERNAME_ERROR);
         } else if (!config.basic_auth.password) {
             throw new Error(errorStrings.NO_PASSWORD_ERROR);
         }
 
-        this.basicAuth = config.basic_auth;
+        this.basic_auth = {
+            user: config.basic_auth.username,
+            pass: config.basic_auth.password
+        };
 
     } else {
         throw new Error(errorStrings.INVALID_AUTHENTICATION_PROPERTY_ERROR);
     }
 };
+
+(function () {
+
+    this.buildURL = function (path) {
+        var apiBasePath = 'rest/api/';
+        var version = this.version;
+        var requestUrl = url.format({
+            protocol: this.protocol,
+            hostname: this.host,
+            port: this.port,
+            pathname: apiBasePath + version + path
+        });
+
+        return decodeURIComponent(requestUrl);
+    };
+
+    this.makeRequest = function (options, callback) {
+        if (this.oauthConfig) {
+            options.oauth = this.oauthConfig;
+        } else if (this.basic_auth) {
+            options.auth = this.basic_auth;
+        } else {
+            callback(errorStrings.NO_AUTHENTICATION_ERROR);
+        }
+        request(options, callback);
+    };
+
+}).call(Client.prototype);
 
 exports.oauth_util = oauth_util;
 
