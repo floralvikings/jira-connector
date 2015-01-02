@@ -23,10 +23,10 @@ var errorStrings = require('./lib/error');
  *        used over username/password authentication.
  * @param {string} [config.basic_auth.username] The username of the user that will be authenticated. MUST be included if using username and password authentication.
  * @param {string} [config.basic_auth.password] The password of the user that will be authenticated. MUST be included if using username and password authentication.
- * @param {string} [config.oauth.oauth_consumer_key] The consumer key used in the Jira Application Link for oauth authentication.  MUST be included if using OAuth.
- * @param {string} [config.oauth.oauth_private_key] The private key used for OAuth security. MUST be included if using OAuth.
- * @param {string} [config.oauth.oauth_token] The VERIFIED token used to connect to the Jira API.  MUST be included if using OAuth.
- * @param {string} [config.oauth.oauth_token_secret] The secret for the above token.  MUST be included if using Oauth.
+ * @param {string} [config.oauth.consumer_key] The consumer key used in the Jira Application Link for oauth authentication.  MUST be included if using OAuth.
+ * @param {string} [config.oauth.private_key] The private key used for OAuth security. MUST be included if using OAuth.
+ * @param {string} [config.oauth.token] The VERIFIED token used to connect to the Jira API.  MUST be included if using OAuth.
+ * @param {string} [config.oauth.token_secret] The secret for the above token.  MUST be included if using Oauth.
  */
 var Client = module.exports = function (config) {
     if(!config.host) {
@@ -34,7 +34,7 @@ var Client = module.exports = function (config) {
     }
     this.host = config.host;
     this.protocol = config.protocol ? config.protocol : 'https';
-    this.port = config.port ? config.port : 443;
+    this.port = config.port;
     this.version = 2; // TODO Add support for other versions.
 
     if (!config.oauth && !config.basic_auth) {
@@ -42,18 +42,18 @@ var Client = module.exports = function (config) {
     }
 
     if (config.oauth) {
-        if (!config.oauth.oauth_consumer_key) {
+        if (!config.oauth.consumer_key) {
             throw new Error(errorStrings.NO_CONSUMER_KEY_ERROR);
-        } else if (!config.oauth.oauth_private_key) {
+        } else if (!config.oauth.private_key) {
             throw new Error(errorStrings.NO_PRIVATE_KEY_ERROR);
-        } else if (!config.oauth.oauth_token) {
+        } else if (!config.oauth.token) {
             throw new Error(errorStrings.NO_OAUTH_TOKEN_ERROR);
-        } else if (!config.oauth.oauth_token_secret) {
+        } else if (!config.oauth.token_secret) {
             throw new Error(errorStrings.NO_OAUTH_TOKEN_SECRET_ERROR);
         }
 
         this.oauthConfig = config.oauth;
-        this.oauthConfig.oauth_signature_method = 'RSA-SHA1';
+        this.oauthConfig.signature_method = 'RSA-SHA1';
 
     } else if (config.basic_auth) {
         if (!config.basic_auth.username) {
