@@ -70,6 +70,9 @@ var Client = module.exports = function (config) {
     } else {
         throw new Error(errorStrings.INVALID_AUTHENTICATION_PROPERTY_ERROR);
     }
+
+    var issue = require('./api/issue');
+    this.issue = new issue(this);
 };
 
 (function () {
