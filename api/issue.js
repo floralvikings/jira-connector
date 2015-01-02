@@ -22,7 +22,7 @@ var issue = module.exports = function(jiraClient) {
 
         this.jiraClient.makeRequest(options, function (err, response, body) {
             if (err) {
-                return callback(error, null);
+                return callback(err, null);
             }
 
             if (response.statusCode === 400) {
