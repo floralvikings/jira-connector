@@ -8,7 +8,7 @@ var request = require('request');
 
 // Custom packages
 var oauth_util = require('./lib/oauth_util');
-var errorStrings = require('error');
+var errorStrings = require('./lib/error');
 
 /**
  * Represents a client for the Jira REST API
