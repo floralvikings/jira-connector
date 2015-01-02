@@ -9,6 +9,7 @@
   "author": "Caleb Brinkman <floralvikings@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "oauth": "^0.9.12"
+    "oauth": "^0.9.12",
+    "request": "^2.51.0"
   }
 }
