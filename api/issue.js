@@ -103,5 +103,28 @@ var issue = module.exports = function(jiraClient) {
             return callback(null, body);
         });
     };
+
+    /**
+     * Create multiple Jira issues at the same time.
+     * @param issues See "acceptable request representations:" https://docs.atlassian.com/jira/REST/latest/#d2e828
+     * @param callback Called when the issues have been created.
+     */
+    this.bulkCreate = function(issues, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/issue/bulk'),
+            method: 'POST',
+            followAllRedirects: true,
+            json: true,
+            body: issues
+        };
+
+        this.jiraClient.makeRequest(options, function (err, response, body) {
+            if (err || response.statusCode.toString()[0] !== 2) {
+                return callback(err ? err : body);
+            }
+
+            return callback(null, body);
+        });
+    }
 }).call(issue.prototype);
 
