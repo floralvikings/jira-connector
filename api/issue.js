@@ -11,9 +11,6 @@ module.exports = IssueClient;
  */
 function IssueClient(jiraClient) {
     this.jiraClient = jiraClient;
-}
-
-(function () {
 
     /**
      * Creates an issue or a sub-task from a JSON representation.
@@ -691,4 +688,4 @@ function IssueClient(jiraClient) {
         };
     }
 
-}).call(IssueClient.prototype);
+}
