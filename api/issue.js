@@ -787,6 +787,44 @@ function IssueClient(jiraClient) {
         });
     };
 
+    /**
+     * Get a list of the transitions possible for this issue by the current user, along with fields that are required
+     * and their types.
+     *
+     * Fields will only be returned if ```expand=transitions.fields.```
+     *
+     * The fields in the metadata correspond to the fields in the transition screen for that transition. Fields not in
+     * the screen will not be in the metadata.
+     *
+     * @method getTransitions
+     * @memberof IssueClient#
+     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
+     *     issueKey property; issueID will be used over issueKey if both are present.
+     * @param {string} opts.issueID The ID of the issue.  EX: 10002
+     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {string} opts.transitionId If specified, will call back with only the transition with the specified id.
+     * @param callback Called when the transitions are retrieved.
+     */
+    this.getTransitions = function (opts, callback) {
+        var idOrKey = getIdOrKey(opts);
+
+        var options = {
+            uri: this.jiraClient.buildURL('/issue/' + idOrKey + '/transitions'),
+            method: 'GET',
+            followAllRedirects: true,
+            json: true,
+            qs: {transitionId: opts.transitionId}
+        };
+
+        this.jiraClient.makeRequest(options, function (err, response, body) {
+            if (err || response.statusCode.toString()[0] != 2) {
+                return callback(err ? err : body);
+            }
+
+            return callback(null, body);
+        });
+    };
+
 }).call(IssueClient.prototype);
 
 function getIdOrKey(opts) {
