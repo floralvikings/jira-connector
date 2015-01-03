@@ -31,7 +31,7 @@ function IssueClient(jiraClient) {
      * @method createIssue
      * @memberof IssueClient#
      * @param {Object} issue The issue data in the form of POST body to the JIRA API.
-     *        See https://docs.atlassian.com/jira/REST/latest/#d2e398
+     * See {@link https://docs.atlassian.com/jira/REST/latest/#d2e398}
      * @param callback Called when the issue has been created.
      */
     this.createIssue = function (issue, callback) {
@@ -62,7 +62,7 @@ function IssueClient(jiraClient) {
      *
      * @method bulkCreate
      * @memberof IssueClient#
-     * @param issues See "acceptable request representations:" https://docs.atlassian.com/jira/REST/latest/#d2e828
+     * @param issues See {@link https://docs.atlassian.com/jira/REST/latest/#d2e828}
      * @param callback Called when the issues have been created.
      */
     this.bulkCreate = function (issues, callback) {
@@ -115,8 +115,8 @@ function IssueClient(jiraClient) {
      *        issueKey property; issueID will be used over issueKey if both are present.
      * @param {string} opts.issueID The ID of the issue.  EX: 10002
      * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
-     * @param {Object} [opts.fields] See https://docs.atlassian.com/jira/REST/latest/#d2e611
-     * @param {Object} [opts.expand] See https://docs.atlassian.com/jira/REST/latest/#d2e611
+     * @param {Object} opts.fields See {@link https://docs.atlassian.com/jira/REST/latest/#d2e611}
+     * @param {Object} opts.expand See {@link https://docs.atlassian.com/jira/REST/latest/#d2e611}
      * @param callback
      */
     this.getIssue = function (opts, callback) {
@@ -171,7 +171,7 @@ function IssueClient(jiraClient) {
      *        issueKey property; issueID will be used over issueKey if both are present.
      * @param {string} opts.issueID The ID of the issue.  EX: 10002
      * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
-     * @param {boolean} [opts.deleteSubTasks=false] "a String of true or false indicating that any subtasks should also
+     * @param {boolean} opts.deleteSubTasks "a String of true or false indicating that any subtasks should also
      *        be deleted. If the issue has no subtasks this parameter is ignored. If the issue has subtasks and this
      *        parameter is missing or false, then the issue will not be deleted and an error will be returned."
      * @param callback
@@ -217,8 +217,7 @@ function IssueClient(jiraClient) {
      *        issueKey property; issueID will be used over issueKey if both are present.
      * @param {string} opts.issueID The ID of the issue.  EX: 10002
      * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
-     * @param {Object} opts.issue The JSON representation of the issue.  See
-     *     https://docs.atlassian.com/jira/REST/latest/#d2e656
+     * @param {Object} opts.issue See {@link https://docs.atlassian.com/jira/REST/latest/#d2e656}
      * @param callback
      */
     this.editIssue = function (opts, callback) {
@@ -293,7 +292,7 @@ function IssueClient(jiraClient) {
      *        issueKey property; issueID will be used over issueKey if both are present.
      * @param {string} opts.issueID The ID of the issue.  EX: 10002
      * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
-     * @param {Object} [opts.expand] See https://docs.atlassian.com/jira/REST/latest/#d2e461
+     * @param {Object} opts.expand See {@link https://docs.atlassian.com/jira/REST/latest/#d2e461}
      * @param callback Called when the issue has been assigned.
      */
     this.getComments = function (opts, callback) {
@@ -335,7 +334,7 @@ function IssueClient(jiraClient) {
      *        issueKey property; issueID will be used over issueKey if both are present.
      * @param {string} opts.issueID The ID of the issue.  EX: 10002
      * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
-     * @param {Object} opts.comment See https://docs.atlassian.com/jira/REST/latest/#d2e482
+     * @param {Object} opts.comment See {@link https://docs.atlassian.com/jira/REST/latest/#d2e482}
      * @param callback
      */
     this.addComment = function (opts, callback) {
@@ -423,7 +422,7 @@ function IssueClient(jiraClient) {
      * @param {string} opts.issueID The ID of the issue.  EX: 10002
      * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
      * @param {string} opts.commentId The id of the comment.
-     * @param {Object} opts.comment See https://docs.atlassian.com/jira/REST/latest/#d2e539
+     * @param {Object} opts.comment See {@link https://docs.atlassian.com/jira/REST/latest/#d2e539}
      * @param callback
      */
     this.editComment = function (opts, callback) {
@@ -552,7 +551,7 @@ function IssueClient(jiraClient) {
      *        issueKey property; issueID will be used over issueKey if both are present.
      * @param {string} opts.issueID The ID of the issue.  EX: 10002
      * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
-     * @param {Object} opts.notification See https://docs.atlassian.com/jira/REST/latest/#d2e435
+     * @param {Object} opts.notification See {@link https://docs.atlassian.com/jira/REST/latest/#d2e435}
      * @param callback Called when the metadata is retrieved.
      */
     this.sendEmailNotification = function (opts, callback) {
