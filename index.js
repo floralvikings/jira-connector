@@ -13,7 +13,7 @@ var errorStrings = require('./lib/error');
 /**
  * Represents a client for the Jira REST API
  *
- * @constructor
+ * @constructor JiraClient
  * @param config The information needed to access the Jira API
  * @param {string} host The hostname of the Jira API.
  * @param {string} [config.protocol=https] The protocol used to accses the Jira API.
