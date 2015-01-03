@@ -579,5 +579,43 @@ function IssueClient(jiraClient) {
         });
     };
 
+    /**
+     * Get a REST sub-resource representing the remote issue links on the issue.
+     *
+     * @method getRemoteLinks
+     * @memberof IssueClient#
+     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
+     *     issueKey property; issueID will be used over issueKey if both are present.
+     * @param {string} opts.issueID The ID of the issue.  EX: 10002
+     * @param {string} opts.globalId The id of the remote issue link to be returned. If null (not provided) all remote
+     *     links for the issue are returned. For a full explanation of Issue Link fields please refer to
+     *     {@link https://developer.atlassian.com/display/JIRADEV/Fields+in+Remote+Issue+Links}
+     * @param callback Called when the remote links are retrieved.
+     */
+    this.getRemoteLinks = function (opts, callback) {
+        if (!opts.issueID && !opts.issueKey) {
+            throw new Error(errorStrings.NO_ISSUE_IDENTIFIER);
+        }
+        var idOrKey = opts.issueID || opts.issueKey;
+
+        var options = {
+            uri: this.jiraClient.buildURL('/issue/' + idOrKey + '/remotelink'),
+            method: 'GET',
+            followAllRedirects: true,
+            json: true,
+            qs: {
+                globalId: opts.globalId
+            }
+        };
+
+        this.jiraClient.makeRequest(options, function (err, response, body) {
+            if (err || response.statusCode.toString()[0] != 2) {
+                return callback(err ? err : body);
+            }
+
+            return callback(null, body);
+        });
+    };
+
 }).call(IssueClient.prototype);
 
