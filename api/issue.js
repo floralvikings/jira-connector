@@ -884,7 +884,7 @@ function IssueClient(jiraClient) {
      *
      * This function is maked as experimental in the Jira API docs, use at your own risk.
      *
-     * @method getProperties
+     * @method setProperty
      * @memberOf IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *     issueKey property; issueID will be used over issueKey if both are present.
@@ -892,7 +892,7 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.propertyKey The key of the property being set.
      * @param {Object} opts.propertyValue The value of the property being set.
-     * @param callback Called when the properties are retrieved.
+     * @param callback Called when the property is set.
      */
     this.setProperty = function (opts, callback) {
         if (!opts.propertyKey) {
