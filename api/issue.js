@@ -878,6 +878,33 @@ function IssueClient(jiraClient) {
     };
 
     /**
+     * Sets the value of the specified issue's property. You can use this resource to store a custom data against the
+     * issue identified by the key or by the id. The user who stores the data is required to have permissions to edit
+     * the issue.
+     *
+     * This function is maked as experimental in the Jira API docs, use at your own risk.
+     *
+     * @method getProperties
+     * @memberOf IssueClient#
+     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
+     *     issueKey property; issueID will be used over issueKey if both are present.
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
+     * @param {string} opts.propertyKey The key of the property being set.
+     * @param {Object} opts.propertyValue The value of the property being set.
+     * @param callback Called when the properties are retrieved.
+     */
+    this.setProperty = function (opts, callback) {
+        if (!opts.propertyKey) {
+            throw new Error(errorStrings.NO_PROPERTY_KEY_ERROR);
+        } else if (!opts.propertyValue) {
+            throw new Error(errorStrings.NO_PROPERTY_VALUE_ERROR);
+        }
+        var options = this.buildRequestOptions(opts, '/properties/' + opts.propertyKey, 'PUT', opts.propertyValue);
+        this.makeRequest(options, callback, 'Property Set');
+    };
+
+    /**
      * Helper method to reduce duplicated code.  Uses the JiraClient to make a request, calling back with either
      * the response, or the supplied error string if it exists.
      *
