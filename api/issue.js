@@ -2,9 +2,16 @@
 
 var errorStrings = require('./../lib/error');
 
-var issue = module.exports = function (jiraClient) {
+module.exports = IssueClient;
+
+/**
+ * Used to access Jira REST endpoints in '/rest/api/2/issue'
+ * @constructor
+ * @param jiraClient
+ */
+function IssueClient(jiraClient) {
     this.jiraClient = jiraClient;
-};
+}
 
 (function () {
 
@@ -448,5 +455,5 @@ var issue = module.exports = function (jiraClient) {
         });
     };
 
-}).call(issue.prototype);
+}).call(IssueClient.prototype);
 
