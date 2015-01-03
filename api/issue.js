@@ -637,7 +637,7 @@ function IssueClient(jiraClient) {
         }
         var options = this.buildRequestOptions(opts, '/watchers', 'DELETE', null, {username: opts.watcher});
 
-        this.makeRequest(options, callback, 'Watcher Removed')
+        this.makeRequest(options, callback, 'Watcher Removed');
     };
 
     /**
