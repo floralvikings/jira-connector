@@ -11,5 +11,9 @@
   "dependencies": {
     "oauth": "^0.9.12",
     "request": "^2.51.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jenjinstudios/jira-wrapper.git"
   }
 }
