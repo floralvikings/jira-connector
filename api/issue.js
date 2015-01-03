@@ -582,6 +582,20 @@ function IssueClient(jiraClient) {
     };
 
     /**
+     * Returns the list of watchers for the issue with the given key.
+     *
+     * @method getWatchers
+     * @memberOf IssueClient#
+     * @param opts
+     * @param callback
+     */
+    this.getWatchers = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/watchers', 'GET');
+
+        this.makeRequest(options, callback);
+    };
+
+    /**
      * Helper method to reduce duplicated code.  Uses the JiraClient to make a request, calling back with either
      * the response, or the supplied error string if it exists.
      *
