@@ -9,6 +9,7 @@ var request = require('request');
 // Custom packages
 var oauth_util = require('./lib/oauth_util');
 var errorStrings = require('./lib/error');
+var issue = require('./api/issue');
 
 /**
  * Represents a client for the Jira REST API
@@ -71,7 +72,11 @@ var JiraClient = module.exports = function (config) {
         throw new Error(errorStrings.INVALID_AUTHENTICATION_PROPERTY_ERROR);
     }
 
-    var issue = require('./api/issue');
+    /**
+     * @memberOf JiraClient#
+     * @instance
+     * @type {IssueClient}
+     */
     this.issue = new issue(this);
 };
 
