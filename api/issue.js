@@ -434,8 +434,6 @@ function IssueClient(jiraClient) {
     this.getEditMetadata = function (opts, callback) {
         if (!opts.issueID && !opts.issueKey) {
             throw new Error(errorStrings.NO_ISSUE_IDENTIFIER);
-        } else if (!opts.commentId) {
-            throw new Error(errorStrings.NO_COMMENT_ID);
         }
         var idOrKey = opts.issueID || opts.issueKey;
 
@@ -452,6 +450,45 @@ function IssueClient(jiraClient) {
             }
 
             return callback(null, body);
+        });
+    };
+
+    /**
+     * Sends a notification (email) to the list or recipients defined in the request.
+     * A couple of notes: this may call back with the error 'No recipients were defined for notification.' if all
+     * of the intended recipients have disabled notifications from Jira.
+     *
+     * @method sendEmailNotification
+     * @memberof IssueClient#
+     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
+     *        issueKey property; issueID will be used over issueKey if both are present.
+     * @param {string} opts.issueID The ID of the issue.  EX: 10002
+     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {Object} opts.notification See https://docs.atlassian.com/jira/REST/latest/#d2e435
+     * @param callback Called when the metadata is retrieved.
+     */
+    this.sendEmailNotification = function (opts, callback) {
+        if (!opts.issueID && !opts.issueKey) {
+            throw new Error(errorStrings.NO_ISSUE_IDENTIFIER);
+        } else if (!opts.notification) {
+            throw new Error(errorStrings.NO_NOTIFICATION_ERROR);
+        }
+        var idOrKey = opts.issueID || opts.issueKey;
+
+        var options = {
+            uri: this.jiraClient.buildURL('/issue/' + idOrKey + '/notify'),
+            method: 'POST',
+            followAllRedirects: true,
+            json: true,
+            body: opts.notification
+        };
+
+        this.jiraClient.makeRequest(options, function (err, response, body) {
+            if (err || response.statusCode.toString()[0] != 2) {
+                return callback(err ? err : body);
+            }
+
+            return callback(null, 'Notifications Sent.');
         });
     };
 
