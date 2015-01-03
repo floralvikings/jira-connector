@@ -641,6 +641,23 @@ function IssueClient(jiraClient) {
     };
 
     /**
+     * Gets all work logs for an issue.
+     *
+     * @method getWorkLogs
+     * @memberOf IssueClient#
+     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
+     *     issueKey property; issueID will be used over issueKey if both are present.
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
+     * @param callback Called after the vote is removed.
+     */
+    this.getWorkLogs = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/worklog', 'GET');
+
+        this.makeRequest(options, callback);
+    };
+
+    /**
      * Helper method to reduce duplicated code.  Uses the JiraClient to make a request, calling back with either
      * the response, or the supplied error string if it exists.
      *
