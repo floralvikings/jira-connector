@@ -246,5 +246,39 @@ var issue = module.exports = function (jiraClient) {
         });
     };
 
+    /**
+     * Assign an issue.
+     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
+     *        issueKey property; issueID will be used over issueKey if both are present.
+     * @param {string} opts.issueID The ID of the issue.  EX: 10002
+     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {string} opts.assignee The name of the user to whom to assign the issue. -1 for default, null for no assignee.
+     * @param callback Called when the issue has been assigned.
+     */
+    this.assignIssue = function (opts, callback) {
+        if (!opts.issueID && !opts.issueKey) {
+            throw new Error(errorStrings.NO_ISSUE_IDENTIFIER);
+        }
+        var idOrKey = opts.issueID || opts.issueKey;
+
+        var options = {
+            uri: this.jiraClient.buildURL('/issue/' + idOrKey + "/assignee"),
+            method: 'PUT',
+            followAllRedirects: true,
+            json: true,
+            body: {
+                name: opts.assignee
+            }
+        };
+
+        this.jiraClient.makeRequest(options, function (err, response, body) {
+            if (err || response.statusCode.toString()[0] != 2) {
+                return callback(err ? err : body);
+            }
+
+            return callback(null, 'Issue Assigned');
+        });
+    };
+
 }).call(issue.prototype);
 
