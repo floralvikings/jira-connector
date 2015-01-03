@@ -16,7 +16,20 @@ function IssueClient(jiraClient) {
 (function () {
 
     /**
-     * Create a new issue in the Jira tracker.
+     * Creates an issue or a sub-task from a JSON representation.
+     *
+     * The fields that can be set on create, in either the fields parameter or the update parameter can be determined
+     * using the /rest/api/2/issue/createmeta resource. If a field is not configured to appear on the create screen,
+     * then it will not be in the createmeta, and a field validation error will occur if it is submitted.
+     *
+     * Creating a sub-task is similar to creating a regular issue, with two important differences:
+     *
+     * * the issueType field must correspond to a sub-task issue type (you can use /issue/createmeta to discover
+     * sub-task issue types), and
+     * * you must provide a parent field in the issue create request containing the id or key of the parent issue.
+     *
+     * @method createIssue
+     * @memberof IssueClient#
      * @param {Object} issue The issue data in the form of POST body to the JIRA API.
      *        See https://docs.atlassian.com/jira/REST/latest/#d2e398
      * @param callback Called when the issue has been created.
@@ -40,7 +53,15 @@ function IssueClient(jiraClient) {
     };
 
     /**
-     * Create multiple Jira issues at the same time.
+     * Creates issues or sub-tasks from a JSON representation.
+     *
+     * Creates many issues in one bulk operation.
+     *
+     * Creating a sub-task is similar to creating a regular issue. More details can be found in createIssue section:
+     * {@link IssueResource#createIssue(IssueUpdateBean)}}
+     *
+     * @method bulkCreate
+     * @memberof IssueClient#
      * @param issues See "acceptable request representations:" https://docs.atlassian.com/jira/REST/latest/#d2e828
      * @param callback Called when the issues have been created.
      */
@@ -63,7 +84,33 @@ function IssueClient(jiraClient) {
     };
 
     /**
+     * Returns a full representation of the issue for the given issue key.
      *
+     * An issue JSON consists of the issue key, a collection of fields, a link to the workflow transition sub-resource,
+     * and (optionally) the HTML rendered values of any fields that support it (e.g. if wiki syntax is enabled for the
+     * description or comments).
+     *
+     * The fields param (which can be specified multiple times) gives a comma-separated list of fields to include in
+     * the response. This can be used to retrieve a subset of fields. A particular field can be excluded by prefixing
+     * it with a minus.
+     *
+     * By default, all (\*all) fields are returned in this get-issue resource. Note: the default is different when doing
+     * a jql search -- the default there is just navigable fields (\*navigable).
+     *
+     * * \*all - include all fields
+     * * \*navigable - include just navigable fields
+     * * summary,comment - include just the summary and comments
+     * * -comment - include everything except comments (the default is *all for get-issue)
+     * * \*all,-comment - include everything except comments
+     *
+     * JIRA will attempt to identify the issue by the issueIdOrKey path parameter. This can be an issue id, or an issue
+     * key. If the issue cannot be found via an exact match, JIRA will also look for the issue in a case-insensitive
+     * way, or by looking to see if the issue was moved. In either of these cases, the request will proceed as normal
+     * (a 302 or other redirect will not be returned). The issue key contained in the response will indicate the
+     * current value of issue's key.
+     *
+     * @method getIssue
+     * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *        issueKey property; issueID will be used over issueKey if both are present.
      * @param {string} opts.issueID The ID of the issue.  EX: 10002
@@ -115,7 +162,11 @@ function IssueClient(jiraClient) {
     };
 
     /**
-     * Delete an issue.
+     * Delete an issue. If the issue has subtasks you must set the parameter deleteSubtasks=true to delete the issue.
+     * You cannot delete an issue without its subtasks also being deleted.
+     *
+     * @method deleteIssue
+     * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *        issueKey property; issueID will be used over issueKey if both are present.
      * @param {string} opts.issueID The ID of the issue.  EX: 10002
@@ -148,12 +199,26 @@ function IssueClient(jiraClient) {
     };
 
     /**
-     * Edit an issue.
+     *  Edits an issue from a JSON representation.
+     *
+     * The issue can either be updated by setting explicit the field value(s) or by using an operation to change the
+     * field value.
+     *
+     * The fields that can be updated, in either the fields parameter or the update parameter, can be determined using
+     * the {@link IssueClient#getEditMetadata} method. If a field is not configured to appear on the edit
+     * screen, then it will not be in the editmeta, and a field validation error will occur if it is submitted.
+     *
+     * Specifying a "field_id": field_value in the "fields" is a shorthand for a "set" operation in the "update"
+     * section. Field should appear either in "fields" or "update", not in both.
+     *
+     * @method editIssue
+     * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *        issueKey property; issueID will be used over issueKey if both are present.
      * @param {string} opts.issueID The ID of the issue.  EX: 10002
      * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
-     * @param {Object} opts.issue The JSON representation of the issue.  See https://docs.atlassian.com/jira/REST/latest/#d2e656
+     * @param {Object} opts.issue The JSON representation of the issue.  See
+     *     https://docs.atlassian.com/jira/REST/latest/#d2e656
      * @param callback
      */
     this.editIssue = function (opts, callback) {
@@ -180,12 +245,18 @@ function IssueClient(jiraClient) {
     };
 
     /**
-     * Assign an issue.
+     * Assigns an issue to a user. You can use this resource to assign issues when the user submitting the request has
+     * the assign permission but not the edit issue permission. If the name is "-1" automatic assignee is used. A null
+     * name will remove the assignee.
+     *
+     * @method assignIssue
+     * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *        issueKey property; issueID will be used over issueKey if both are present.
      * @param {string} opts.issueID The ID of the issue.  EX: 10002
      * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
-     * @param {string} opts.assignee The name of the user to whom to assign the issue. -1 for default, null for no assignee.
+     * @param {string} opts.assignee The name of the user to whom to assign the issue. -1 for default, null for no
+     *     assignee.
      * @param callback Called when the issue has been assigned.
      */
     this.assignIssue = function (opts, callback) {
@@ -215,6 +286,9 @@ function IssueClient(jiraClient) {
 
     /**
      * Get all the comments for an issue.
+     *
+     * @method getComments
+     * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *        issueKey property; issueID will be used over issueKey if both are present.
      * @param {string} opts.issueID The ID of the issue.  EX: 10002
@@ -254,6 +328,9 @@ function IssueClient(jiraClient) {
 
     /**
      * Add a comment to an issue
+     *
+     * @method addComment
+     * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *        issueKey property; issueID will be used over issueKey if both are present.
      * @param {string} opts.issueID The ID of the issue.  EX: 10002
@@ -294,6 +371,9 @@ function IssueClient(jiraClient) {
 
     /**
      * Get a specific comment.
+     *
+     * @method getComment
+     * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *        issueKey property; issueID will be used over issueKey if both are present.
      * @param {string} opts.issueID The ID of the issue.  EX: 10002
@@ -335,6 +415,9 @@ function IssueClient(jiraClient) {
 
     /**
      * Updates an existing comment using its JSON representation.
+     *
+     * @method editComment
+     * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *        issueKey property; issueID will be used over issueKey if both are present.
      * @param {string} opts.issueID The ID of the issue.  EX: 10002
@@ -380,6 +463,9 @@ function IssueClient(jiraClient) {
 
     /**
      * Delete an existing comment.
+     *
+     * @method deleteComment
+     * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *        issueKey property; issueID will be used over issueKey if both are present.
      * @param {string} opts.issueID The ID of the issue.  EX: 10002
@@ -425,6 +511,8 @@ function IssueClient(jiraClient) {
      * The fields in the editmeta correspond to the fields in the edit screen for the issue. Fields not in the screen
      * will not be in the editemeta.
      *
+     * @method getEditMetadata
+     * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *        issueKey property; issueID will be used over issueKey if both are present.
      * @param {string} opts.issueID The ID of the issue.  EX: 10002
