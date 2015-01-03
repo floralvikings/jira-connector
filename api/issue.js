@@ -6,8 +6,8 @@ module.exports = IssueClient;
 
 /**
  * Used to access Jira REST endpoints in '/rest/api/2/issue'
- * @constructor
- * @param jiraClient
+ * @constructor IssueClient
+ * @param {JiraClient} jiraClient
  */
 function IssueClient(jiraClient) {
     this.jiraClient = jiraClient;
