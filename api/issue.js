@@ -40,13 +40,7 @@ function IssueClient(jiraClient) {
             body: issue
         };
 
-        this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body);
-            }
-
-            return callback(null, body);
-        });
+        this.makeRequest(options, callback);
     };
 
     /**
@@ -71,13 +65,7 @@ function IssueClient(jiraClient) {
             body: issues
         };
 
-        this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body);
-            }
-
-            return callback(null, body);
-        });
+        this.makeRequest(options, callback);
     };
 
     /**
@@ -119,13 +107,7 @@ function IssueClient(jiraClient) {
     this.getIssue = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '', 'GET');
 
-        this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body);
-            }
-
-            return callback(null, body);
-        });
+        this.makeRequest(options, callback);
 
     };
 
@@ -147,12 +129,7 @@ function IssueClient(jiraClient) {
     this.deleteIssue = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '', 'DELETE', null, {deleteSubTasks: opts.deleteSubTasks});
 
-        this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body);
-            }
-            return callback(null, 'Issue Deleted');
-        });
+        this.makeRequest(options, callback, 'Issue Deleted');
     };
 
     /**
@@ -183,13 +160,7 @@ function IssueClient(jiraClient) {
         }
         var options = this.buildRequestOptions(opts, '', 'PUT', opts.issue);
 
-        this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body);
-            }
-
-            return callback(null, 'Issue Updated');
-        });
+        this.makeRequest(options, callback, 'Issue Updated');
     };
 
     /**
@@ -213,13 +184,7 @@ function IssueClient(jiraClient) {
         }
         var options = this.buildRequestOptions(opts, '/assignee', 'PUT', {name: opts.assignee});
 
-        this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body);
-            }
-
-            return callback(null, 'Issue Assigned');
-        });
+        this.makeRequest(options, callback, 'Issue Assigned');
     };
 
     /**
@@ -237,13 +202,7 @@ function IssueClient(jiraClient) {
     this.getComments = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/comment', 'GET');
 
-        this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body);
-            }
-
-            return callback(null, body);
-        });
+        this.makeRequest(options, callback);
     };
 
     /**
@@ -261,13 +220,7 @@ function IssueClient(jiraClient) {
     this.addComment = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/comment', 'POST', opts.comment);
 
-        this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body);
-            }
-
-            return callback(null, body);
-        });
+        this.makeRequest(options, callback);
     };
 
     /**
@@ -288,13 +241,7 @@ function IssueClient(jiraClient) {
         }
         var options = this.buildRequestOptions(opts, '/comment/' + opts.commentId, 'GET');
 
-        this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body);
-            }
-
-            return callback(null, body);
-        });
+        this.makeRequest(options, callback);
     };
 
     /**
@@ -318,13 +265,7 @@ function IssueClient(jiraClient) {
         }
         var options = this.buildRequestOptions(opts, '/comment/' + opts.commentId, 'PUT', opts.comment);
 
-        this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body);
-            }
-
-            return callback(null, body);
-        });
+        this.makeRequest(options, callback);
     };
 
     /**
@@ -345,13 +286,7 @@ function IssueClient(jiraClient) {
         }
         var options = this.buildRequestOptions(opts, '/comment/' + opts.commentId, 'DELETE');
 
-        this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body);
-            }
-
-            return callback(null, 'Comment Deleted');
-        });
+        this.makeRequest(options, callback, 'Comment Deleted');
     };
 
     /**
@@ -371,13 +306,7 @@ function IssueClient(jiraClient) {
     this.getEditMetadata = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/editmeta', 'GET');
 
-        this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body);
-            }
-
-            return callback(null, body);
-        });
+        this.makeRequest(options, callback);
     };
 
     /**
@@ -401,13 +330,7 @@ function IssueClient(jiraClient) {
 
         var options = this.buildRequestOptions(opts, '/notify', 'POST', opts.notification);
 
-        this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body);
-            }
-
-            return callback(null, 'Notifications Sent.');
-        });
+        this.makeRequest(options, callback, 'Notifications Sent');
     };
 
     /**
@@ -427,13 +350,7 @@ function IssueClient(jiraClient) {
     this.getRemoteLinks = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/remotelink', 'GET', null, {globalId: opts.globalId});
 
-        this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body);
-            }
-
-            return callback(null, body);
-        });
+        this.makeRequest(options, callback);
     };
 
     /**
@@ -452,13 +369,7 @@ function IssueClient(jiraClient) {
     this.createRemoteLink = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/remotelink', 'POST', opts.remoteLink);
 
-        this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body);
-            }
-
-            return callback(null, body);
-        });
+        this.makeRequest(options, callback);
     };
 
     /**
@@ -498,13 +409,7 @@ function IssueClient(jiraClient) {
 
         var options = this.buildRequestOptions(opts, '/remotelink', 'DELETE', null, {globalId: opts.globalId});
 
-        this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body);
-            }
-
-            return callback(null, 'RemoteLink Deleted');
-        });
+        this.makeRequest(options, callback, 'RemoteLink Deleted');
     };
 
     /**
@@ -526,13 +431,7 @@ function IssueClient(jiraClient) {
 
         var options = this.buildRequestOptions(opts, '/remotelink/' + opts.linkId, 'GET');
 
-        this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body);
-            }
-
-            return callback(null, body);
-        });
+        this.makeRequest(options, callback);
     };
 
     /**
@@ -555,13 +454,7 @@ function IssueClient(jiraClient) {
 
         var options = this.buildRequestOptions(opts, '/remotelink/' + opts.linkId, 'PUT', opts.remoteLink);
 
-        this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body);
-            }
-
-            return callback(null, 'Remote Link Updated');
-        });
+        this.makeRequest(options, callback, 'RemoteLink Updated');
     };
 
     /**
@@ -583,13 +476,7 @@ function IssueClient(jiraClient) {
 
         var options = this.buildRequestOptions(opts, '/remotelink/' + opts.linkId, 'DELETE');
 
-        this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body);
-            }
-
-            return callback(null, 'Remote Link Deleted');
-        });
+        this.makeRequest(options, callback, 'RemoteLink Deleted');
     };
 
     /**
@@ -613,13 +500,7 @@ function IssueClient(jiraClient) {
     this.getTransitions = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/transitions', 'GET', null, {transitionId: opts.transitionId});
 
-        this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body);
-            }
-
-            return callback(null, body);
-        });
+        this.makeRequest(options, callback);
     };
 
     /**
@@ -646,13 +527,7 @@ function IssueClient(jiraClient) {
 
         var options = this.buildRequestOptions(opts, '/transitions', 'POST', opts.transition);
 
-        this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body);
-            }
-
-            return callback(null, 'Issue Transitioned');
-        });
+        this.makeRequest(options, callback, 'Issue Transitioned');
     };
 
     /**
@@ -669,13 +544,7 @@ function IssueClient(jiraClient) {
     this.unvote = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/votes', 'DELETE');
 
-        this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body);
-            }
-
-            return callback(null, 'Vote Removed');
-        });
+        this.makeRequest(options, callback, 'Vote Removed');
     };
 
     /**
@@ -692,13 +561,7 @@ function IssueClient(jiraClient) {
     this.vote = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/votes', 'POST');
 
-        this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body);
-            }
-
-            return callback(null, 'Vote Added');
-        });
+        this.makeRequest(options, callback, 'Vote Added');
     };
 
     /**
@@ -715,12 +578,26 @@ function IssueClient(jiraClient) {
     this.getVotes = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/votes', 'GET');
 
+        this.makeRequest(options, callback);
+    };
+
+    /**
+     * Helper method to reduce duplicated code.  Uses the JiraClient to make a request, calling back with either
+     * the response, or the supplied error string if it exists.
+     *
+     * @method makeRequest
+     * @memberOf IssueClient#
+     * @param {Object} options The requiest options; probably built with {@link IssueClient#buildRequestOptions}
+     * @param {Function} callback Called with the Jira APIs response.
+     * @param {string} [successString] If supplied, this is reported instead of the response body.
+     */
+    this.makeRequest = function (options, callback, successString) {
         this.jiraClient.makeRequest(options, function (err, response, body) {
             if (err || response.statusCode.toString()[0] != 2) {
                 return callback(err ? err : body);
             }
 
-            return callback(null, body);
+            return callback(null, successString ? successString : body);
         });
     };
 
