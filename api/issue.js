@@ -751,6 +751,41 @@ function IssueClient(jiraClient) {
     };
 
     /**
+     * Deletes an existing worklog entry
+     *
+     * @method deleteWorkLog
+     * @memberOf IssueClient#
+     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
+     *     issueKey property; issueID will be used over issueKey if both are present.
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
+     * @param {string} opts.worklogId The id of the work log to delete.
+     * @param {string} [opts.adjustEstimate] Allows you to provide specific instructions to update the remaining time
+     *     estimate of the issue. Valid values are
+     *     * "new" - sets the estimate to a specific value
+     *     * "leave"- leaves the estimate as is
+     *     * "manual" - specify a specific amount to increase remaining estimate by
+     *     * "auto"- Default option. Will automatically adjust the value based on the
+     *          new timeSpent specified on the worklog
+     * @param {string} [opts.newEstimate] (required when "new" is selected for adjustEstimate) the new value for the
+     *     remaining estimate field. e.g. "2d"
+     * @param {string} [opts.increaseBy] (required when "manual" is selected for adjustEstimate) the amount to reduce
+     *     the remaining estimate by e.g. "2d"
+     * @param callback Called after the work log is deleted.
+     */
+    this.deleteWorkLog = function (opts, callback) {
+        if (!opts.worklogId) {
+            throw new Error(errorStrings.NO_WORKLOG_ID_ERROR);
+        }
+        var options = this.buildRequestOptions(opts, '/worklog/' + opts.worklogId, 'DELETE', null, {
+            newEstimate: opts.newEstimate,
+            increaseBy: opts.increaseBy,
+            adjustEstimate: opts.adjustEstimate
+        });
+        this.makeRequest(options, callback, 'Work Log Deleted');
+    };
+
+    /**
      * Helper method to reduce duplicated code.  Uses the JiraClient to make a request, calling back with either
      * the response, or the supplied error string if it exists.
      *
