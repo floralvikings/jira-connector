@@ -1,6 +1,7 @@
 "use strict";
 
 var errorStrings = require('./../lib/error');
+var fs = require('fs');
 
 module.exports = IssueClient;
 
@@ -833,7 +834,41 @@ function IssueClient(jiraClient) {
         this.makeRequest(options, callback, 'Work Log Deleted');
     };
 
-    // TODO Add addAttachment method.
+    /**
+     * Add one or more attachments to an issue.
+     *
+     * This resource expects a multipart post. The media-type multipart/form-data is defined in RFC 1867. Most client
+     * libraries have classes that make dealing with multipart posts simple. For instance, in Java the Apache HTTP
+     * Components library provides a MultiPartEntity that makes it simple to submit a multipart POST.
+     *
+     * In order to protect against XSRF attacks, because this method accepts multipart/form-data, it has XSRF
+     * protection on it. This means you must submit a header of X-Atlassian-Token: nocheck with the request, otherwise
+     * it will be blocked.
+     *
+     * The name of the multipart/form-data parameter that contains attachments must be "file"
+     *
+     * @method addAttachment
+     * @memberOf IssueClient.js
+     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
+     *     issueKey property; issueID will be used over issueKey if both are present.
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
+     * @param {string} opts.filename The file name of attachment.
+     * @param callback Called when the attachment has been attached.
+     */
+    this.addAttachment = function (opts, callback) {
+        if (!opts.filename) {
+            throw new Error(errorStrings.NO_FILENAME_ERROR);
+        }
+        var options = this.buildRequestOptions(opts, '/attachments', 'POST');
+        delete options.body;
+        options.formData = {file: fs.createReadStream(opts.filename)};
+        options.headers = {
+            "X-Atlassian-Token": "nocheck"
+        };
+
+        this.makeRequest(options, callback);
+    };
 
     /**
      * Helper method to reduce duplicated code.  Uses the JiraClient to make a request, calling back with either
