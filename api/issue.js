@@ -110,10 +110,10 @@ function IssueClient(jiraClient) {
      * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *        issueKey property; issueID will be used over issueKey if both are present.
-     * @param {string} opts.issueID The ID of the issue.  EX: 10002
-     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
-     * @param {Object} opts.fields See {@link https://docs.atlassian.com/jira/REST/latest/#d2e611}
-     * @param {Object} opts.expand See {@link https://docs.atlassian.com/jira/REST/latest/#d2e611}
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
+     * @param {Object} [opts.fields] See {@link https://docs.atlassian.com/jira/REST/latest/#d2e611}
+     * @param {Object} [opts.expand] See {@link https://docs.atlassian.com/jira/REST/latest/#d2e611}
      * @param callback
      */
     this.getIssue = function (opts, callback) {
@@ -137,9 +137,9 @@ function IssueClient(jiraClient) {
      * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *        issueKey property; issueID will be used over issueKey if both are present.
-     * @param {string} opts.issueID The ID of the issue.  EX: 10002
-     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
-     * @param {boolean} opts.deleteSubTasks "a String of true or false indicating that any subtasks should also
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
+     * @param {boolean} [opts.deleteSubTasks] "a String of true or false indicating that any subtasks should also
      *        be deleted. If the issue has no subtasks this parameter is ignored. If the issue has subtasks and this
      *        parameter is missing or false, then the issue will not be deleted and an error will be returned."
      * @param callback
@@ -172,8 +172,8 @@ function IssueClient(jiraClient) {
      * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *        issueKey property; issueID will be used over issueKey if both are present.
-     * @param {string} opts.issueID The ID of the issue.  EX: 10002
-     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {Object} opts.issue See {@link https://docs.atlassian.com/jira/REST/latest/#d2e656}
      * @param callback
      */
@@ -201,8 +201,8 @@ function IssueClient(jiraClient) {
      * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *        issueKey property; issueID will be used over issueKey if both are present.
-     * @param {string} opts.issueID The ID of the issue.  EX: 10002
-     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.assignee The name of the user to whom to assign the issue. -1 for default, null for no
      *     assignee.
      * @param callback Called when the issue has been assigned.
@@ -229,8 +229,8 @@ function IssueClient(jiraClient) {
      * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *        issueKey property; issueID will be used over issueKey if both are present.
-     * @param {string} opts.issueID The ID of the issue.  EX: 10002
-     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {Object} opts.expand See {@link https://docs.atlassian.com/jira/REST/latest/#d2e461}
      * @param callback Called when the issue has been assigned.
      */
@@ -253,8 +253,8 @@ function IssueClient(jiraClient) {
      * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *        issueKey property; issueID will be used over issueKey if both are present.
-     * @param {string} opts.issueID The ID of the issue.  EX: 10002
-     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {Object} opts.comment See {@link https://docs.atlassian.com/jira/REST/latest/#d2e482}
      * @param callback
      */
@@ -277,8 +277,8 @@ function IssueClient(jiraClient) {
      * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *        issueKey property; issueID will be used over issueKey if both are present.
-     * @param {string} opts.issueID The ID of the issue.  EX: 10002
-     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.commentId The id of the comment.
      * @param callback Called when the comment is retrieved.
      */
@@ -304,8 +304,8 @@ function IssueClient(jiraClient) {
      * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *        issueKey property; issueID will be used over issueKey if both are present.
-     * @param {string} opts.issueID The ID of the issue.  EX: 10002
-     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.commentId The id of the comment.
      * @param {Object} opts.comment See {@link https://docs.atlassian.com/jira/REST/latest/#d2e539}
      * @param callback
@@ -334,8 +334,8 @@ function IssueClient(jiraClient) {
      * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *        issueKey property; issueID will be used over issueKey if both are present.
-     * @param {string} opts.issueID The ID of the issue.  EX: 10002
-     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.commentId The id of the comment.
      * @param callback Called when the comment is retrieved.
      */
@@ -364,8 +364,8 @@ function IssueClient(jiraClient) {
      * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *        issueKey property; issueID will be used over issueKey if both are present.
-     * @param {string} opts.issueID The ID of the issue.  EX: 10002
-     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param callback Called when the metadata is retrieved.
      */
     this.getEditMetadata = function (opts, callback) {
@@ -389,8 +389,8 @@ function IssueClient(jiraClient) {
      * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *        issueKey property; issueID will be used over issueKey if both are present.
-     * @param {string} opts.issueID The ID of the issue.  EX: 10002
-     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {Object} opts.notification See {@link https://docs.atlassian.com/jira/REST/latest/#d2e435}
      * @param callback Called when the metadata is retrieved.
      */
@@ -417,8 +417,8 @@ function IssueClient(jiraClient) {
      * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *     issueKey property; issueID will be used over issueKey if both are present.
-     * @param {string} opts.issueID The ID of the issue.  EX: 10002
-     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.globalId The id of the remote issue link to be returned. If null (not provided) all remote
      *     links for the issue are returned. For a full explanation of Issue Link fields please refer to
      *     {@link https://developer.atlassian.com/display/JIRADEV/Fields+in+Remote+Issue+Links}
@@ -444,8 +444,8 @@ function IssueClient(jiraClient) {
      * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *     issueKey property; issueID will be used over issueKey if both are present.
-     * @param {string} opts.issueID The ID of the issue.  EX: 10002
-     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {Object} opts.remoteLink See {@link https://docs.atlassian.com/jira/REST/latest/#d2e945}
      * @param callback Called when the remote links are retrieved.
      */
@@ -469,8 +469,8 @@ function IssueClient(jiraClient) {
      * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *     issueKey property; issueID will be used over issueKey if both are present.
-     * @param {string} opts.issueID The ID of the issue.  EX: 10002
-     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {Object} opts.remoteLink See {@link https://docs.atlassian.com/jira/REST/latest/#d2e945}
      * @param callback Called when the remote links are retrieved.
      */
@@ -486,8 +486,8 @@ function IssueClient(jiraClient) {
      * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *     issueKey property; issueID will be used over issueKey if both are present.
-     * @param {string} opts.issueID The ID of the issue.  EX: 10002
-     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.globalId The global id of the remote issue link
      * @param callback Called when the remote links are retrieved.
      */
@@ -514,8 +514,8 @@ function IssueClient(jiraClient) {
      * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *     issueKey property; issueID will be used over issueKey if both are present.
-     * @param {string} opts.issueID The ID of the issue.  EX: 10002
-     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.linkId The id of the remote link
      * @param callback Called when the remote links are retrieved.
      */
@@ -542,8 +542,8 @@ function IssueClient(jiraClient) {
      * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *     issueKey property; issueID will be used over issueKey if both are present.
-     * @param {string} opts.issueID The ID of the issue.  EX: 10002
-     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.linkId The id of the remote link
      * @param {string} opts.remoteLink See {@link https://docs.atlassian.com/jira/REST/latest/#d2e1037}
      * @param callback Called when the remote links are retrieved.
@@ -571,8 +571,8 @@ function IssueClient(jiraClient) {
      * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *     issueKey property; issueID will be used over issueKey if both are present.
-     * @param {string} opts.issueID The ID of the issue.  EX: 10002
-     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.linkId The id of the remote link
      * @param callback Called when the remote links are retrieved.
      */
@@ -605,8 +605,8 @@ function IssueClient(jiraClient) {
      * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *     issueKey property; issueID will be used over issueKey if both are present.
-     * @param {string} opts.issueID The ID of the issue.  EX: 10002
-     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.transitionId If specified, will call back with only the transition with the specified id.
      * @param callback Called when the transitions are retrieved.
      */
@@ -634,8 +634,8 @@ function IssueClient(jiraClient) {
      * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *     issueKey property; issueID will be used over issueKey if both are present.
-     * @param {string} opts.issueID The ID of the issue.  EX: 10002
-     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.transition See {@link https://docs.atlassian.com/jira/REST/latest/#d2e698}
      * @param callback Called when the transitions are retrieved.
      */
