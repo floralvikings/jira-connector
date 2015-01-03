@@ -573,7 +573,7 @@ function IssueClient(jiraClient) {
      *     issueKey property; issueID will be used over issueKey if both are present.
      * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param callback Called after the vote is removed.
+     * @param callback Called after the votes are retrieved.
      */
     this.getVotes = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/votes', 'GET');
@@ -590,7 +590,7 @@ function IssueClient(jiraClient) {
      *     issueKey property; issueID will be used over issueKey if both are present.
      * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param callback Called after the vote is removed.
+     * @param callback Called after the watchers are retrieved.
      */
     this.getWatchers = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/watchers', 'GET');
@@ -608,7 +608,7 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.watcher The username of the user to add as a watcher.
-     * @param callback Called after the vote is removed.
+     * @param callback Called after the watcher is added.
      */
     this.addWatcher = function (opts, callback) {
         if (!opts.watcher) {
@@ -629,7 +629,7 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.watcher The username of the user to remove as a watcher.
-     * @param callback Called after the vote is removed.
+     * @param callback Called after the watcher is removed.
      */
     this.removeWatcher = function (opts, callback) {
         if (!opts.watcher) {
@@ -649,7 +649,7 @@ function IssueClient(jiraClient) {
      *     issueKey property; issueID will be used over issueKey if both are present.
      * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param callback Called after the vote is removed.
+     * @param callback Called after the worklogs are retrieved.
      */
     this.getWorkLogs = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/worklog', 'GET');
@@ -678,7 +678,7 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.reduceBy] (required when "manual" is selected for adjustEstimate) the amount to reduce the
      *     remaining estimate by e.g. "2d"
      * @param {Object} opts.worklog See {@link: https://docs.atlassian.com/jira/REST/latest/#d2e1106}
-     * @param callback Called after the vote is removed.
+     * @param callback Called after the worklog is added.
      */
     this.addWorkLog = function (opts, callback) {
         if (!opts.worklog) {
@@ -703,7 +703,7 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.worklogId The id of the work log to retrieve.
-     * @param callback Called after the vote is removed.
+     * @param callback Called after the worklog is retrieved.
      */
     this.getWorkLog = function (opts, callback) {
         if (!opts.worklogId) {
@@ -733,7 +733,7 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.newEstimate] (required when "new" is selected for adjustEstimate) the new value for the
      *     remaining estimate field. e.g. "2d"
      * @param {Object} opts.worklog See {@link: https://docs.atlassian.com/jira/REST/latest/#d2e1161}
-     * @param callback Called after the vote is removed.
+     * @param callback Called after the worklog is updated.
      */
     this.updateWorkLog = function (opts, callback) {
         if (!opts.worklogId) {
