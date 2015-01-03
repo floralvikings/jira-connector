@@ -120,12 +120,7 @@ function IssueClient(jiraClient) {
      * @param callback
      */
     this.getIssue = function (opts, callback) {
-        if (!opts.issueID && !opts.issueKey) {
-            throw new Error(errorStrings.NO_ISSUE_IDENTIFIER);
-        }
-
-        var idOrKey = opts.issueID || opts.issueKey;
-
+        var idOrKey = getIdOrKey(opts);
         var qs = {
             fields: '',
             expand: ''
@@ -177,10 +172,7 @@ function IssueClient(jiraClient) {
      * @param callback
      */
     this.deleteIssue = function (opts, callback) {
-        if (!opts.issueID && !opts.issueKey) {
-            throw new Error(errorStrings.NO_ISSUE_IDENTIFIER);
-        }
-        var idOrKey = opts.issueID || opts.issueKey;
+        var idOrKey = getIdOrKey(opts);
 
         var options = {
             uri: this.jiraClient.buildURL('/issue/' + idOrKey),
@@ -221,10 +213,7 @@ function IssueClient(jiraClient) {
      * @param callback
      */
     this.editIssue = function (opts, callback) {
-        if (!opts.issueID && !opts.issueKey) {
-            throw new Error(errorStrings.NO_ISSUE_IDENTIFIER);
-        }
-        var idOrKey = opts.issueID || opts.issueKey;
+        var idOrKey = getIdOrKey(opts);
 
         var options = {
             uri: this.jiraClient.buildURL('/issue/' + idOrKey),
@@ -259,10 +248,7 @@ function IssueClient(jiraClient) {
      * @param callback Called when the issue has been assigned.
      */
     this.assignIssue = function (opts, callback) {
-        if (!opts.issueID && !opts.issueKey) {
-            throw new Error(errorStrings.NO_ISSUE_IDENTIFIER);
-        }
-        var idOrKey = opts.issueID || opts.issueKey;
+        var idOrKey = getIdOrKey(opts);
 
         var options = {
             uri: this.jiraClient.buildURL('/issue/' + idOrKey + "/assignee"),
@@ -296,10 +282,7 @@ function IssueClient(jiraClient) {
      * @param callback Called when the issue has been assigned.
      */
     this.getComments = function (opts, callback) {
-        if (!opts.issueID && !opts.issueKey) {
-            throw new Error(errorStrings.NO_ISSUE_IDENTIFIER);
-        }
-        var idOrKey = opts.issueID || opts.issueKey;
+        var idOrKey = getIdOrKey(opts);
         var qs = {expand: ''};
 
         if (opts.expand) {
@@ -338,10 +321,7 @@ function IssueClient(jiraClient) {
      * @param callback
      */
     this.addComment = function (opts, callback) {
-        if (!opts.issueID && !opts.issueKey) {
-            throw new Error(errorStrings.NO_ISSUE_IDENTIFIER);
-        }
-        var idOrKey = opts.issueID || opts.issueKey;
+        var idOrKey = getIdOrKey(opts);
         var qs = {expand: ''};
 
         if (opts.expand) {
@@ -381,12 +361,11 @@ function IssueClient(jiraClient) {
      * @param callback Called when the comment is retrieved.
      */
     this.getComment = function (opts, callback) {
-        if (!opts.issueID && !opts.issueKey) {
-            throw new Error(errorStrings.NO_ISSUE_IDENTIFIER);
-        } else if (!opts.commentId) {
+        var idOrKey = getIdOrKey(opts);
+
+        if (!opts.commentId) {
             throw new Error(errorStrings.NO_COMMENT_ID);
         }
-        var idOrKey = opts.issueID || opts.issueKey;
         var qs = {expand: ''};
 
         if (opts.expand) {
@@ -426,14 +405,14 @@ function IssueClient(jiraClient) {
      * @param callback
      */
     this.editComment = function (opts, callback) {
-        if (!opts.issueID && !opts.issueKey) {
-            throw new Error(errorStrings.NO_ISSUE_IDENTIFIER);
-        } else if (!opts.comment) {
+        var idOrKey = getIdOrKey(opts);
+
+        if (!opts.comment) {
             throw new Error(errorStrings.NO_COMMENT_ERROR);
         } else if (!opts.commentId) {
             throw new Error(errorStrings.NO_COMMENT_ID);
         }
-        var idOrKey = opts.issueID || opts.issueKey;
+
         var qs = {expand: ''};
 
         if (opts.expand) {
@@ -473,12 +452,12 @@ function IssueClient(jiraClient) {
      * @param callback Called when the comment is retrieved.
      */
     this.deleteComment = function (opts, callback) {
-        if (!opts.issueID && !opts.issueKey) {
-            throw new Error(errorStrings.NO_ISSUE_IDENTIFIER);
-        } else if (!opts.commentId) {
+        var idOrKey = getIdOrKey(opts);
+
+        if (!opts.commentId) {
             throw new Error(errorStrings.NO_COMMENT_ID);
         }
-        var idOrKey = opts.issueID || opts.issueKey;
+
         var qs = {expand: ''};
 
         if (opts.expand) {
@@ -519,10 +498,7 @@ function IssueClient(jiraClient) {
      * @param callback Called when the metadata is retrieved.
      */
     this.getEditMetadata = function (opts, callback) {
-        if (!opts.issueID && !opts.issueKey) {
-            throw new Error(errorStrings.NO_ISSUE_IDENTIFIER);
-        }
-        var idOrKey = opts.issueID || opts.issueKey;
+        var idOrKey = getIdOrKey(opts);
 
         var options = {
             uri: this.jiraClient.buildURL('/issue/' + idOrKey + '/editmeta'),
@@ -555,12 +531,11 @@ function IssueClient(jiraClient) {
      * @param callback Called when the metadata is retrieved.
      */
     this.sendEmailNotification = function (opts, callback) {
-        if (!opts.issueID && !opts.issueKey) {
-            throw new Error(errorStrings.NO_ISSUE_IDENTIFIER);
-        } else if (!opts.notification) {
+        var idOrKey = getIdOrKey(opts);
+
+        if (!opts.notification) {
             throw new Error(errorStrings.NO_NOTIFICATION_ERROR);
         }
-        var idOrKey = opts.issueID || opts.issueKey;
 
         var options = {
             uri: this.jiraClient.buildURL('/issue/' + idOrKey + '/notify'),
@@ -593,10 +568,7 @@ function IssueClient(jiraClient) {
      * @param callback Called when the remote links are retrieved.
      */
     this.getRemoteLinks = function (opts, callback) {
-        if (!opts.issueID && !opts.issueKey) {
-            throw new Error(errorStrings.NO_ISSUE_IDENTIFIER);
-        }
-        var idOrKey = opts.issueID || opts.issueKey;
+        var idOrKey = getIdOrKey(opts);
 
         var options = {
             uri: this.jiraClient.buildURL('/issue/' + idOrKey + '/remotelink'),
@@ -619,3 +591,9 @@ function IssueClient(jiraClient) {
 
 }).call(IssueClient.prototype);
 
+function getIdOrKey(opts) {
+    if (!opts.issueID && !opts.issueKey) {
+        throw new Error(errorStrings.NO_ISSUE_IDENTIFIER);
+    }
+    return opts.issueID || opts.issueKey;
+}
