@@ -44,6 +44,54 @@ function IssueClient(jiraClient) {
     };
 
     /**
+     * Returns the meta data for creating issues. This includes the available projects, issue types and fields,
+     * including field types and whether or not those fields are required. Projects will not be returned if the user
+     * does not have permission to create issues in that project.
+     *
+     * The fields in the createmeta correspond to the fields in the create screen for the project/issuetype. Fields not
+     * in the screen will not be in the createmeta.
+     *
+     * Fields will only be returned if ```expand=projects.issuetypes.fields¬.```
+     *
+     * The results can be filtered by project and/or issue type, given by the query params.
+     *
+     * @method getCreateMetadata
+     * @memberOf IssueClient#
+     * @param {Object} [opts] The options for the API request.
+     * @param {string} [opts.projectIds] combined with the projectKeys param, lists the projects with which to filter
+     *     the results. If absent, all projects are returned. This parameter can be specified multiple times, and/or be
+     *     a comma-separated list. Specifiying a project that does not exist (or that you cannot create issues in) is
+     *     not an error, but it will not be in the results.
+     * @param {string} [opts.projectKeys] combined with the projectIds param, lists the projects with which to filter
+     *     the results. If null, all projects are returned. This parameter can be specified multiple times, and/or be a
+     *     comma-separated list. Specifiying a project that does not exist (or that you cannot create issues in) is not
+     *     an error, but it will not be in the results.
+     * @param {string} [opts.issuetypeIds] combinded with issuetypeNames, lists the issue types with which to filter
+     *     the results. If null, all issue types are returned. This parameter can be specified multiple times, and/or
+     *     be a comma-separated list. Specifiying an issue type that does not exist is not an error.
+     * @param {string} [opts.issuetypeNames] combinded with issuetypeIds, lists the issue types with which to filter
+     *     the results. If null, all issue types are returned. This parameter can be specified multiple times, but is
+     *     NOT interpreted as a comma-separated list. Specifiying an issue type that does not exist is not an error.
+     * @param callback Called when the metadata has been retrieved.
+     */
+    this.getCreateMetadata = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/issue/createmeta'),
+            method: 'GET',
+            followAllRedirects: true,
+            json: true,
+            qs: {
+                projectIds: opts.projectIds,
+                projectKeys: opts.projectKeys,
+                issuetypeIds: opts.issuetypeIds,
+                issuetypeNames: opts.issuetypeNames
+            }
+        };
+
+        this.makeRequest(options, callback);
+    };
+
+    /**
      * Creates issues or sub-tasks from a JSON representation.
      *
      * Creates many issues in one bulk operation.
