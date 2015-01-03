@@ -673,7 +673,7 @@ function IssueClient(jiraClient) {
 
             return callback(null, 'RemoteLink Deleted');
         });
-    }
+    };
 
 }).call(IssueClient.prototype);
 
