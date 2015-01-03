@@ -589,6 +589,55 @@ function IssueClient(jiraClient) {
         });
     };
 
+    /**
+     * Creates (or updates) a remote issue link from a JSON representation. If a globalId is provided and a remote issue
+     * link exists with that globalId, the remote issue link is updated. Otherwise, the remote issue link is created.
+     *
+     * @method getRemoteLinks
+     * @memberof IssueClient#
+     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
+     *     issueKey property; issueID will be used over issueKey if both are present.
+     * @param {string} opts.issueID The ID of the issue.  EX: 10002
+     * @param {Object} opts.remoteLink See {@link https://docs.atlassian.com/jira/REST/latest/#d2e945}
+     * @param callback Called when the remote links are retrieved.
+     */
+    this.createRemoteLink = function (opts, callback) {
+        var idOrKey = getIdOrKey(opts);
+
+        var options = {
+            uri: this.jiraClient.buildURL('/issue/' + idOrKey + '/remotelink'),
+            method: 'POST',
+            followAllRedirects: true,
+            json: true,
+            body: opts.remoteLink
+        };
+
+        this.jiraClient.makeRequest(options, function (err, response, body) {
+            if (err || response.statusCode.toString()[0] != 2) {
+                return callback(err ? err : body);
+            }
+
+            return callback(null, body);
+        });
+    };
+
+    /**
+     * Updates (or creates) a remote issue link from a JSON representation. If a globalId is provided and a remote issue
+     * link exists with that globalId, the remote issue link is updated. Otherwise, the remote issue link is created.
+     *
+     * @method getRemoteLinks
+     * @memberof IssueClient#
+     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
+     *     issueKey property; issueID will be used over issueKey if both are present.
+     * @param {string} opts.issueID The ID of the issue.  EX: 10002
+     * @param {Object} opts.remoteLink See {@link https://docs.atlassian.com/jira/REST/latest/#d2e945}
+     * @param callback Called when the remote links are retrieved.
+     */
+    this.updateRemoteLink = function (opts, callback) {
+        // The one API endpoint handles both updates and creation.
+        this.createRemoteLink(opts, callback);
+    };
+
 }).call(IssueClient.prototype);
 
 function getIdOrKey(opts) {
