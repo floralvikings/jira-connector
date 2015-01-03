@@ -412,5 +412,41 @@ var issue = module.exports = function (jiraClient) {
         });
     };
 
+    /**
+     * Returns the meta data for editing an issue.
+     *
+     * The fields in the editmeta correspond to the fields in the edit screen for the issue. Fields not in the screen
+     * will not be in the editemeta.
+     *
+     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
+     *        issueKey property; issueID will be used over issueKey if both are present.
+     * @param {string} opts.issueID The ID of the issue.  EX: 10002
+     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param callback Called when the metadata is retrieved.
+     */
+    this.getEditMetadata = function (opts, callback) {
+        if (!opts.issueID && !opts.issueKey) {
+            throw new Error(errorStrings.NO_ISSUE_IDENTIFIER);
+        } else if (!opts.commentId) {
+            throw new Error(errorStrings.NO_COMMENT_ID);
+        }
+        var idOrKey = opts.issueID || opts.issueKey;
+
+        var options = {
+            uri: this.jiraClient.buildURL('/issue/' + idOrKey + '/editmeta'),
+            method: 'GET',
+            followAllRedirects: true,
+            json: true
+        };
+
+        this.jiraClient.makeRequest(options, function (err, response, body) {
+            if (err || response.statusCode.toString()[0] != 2) {
+                return callback(err ? err : body);
+            }
+
+            return callback(null, body);
+        });
+    };
+
 }).call(issue.prototype);
 
