@@ -326,5 +326,50 @@ var issue = module.exports = function (jiraClient) {
         });
     };
 
+    /**
+     * Updates an existing comment using its JSON representation.
+     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
+     *        issueKey property; issueID will be used over issueKey if both are present.
+     * @param {string} opts.issueID The ID of the issue.  EX: 10002
+     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {string} opts.commentId The id of the comment.
+     * @param {Object} opts.comment See https://docs.atlassian.com/jira/REST/latest/#d2e539
+     * @param callback
+     */
+    this.editComment = function (opts, callback) {
+        if (!opts.issueID && !opts.issueKey) {
+            throw new Error(errorStrings.NO_ISSUE_IDENTIFIER);
+        } else if (!opts.comment) {
+            throw new Error(errorStrings.NO_COMMENT_ERROR);
+        } else if (!opts.commentId) {
+            throw new Error(errorStrings.NO_COMMENT_ID);
+        }
+        var idOrKey = opts.issueID || opts.issueKey;
+        var qs = {expand: ''};
+
+        if (opts.expand) {
+            opts.expand.forEach(function (ex) {
+                qs.expand += ex + ','
+            });
+        }
+
+        var options = {
+            uri: this.jiraClient.buildURL('/issue/' + idOrKey + "/comment/" + opts.commentId),
+            method: 'PUT',
+            followAllRedirects: true,
+            json: true,
+            qs: qs,
+            body: opts.comment
+        };
+
+        this.jiraClient.makeRequest(options, function (err, response, body) {
+            if (err || response.statusCode.toString()[0] != 2) {
+                return callback(err ? err : body);
+            }
+
+            return callback(null, body);
+        });
+    }
+
 }).call(issue.prototype);
 
