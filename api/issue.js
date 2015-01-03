@@ -606,11 +606,11 @@ function IssueClient(jiraClient) {
      *
      * @private
      * @method buildRequestOptions
-     * @param opts The arguments passed to the method.
-     * @param path The path of the endpoint following /issue/{idOrKey}
-     * @param method The request method.
-     * @param body The request body, if any.
-     * @param qs The querystring, if any.  opts.expand and opts.fields arrays will be automagically added.
+     * @param {Object} opts The arguments passed to the method.
+     * @param {string} path The path of the endpoint following /issue/{idOrKey}
+     * @param {string} method The request method.
+     * @param {Object} [body] The request body, if any.
+     * @param {Object} [qs] The querystring, if any.  opts.expand and opts.fields arrays will be automagically added.
      * @returns {{uri: string, method: string, body: string, qs: string, followAllRedirects: boolean, json: boolean}}
      */
     this.buildRequestOptions = function (opts, path, method, body, qs) {
