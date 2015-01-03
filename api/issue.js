@@ -905,6 +905,29 @@ function IssueClient(jiraClient) {
     };
 
     /**
+     * Returns the value of the property with a given key from the issue identified by the key or by the id. The user
+     * who retrieves the property is required to have permissions to read the issue.
+     *
+     * This function is maked as experimental in the Jira API docs, use at your own risk.
+     *
+     * @method getProperty
+     * @memberOf IssueClient#
+     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
+     *     issueKey property; issueID will be used over issueKey if both are present.
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
+     * @param {string} opts.propertyKey The key of the property being set.
+     * @param callback Called when the property is retrieved.
+     */
+    this.getProperty = function (opts, callback) {
+        if (!opts.propertyKey) {
+            throw new Error(errorStrings.NO_PROPERTY_KEY_ERROR);
+        }
+        var options = this.buildRequestOptions(opts, '/properties/' + opts.propertyKey, 'GET');
+        this.makeRequest(options, callback);
+    };
+
+    /**
      * Helper method to reduce duplicated code.  Uses the JiraClient to make a request, calling back with either
      * the response, or the supplied error string if it exists.
      *
