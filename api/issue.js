@@ -601,6 +601,18 @@ function IssueClient(jiraClient) {
         });
     };
 
+    /**
+     * Build out the request options necessary to make a particular API call.
+     *
+     * @private
+     * @method buildRequestOptions
+     * @param opts The arguments passed to the method.
+     * @param path The path of the endpoint following /issue/{idOrKey}
+     * @param method The request method.
+     * @param body The request body, if any.
+     * @param qs The querystring, if any.  opts.expand and opts.fields arrays will be automagically added.
+     * @returns {{uri: string, method: string, body: string, qs: string, followAllRedirects: boolean, json: boolean}}
+     */
     this.buildRequestOptions = function (opts, path, method, body, qs) {
         if (!opts.issueID && !opts.issueKey) {
             throw new Error(errorStrings.NO_ISSUE_IDENTIFIER);
