@@ -655,6 +655,75 @@ function IssueClient(jiraClient) {
         });
     };
 
+    /**
+     * Remove your vote from an issue. (i.e. "unvote")
+     *
+     * @method unvote
+     * @memberof IssueClient#
+     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
+     *     issueKey property; issueID will be used over issueKey if both are present.
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
+     * @param callback Called after the vote is removed.
+     */
+    this.unvote = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/votes', 'DELETE');
+
+        this.jiraClient.makeRequest(options, function (err, response, body) {
+            if (err || response.statusCode.toString()[0] != 2) {
+                return callback(err ? err : body);
+            }
+
+            return callback(null, 'Vote Removed');
+        });
+    };
+
+    /**
+     * Cast your vote in favour of an issue.
+     *
+     * @method vote
+     * @memberof IssueClient#
+     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
+     *     issueKey property; issueID will be used over issueKey if both are present.
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
+     * @param callback Called after the vote is removed.
+     */
+    this.vote = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/votes', 'POST');
+
+        this.jiraClient.makeRequest(options, function (err, response, body) {
+            if (err || response.statusCode.toString()[0] != 2) {
+                return callback(err ? err : body);
+            }
+
+            return callback(null, 'Vote Added');
+        });
+    };
+
+    /**
+     * Get a REST sub-resource representing the voters on the issue.
+     *
+     * @method getVotes
+     * @memberof IssueClient#
+     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
+     *     issueKey property; issueID will be used over issueKey if both are present.
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
+     * @param callback Called after the vote is removed.
+     */
+    this.getVotes = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/votes', 'GET');
+
+        this.jiraClient.makeRequest(options, function (err, response, body) {
+            if (err || response.statusCode.toString()[0] != 2) {
+                return callback(err ? err : body);
+            }
+
+            return callback(null, body);
+        });
+    };
+
     this.buildRequestOptions = function (opts, path, method, body, qs) {
         if (!opts.issueID && !opts.issueKey) {
             throw new Error(errorStrings.NO_ISSUE_IDENTIFIER);
