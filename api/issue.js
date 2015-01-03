@@ -244,7 +244,7 @@ var issue = module.exports = function (jiraClient) {
 
             return callback(null, 'Issue Updated');
         });
-    }
+    };
 
 }).call(issue.prototype);
 
