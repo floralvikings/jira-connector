@@ -593,7 +593,7 @@ function IssueClient(jiraClient) {
      * Creates (or updates) a remote issue link from a JSON representation. If a globalId is provided and a remote issue
      * link exists with that globalId, the remote issue link is updated. Otherwise, the remote issue link is created.
      *
-     * @method getRemoteLinks
+     * @method createRemoteLink
      * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *     issueKey property; issueID will be used over issueKey if both are present.
@@ -625,7 +625,7 @@ function IssueClient(jiraClient) {
      * Updates (or creates) a remote issue link from a JSON representation. If a globalId is provided and a remote issue
      * link exists with that globalId, the remote issue link is updated. Otherwise, the remote issue link is created.
      *
-     * @method getRemoteLinks
+     * @method updateRemoteLink
      * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *     issueKey property; issueID will be used over issueKey if both are present.
