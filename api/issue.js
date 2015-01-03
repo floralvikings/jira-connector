@@ -120,31 +120,7 @@ function IssueClient(jiraClient) {
      * @param callback
      */
     this.getIssue = function (opts, callback) {
-        var idOrKey = getIdOrKey(opts);
-        var qs = {
-            fields: '',
-            expand: ''
-        };
-
-        if (opts.fields) {
-            opts.fields.forEach(function (field) {
-                qs.fields += field + ','
-            });
-        }
-
-        if (opts.expand) {
-            opts.expand.forEach(function (ex) {
-                qs.expand += ex + ','
-            });
-        }
-
-        var options = {
-            uri: this.jiraClient.buildURL('/issue/' + idOrKey),
-            method: 'GET',
-            followAllRedirects: true,
-            json: true,
-            qs: qs
-        };
+        var options = this.buildRequestOptions(opts, '', 'GET');
 
         this.jiraClient.makeRequest(options, function (err, response, body) {
             if (err || response.statusCode.toString()[0] != 2) {
@@ -172,15 +148,7 @@ function IssueClient(jiraClient) {
      * @param callback
      */
     this.deleteIssue = function (opts, callback) {
-        var idOrKey = getIdOrKey(opts);
-
-        var options = {
-            uri: this.jiraClient.buildURL('/issue/' + idOrKey),
-            method: 'DELETE',
-            followAllRedirects: true,
-            json: true,
-            qs: {deleteSubTasks: opts.deleteSubTasks ? true : false}
-        };
+        var options = this.buildRequestOptions(opts, '', 'DELETE', null, {deleteSubTasks: opts.deleteSubTasks});
 
         this.jiraClient.makeRequest(options, function (err, response, body) {
             if (err || response.statusCode.toString()[0] != 2) {
@@ -213,15 +181,10 @@ function IssueClient(jiraClient) {
      * @param callback
      */
     this.editIssue = function (opts, callback) {
-        var idOrKey = getIdOrKey(opts);
-
-        var options = {
-            uri: this.jiraClient.buildURL('/issue/' + idOrKey),
-            method: 'PUT',
-            followAllRedirects: true,
-            json: true,
-            body: opts.issue
-        };
+        if (!opts.issue) {
+            throw new Error(errorStrings.NO_ISSUE_ERROR);
+        }
+        var options = this.buildRequestOptions(opts, '', 'PUT', opts.issue);
 
         this.jiraClient.makeRequest(options, function (err, response, body) {
             if (err || response.statusCode.toString()[0] != 2) {
@@ -248,17 +211,10 @@ function IssueClient(jiraClient) {
      * @param callback Called when the issue has been assigned.
      */
     this.assignIssue = function (opts, callback) {
-        var idOrKey = getIdOrKey(opts);
-
-        var options = {
-            uri: this.jiraClient.buildURL('/issue/' + idOrKey + "/assignee"),
-            method: 'PUT',
-            followAllRedirects: true,
-            json: true,
-            body: {
-                name: opts.assignee
-            }
-        };
+        if (!opts.assignee) {
+            throw new Error(errorStrings.NO_ASSIGNEE_ERROR);
+        }
+        var options = this.buildRequestOptions(opts, '/assignee', 'PUT', {name: opts.assignee});
 
         this.jiraClient.makeRequest(options, function (err, response, body) {
             if (err || response.statusCode.toString()[0] != 2) {
@@ -282,22 +238,7 @@ function IssueClient(jiraClient) {
      * @param callback Called when the issue has been assigned.
      */
     this.getComments = function (opts, callback) {
-        var idOrKey = getIdOrKey(opts);
-        var qs = {expand: ''};
-
-        if (opts.expand) {
-            opts.expand.forEach(function (ex) {
-                qs.expand += ex + ','
-            });
-        }
-
-        var options = {
-            uri: this.jiraClient.buildURL('/issue/' + idOrKey + "/comment"),
-            method: 'GET',
-            followAllRedirects: true,
-            json: true,
-            qs: qs
-        };
+        var options = this.buildRequestOptions(opts, '/comment', 'GET');
 
         this.jiraClient.makeRequest(options, function (err, response, body) {
             if (err || response.statusCode.toString()[0] != 2) {
@@ -321,23 +262,7 @@ function IssueClient(jiraClient) {
      * @param callback
      */
     this.addComment = function (opts, callback) {
-        var idOrKey = getIdOrKey(opts);
-        var qs = {expand: ''};
-
-        if (opts.expand) {
-            opts.expand.forEach(function (ex) {
-                qs.expand += ex + ','
-            });
-        }
-
-        var options = {
-            uri: this.jiraClient.buildURL('/issue/' + idOrKey + "/comment"),
-            method: 'POST',
-            followAllRedirects: true,
-            json: true,
-            qs: qs,
-            body: opts.comment
-        };
+        var options = this.buildRequestOptions(opts, '/comment', 'POST', opts.comment);
 
         this.jiraClient.makeRequest(options, function (err, response, body) {
             if (err || response.statusCode.toString()[0] != 2) {
@@ -361,26 +286,10 @@ function IssueClient(jiraClient) {
      * @param callback Called when the comment is retrieved.
      */
     this.getComment = function (opts, callback) {
-        var idOrKey = getIdOrKey(opts);
-
         if (!opts.commentId) {
             throw new Error(errorStrings.NO_COMMENT_ID);
         }
-        var qs = {expand: ''};
-
-        if (opts.expand) {
-            opts.expand.forEach(function (ex) {
-                qs.expand += ex + ','
-            });
-        }
-
-        var options = {
-            uri: this.jiraClient.buildURL('/issue/' + idOrKey + "/comment/" + opts.commentId),
-            method: 'GET',
-            followAllRedirects: true,
-            json: true,
-            qs: qs
-        };
+        var options = this.buildRequestOptions(opts, '/comment/' + opts.commentId, 'GET');
 
         this.jiraClient.makeRequest(options, function (err, response, body) {
             if (err || response.statusCode.toString()[0] != 2) {
@@ -405,30 +314,12 @@ function IssueClient(jiraClient) {
      * @param callback
      */
     this.editComment = function (opts, callback) {
-        var idOrKey = getIdOrKey(opts);
-
         if (!opts.comment) {
             throw new Error(errorStrings.NO_COMMENT_ERROR);
         } else if (!opts.commentId) {
             throw new Error(errorStrings.NO_COMMENT_ID);
         }
-
-        var qs = {expand: ''};
-
-        if (opts.expand) {
-            opts.expand.forEach(function (ex) {
-                qs.expand += ex + ','
-            });
-        }
-
-        var options = {
-            uri: this.jiraClient.buildURL('/issue/' + idOrKey + "/comment/" + opts.commentId),
-            method: 'PUT',
-            followAllRedirects: true,
-            json: true,
-            qs: qs,
-            body: opts.comment
-        };
+        var options = this.buildRequestOptions(opts, '/comment/' + opts.commentId, 'PUT', opts.comment);
 
         this.jiraClient.makeRequest(options, function (err, response, body) {
             if (err || response.statusCode.toString()[0] != 2) {
@@ -452,27 +343,10 @@ function IssueClient(jiraClient) {
      * @param callback Called when the comment is retrieved.
      */
     this.deleteComment = function (opts, callback) {
-        var idOrKey = getIdOrKey(opts);
-
         if (!opts.commentId) {
             throw new Error(errorStrings.NO_COMMENT_ID);
         }
-
-        var qs = {expand: ''};
-
-        if (opts.expand) {
-            opts.expand.forEach(function (ex) {
-                qs.expand += ex + ','
-            });
-        }
-
-        var options = {
-            uri: this.jiraClient.buildURL('/issue/' + idOrKey + "/comment/" + opts.commentId),
-            method: 'DELETE',
-            followAllRedirects: true,
-            json: true,
-            qs: qs
-        };
+        var options = this.buildRequestOptions(opts, '/comment/' + opts.commentId, 'DELETE');
 
         this.jiraClient.makeRequest(options, function (err, response, body) {
             if (err || response.statusCode.toString()[0] != 2) {
@@ -498,14 +372,7 @@ function IssueClient(jiraClient) {
      * @param callback Called when the metadata is retrieved.
      */
     this.getEditMetadata = function (opts, callback) {
-        var idOrKey = getIdOrKey(opts);
-
-        var options = {
-            uri: this.jiraClient.buildURL('/issue/' + idOrKey + '/editmeta'),
-            method: 'GET',
-            followAllRedirects: true,
-            json: true
-        };
+        var options = this.buildRequestOptions(opts, '/editmeta', 'GET');
 
         this.jiraClient.makeRequest(options, function (err, response, body) {
             if (err || response.statusCode.toString()[0] != 2) {
@@ -531,19 +398,11 @@ function IssueClient(jiraClient) {
      * @param callback Called when the metadata is retrieved.
      */
     this.sendEmailNotification = function (opts, callback) {
-        var idOrKey = getIdOrKey(opts);
-
         if (!opts.notification) {
             throw new Error(errorStrings.NO_NOTIFICATION_ERROR);
         }
 
-        var options = {
-            uri: this.jiraClient.buildURL('/issue/' + idOrKey + '/notify'),
-            method: 'POST',
-            followAllRedirects: true,
-            json: true,
-            body: opts.notification
-        };
+        var options = this.buildRequestOptions(opts, '/notify', 'POST', opts.notification);
 
         this.jiraClient.makeRequest(options, function (err, response, body) {
             if (err || response.statusCode.toString()[0] != 2) {
@@ -569,17 +428,7 @@ function IssueClient(jiraClient) {
      * @param callback Called when the remote links are retrieved.
      */
     this.getRemoteLinks = function (opts, callback) {
-        var idOrKey = getIdOrKey(opts);
-
-        var options = {
-            uri: this.jiraClient.buildURL('/issue/' + idOrKey + '/remotelink'),
-            method: 'GET',
-            followAllRedirects: true,
-            json: true,
-            qs: {
-                globalId: opts.globalId
-            }
-        };
+        var options = this.buildRequestOptions(opts, '/remotelink', 'GET', null, {globalId: opts.globalId});
 
         this.jiraClient.makeRequest(options, function (err, response, body) {
             if (err || response.statusCode.toString()[0] != 2) {
@@ -604,15 +453,7 @@ function IssueClient(jiraClient) {
      * @param callback Called when the remote links are retrieved.
      */
     this.createRemoteLink = function (opts, callback) {
-        var idOrKey = getIdOrKey(opts);
-
-        var options = {
-            uri: this.jiraClient.buildURL('/issue/' + idOrKey + '/remotelink'),
-            method: 'POST',
-            followAllRedirects: true,
-            json: true,
-            body: opts.remoteLink
-        };
+        var options = this.buildRequestOptions(opts, '/remotelink', 'POST', opts.remoteLink);
 
         this.jiraClient.makeRequest(options, function (err, response, body) {
             if (err || response.statusCode.toString()[0] != 2) {
@@ -654,21 +495,11 @@ function IssueClient(jiraClient) {
      * @param callback Called when the remote links are retrieved.
      */
     this.deleteRemoteLink = function (opts, callback) {
-        var idOrKey = getIdOrKey(opts);
-
         if (!opts.globalId) {
             throw new Error(errorStrings.NO_GLOBAL_ID_ERROR);
         }
 
-        var options = {
-            uri: this.jiraClient.buildURL('/issue/' + idOrKey + '/remotelink'),
-            method: 'DELETE',
-            followAllRedirects: true,
-            json: true,
-            qs: {
-                globalId: opts.globalId
-            }
-        };
+        var options = this.buildRequestOptions(opts, '/remotelink', 'DELETE', null, {globalId: opts.globalId});
 
         this.jiraClient.makeRequest(options, function (err, response, body) {
             if (err || response.statusCode.toString()[0] != 2) {
@@ -678,7 +509,6 @@ function IssueClient(jiraClient) {
             return callback(null, 'RemoteLink Deleted');
         });
     };
-
 
     /**
      * Get the remote issue link with the given id on the issue.
@@ -693,18 +523,11 @@ function IssueClient(jiraClient) {
      * @param callback Called when the remote links are retrieved.
      */
     this.getRemoteLinkByID = function (opts, callback) {
-        var idOrKey = getIdOrKey(opts);
-
         if (!opts.linkId) {
             throw new Error(errorStrings.NO_LINK_ID_ERROR);
         }
 
-        var options = {
-            uri: this.jiraClient.buildURL('/issue/' + idOrKey + '/remotelink/' + opts.linkId),
-            method: 'GET',
-            followAllRedirects: true,
-            json: true
-        };
+        var options = this.buildRequestOptions(opts, '/remotelink/' + opts.linkId, 'GET');
 
         this.jiraClient.makeRequest(options, function (err, response, body) {
             if (err || response.statusCode.toString()[0] != 2) {
@@ -729,19 +552,11 @@ function IssueClient(jiraClient) {
      * @param callback Called when the remote links are retrieved.
      */
     this.updateRemoteLinkByID = function (opts, callback) {
-        var idOrKey = getIdOrKey(opts);
-
         if (!opts.linkId) {
             throw new Error(errorStrings.NO_LINK_ID_ERROR);
         }
 
-        var options = {
-            uri: this.jiraClient.buildURL('/issue/' + idOrKey + '/remotelink/' + opts.linkId),
-            method: 'PUT',
-            followAllRedirects: true,
-            json: true,
-            body: opts.remoteLink
-        };
+        var options = this.buildRequestOptions(opts, '/remotelink/' + opts.linkId, 'PUT', opts.remoteLink);
 
         this.jiraClient.makeRequest(options, function (err, response, body) {
             if (err || response.statusCode.toString()[0] != 2) {
@@ -765,18 +580,11 @@ function IssueClient(jiraClient) {
      * @param callback Called when the remote links are retrieved.
      */
     this.deleteRemoteLinkByID = function (opts, callback) {
-        var idOrKey = getIdOrKey(opts);
-
         if (!opts.linkId) {
             throw new Error(errorStrings.NO_LINK_ID_ERROR);
         }
 
-        var options = {
-            uri: this.jiraClient.buildURL('/issue/' + idOrKey + '/remotelink/' + opts.linkId),
-            method: 'DELETE',
-            followAllRedirects: true,
-            json: true
-        };
+        var options = this.buildRequestOptions(opts, '/remotelink/' + opts.linkId, 'DELETE');
 
         this.jiraClient.makeRequest(options, function (err, response, body) {
             if (err || response.statusCode.toString()[0] != 2) {
@@ -806,15 +614,7 @@ function IssueClient(jiraClient) {
      * @param callback Called when the transitions are retrieved.
      */
     this.getTransitions = function (opts, callback) {
-        var idOrKey = getIdOrKey(opts);
-
-        var options = {
-            uri: this.jiraClient.buildURL('/issue/' + idOrKey + '/transitions'),
-            method: 'GET',
-            followAllRedirects: true,
-            json: true,
-            qs: {transitionId: opts.transitionId}
-        };
+        var options = this.buildRequestOptions(opts, '/transitions', 'GET', null, {transitionId: opts.transitionId});
 
         this.jiraClient.makeRequest(options, function (err, response, body) {
             if (err || response.statusCode.toString()[0] != 2) {
@@ -843,19 +643,11 @@ function IssueClient(jiraClient) {
      * @param callback Called when the transitions are retrieved.
      */
     this.transitionIssue = function (opts, callback) {
-        var idOrKey = getIdOrKey(opts);
-
         if (!opts.transition) {
             throw new Error(errorStrings.NO_TRANSITION_ERROR);
         }
 
-        var options = {
-            uri: this.jiraClient.buildURL('/issue/' + idOrKey + '/transitions'),
-            method: 'POST',
-            followAllRedirects: true,
-            json: true,
-            body: opts.transition
-        };
+        var options = this.buildRequestOptions(opts, '/transitions', 'POST', opts.transition);
 
         this.jiraClient.makeRequest(options, function (err, response, body) {
             if (err || response.statusCode.toString()[0] != 2) {
@@ -864,13 +656,39 @@ function IssueClient(jiraClient) {
 
             return callback(null, 'Issue Transitioned');
         });
+    };
+
+    this.buildRequestOptions = function (opts, path, method, body, qs) {
+        if (!opts.issueID && !opts.issueKey) {
+            throw new Error(errorStrings.NO_ISSUE_IDENTIFIER);
+        }
+        var idOrKey = opts.issueID || opts.issueKey;
+        var basePath = '/issue/' + idOrKey;
+        if (!qs) qs = {};
+        if (!body) body = {};
+
+        if (opts.fields) {
+            qs.fields = '';
+            opts.fields.forEach(function (field) {
+                qs.fields += field + ','
+            });
+        }
+
+        if (opts.expand) {
+            qs.expand = '';
+            opts.expand.forEach(function (ex) {
+                qs.expand += ex + ','
+            });
+        }
+
+        return {
+            uri: this.jiraClient.buildURL(basePath + path),
+            method: method,
+            body: body,
+            qs: qs,
+            followAllRedirects: true,
+            json: true
+        };
     }
 
 }).call(IssueClient.prototype);
-
-function getIdOrKey(opts) {
-    if (!opts.issueID && !opts.issueKey) {
-        throw new Error(errorStrings.NO_ISSUE_IDENTIFIER);
-    }
-    return opts.issueID || opts.issueKey;
-}
