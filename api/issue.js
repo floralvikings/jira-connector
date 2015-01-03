@@ -833,6 +833,8 @@ function IssueClient(jiraClient) {
         this.makeRequest(options, callback, 'Work Log Deleted');
     };
 
+    // TODO Add addAttachment method.
+
     /**
      * Helper method to reduce duplicated code.  Uses the JiraClient to make a request, calling back with either
      * the response, or the supplied error string if it exists.
