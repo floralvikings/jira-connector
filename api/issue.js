@@ -601,7 +601,7 @@ function IssueClient(jiraClient) {
     /**
      * Adds a user to an issue's watcher list.
      *
-     * @method getWatchers
+     * @method addWatcher
      * @memberOf IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *     issueKey property; issueID will be used over issueKey if both are present.
@@ -611,9 +611,33 @@ function IssueClient(jiraClient) {
      * @param callback Called after the vote is removed.
      */
     this.addWatcher = function (opts, callback) {
+        if (!opts.watcher) {
+            throw new Error(errorStrings.NO_WATCHER_ERROR);
+        }
         var options = this.buildRequestOptions(opts, '/watchers', 'POST', opts.watcher);
 
         this.makeRequest(options, callback, 'Watcher Added')
+    };
+
+    /**
+     * Adds a user to an issue's watcher list.
+     *
+     * @method removeWatcher
+     * @memberOf IssueClient#
+     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
+     *     issueKey property; issueID will be used over issueKey if both are present.
+     * @param {string} [opts.issueID] The ID of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
+     * @param {string} opts.watcher The username of the user to remove as a watcher.
+     * @param callback Called after the vote is removed.
+     */
+    this.removeWatcher = function (opts, callback) {
+        if (!opts.watcher) {
+            throw new Error(errorStrings.NO_WATCHER_ERROR);
+        }
+        var options = this.buildRequestOptions(opts, '/watchers', 'DELETE', null, {username: opts.watcher});
+
+        this.makeRequest(options, callback, 'Watcher Removed')
     };
 
     /**
