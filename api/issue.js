@@ -825,6 +825,47 @@ function IssueClient(jiraClient) {
         });
     };
 
+    /**
+     * Perform a transition on an issue. When performing the transition you can udate or set other issue fields.
+     *
+     * The fields that can be set on transtion, in either the fields parameter or the update parameter can be
+     * determined using the** /rest/api/2/issue/{issueIdOrKey}/transitions?expand=transitions.fields resource**. If a
+     * field is not configured to appear on the transition screen, then it will not be in the transition metadata, and
+     * a field validation error will occur if it is submitted.
+     *
+     * @method getTransitions
+     * @memberof IssueClient#
+     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
+     *     issueKey property; issueID will be used over issueKey if both are present.
+     * @param {string} opts.issueID The ID of the issue.  EX: 10002
+     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {string} opts.transition See {@link https://docs.atlassian.com/jira/REST/latest/#d2e698}
+     * @param callback Called when the transitions are retrieved.
+     */
+    this.transitionIssue = function (opts, callback) {
+        var idOrKey = getIdOrKey(opts);
+
+        if (!opts.transition) {
+            throw new Error(errorStrings.NO_TRANSITION_ERROR);
+        }
+
+        var options = {
+            uri: this.jiraClient.buildURL('/issue/' + idOrKey + '/transitions'),
+            method: 'POST',
+            followAllRedirects: true,
+            json: true,
+            body: opts.transition
+        };
+
+        this.jiraClient.makeRequest(options, function (err, response, body) {
+            if (err || response.statusCode.toString()[0] != 2) {
+                return callback(err ? err : body);
+            }
+
+            return callback(null, 'Issue Transitioned');
+        });
+    }
+
 }).call(IssueClient.prototype);
 
 function getIdOrKey(opts) {
