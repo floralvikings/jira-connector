@@ -28,7 +28,7 @@ var errorStrings = require('./lib/error');
  * @param {string} [config.oauth.token] The VERIFIED token used to connect to the Jira API.  MUST be included if using OAuth.
  * @param {string} [config.oauth.token_secret] The secret for the above token.  MUST be included if using Oauth.
  */
-var Client = module.exports = function (config) {
+var JiraClient = module.exports = function (config) {
     if(!config.host) {
         throw new Error(errorStrings.NO_HOST_ERROR);
     }
@@ -101,9 +101,9 @@ var Client = module.exports = function (config) {
         request(options, callback);
     };
 
-}).call(Client.prototype);
+}).call(JiraClient.prototype);
 
-Client.oauth_util = require('./lib/oauth_util');
+JiraClient.oauth_util = require('./lib/oauth_util');
 
 exports.oauth_util = oauth_util;
 
