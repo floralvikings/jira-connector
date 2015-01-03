@@ -616,7 +616,7 @@ function IssueClient(jiraClient) {
         }
         var options = this.buildRequestOptions(opts, '/watchers', 'POST', opts.watcher);
 
-        this.makeRequest(options, callback, 'Watcher Added')
+        this.makeRequest(options, callback, 'Watcher Added');
     };
 
     /**
