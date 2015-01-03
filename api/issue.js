@@ -835,17 +835,7 @@ function IssueClient(jiraClient) {
     };
 
     /**
-     * Add one or more attachments to an issue.
-     *
-     * This resource expects a multipart post. The media-type multipart/form-data is defined in RFC 1867. Most client
-     * libraries have classes that make dealing with multipart posts simple. For instance, in Java the Apache HTTP
-     * Components library provides a MultiPartEntity that makes it simple to submit a multipart POST.
-     *
-     * In order to protect against XSRF attacks, because this method accepts multipart/form-data, it has XSRF
-     * protection on it. This means you must submit a header of X-Atlassian-Token: nocheck with the request, otherwise
-     * it will be blocked.
-     *
-     * The name of the multipart/form-data parameter that contains attachments must be "file"
+     * Add an attachment to an issue.
      *
      * @method addAttachment
      * @memberOf IssueClient.js
