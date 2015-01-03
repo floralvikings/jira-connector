@@ -562,6 +562,7 @@ function IssueClient(jiraClient) {
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *     issueKey property; issueID will be used over issueKey if both are present.
      * @param {string} opts.issueID The ID of the issue.  EX: 10002
+     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
      * @param {string} opts.globalId The id of the remote issue link to be returned. If null (not provided) all remote
      *     links for the issue are returned. For a full explanation of Issue Link fields please refer to
      *     {@link https://developer.atlassian.com/display/JIRADEV/Fields+in+Remote+Issue+Links}
@@ -598,6 +599,7 @@ function IssueClient(jiraClient) {
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *     issueKey property; issueID will be used over issueKey if both are present.
      * @param {string} opts.issueID The ID of the issue.  EX: 10002
+     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
      * @param {Object} opts.remoteLink See {@link https://docs.atlassian.com/jira/REST/latest/#d2e945}
      * @param callback Called when the remote links are retrieved.
      */
@@ -630,6 +632,7 @@ function IssueClient(jiraClient) {
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *     issueKey property; issueID will be used over issueKey if both are present.
      * @param {string} opts.issueID The ID of the issue.  EX: 10002
+     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
      * @param {Object} opts.remoteLink See {@link https://docs.atlassian.com/jira/REST/latest/#d2e945}
      * @param callback Called when the remote links are retrieved.
      */
@@ -646,6 +649,7 @@ function IssueClient(jiraClient) {
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
      *     issueKey property; issueID will be used over issueKey if both are present.
      * @param {string} opts.issueID The ID of the issue.  EX: 10002
+     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
      * @param {string} opts.globalId The global id of the remote issue link
      * @param callback Called when the remote links are retrieved.
      */
@@ -672,6 +676,114 @@ function IssueClient(jiraClient) {
             }
 
             return callback(null, 'RemoteLink Deleted');
+        });
+    };
+
+
+    /**
+     * Get the remote issue link with the given id on the issue.
+     *
+     * @method getRemoteLinkByID
+     * @memberof IssueClient#
+     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
+     *     issueKey property; issueID will be used over issueKey if both are present.
+     * @param {string} opts.issueID The ID of the issue.  EX: 10002
+     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {string} opts.linkId The id of the remote link
+     * @param callback Called when the remote links are retrieved.
+     */
+    this.getRemoteLinkByID = function (opts, callback) {
+        var idOrKey = getIdOrKey(opts);
+
+        if (!opts.linkId) {
+            throw new Error(errorStrings.NO_LINK_ID_ERROR);
+        }
+
+        var options = {
+            uri: this.jiraClient.buildURL('/issue/' + idOrKey + '/remotelink/' + opts.linkId),
+            method: 'GET',
+            followAllRedirects: true,
+            json: true
+        };
+
+        this.jiraClient.makeRequest(options, function (err, response, body) {
+            if (err || response.statusCode.toString()[0] != 2) {
+                return callback(err ? err : body);
+            }
+
+            return callback(null, body);
+        });
+    };
+
+    /**
+     * Get the remote issue link with the given id on the issue.
+     *
+     * @method updateRemoteLinkByID
+     * @memberof IssueClient#
+     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
+     *     issueKey property; issueID will be used over issueKey if both are present.
+     * @param {string} opts.issueID The ID of the issue.  EX: 10002
+     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {string} opts.linkId The id of the remote link
+     * @param {string} opts.remoteLink See {@link https://docs.atlassian.com/jira/REST/latest/#d2e1037}
+     * @param callback Called when the remote links are retrieved.
+     */
+    this.updateRemoteLinkByID = function (opts, callback) {
+        var idOrKey = getIdOrKey(opts);
+
+        if (!opts.linkId) {
+            throw new Error(errorStrings.NO_LINK_ID_ERROR);
+        }
+
+        var options = {
+            uri: this.jiraClient.buildURL('/issue/' + idOrKey + '/remotelink/' + opts.linkId),
+            method: 'PUT',
+            followAllRedirects: true,
+            json: true,
+            body: opts.remoteLink
+        };
+
+        this.jiraClient.makeRequest(options, function (err, response, body) {
+            if (err || response.statusCode.toString()[0] != 2) {
+                return callback(err ? err : body);
+            }
+
+            return callback(null, 'Remote Link Updated');
+        });
+    };
+
+    /**
+     * Get the remote issue link with the given id on the issue.
+     *
+     * @method deleteRemoteLinkByID
+     * @memberof IssueClient#
+     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueID or
+     *     issueKey property; issueID will be used over issueKey if both are present.
+     * @param {string} opts.issueID The ID of the issue.  EX: 10002
+     * @param {string} opts.issueKey The Key of the issue.  EX: JWR-3
+     * @param {string} opts.linkId The id of the remote link
+     * @param callback Called when the remote links are retrieved.
+     */
+    this.deleteRemoteLinkByID = function (opts, callback) {
+        var idOrKey = getIdOrKey(opts);
+
+        if (!opts.linkId) {
+            throw new Error(errorStrings.NO_LINK_ID_ERROR);
+        }
+
+        var options = {
+            uri: this.jiraClient.buildURL('/issue/' + idOrKey + '/remotelink/' + opts.linkId),
+            method: 'DELETE',
+            followAllRedirects: true,
+            json: true
+        };
+
+        this.jiraClient.makeRequest(options, function (err, response, body) {
+            if (err || response.statusCode.toString()[0] != 2) {
+                return callback(err ? err : body);
+            }
+
+            return callback(null, 'Remote Link Deleted');
         });
     };
 
