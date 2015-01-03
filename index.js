@@ -77,6 +77,14 @@ var JiraClient = module.exports = function (config) {
 
 (function () {
 
+    /**
+     * Simple utility to build a REST endpoint URL for the Jira API.
+     *
+     * @method buildURL
+     * @memberOf JiraClient#
+     * @param path The path of the URL without concern for the root of the REST API.
+     * @returns {string} The constructed URL.
+     */
     this.buildURL = function (path) {
         var apiBasePath = 'rest/api/';
         var version = this.version;
@@ -90,6 +98,14 @@ var JiraClient = module.exports = function (config) {
         return decodeURIComponent(requestUrl);
     };
 
+    /**
+     * Make a request to the Jira API and call back with it's response.
+     *
+     * @method makeRequest
+     * @memberOf JiraClient#
+     * @param options The request options.
+     * @param callback Called with the APIs response.
+     */
     this.makeRequest = function (options, callback) {
         if (this.oauthConfig) {
             options.oauth = this.oauthConfig;
