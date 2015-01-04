@@ -11,6 +11,7 @@ var oauth_util = require('./lib/oauth_util');
 var errorStrings = require('./lib/error');
 var issue = require('./api/issue');
 var applicationProperties = require('./api/application-properties');
+var attachment = require('./api/attachment');
 
 /**
  * Represents a client for the Jira REST API
@@ -91,6 +92,13 @@ var JiraClient = module.exports = function (config) {
      * @type {ApplicationPropertiesClient}
      */
     this.applicationProperties = new applicationProperties(this);
+
+    /**
+     * @memberOf JiraClient#
+     * @instance
+     * @type {AttachmentClient}
+     */
+    this.attachment = new attachment(this);
 };
 
 (function () {
