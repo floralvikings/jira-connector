@@ -12,13 +12,15 @@ function ApplicationPropertiesClient(jiraClient) {
 
     /**
      * Gets an application property.
+     * @method getProperties
+     * @memberOf ApplicationPropertiesClient#
      * @param [opts] The options used to make the request.
      * @param [opts.key] A String containing the property key.
      * @param [opts.permissionLevel] When fetching a list specifies the permission level of all items in the list.
      * @param [opts.keyFilter] When fetching a list allows the list to be filtered by the property's start of key e.g.
      *     "jira.lf.*" whould fetch only those permissions that are editable and whose keys start with "jira.lf.". This
      *     is a regex
-     * @param callback
+     * @param callback Called when the properties are retrieved.
      */
     this.getProperties = function (opts, callback) {
         var qs = {};
@@ -26,10 +28,10 @@ function ApplicationPropertiesClient(jiraClient) {
             if (opts.key) {
                 qs.key = opts.key;
             }
-            if(opts.keyFilter) {
+            if (opts.keyFilter) {
                 qs.keyFilter = opts.keyFilter;
             }
-            if(opts.permissionLevel) {
+            if (opts.permissionLevel) {
                 qs.keyFilter = opts.permissionLevel;
             }
         }
@@ -42,6 +44,28 @@ function ApplicationPropertiesClient(jiraClient) {
         };
 
         this.makeRequest(options, callback);
+    };
+
+    /**
+     * Modify an application property via PUT. The "value" field present in the PUT will override thee existing value.
+     *
+     * @method getProperties
+     * @memberOf ApplicationPropertiesClient#
+     * @param opts The options for modifying the application property.
+     * @param opts.id The ID of the property to be modified
+     * @param opts.property The new data for the property.  See
+     *     {@link https://docs.atlassian.com/jira/REST/latest/#d2e4891}
+     * @param callback Called when the property has been modified
+     */
+    this.setProperty = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/application-properties'),
+            method: 'GET',
+            followAllRedirects: true,
+            body: opts.property
+        };
+
+        this.makeRequest(options, callback, 'Property Updated');
     };
 
     /**
