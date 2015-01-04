@@ -20,14 +20,19 @@ var applicationProperties = require('./api/application-properties');
  * @param {string} host The hostname of the Jira API.
  * @param {string} [config.protocol=https] The protocol used to accses the Jira API.
  * @param {number} [config.port=443] The port number used to connect to Jira.
- * @param {string} [config.version=2] The version of the Jira API to which you will be connecting.  Currently, only version 2 is supported.
- * @param config.auth The authentication information used tp connect to Jira. Must contain EITHER username and password OR oauth information.  Oauth information will be
- *        used over username/password authentication.
- * @param {string} [config.basic_auth.username] The username of the user that will be authenticated. MUST be included if using username and password authentication.
- * @param {string} [config.basic_auth.password] The password of the user that will be authenticated. MUST be included if using username and password authentication.
- * @param {string} [config.oauth.consumer_key] The consumer key used in the Jira Application Link for oauth authentication.  MUST be included if using OAuth.
+ * @param {string} [config.version=2] The version of the Jira API to which you will be connecting.  Currently, only
+ *     version 2 is supported.
+ * @param config.auth The authentication information used tp connect to Jira. Must contain EITHER username and password
+ *     OR oauth information.  Oauth information will be used over username/password authentication.
+ * @param {string} [config.basic_auth.username] The username of the user that will be authenticated. MUST be included
+ *     if using username and password authentication.
+ * @param {string} [config.basic_auth.password] The password of the user that will be authenticated. MUST be included
+ *     if using username and password authentication.
+ * @param {string} [config.oauth.consumer_key] The consumer key used in the Jira Application Link for oauth
+ *     authentication.  MUST be included if using OAuth.
  * @param {string} [config.oauth.private_key] The private key used for OAuth security. MUST be included if using OAuth.
- * @param {string} [config.oauth.token] The VERIFIED token used to connect to the Jira API.  MUST be included if using OAuth.
+ * @param {string} [config.oauth.token] The VERIFIED token used to connect to the Jira API.  MUST be included if using
+ *     OAuth.
  * @param {string} [config.oauth.token_secret] The secret for the above token.  MUST be included if using Oauth.
  */
 var JiraClient = module.exports = function (config) {
@@ -80,6 +85,11 @@ var JiraClient = module.exports = function (config) {
      */
     this.issue = new issue(this);
 
+    /**
+     * @memberOf JiraClient#
+     * @instance
+     * @type {ApplicationPropertiesClient}
+     */
     this.applicationProperties = new applicationProperties(this);
 };
 
