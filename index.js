@@ -12,6 +12,7 @@ var errorStrings = require('./lib/error');
 var issue = require('./api/issue');
 var applicationProperties = require('./api/application-properties');
 var attachment = require('./api/attachment');
+var auditing = require('./api/auditing');
 
 /**
  * Represents a client for the Jira REST API
@@ -99,6 +100,13 @@ var JiraClient = module.exports = function (config) {
      * @type {AttachmentClient}
      */
     this.attachment = new attachment(this);
+
+    /**
+     * @memberOf JiraClient#
+     * @instance
+     * @type {AuditingClient}
+     */
+    this.auditing = new auditing(this);
 };
 
 (function () {
