@@ -13,6 +13,7 @@ var issue = require('./api/issue');
 var applicationProperties = require('./api/application-properties');
 var attachment = require('./api/attachment');
 var auditing = require('./api/auditing');
+var avatar = require('./api/avatar');
 
 /**
  * Represents a client for the Jira REST API
@@ -107,6 +108,13 @@ var JiraClient = module.exports = function (config) {
      * @type {AuditingClient}
      */
     this.auditing = new auditing(this);
+
+    /**
+     * @memberOf JiraClient#
+     * @instance
+     * @type {AvatarClient}
+     */
+    this.avatar = new avatar(this);
 };
 
 (function () {
