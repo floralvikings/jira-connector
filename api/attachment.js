@@ -20,7 +20,7 @@ function AttachmentClient(jiraClient) {
      * @memberOf AttachmentClient#
      * @param opts The options for the API request.
      * @param opts.attachmentId The ID of the attachment to retrieve
-     * @param callback
+     * @param callback Called when the attachment metadata is retrieved.
      */
     this.getAttachment = function (opts, callback) {
         if (!opts.attachmentId) {
