@@ -74,7 +74,7 @@ function ApplicationPropertiesClient(jiraClient) {
      *
      * @method makeRequest
      * @memberOf ApplicationPropertiesClient#
-     * @param {Object} options The requiest options; probably built with {@link IssueClient#buildRequestOptions}
+     * @param {Object} options The requiest options
      * @param {Function} callback Called with the Jira APIs response.
      * @param {string} [successString] If supplied, this is reported instead of the response body.
      */
