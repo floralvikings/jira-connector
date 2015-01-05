@@ -1,5 +1,7 @@
 "use strict";
 
+var errorStrings = require('./../lib/error');
+
 module.exports = AuditingClient;
 
 /**
@@ -45,6 +47,30 @@ function AuditingClient(jiraClient) {
         };
 
         this.makeRequest(options, callback);
+    };
+
+    /**
+     *
+     * @method createAudit
+     * @memberOf AuditingClient#
+     * @param opts The request options.
+     * @param opts.audit See {@link https://docs.atlassian.com/jira/REST/latest/#d2e2557}
+     * @param callback Called when the audit is created.
+     */
+    this.createAudit = function (opts, callback) {
+        if (!opts.audit) {
+            throw new Error(errorStrings.NO_AUDIT_ERROR);
+        }
+
+        var options = {
+            uri: this.jiraClient.buildURL('/auditing/record'),
+            json: true,
+            followAllRedirects: true,
+            method: 'POST',
+            body: opts.audit
+        };
+
+        this.makeRequest(options, callback, 'Audit Record Added');
     };
 
     /**
