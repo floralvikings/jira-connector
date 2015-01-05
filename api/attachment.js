@@ -37,6 +37,30 @@ function AttachmentClient(jiraClient) {
         this.makeRequest(options, callback);
     };
 
+    /**
+     * Remove an attachment from an issue.
+     *
+     * @method deleteAttachment
+     * @memberOf AttachmentClient#
+     * @param opts The options for the API request.
+     * @param opts.attachmentId The ID of the attachment to delete
+     * @param callback Called when the attachment is deleted.
+     */
+    this.deleteAttachment = function (opts, callback) {
+        if (!opts.attachmentId) {
+            throw new Error(errorStrings.NO_ATTACHMENT_ID_ERROR);
+        }
+
+        var options = {
+            uri: this.jiraClient.buildURL('/attachment/' + opts.attachmentId),
+            method: 'DELETE',
+            json: true,
+            followAllRedirects: true
+        };
+
+        this.makeRequest(options, callback, 'Attachment Deleted');
+    };
+
 
     /**
      * Returns the meta informations for an attachments, specifically if they are enabled and the maximum upload size
