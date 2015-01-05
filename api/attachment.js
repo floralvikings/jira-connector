@@ -37,6 +37,27 @@ function AttachmentClient(jiraClient) {
         this.makeRequest(options, callback);
     };
 
+
+    /**
+     * Returns the meta informations for an attachments, specifically if they are enabled and the maximum upload size
+     * allowed.
+     *
+     * @method getGlobalAttachmentMetadata
+     * @memberOf AttachmentClient#
+     * @param opts This API request actually takes no options; this parameter is ignored.
+     * @param callback Called when the metadata is retrieved.
+     */
+    this.getGlobalAttachmentMetadata = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/attachment/meta'),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true
+        };
+
+        this.makeRequest(options, callback);
+    };
+
     /**
      * Helper method to reduce duplicated code.  Uses the JiraClient to make a request, calling back with either
      * the response, or the supplied error string if it exists.
