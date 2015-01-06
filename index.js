@@ -16,6 +16,7 @@ var auditing = require('./api/auditing');
 var avatar = require('./api/avatar');
 var comment = require('./api/comment');
 var issueLink = require('./api/issueLink');
+var issueLinkType = require('./api/issueLinkType');
 
 /**
  * Represents a client for the Jira REST API
@@ -131,6 +132,13 @@ var JiraClient = module.exports = function (config) {
      * @type {IssueLinkClient}
      */
     this.issueLink = new issueLink(this);
+
+    /**
+     * @memberOf JiraClient#
+     * @instance
+     * @type {issueLinkType}
+     */
+    this.issueLinkType = new issueLinkType(this);
 };
 
 (function () {
