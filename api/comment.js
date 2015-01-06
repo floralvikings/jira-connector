@@ -23,7 +23,7 @@ function CommentClient(jiraClient) {
      */
     this.getCommentPropertyKeys = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '', 'GET');
-        this.makeRequest(options, callback);
+        this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -47,7 +47,7 @@ function CommentClient(jiraClient) {
             throw new Error(errorStrings.NO_COMMENT_PROPERTY_VALUE_ERROR);
         }
         var options = this.buildRequestOptions(opts, '/' + opts.propertyKey, 'PUT', opts.propertyValue);
-        this.makeRequest(options, callback, 'Property Edited');
+        this.jiraClient.makeRequest(options, callback, 'Property Edited');
     };
 
     /**
@@ -66,7 +66,7 @@ function CommentClient(jiraClient) {
             throw new Error(errorStrings.NO_COMMENT_PROPERTY_KEY_ERROR);
         }
         var options = this.buildRequestOptions(opts, '/' + opts.propertyKey, 'GET');
-        this.makeRequest(options, callback);
+        this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -85,27 +85,7 @@ function CommentClient(jiraClient) {
             throw new Error(errorStrings.NO_COMMENT_PROPERTY_KEY_ERROR);
         }
         var options = this.buildRequestOptions(opts, '/' + opts.propertyKey, 'DELETE');
-        this.makeRequest(options, callback, 'Comment property deleted');
-    };
-
-    /**
-     * Helper method to reduce duplicated code.  Uses the JiraClient to make a request, calling back with either
-     * the response, or the supplied error string if it exists.
-     *
-     * @method makeRequest
-     * @memberOf CommentClient#
-     * @param {Object} options The request options
-     * @param {Function} callback Called with the Jira APIs response.
-     * @param {string} [successString] If supplied, this is reported instead of the response body.
-     */
-    this.makeRequest = function (options, callback, successString) {
-        this.jiraClient.makeRequest(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body);
-            }
-
-            return callback(null, successString ? successString : body);
-        });
+        this.jiraClient.makeRequest(options, callback, 'Comment property deleted');
     };
 
     /**

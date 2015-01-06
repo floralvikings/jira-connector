@@ -171,8 +171,9 @@ var JiraClient = module.exports = function (config) {
      * @memberOf JiraClient#
      * @param options The request options.
      * @param callback Called with the APIs response.
+     * @param {string} [successString] If supplied, this is reported instead of the response body.
      */
-    this.makeRequest = function (options, callback) {
+    this.makeRequest = function (options, callback, successString) {
         if (this.oauthConfig) {
             options.oauth = this.oauthConfig;
         } else if (this.basic_auth) {
@@ -180,7 +181,13 @@ var JiraClient = module.exports = function (config) {
         } else {
             callback(errorStrings.NO_AUTHENTICATION_ERROR);
         }
-        request(options, callback);
+        request(options, function (err, response, body) {
+            if (err || response.statusCode.toString()[0] != 2) {
+                return callback(err ? err : body);
+            }
+
+            return callback(null, successString ? successString : body);
+        });
     };
 
 }).call(JiraClient.prototype);
