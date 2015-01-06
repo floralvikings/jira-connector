@@ -25,6 +25,23 @@ function CommentClient(jiraClient) {
     };
 
     /**
+     * Returns the keys of all properties for the comment identified by the key or by the id.
+     *
+     * @param opts The options passed in the request to the API.
+     * @param opts.commentId The ID of the comment from which keys will be returned.
+     * @param callback Called when the keys have been retrieved.
+     */
+    this.setCommentProperty = function (opts, callback) {
+        if (!opts.propertyKey) {
+            throw new Error(errorStrings.NO_COMMENT_PROPERTY_KEY_ERROR);
+        } else if (!opts.propertyValue) {
+            throw new Error(errorStrings.NO_COMMENT_PROPERTY_VALUE_ERROR);
+        }
+        var options = this.buildRequestOptions(opts, '/' + opts.propertyKey, 'PUT', opts.propertyValue);
+        this.makeRequest(options, callback, 'Property Edited');
+    };
+
+    /**
      * Helper method to reduce duplicated code.  Uses the JiraClient to make a request, calling back with either
      * the response, or the supplied error string if it exists.
      *
