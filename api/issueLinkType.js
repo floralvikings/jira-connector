@@ -1,5 +1,7 @@
 "use strict";
 
+var errorStrings = require('./../lib/error');
+
 module.exports = IssueLinkTypeClient;
 
 /**
@@ -46,6 +48,30 @@ function IssueLinkTypeClient(jiraClient) {
             json: true,
             followAllRedirects: true,
             body: opts.linkType
+        };
+
+        this.makeRequest(options, callback);
+    };
+
+    /**
+     * Gets for a given issue link type id all information about this issue link type.
+     *
+     * @method getIssueLinkType
+     * @memberOf IssueLinkTypeClient#
+     * @param opts The request options sent to the Jira API
+     * @param opts.issueLinkTypeId The ID of the IssueLink type to retrieve.
+     * @param callback Called when the IssueLink type has been retrieved
+     */
+    this.getIssueLinkType = function (opts, callback) {
+        if (!opts.issueLinkTypeId) {
+            throw new Error(errorStrings.NO_ISSUE_LINK_TYPE_ID);
+        }
+
+        var options = {
+            uri: this.jiraClient.buildURL('/issueLinkType/' + opts.issueLinkTypeId),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true
         };
 
         this.makeRequest(options, callback);
