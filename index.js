@@ -14,6 +14,7 @@ var applicationProperties = require('./api/application-properties');
 var attachment = require('./api/attachment');
 var auditing = require('./api/auditing');
 var avatar = require('./api/avatar');
+var comment = require('./api/comment');
 
 /**
  * Represents a client for the Jira REST API
@@ -115,6 +116,13 @@ var JiraClient = module.exports = function (config) {
      * @type {AvatarClient}
      */
     this.avatar = new avatar(this);
+
+    /**
+     * @memberOf JiraClient#
+     * @instance
+     * @type {CommentClient}
+     */
+    this.comment = new comment(this);
 };
 
 (function () {
