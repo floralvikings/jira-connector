@@ -18,7 +18,7 @@ var comment = require('./api/comment');
 var issueLink = require('./api/issueLink');
 var issueLinkType = require('./api/issueLinkType');
 var groups = require('./api/groups');
-var groupUserPicker = ('./api/groupUserPicker');
+var groupUserPicker = require('./api/groupUserPicker');
 
 /**
  * Represents a client for the Jira REST API
