@@ -78,6 +78,36 @@ function AvatarClient(jiraClient) {
     };
 
     /**
+     * Updates the cropping instructions of the temporary avatar.  This function doesn't seem to work the way the Jira
+     * API describes, so for now just don't use it.
+     *
+     * @method cropTemporaryAvatar
+     * @memberOf AvatarClient#
+     * @param {Object} opts The options to be used in the API request.
+     * @param {string} opts.avatarType The avatar type.  May be 'project' or 'user'.
+     * @param {Object} opts.crop See {@link https://docs.atlassian.com/jira/REST/latest/#d2e3316}
+     * @param callback Called when the avatar has been cropped.
+     */
+    this.cropTemporaryAvatar = function (opts, callback) {
+        if (!opts.avatarType) {
+            throw new Error(errorStrings.NO_AVATAR_TYPE_ERROR);
+        }
+
+        var options = {
+            method: 'POST',
+            json: true,
+            followAllRedirects: true,
+            uri: this.jiraClient.buildURL('/avatar/' + opts.avatarType + '/temporaryCrop'),
+            headers: {
+                "X-Atlassian-Token": "no-check"
+            },
+            body: opts.crop
+        };
+
+        this.makeRequest(options, callback);
+    };
+
+    /**
      * Helper method to reduce duplicated code.  Uses the JiraClient to make a request, calling back with either
      * the response, or the supplied error string if it exists.
      *
