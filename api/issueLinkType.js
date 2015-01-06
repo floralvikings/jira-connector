@@ -78,6 +78,32 @@ function IssueLinkTypeClient(jiraClient) {
     };
 
     /**
+     * Update the specified issue link type.
+     *
+     * @method editIssueLinkType
+     * @memberOf IssueLinkTypeClient#
+     * @param opts The request options sent to the Jira API
+     * @param opts.issueLinkTypeId The ID of the IssueLink type to retrieve.
+     * @param opts.linkType See {@link https://docs.atlassian.com/jira/REST/latest/#d2e2071}
+     * @param callback Called when the IssueLink type has been updated.
+     */
+    this.editIssueLinkType = function (opts, callback) {
+        if (!opts.issueLinkTypeId) {
+            throw new Error(errorStrings.NO_ISSUE_LINK_TYPE_ID);
+        }
+
+        var options = {
+            uri: this.jiraClient.buildURL('/issueLinkType/' + opts.issueLinkTypeId),
+            method: 'PUT',
+            json: true,
+            followAllRedirects: true,
+            body: opts.issueLinkType
+        };
+
+        this.makeRequest(options, callback);
+    };
+
+    /**
      * Helper method to reduce duplicated code.  Uses the JiraClient to make a request, calling back with either
      * the response, or the supplied error string if it exists.
      *
