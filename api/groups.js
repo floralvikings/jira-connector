@@ -1,6 +1,6 @@
 "use strict";
 
-module.exports = GroupsClient
+module.exports = GroupsClient;
 
 /**
  * Used to access Jira REST endpoints in '/rest/api/2/groups'
