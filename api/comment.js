@@ -1,0 +1,80 @@
+"use strict";
+
+var errorStrings = require('./../lib/error');
+
+module.exports = CommentClient;
+
+/**
+ * Used to access Jira REST endpoints in '/rest/api/2/comment'
+ * @constructor CommentClient
+ * @param {JiraClient} jiraClient
+ */
+function CommentClient(jiraClient) {
+    this.jiraClient = jiraClient;
+
+
+    /**
+     * Helper method to reduce duplicated code.  Uses the JiraClient to make a request, calling back with either
+     * the response, or the supplied error string if it exists.
+     *
+     * @method makeRequest
+     * @memberOf CommentClient#
+     * @param {Object} options The request options
+     * @param {Function} callback Called with the Jira APIs response.
+     * @param {string} [successString] If supplied, this is reported instead of the response body.
+     */
+    this.makeRequest = function (options, callback, successString) {
+        this.jiraClient.makeRequest(options, function (err, response, body) {
+            if (err || response.statusCode.toString()[0] != 2) {
+                return callback(err ? err : body);
+            }
+
+            return callback(null, successString ? successString : body);
+        });
+    };
+
+    /**
+     * Build out the request options necessary to make a particular API call.
+     *
+     * @private
+     * @method buildRequestOptions
+     * @memberOf CommentClient#
+     * @param {Object} opts The arguments passed to the method.
+     * @param {string} path The path of the endpoint following /issue/{idOrKey}
+     * @param {string} method The request method.
+     * @param {Object} [body] The request body, if any.
+     * @param {Object} [qs] The querystring, if any.  opts.expand and opts.fields arrays will be automagically added.
+     * @returns {{uri: string, method: string, body: Object, qs: Object, followAllRedirects: boolean, json: boolean}}
+     */
+    this.buildRequestOptions = function (opts, path, method, body, qs) {
+        if (!opts.commentId) {
+            throw new Error(errorStrings.NO_COMMENT_ID);
+        }
+        var basePath = '/comment/' + opts.commentId + "/properties";
+        if (!qs) qs = {};
+        if (!body) body = {};
+
+        if (opts.fields) {
+            qs.fields = '';
+            opts.fields.forEach(function (field) {
+                qs.fields += field + ','
+            });
+        }
+
+        if (opts.expand) {
+            qs.expand = '';
+            opts.expand.forEach(function (ex) {
+                qs.expand += ex + ','
+            });
+        }
+
+        return {
+            uri: this.jiraClient.buildURL(basePath + path),
+            method: method,
+            body: body,
+            qs: qs,
+            followAllRedirects: true,
+            json: true
+        };
+    }
+}
