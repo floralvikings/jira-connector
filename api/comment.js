@@ -32,6 +32,8 @@ function CommentClient(jiraClient) {
      *
      * @param opts The options passed in the request to the API.
      * @param opts.commentId The ID of the comment from which keys will be returned.
+     * @param opts.propertyKey The key of the property to be edited.
+     * @param opts.propertyValue The new value of the property.
      * @param callback Called when the keys have been retrieved.
      */
     this.setCommentProperty = function (opts, callback) {
@@ -42,6 +44,23 @@ function CommentClient(jiraClient) {
         }
         var options = this.buildRequestOptions(opts, '/' + opts.propertyKey, 'PUT', opts.propertyValue);
         this.makeRequest(options, callback, 'Property Edited');
+    };
+
+    /**
+     * Returns the value of the property with a given key from the comment identified by the key or by the id. The user
+     * who retrieves the property is required to have permissions to read the comment.
+     *
+     * @param opts The options passed in the request to the API.
+     * @param opts.commentId The ID of the comment from which keys will be returned.
+     * @param opts.propertyKey The key of the property to be edited.
+     * @param callback Called when the keys have been retrieved.
+     */
+    this.getCommentProperty = function (opts, callback) {
+        if (!opts.propertyKey) {
+            throw new Error(errorStrings.NO_COMMENT_PROPERTY_KEY_ERROR);
+        }
+        var options = this.buildRequestOptions(opts, '/' + opts.propertyKey, 'GET');
+        this.makeRequest(options, callback);
     };
 
     /**
