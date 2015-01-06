@@ -31,6 +31,25 @@ function IssueLinkTypeClient(jiraClient) {
     };
 
     /**
+     * Create a new issue link type.
+     *
+     * @param opts The request options sent to the Jira API
+     * @param opts.linkType See {@link https://docs.atlassian.com/jira/REST/latest/#d2e2018}
+     * @param callback Called when the IssueLink type has been created.
+     */
+    this.createIssueLinkType = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/issueLinkType'),
+            method: 'POST',
+            json: true,
+            followAllRedirects: true,
+            body: opts.linkType
+        };
+
+        this.makeRequest(options, callback);
+    };
+
+    /**
      * Helper method to reduce duplicated code.  Uses the JiraClient to make a request, calling back with either
      * the response, or the supplied error string if it exists.
      *
