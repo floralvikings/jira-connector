@@ -34,7 +34,7 @@ function CommentClient(jiraClient) {
      * @param opts.commentId The ID of the comment from which keys will be returned.
      * @param opts.propertyKey The key of the property to be edited.
      * @param opts.propertyValue The new value of the property.
-     * @param callback Called when the keys have been retrieved.
+     * @param callback Called when the property has been edited.
      */
     this.setCommentProperty = function (opts, callback) {
         if (!opts.propertyKey) {
@@ -53,7 +53,7 @@ function CommentClient(jiraClient) {
      * @param opts The options passed in the request to the API.
      * @param opts.commentId The ID of the comment from which keys will be returned.
      * @param opts.propertyKey The key of the property to be edited.
-     * @param callback Called when the keys have been retrieved.
+     * @param callback Called when the property has been retrieved.
      */
     this.getCommentProperty = function (opts, callback) {
         if (!opts.propertyKey) {
