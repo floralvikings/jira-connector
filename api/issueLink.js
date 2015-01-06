@@ -40,6 +40,30 @@ function IssueLinkClient(jiraClient) {
     };
 
     /**
+     * Gets an issue link with the specified id.
+     *
+     * @method getIssueLink
+     * @memberOf IssueLinkClient#
+     * @param opts The options used in the request to the Jira API
+     * @param opts.linkId The ID of the link to retrieve.
+     * @param callback Called when the Issue Link has been retrieved.
+     */
+    this.getIssueLink = function (opts, callback) {
+        if (!opts.linkId) {
+            throw new Error(errorStrings.NO_ISSUE_LINK_ID_ERROR);
+        }
+
+        var options = {
+            method: 'GET',
+            uri: this.jiraClient.buildURL('/issueLink/' + opts.linkId),
+            json: true,
+            followAllRedirects: true
+        };
+
+        this.makeRequest(options, callback);
+    };
+
+    /**
      * Helper method to reduce duplicated code.  Uses the JiraClient to make a request, calling back with either
      * the response, or the supplied error string if it exists.
      *
