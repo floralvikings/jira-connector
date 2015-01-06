@@ -960,7 +960,7 @@ function IssueClient(jiraClient) {
      * @param {string} method The request method.
      * @param {Object} [body] The request body, if any.
      * @param {Object} [qs] The querystring, if any.  opts.expand and opts.fields arrays will be automagically added.
-     * @returns {{uri: string, method: string, body: string, qs: string, followAllRedirects: boolean, json: boolean}}
+     * @returns {{uri: string, method: string, body: Object, qs: Object, followAllRedirects: boolean, json: boolean}}
      */
     this.buildRequestOptions = function (opts, path, method, body, qs) {
         if (!opts.issueID && !opts.issueKey) {
