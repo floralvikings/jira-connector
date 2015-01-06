@@ -25,7 +25,10 @@ function CommentClient(jiraClient) {
     };
 
     /**
-     * Returns the keys of all properties for the comment identified by the key or by the id.
+     * Sets the value of the specified comment's property.
+     *
+     * You can use this resource to store a custom data against the comment identified by the key or by the id. The
+     * user who stores the data is required to have permissions to administer the comment.
      *
      * @param opts The options passed in the request to the API.
      * @param opts.commentId The ID of the comment from which keys will be returned.
