@@ -15,6 +15,8 @@ function CommentClient(jiraClient) {
     /**
      * Returns the keys of all properties for the comment identified by the key or by the id.
      *
+     * @method getCommentPropertyKeys
+     * @memberOf CommentClient#
      * @param opts The options passed in the request to the API.
      * @param opts.commentId The ID of the comment from which keys will be returned.
      * @param callback Called when the keys have been retrieved.
@@ -30,6 +32,8 @@ function CommentClient(jiraClient) {
      * You can use this resource to store a custom data against the comment identified by the key or by the id. The
      * user who stores the data is required to have permissions to administer the comment.
      *
+     * @method setCommentProperty
+     * @memberOf CommentClient#
      * @param opts The options passed in the request to the API.
      * @param opts.commentId The ID of the comment from which keys will be returned.
      * @param opts.propertyKey The key of the property to be edited.
@@ -50,6 +54,8 @@ function CommentClient(jiraClient) {
      * Returns the value of the property with a given key from the comment identified by the key or by the id. The user
      * who retrieves the property is required to have permissions to read the comment.
      *
+     * @method getCommentProperty
+     * @memberOf CommentClient#
      * @param opts The options passed in the request to the API.
      * @param opts.commentId The ID of the comment from which keys will be returned.
      * @param opts.propertyKey The key of the property to be edited.
@@ -67,6 +73,8 @@ function CommentClient(jiraClient) {
      * Removes the property from the comment identified by the key or by the id. Ths user removing the property is
      * required to have permissions to administer the comment.
      *
+     * @method deleteCommentProperty
+     * @memberOf CommentClient#
      * @param opts The options passed in the request to the API.
      * @param opts.commentId The ID of the comment from which keys will be returned.
      * @param opts.propertyKey The key of the property to be edited.
