@@ -17,6 +17,7 @@ var avatar = require('./api/avatar');
 var comment = require('./api/comment');
 var issueLink = require('./api/issueLink');
 var issueLinkType = require('./api/issueLinkType');
+var groups = require('./api/groups');
 
 /**
  * Represents a client for the Jira REST API
@@ -139,6 +140,13 @@ var JiraClient = module.exports = function (config) {
      * @type {IssueLinkTypeClient}
      */
     this.issueLinkType = new issueLinkType(this);
+
+    /**
+     * @memberOf JiraClient#
+     * @instance
+     * @type {GroupsClient}
+     */
+    this.groups = new groups(this);
 };
 
 (function () {
