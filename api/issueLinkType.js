@@ -33,6 +33,8 @@ function IssueLinkTypeClient(jiraClient) {
     /**
      * Create a new issue link type.
      *
+     * @method createIssueLinkType
+     * @memberOf IssueLinkTypeClient#
      * @param opts The request options sent to the Jira API
      * @param opts.linkType See {@link https://docs.atlassian.com/jira/REST/latest/#d2e2018}
      * @param callback Called when the IssueLink type has been created.
