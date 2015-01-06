@@ -136,7 +136,7 @@ var JiraClient = module.exports = function (config) {
     /**
      * @memberOf JiraClient#
      * @instance
-     * @type {issueLinkType}
+     * @type {IssueLinkTypeClient}
      */
     this.issueLinkType = new issueLinkType(this);
 };
