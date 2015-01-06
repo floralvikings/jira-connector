@@ -1,7 +1,5 @@
 "use strict";
 
-var errorStrings = require('./../lib/error');
-
 module.exports = GroupsClient
 
 /**
