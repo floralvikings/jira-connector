@@ -12,6 +12,17 @@ module.exports = CommentClient;
 function CommentClient(jiraClient) {
     this.jiraClient = jiraClient;
 
+    /**
+     * Returns the keys of all properties for the comment identified by the key or by the id.
+     *
+     * @param opts The options passed in the request to the API.
+     * @param opts.commentId The ID of the comment from which keys will be returned.
+     * @param callback Called when the keys have been retrieved.
+     */
+    this.getCommentPropertyKeys = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '', 'GET');
+        this.makeRequest(options, callback);
+    };
 
     /**
      * Helper method to reduce duplicated code.  Uses the JiraClient to make a request, calling back with either
