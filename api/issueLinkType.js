@@ -78,6 +78,30 @@ function IssueLinkTypeClient(jiraClient) {
     };
 
     /**
+     * Delete the specified issue link type.
+     *
+     * @method deleteIssueLinkType
+     * @memberOf IssueLinkTypeClient#
+     * @param opts The request options sent to the Jira API
+     * @param opts.issueLinkTypeId The ID of the IssueLink type to delete.
+     * @param callback Called when the IssueLink type has been delete
+     */
+    this.deleteIssueLinkType = function (opts, callback) {
+        if (!opts.issueLinkTypeId) {
+            throw new Error(errorStrings.NO_ISSUE_LINK_TYPE_ID);
+        }
+
+        var options = {
+            uri: this.jiraClient.buildURL('/issueLinkType/' + opts.issueLinkTypeId),
+            method: 'DELETE',
+            json: true,
+            followAllRedirects: true
+        };
+
+        this.makeRequest(options, callback, 'IssueLink type deleted.');
+    };
+
+    /**
      * Update the specified issue link type.
      *
      * @method editIssueLinkType
