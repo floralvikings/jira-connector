@@ -64,6 +64,23 @@ function CommentClient(jiraClient) {
     };
 
     /**
+     * Removes the property from the comment identified by the key or by the id. Ths user removing the property is
+     * required to have permissions to administer the comment.
+     *
+     * @param opts The options passed in the request to the API.
+     * @param opts.commentId The ID of the comment from which keys will be returned.
+     * @param opts.propertyKey The key of the property to be edited.
+     * @param callback Called when the property has been retrieved.
+     */
+    this.deleteCommentProperty = function (opts, callback) {
+        if (!opts.propertyKey) {
+            throw new Error(errorStrings.NO_COMMENT_PROPERTY_KEY_ERROR);
+        }
+        var options = this.buildRequestOptions(opts, '/' + opts.propertyKey, 'DELETE');
+        this.makeRequest(options, callback, 'Comment property deleted');
+    };
+
+    /**
      * Helper method to reduce duplicated code.  Uses the JiraClient to make a request, calling back with either
      * the response, or the supplied error string if it exists.
      *
