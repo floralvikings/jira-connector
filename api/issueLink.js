@@ -64,6 +64,31 @@ function IssueLinkClient(jiraClient) {
     };
 
     /**
+     * Deletes an issue link with the specified id. To be able to delete an issue link you must be able to view both
+     * issues and must have the link issue permission for at least one of the issues.
+     *
+     * @method deleteIssueLink
+     * @memberOf IssueLinkClient#
+     * @param opts The options used in the request to the Jira API
+     * @param opts.linkId The ID of the link to delete.
+     * @param callback Called when the Issue Link has been deleted.
+     */
+    this.deleteIssueLink = function (opts, callback) {
+        if (!opts.linkId) {
+            throw new Error(errorStrings.NO_ISSUE_LINK_ID_ERROR);
+        }
+
+        var options = {
+            method: 'DELETE',
+            uri: this.jiraClient.buildURL('/issueLink/' + opts.linkId),
+            json: true,
+            followAllRedirects: true
+        };
+
+        this.makeRequest(options, callback, 'Issue Link Deleted');
+    };
+
+    /**
      * Helper method to reduce duplicated code.  Uses the JiraClient to make a request, calling back with either
      * the response, or the supplied error string if it exists.
      *
