@@ -13,6 +13,9 @@ function JqlClient(jiraClient) {
 
     /**
      * Returns the auto complete data required for JQL searches.
+     *
+     * @method getAutoCompleteData
+     * @memberOf JqlClient#
      * @param opts The options sent to the Jira API.  Ignored by this function.
      * @param callback Called when the autocomplete data is returned.
      */
