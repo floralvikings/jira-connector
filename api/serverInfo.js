@@ -9,4 +9,27 @@ module.exports = ServerInfoClient;
  */
 function ServerInfoClient(jiraClient) {
     this.jiraClient = jiraClient;
+
+    /**
+     * Returns general information about the current JIRA server.
+     *
+     * @method getServerInfo
+     * @memberOf ServerInfoClient#
+     * @param opts The request options sent to the Jira API.
+     * @param {boolean} [opts.doHealthCheck] Whether to perform a health check on the server.
+     * @param callback Called when the server info has been retrieved.
+     */
+    this.getServerInfo = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/serverInfo'),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                doHealthCheck: opts.doHealthCheck
+            }
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    }
 }
