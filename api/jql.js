@@ -1,14 +1,14 @@
 "use strict";
 
-module.exports = AutoCompleteDataClient;
+module.exports = JqlClient;
 
 /**
  * Used to access Jira REST endpoints in '/rest/api/2/autocompletedata'
  *
  * @param {JiraClient} jiraClient
- * @constructor AutoCompleteDataClient
+ * @constructor JqlClient
  */
-function AutoCompleteDataClient(jiraClient) {
+function JqlClient(jiraClient) {
     this.jiraClient = jiraClient;
 
     /**

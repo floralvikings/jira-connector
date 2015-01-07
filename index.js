@@ -168,7 +168,7 @@ var JiraClient = module.exports = function (config) {
     /**
      * @memberOf JiraClient#
      * @instance
-     * @type {AutoCompleteDataClient}
+     * @type {JqlClient}
      */
     this.jql = new jql(this);
 };
