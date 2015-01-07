@@ -21,6 +21,7 @@ var groups = require('./api/groups');
 var groupUserPicker = require('./api/groupUserPicker');
 var customFieldOption = require('./api/customFieldOption');
 var jql = require('./api/jql');
+var licenseValidator = require('./api/licenseValidator');
 
 /**
  * Represents a client for the Jira REST API
@@ -171,6 +172,13 @@ var JiraClient = module.exports = function (config) {
      * @type {JqlClient}
      */
     this.jql = new jql(this);
+
+    /**
+     * @memberOf JiraClient#
+     * @instance
+     * @type {LicenseValidatorClient}
+     */
+    this.licenseValidator = new licenseValidator(this);
 };
 
 (function () {
