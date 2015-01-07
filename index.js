@@ -23,6 +23,7 @@ var customFieldOption = require('./api/customFieldOption');
 var jql = require('./api/jql');
 var licenseValidator = require('./api/licenseValidator');
 var myPermissions = require('./api/myPermissions');
+var projectValidate = require('./api/projectValidate');
 
 /**
  * Represents a client for the Jira REST API
@@ -187,6 +188,13 @@ var JiraClient = module.exports = function (config) {
      * @type {MyPermissionsClient}
      */
     this.myPermissions = new myPermissions(this);
+
+    /**
+     * @memberOf JiraClient#
+     * @instance
+     * @type {ProjectValidateClient}
+     */
+    this.projectValidate = new projectValidate(this);
 };
 
 (function () {
