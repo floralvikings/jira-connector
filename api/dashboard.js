@@ -43,4 +43,29 @@ function DashboardClient(jiraClient) {
 
         this.jiraClient.makeRequest(options, callback);
     };
+
+    /**
+     * Get a single dashboard.
+     *
+     * @method getDashboard
+     * @memberOf DashboardClient#
+     * @param opts The request options sent to the Jira API.
+     * @param opts.dashboardId The dashboard id.
+     * @param callback Called when the dashboard has been retrieved
+     */
+    this.getDashboard = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/dashboard/' + opts.dashboardId),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                filter: opts.filter,
+                startAt: opts.startAt,
+                maxResults: opts.maxResults
+            }
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    }
 }
