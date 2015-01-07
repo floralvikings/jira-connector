@@ -9,5 +9,5 @@ module.exports = FieldClient;
  * @constructor FieldClient
  */
 function FieldClient(jiraClient) {
-    this.jiraClient = jiraClient
+    this.jiraClient = jiraClient;
 }
