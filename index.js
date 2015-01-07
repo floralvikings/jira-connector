@@ -20,6 +20,7 @@ var issueLinkType = require('./api/issueLinkType');
 var groups = require('./api/groups');
 var groupUserPicker = require('./api/groupUserPicker');
 var customFieldOption = require('./api/customFieldOption');
+var autoCompleteData = require('./api/autoCompleteData');
 
 /**
  * Represents a client for the Jira REST API
@@ -163,6 +164,13 @@ var JiraClient = module.exports = function (config) {
      * @type {CustomFieldOptionClient}
      */
     this.customFieldOption = new customFieldOption(this);
+
+    /**
+     * @memberOf JiraClient#
+     * @instance
+     * @type {AutoCompleteDataClient}
+     */
+    this.autoCompleteData = new autoCompleteData(this);
 };
 
 (function () {
