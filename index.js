@@ -24,6 +24,7 @@ var jql = require('./api/jql');
 var licenseValidator = require('./api/licenseValidator');
 var myPermissions = require('./api/myPermissions');
 var projectValidate = require('./api/projectValidate');
+var securityLevel = require('./api/securityLevel');
 
 /**
  * Represents a client for the Jira REST API
@@ -195,6 +196,13 @@ var JiraClient = module.exports = function (config) {
      * @type {ProjectValidateClient}
      */
     this.projectValidate = new projectValidate(this);
+
+    /**
+     * @memberOf JiraClient
+     * @instance
+     * @type {SecurityLevelClient}
+     */
+    this.securityLevel = new securityLevel(this);
 };
 
 (function () {
