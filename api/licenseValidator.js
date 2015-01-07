@@ -11,4 +11,23 @@ module.exports = LicenseValidatorClient;
 function LicenseValidatorClient(jiraClient) {
     this.jiraClient = jiraClient;
 
+    /**
+     *
+     * @method validateLicense
+     * @memberOf LicenseValidatorClient#
+     * @param opts The request options sent to the Jira API.
+     * @param opts.license The license to validate.
+     * @param callback Called when the license has been validated, or fails to validate.
+     */
+    this.validateLicense = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/licenseValidator'),
+            method: 'POST',
+            json: true,
+            followAllRedirects: true,
+            body: opts.license
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    }
 }
