@@ -200,14 +200,14 @@ var JiraClient = module.exports = function (config) {
     this.projectValidate = new projectValidate(this);
 
     /**
-     * @memberOf JiraClient
+     * @memberOf JiraClient#
      * @instance
      * @type {SecurityLevelClient}
      */
     this.securityLevel = new securityLevel(this);
 
     /**
-     * @memberOf JiraClient
+     * @memberOf JiraClient#
      * @instance
      * @type {ServerInfoClient}
      */
