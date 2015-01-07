@@ -25,6 +25,7 @@ var licenseValidator = require('./api/licenseValidator');
 var myPermissions = require('./api/myPermissions');
 var projectValidate = require('./api/projectValidate');
 var securityLevel = require('./api/securityLevel');
+var serverInfo = require('./api/serverInfo');
 
 /**
  * Represents a client for the Jira REST API
@@ -203,6 +204,13 @@ var JiraClient = module.exports = function (config) {
      * @type {SecurityLevelClient}
      */
     this.securityLevel = new securityLevel(this);
+
+    /**
+     * @memberOf JiraClient
+     * @instance
+     * @type {ServerInfoClient}
+     */
+    this.serverInfo = new serverInfo(this);
 };
 
 (function () {
