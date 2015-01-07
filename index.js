@@ -26,6 +26,7 @@ var myPermissions = require('./api/myPermissions');
 var projectValidate = require('./api/projectValidate');
 var securityLevel = require('./api/securityLevel');
 var serverInfo = require('./api/serverInfo');
+var dashboard = require('./api/dashboard');
 
 /**
  * Represents a client for the Jira REST API
@@ -211,6 +212,13 @@ var JiraClient = module.exports = function (config) {
      * @type {ServerInfoClient}
      */
     this.serverInfo = new serverInfo(this);
+
+    /**
+     * @memberOf JiraClient#
+     * @instance
+     * @type {DashboardClient}
+     */
+    this.dashboard = new dashboard(this);
 };
 
 (function () {
