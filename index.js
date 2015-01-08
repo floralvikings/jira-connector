@@ -39,6 +39,7 @@ var licenseRole = require('./api/licenseRole');
 var myPreferences = require('./api/myPreferences');
 var myself = require('./api/myself');
 var password = require('./api/password');
+var settings = require('./api/settings');
 
 /**
  * Represents a client for the Jira REST API
@@ -74,6 +75,7 @@ var password = require('./api/password');
  * @property {MyPreferencesClient} myPreferences
  * @property {MyselfClient} myself
  * @property {PasswordClient} password
+ * @property {SettingsClient} settings
  *
  * @param config The information needed to access the Jira API
  * @param {string} config.host The hostname of the Jira API.
@@ -167,6 +169,7 @@ var JiraClient = module.exports = function (config) {
     this.myPreferences = new myPreferences(this);
     this.myself = new myself(this);
     this.password = new password(this);
+    this.settings = new settings(this);
 };
 
 (function () {
