@@ -28,4 +28,22 @@ function LicenseRoleClient(jiraClient) {
 
         this.jiraClient.makeRequest(options, callback);
     };
+
+    /**
+     * Gets the passed license role if it exists.
+     *
+     * @param opts The request options sent to the Jira API.
+     * @param opts.roleId The id of the license role to retrieve.
+     * @param callback Called when the license role is retrieved.
+     */
+    this.getLicenseRole = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/licenserole/' + opts.roleId),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    };
 }
