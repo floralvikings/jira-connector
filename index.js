@@ -34,6 +34,7 @@ var reindex = require('./api/reindex');
 var resolution = require('./api/resolution');
 var search = require('./api/search');
 var status = require('./api/status');
+var statusCategory = require('./api/statusCategory');
 
 /**
  * Represents a client for the Jira REST API
@@ -275,6 +276,13 @@ var JiraClient = module.exports = function (config) {
      * @type {StatusClient}
      */
     this.status = new status(this);
+
+    /**
+     * @memberOf {JiraClient}
+     * @instance
+     * @type {StatusCategoryClient}
+     */
+    this.statusCategory = new statusCategory(this);
 };
 
 (function () {
