@@ -56,4 +56,24 @@ function ComponentClient(jiraClient) {
 
         this.jiraClient.makeRequest(options, callback);
     };
+
+    /**
+     * Get a project component.
+     *
+     * @method getComponent
+     * @memberOf {ComponentClient#}
+     * @param opts The options sent to the Jira API
+     * @param opts.id The ID of the component to edit.
+     * @param callback Called when the component has been retrieved.
+     */
+    this.getComponent = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/component/' + opts.id),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    };
 }
