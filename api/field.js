@@ -12,6 +12,23 @@ function FieldClient(jiraClient) {
     this.jiraClient = jiraClient;
 
     /**
+     * Returns a list of all fields, both System and Custom
+     *
+     * @param opts Ignored
+     * @param callback Called when the fields have been retrieved.
+     */
+    this.getAllFields = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/field'),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Creates a custom field using a definition (object encapsulating custom field data)
      *
      * @method createCustomField
