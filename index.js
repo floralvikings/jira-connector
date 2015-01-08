@@ -30,6 +30,7 @@ var dashboard = require('./api/dashboard');
 var field = require('./api/field');
 var issueType = require('./api/issueType');
 var priority = require('./api/priority');
+var reindex = require('./api/reindex');
 
 /**
  * Represents a client for the Jira REST API
@@ -243,6 +244,13 @@ var JiraClient = module.exports = function (config) {
      * @type {PriorityClient}
      */
     this.priority = new priority(this);
+
+    /**
+     * @memberOf JiraClient#
+     * @instance
+     * @type {ReindexClient}
+     */
+    this.reindex = new reindex(this);
 };
 
 (function () {
