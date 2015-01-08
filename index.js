@@ -37,6 +37,7 @@ var status = require('./api/status');
 var statusCategory = require('./api/statusCategory');
 var licenseRole = require('./api/licenseRole');
 var myPreferences = require('./api/myPreferences');
+var myself = require('./api/myself');
 
 /**
  * Represents a client for the Jira REST API
@@ -70,6 +71,7 @@ var myPreferences = require('./api/myPreferences');
  * @property {StatusCategoryClient} statusCategory
  * @property {LicenseRoleClient} licenseRole
  * @property {MyPreferencesClient} myPreferences
+ * @property {MyselfClient} myself
  *
  * @param config The information needed to access the Jira API
  * @param {string} config.host The hostname of the Jira API.
@@ -161,6 +163,7 @@ var JiraClient = module.exports = function (config) {
     this.statusCategory = new statusCategory(this);
     this.licenseRole = new licenseRole(this);
     this.myPreferences = new myPreferences(this);
+    this.myself = new myself(this);
 };
 
 (function () {
