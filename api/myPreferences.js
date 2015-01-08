@@ -15,7 +15,7 @@ function MyPreferencesClient(jiraClient) {
      * Gets preference of the currently logged in user. Preference key must be provided as input parameter (key).
      * The value is returned exactly as it is.
      *
-     * @method getPreferences
+     * @method getPreference
      * @memberOf {MyPreferencesClient#}
      * @param opts The request options send to the Jira API.
      * @param opts.key Key of the preference to be returned.
@@ -30,6 +30,31 @@ function MyPreferencesClient(jiraClient) {
             qs: {
                 key: opts.key
             }
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
+     * Sets preference of the currently logged in user. Preference key must be provided as input parameters (key).
+     *
+     * @method editPreference
+     * @memberOf {MyPreferencesClient#}
+     * @param opts The request options send to the Jira API.
+     * @param opts.key Key of the preference to be returned.
+     * @param opts.value The new value to set for the preference.
+     * @param callback Called when the preference has been edited.
+     */
+    this.editPreference = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/mypreferences'),
+            method: 'PUT',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                key: opts.key
+            },
+            body: opts.value
         };
 
         this.jiraClient.makeRequest(options, callback);
