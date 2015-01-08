@@ -42,6 +42,35 @@ var myPreferences = require('./api/myPreferences');
  * Represents a client for the Jira REST API
  *
  * @constructor JiraClient
+ * @property {IssueClient} issue
+ * @property {ApplicationPropertiesClient} applicationProperties
+ * @property {AttachmentClient} attachment
+ * @property {AuditingClient} auditing
+ * @property {AvatarClient} avatar
+ * @property {CommentClient} comment
+ * @property {IssueLinkClient} issueLink
+ * @property {IssueLinkTypeClient} issueLinkType
+ * @property {GroupsClient} groups
+ * @property {GroupUserPickerClient} groupUserPicker
+ * @property {CustomFieldOptionClient} customFieldOption
+ * @property {JqlClient} jql
+ * @property {LicenseValidatorClient} licenseValidator
+ * @property {MyPermissionsClient} myPermissions
+ * @property {ProjectValidateClient} projectValidate
+ * @property {SecurityLevelClient} securityLevel
+ * @property {ServerInfoClient} serverInfo
+ * @property {DashboardClient} dashboard
+ * @property {FieldClient} field
+ * @property {IssueTypeClient} issueType
+ * @property {PriorityClient} priority
+ * @property {ReindexClient} reindex
+ * @property {ResolutionClient} resolution
+ * @property {SearchClient} search
+ * @property {StatusClient} status
+ * @property {StatusCategoryClient} statusCategory
+ * @property {LicenseRoleClient} licenseRole
+ * @property {MyPreferencesClient} myPreferences
+ *
  * @param config The information needed to access the Jira API
  * @param {string} config.host The hostname of the Jira API.
  * @param {string} [config.protocol=https] The protocol used to accses the Jira API.
@@ -104,200 +133,33 @@ var JiraClient = module.exports = function (config) {
         throw new Error(errorStrings.INVALID_AUTHENTICATION_PROPERTY_ERROR);
     }
 
-    /**
-     * @memberOf JiraClient#
-     * @instance
-     * @type {IssueClient}
-     */
     this.issue = new issue(this);
-
-    /**
-     * @memberOf JiraClient#
-     * @instance
-     * @type {ApplicationPropertiesClient}
-     */
     this.applicationProperties = new applicationProperties(this);
-
-    /**
-     * @memberOf JiraClient#
-     * @instance
-     * @type {AttachmentClient}
-     */
     this.attachment = new attachment(this);
-
-    /**
-     * @memberOf JiraClient#
-     * @instance
-     * @type {AuditingClient}
-     */
     this.auditing = new auditing(this);
-
-    /**
-     * @memberOf JiraClient#
-     * @instance
-     * @type {AvatarClient}
-     */
     this.avatar = new avatar(this);
-
-    /**
-     * @memberOf JiraClient#
-     * @instance
-     * @type {CommentClient}
-     */
     this.comment = new comment(this);
-
-    /**
-     * @memberOf JiraClient#
-     * @instance
-     * @type {IssueLinkClient}
-     */
     this.issueLink = new issueLink(this);
-
-    /**
-     * @memberOf JiraClient#
-     * @instance
-     * @type {IssueLinkTypeClient}
-     */
     this.issueLinkType = new issueLinkType(this);
-
-    /**
-     * @memberOf JiraClient#
-     * @instance
-     * @type {GroupsClient}
-     */
     this.groups = new groups(this);
-
-    /**
-     * @memberOf JiraClient#
-     * @instance
-     * @type {GroupUserPickerClient}
-     */
     this.groupUserPicker = new groupUserPicker(this);
-
-    /**
-     * @memberOf JiraClient#
-     * @instance
-     * @type {CustomFieldOptionClient}
-     */
     this.customFieldOption = new customFieldOption(this);
-
-    /**
-     * @memberOf JiraClient#
-     * @instance
-     * @type {JqlClient}
-     */
     this.jql = new jql(this);
-
-    /**
-     * @memberOf JiraClient#
-     * @instance
-     * @type {LicenseValidatorClient}
-     */
     this.licenseValidator = new licenseValidator(this);
-
-    /**
-     * @memberOf JiraClient#
-     * @instance
-     * @type {MyPermissionsClient}
-     */
     this.myPermissions = new myPermissions(this);
-
-    /**
-     * @memberOf JiraClient#
-     * @instance
-     * @type {ProjectValidateClient}
-     */
     this.projectValidate = new projectValidate(this);
-
-    /**
-     * @memberOf JiraClient#
-     * @instance
-     * @type {SecurityLevelClient}
-     */
     this.securityLevel = new securityLevel(this);
-
-    /**
-     * @memberOf JiraClient#
-     * @instance
-     * @type {ServerInfoClient}
-     */
     this.serverInfo = new serverInfo(this);
-
-    /**
-     * @memberOf JiraClient#
-     * @instance
-     * @type {DashboardClient}
-     */
     this.dashboard = new dashboard(this);
-
-    /**
-     * @memberOf JiraClient#
-     * @instance
-     * @type {FieldClient}
-     */
     this.field = new field(this);
-
-    /**
-     * @memberOf JiraClient#
-     * @instance
-     * @type {IssueTypeClient}
-     */
     this.issueType = new issueType(this);
-
-    /**
-     * @memberOf JiraClient#
-     * @instance
-     * @type {PriorityClient}
-     */
     this.priority = new priority(this);
-
-    /**
-     * @memberOf JiraClient#
-     * @instance
-     * @type {ReindexClient}
-     */
     this.reindex = new reindex(this);
-
-    /**
-     * @memberOf {JiraClient#}
-     * @instance
-     * @type {ResolutionClient}
-     */
     this.resolution = new resolution(this);
-
-    /**
-     * @memberOf {JiraClient#}
-     * @instance
-     * @type {SearchClient}
-     */
     this.search = new search(this);
-
-    /**
-     * @memberOf {JiraClient#}
-     * @instance
-     * @type {StatusClient}
-     */
     this.status = new status(this);
-
-    /**
-     * @memberOf {JiraClient#}
-     * @instance
-     * @type {StatusCategoryClient}
-     */
     this.statusCategory = new statusCategory(this);
-
-    /**
-     * @memberOf {JiraClient#}
-     * @instance
-     * @type {LicenseRoleClient}
-     */
     this.licenseRole = new licenseRole(this);
-
-    /**
-     * @memberOf {JiraClient#}
-     * @instance
-     * @type {MyPreferencesClient}
-     */
     this.myPreferences = new myPreferences(this);
 };
 
