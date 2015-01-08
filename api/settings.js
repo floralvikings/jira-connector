@@ -48,5 +48,5 @@ function SettingsClient(jiraClient) {
         };
 
         this.jiraClient.makeRequest(options, callback);
-    }
+    };
 }
