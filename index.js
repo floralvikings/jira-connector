@@ -35,6 +35,7 @@ var resolution = require('./api/resolution');
 var search = require('./api/search');
 var status = require('./api/status');
 var statusCategory = require('./api/statusCategory');
+var licenseRole = require('./api/licenseRole');
 
 /**
  * Represents a client for the Jira REST API
@@ -283,6 +284,13 @@ var JiraClient = module.exports = function (config) {
      * @type {StatusCategoryClient}
      */
     this.statusCategory = new statusCategory(this);
+
+    /**
+     * @memberOf {JiraClient#}
+     * @instance
+     * @type {LicenseRoleClient}
+     */
+    this.licenseRole = new licenseRole(this);
 };
 
 (function () {
