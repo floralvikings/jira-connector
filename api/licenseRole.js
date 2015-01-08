@@ -32,6 +32,8 @@ function LicenseRoleClient(jiraClient) {
     /**
      * Gets the passed license role if it exists.
      *
+     * @method getLicenseRole
+     * @memberOf {LicenseRoleClient#}
      * @param opts The request options sent to the Jira API.
      * @param opts.roleId The id of the license role to retrieve.
      * @param callback Called when the license role is retrieved.
