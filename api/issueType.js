@@ -29,4 +29,24 @@ function IssueTypeClient(jiraClient) {
 
         this.jiraClient.makeRequest(options, callback);
     };
+
+    /**
+     * Get a full representation of the issue type that has the given id.
+     *
+     * @method getIssueType
+     * @memberOf IssueTypeClient#
+     * @param opts The options sent to the Jira API
+     * @param opts.issueTypeId A String containing an issue type id
+     * @param callback Called when the issue type has been retrieved.
+     */
+    this.getIssueType = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/issuetype/' + opts.issueTypeId),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    };
 }
