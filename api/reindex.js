@@ -47,7 +47,7 @@ function ReindexClient(jiraClient) {
      * run, otherwise returns a 404 indicating that no reindex has taken place.
      *
      * @method getReindex
-     * @memberOf {ReindexClient#}
+     * @memberOf ReindexClient#
      * @param opts The request options sent to the Jira API.
      * @param [opts.taskId] The id of an indexing task you wish to obtain details on. If omitted, then defaults to the
      *     standard behaviour and returns information on the active reindex task, or the last task to run if no reindex
