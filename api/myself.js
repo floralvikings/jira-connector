@@ -51,4 +51,25 @@ function MyselfClient(jiraClient) {
 
         this.jiraClient.makeRequest(options, callback);
     };
+
+    /**
+     * Modify caller password.
+     *
+     * @method changePassword
+     * @memberOf {MyselfClient#}
+     * @param opts The request options sent to the Jira API.
+     * @param opts.newData The new data
+     * @param callback Called when the password has been changed.
+     */
+    this.changePassword = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/myself/password'),
+            method: 'PUT',
+            json: true,
+            followAllRedirects: true,
+            body: opts.newData
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    }
 }
