@@ -29,4 +29,24 @@ function PriorityClient(jiraClient) {
 
         this.jiraClient.makeRequest(options, callback);
     };
+
+    /**
+     * Get a full representation of the priority that has the given id.
+     *
+     * @method getPriority
+     * @memberOf PriorityClient#
+     * @param opts The options sent to the Jira API
+     * @param opts.priorityId A String containing a priority id
+     * @param callback Called when the priority has been retrieved.
+     */
+    this.getPriority = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/priority/' + opts.priorityId),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    };
 }
