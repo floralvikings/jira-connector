@@ -14,6 +14,8 @@ function FieldClient(jiraClient) {
     /**
      * Returns a list of all fields, both System and Custom
      *
+     * @method getAllFields
+     * @memberOf FieldClient#
      * @param opts Ignored
      * @param callback Called when the fields have been retrieved.
      */
