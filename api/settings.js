@@ -30,4 +30,23 @@ function SettingsClient(jiraClient) {
 
         this.jiraClient.makeRequest(options, callback);
     };
+
+    /**
+     * Returns the default system columns for issue navigator. Admin permission will be required.
+     *
+     * @method getIssueNavColumns
+     * @membrOf {SettingsClient#}
+     * @param opts Ignored
+     * @param callback Called when the columns have been retrieved
+     */
+    this.getIssueNavColumns = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/settings/columns'),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    }
 }
