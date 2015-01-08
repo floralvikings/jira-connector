@@ -278,7 +278,7 @@ var JiraClient = module.exports = function (config) {
     this.status = new status(this);
 
     /**
-     * @memberOf {JiraClient}
+     * @memberOf {JiraClient#}
      * @instance
      * @type {StatusCategoryClient}
      */
