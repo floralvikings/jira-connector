@@ -40,4 +40,29 @@ function ReindexClient(jiraClient) {
 
         this.jiraClient.makeRequest(options, callback);
     };
+
+    /**
+     * Gets information on the system reindexes. If a reindex is currently taking place then information about this
+     * reindex is returned. If there is no active index task, then returns information about the latest reindex task
+     * run, otherwise returns a 404 indicating that no reindex has taken place.
+     *
+     * @param opts The request options sent to the Jira API.
+     * @param [opts.taskId] The id of an indexing task you wish to obtain details on. If omitted, then defaults to the
+     *     standard behaviour and returns information on the active reindex task, or the last task to run if no reindex
+     *     is taking place. . If there is no reindexing task with that id then a 404 is returned.
+     * @param callback Called when the reindex data has been retrieved.
+     */
+    this.getReindex = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/reindex'),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                taskId: opts.taskId
+            }
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    }
 }
