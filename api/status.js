@@ -29,4 +29,24 @@ function StatusClient(jiraClient) {
 
         this.jiraClient.makeRequest(options, callback);
     };
+
+    /**
+     * Get a full representation of the status that has the given id.
+     *
+     * @method getStatus
+     * @memberOf StatusClient#
+     * @param opts The options sent to the Jira API
+     * @param opts.statusId A String containing a status id
+     * @param callback Called when the status has been retrieved.
+     */
+    this.getStatus = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/status/' + opts.statusId),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    };
 }
