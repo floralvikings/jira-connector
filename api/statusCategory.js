@@ -29,4 +29,24 @@ function StatusCategoryClient(jiraClient) {
 
         this.jiraClient.makeRequest(options, callback);
     };
+
+    /**
+     * Get a full representation of the statusCategory that has the given id or key.
+     *
+     * @method getStatusCategory
+     * @memberOf StatusCategoryClient#
+     * @param opts The options sent to the Jira API
+     * @param opts.statusCategoryIdOrKey A String containing a statusCategory id
+     * @param callback Called when the statusCategory has been retrieved.
+     */
+    this.getStatusCategory = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/statuscategory/' + opts.statusCategoryIdOrKey),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    };
 }
