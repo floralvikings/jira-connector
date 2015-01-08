@@ -29,4 +29,24 @@ function ResolutionClient(jiraClient) {
 
         this.jiraClient.makeRequest(options, callback);
     };
+
+    /**
+     * Get a full representation of the resolution that has the given id.
+     *
+     * @method getResolution
+     * @memberOf ResolutionClient#
+     * @param opts The options sent to the Jira API
+     * @param opts.resolutionId A String containing a resolution id
+     * @param callback Called when the resolution has been retrieved.
+     */
+    this.getResolution = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/resolution/' + opts.resolutionId),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    };
 }
