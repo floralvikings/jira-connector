@@ -12,7 +12,7 @@ function PriorityClient(jiraClient) {
     this.jiraClient = jiraClient;
 
     /**
-     * Returns a list of all issue types visible to the user
+     * Returns a list of all priorities visible to the user
      *
      * @method getAllPriorities
      * @memberOf PriorityClient#
