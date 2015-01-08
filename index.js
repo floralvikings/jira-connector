@@ -28,6 +28,7 @@ var securityLevel = require('./api/securityLevel');
 var serverInfo = require('./api/serverInfo');
 var dashboard = require('./api/dashboard');
 var field = require('./api/field');
+var issueType = require('./api/issueType');
 
 /**
  * Represents a client for the Jira REST API
@@ -227,6 +228,13 @@ var JiraClient = module.exports = function (config) {
      * @type {FieldClient}
      */
     this.field = new field(this);
+
+    /**
+     * @memberOf JiraClient#
+     * @instance
+     * @type {IssueTypeClient}
+     */
+    this.issueType = new issueType(this);
 };
 
 (function () {
