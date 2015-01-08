@@ -48,4 +48,28 @@ function LicenseRoleClient(jiraClient) {
 
         this.jiraClient.makeRequest(options, callback);
     };
+
+    /**
+     * Updates the license role with the passed data. Only the groups of the role may be updated. Requests to change
+     * the id or the name of the role will be silently ignored.
+     *
+     * @method editLicenseRole
+     * @memberOf {LicenseRoleClient#}
+     * @param opts The request options sent to the Jira API.
+     * @param opts.roleId The id of the license role to retrieve.
+     * @param opts.role The new data to place in the role.  See
+     *  {@link https://docs.atlassian.com/jira/REST/latest/#d2e365}
+     * @param callback Called when the license role is edited.
+     */
+    this.editLicenseRole = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/licenserole/' + opts.roleId),
+            method: 'PUT',
+            json: true,
+            followAllRedirects: true,
+            body: opts.role
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    }
 }
