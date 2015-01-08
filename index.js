@@ -29,6 +29,7 @@ var serverInfo = require('./api/serverInfo');
 var dashboard = require('./api/dashboard');
 var field = require('./api/field');
 var issueType = require('./api/issueType');
+var priority = require('./api/priority');
 
 /**
  * Represents a client for the Jira REST API
@@ -235,6 +236,13 @@ var JiraClient = module.exports = function (config) {
      * @type {IssueTypeClient}
      */
     this.issueType = new issueType(this);
+
+    /**
+     * @memberOf JiraClient#
+     * @instance
+     * @type {PriorityClient}
+     */
+    this.priority = new priority(this);
 };
 
 (function () {
