@@ -32,6 +32,7 @@ var issueType = require('./api/issueType');
 var priority = require('./api/priority');
 var reindex = require('./api/reindex');
 var resolution = require('./api/resolution');
+var search = require('./api/search');
 
 /**
  * Represents a client for the Jira REST API
@@ -259,6 +260,13 @@ var JiraClient = module.exports = function (config) {
      * @type {ResolutionClient}
      */
     this.resolution = new resolution(this);
+
+    /**
+     * @memberOf {JiraClient#}
+     * @instance
+     * @type {SearchClient}
+     */
+    this.search = new search(this);
 };
 
 (function () {
