@@ -98,4 +98,24 @@ function ComponentClient(jiraClient) {
 
         this.jiraClient.makeRequest(options, callback, 'Project Component Deleted');
     };
+
+    /**
+     * Get counts of issues related to this component.
+     *
+     * @method getRelatedIssueCounts
+     * @memberOf {ComponentClient#}
+     * @param opts The options sent to the Jira API
+     * @param opts.id The ID of the component to edit.
+     * @param callback Called when the count has been retrieved.
+     */
+    this.getRelatedIssueCounts = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/component/' + opts.id + '/relatedIssueCounts'),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    }
 }
