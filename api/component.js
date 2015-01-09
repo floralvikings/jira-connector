@@ -76,4 +76,26 @@ function ComponentClient(jiraClient) {
 
         this.jiraClient.makeRequest(options, callback);
     };
+
+    /**
+     * Delete a project component.
+     *
+     * @method deleteComponent
+     * @memberOf {ComponentClient#}
+     * @param opts The options sent to the Jira API
+     * @param opts.id The ID of the component to edit.
+     * @param [opts.moveIssuesTo] The new component applied to issues whose 'id' component will be deleted. If this
+     *     value is null, then the 'id' component is simply removed from the related isues.
+     * @param callback Called when the component has been deleted.
+     */
+    this.deleteComponent = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/component/' + opts.id),
+            method: 'DELETE',
+            json: true,
+            followAllRedirects: true
+        };
+
+        this.jiraClient.makeRequest(options, callback, 'Project Component Deleted');
+    };
 }
