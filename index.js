@@ -42,6 +42,7 @@ var password = require('./api/password');
 var settings = require('./api/settings');
 var component = require('./api/component');
 var group = require('./api/group');
+var workflow = require('./api/workflow');
 
 /**
  * Represents a client for the Jira REST API
@@ -80,6 +81,7 @@ var group = require('./api/group');
  * @property {SettingsClient} settings
  * @property {ComponentClient} component
  * @property {GroupClient} group
+ * @property {WorkflowClient} workflow
  *
  * @param config The information needed to access the Jira API
  * @param {string} config.host The hostname of the Jira API.
@@ -176,6 +178,7 @@ var JiraClient = module.exports = function (config) {
     this.settings = new settings(this);
     this.component = new component(this);
     this.group = new group(this);
+    this.workflow = new workflow(this);
 };
 
 (function () {
