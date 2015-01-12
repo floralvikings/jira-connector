@@ -33,4 +33,40 @@ function GroupClient(jiraClient) {
 
         this.jiraClient.makeRequest(options, callback);
     };
+
+    /**
+     * Returns REST representation for the requested group. Allows to get list of active users belonging to the
+     * specified group and its subgroups if "users" expand option is provided. You can page through users list by using
+     * indexes in expand param. For example to get users from index 10 to index 15 use "users[10:15]" expand value.
+     * This will return 6 users (if there are at least 16 users in this group). Indexes are 0-based and inclusive.
+     *
+     * @method getGroup
+     * @memberOf {GroupClient#}
+     * @param opts The request options sent to the Jira API
+     * @param opts.groupName A name of requested group.
+     * @param opts.expand Array of fields to expand. Currently only available expand is "users".
+     * @param callback Called when the group is retrieved.
+     */
+    this.getGroup = function (opts, callback) {
+        var qs = {
+            groupname: opts.groupName
+        };
+
+        if (opts.expand) {
+            qs.expand = '';
+            opts.expand.forEach(function (ex) {
+                qs.expand += ex + ','
+            });
+        }
+
+        var options = {
+            uri: this.jiraClient.buildURL('/group'),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true,
+            qs: qs
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    }
 }
