@@ -121,4 +121,29 @@ function GroupClient(jiraClient) {
 
         this.jiraClient.makeRequest(options, callback, 'User Removed from Group');
     };
+
+    /**
+     * Deletes a group by given group parameter. Returns no content
+     *
+     * @method deleteGroup
+     * @memberOf {GroupClient#}
+     * @param {Object} opts The request options sent to the Jira API
+     * @param {string} opts.groupName A group to delete.
+     * @param {string} [opts.swapGroup] A group to transfer visibility restrictions of the group that is being deleted
+     * @param callback Called when the group has been deleted.
+     */
+    this.deleteGroup = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/group'),
+            method: 'DELETE',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                groupname: opts.groupName,
+                swapGroup: opts.swapGroup
+            }
+        };
+
+        this.jiraClient.makeRequest(options, callback, 'Group Deleted');
+    };
 }
