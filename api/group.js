@@ -68,5 +68,5 @@ function GroupClient(jiraClient) {
         };
 
         this.jiraClient.makeRequest(options, callback);
-    }
+    };
 }
