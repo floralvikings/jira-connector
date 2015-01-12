@@ -69,4 +69,31 @@ function GroupClient(jiraClient) {
 
         this.jiraClient.makeRequest(options, callback);
     };
+
+    /**
+     * Adds given user to a group. Returns the current state of the group.
+     *
+     * @method addUserToGroup
+     * @memberOf {GroupClient#}
+     * @param {Object} opts The request options sent to the Jira API
+     * @param {string} opts.groupName A name of requested group.
+     * @param {string} opts.userName The name of the user to add to the group.
+     * @param callback Called when the user has been added to the group.
+     */
+    this.addUserToGroup = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/group/user'),
+            method: 'POST',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                groupname: opts.groupName
+            },
+            body: {
+                name: opts.userName
+            }
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    };
 }
