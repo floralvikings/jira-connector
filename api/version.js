@@ -122,6 +122,22 @@ function VersionClient(jiraClient) {
     };
 
     /**
+     * Create a remote version link via POST. The link's global ID will be taken from the JSON payload if provided;
+     * otherwise, it will be generated.
+     *
+     * @method createRemoteLink
+     * @memberOf VersionClient#
+     * @param opts The request options sent to the Jira API.
+     * @param opts.versionId The version for which to retrieve unresolved issues.
+     * @param opts.remoteLink See {@link https://docs.atlassian.com/jira/REST/latest/#d2e3753}
+     * @param callback Called when the remote link has been created.
+     */
+    this.createRemoteLink = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/remotelink', 'POST', opts.remoteLink);
+        this.jiraClient.makeRequest(options, callback, 'Remotelink Created');
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
