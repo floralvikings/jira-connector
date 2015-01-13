@@ -83,7 +83,7 @@ function FilterClient(jiraClient) {
      * @param {number} opts.filterId The ID of the filter to use in the path.
      * @param {Array} [opts.fields] The fields to include
      * @param {Array} [opts.expand] The fields to expand
-     * @param {string} path The path of the endpoint following /issue/{idOrKey}
+     * @param {string} path The path of the endpoint following /filter/{id}
      * @param {string} method The request method.
      * @param {Object} [body] The request body, if any.
      * @param {Object} [qs] The querystring, if any.  opts.expand and opts.fields arrays will be automagically added.
