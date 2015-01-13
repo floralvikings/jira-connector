@@ -105,6 +105,19 @@ function FilterClient(jiraClient) {
     };
 
     /**
+     * Resets the columns for the given filter such that the filter no longer has its own column config.
+     *
+     * @memberOf {FilterClient#}
+     * @param {Object} opts The request options sent to the Jira API
+     * @param {number} opts.filterId The ID of the filter for which to reset columns.
+     * @param callback Called when the columns have been reset.
+     */
+    this.resetFilterColumns = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/columns', 'DELETE');
+        this.jiraClient.makeRequest(options, callback, 'Columns Reset');
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
