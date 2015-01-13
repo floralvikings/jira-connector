@@ -15,7 +15,7 @@ function PasswordClient(jiraClient) {
      * Returns user-friendly statements governing the system's password policy.
      *
      * @method getPasswordPolicy
-     * @memberOf {PasswordClient#}
+     * @memberOf PasswordClient#
      * @param opts The request options to send to the Jira API
      * @param {boolean} [opts.hasOldPassword=false] Whether or not the user will be required to enter their current
      *     password. Use false (the default) if this is a new user or if an administrator is forcibly changing another
