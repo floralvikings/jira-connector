@@ -36,7 +36,7 @@ function SearchClient(jiraClient) {
      * "changelog" as one of the values to expand.
      *
      * @method search
-     * @memberOf {SearchClient#}
+     * @memberOf SearchClient#
      * @param opts The options for the search.
      * @param {string} opts.jql The JQL query string
      * @param {number} [opts.startAt] The index of the first issue to return (0-based)
