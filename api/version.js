@@ -32,6 +32,25 @@ function VersionClient(jiraClient) {
     };
 
     /**
+     * Modify a version's sequence within a project. The move version bean has 2 alternative field value pairs
+     * (opts.position or opts.after).  One and only one of these two must be provided.
+     *
+     * @method moveVersion
+     * @memberOf VersionClient#
+     * @param {Object} opts The request options sent to the Jira API.
+     * @param {string} opts.versionId The ID of the version to move.
+     * @param {string} [opts.position] An absolute position, which may have a value of 'First', 'Last', 'Earlier' or
+     *     'Later'. Must be provided if opts.after is missing.
+     * @param {string} [opts.after] A version to place this version after. The value should be the self link of another
+     *     version. Must be provided if opts.position is missing
+     * @param callback Called when the version has been moved.
+     */
+    this.moveVersion = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/move', 'POST', {position: opts.position, after: opts.after});
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
