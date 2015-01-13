@@ -74,6 +74,20 @@ function FilterClient(jiraClient) {
     };
 
     /**
+     * Delete a filter.
+     *
+     * @method deleteFilter
+     * @memberOf {FilterClient#}
+     * @param {Object} opts The request options sent to the Jira API
+     * @param {number} opts.filterId The ID of the filter to delete
+     * @param callback Called when the filter has been deleted.
+     */
+    this.deleteFilter = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '', 'DELETE');
+        this.jiraClient.makeRequest(options, callback, 'Filter Deleted');
+    };
+
+    /**
      * Returns the default columns for the given filter. Currently logged in user will be used as the user making such
      * request.
      *
