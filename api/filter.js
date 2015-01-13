@@ -44,6 +44,20 @@ function FilterClient(jiraClient) {
     };
 
     /**
+     * Returns a filter given an id
+     *
+     * @method getFilter
+     * @memberOf {FilterClient#}
+     * @param {Object} opts The request options sent to the Jira API
+     * @param {number} opts.filterId The ID of the filter to retrieve
+     * @param callback Called when the filter has been retrieved.
+     */
+    this.getFilter = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '', 'GET');
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
