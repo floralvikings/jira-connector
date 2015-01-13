@@ -182,6 +182,20 @@ function VersionClient(jiraClient) {
     };
 
     /**
+     * Delete all remote version links for a given version ID.
+     *
+     * @method deleteAllRemoteLinks
+     * @memberOf VersionClient#
+     * @param {Object} opts The request options sent to the Jira API.
+     * @param {string|number} opts.versionId The ID of the version to delete.
+     * @param callback Called when the version is deleted.
+     */
+    this.deleteAllRemoteLinks = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/remotelink', 'DELETE');
+        this.jiraClient.makeRequest(options, callback, 'Remote Links Deleted');
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
