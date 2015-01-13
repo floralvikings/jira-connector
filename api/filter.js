@@ -161,6 +161,24 @@ function FilterClient(jiraClient) {
     };
 
     /**
+     * Returns the favourite filters of the logged-in user.
+     *
+     * @method getFavouriteFilters
+     * @memberOf {FilterClient#}
+     * @param opts Ignored.
+     * @param callback Called when the list of favourites has been retrieved.
+     */
+    this.getFavoriteFilters = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/filter/favourite'),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true
+        };
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
