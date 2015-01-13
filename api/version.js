@@ -94,6 +94,20 @@ function VersionClient(jiraClient) {
     };
 
     /**
+     * Get the number of unresolved issues for the given version
+     *
+     * @method getUnresolvedIssueCount
+     * @memberOf VersionClient#
+     * @param opts The request options sent to the Jira API.
+     * @param opts.versionId The version for which to retrieve unresolved issues.
+     * @param callback Called when the count has been retrieved.
+     */
+    this.getUnresolvedIssueCount = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/unresolvedIssueCount', 'GET');
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
