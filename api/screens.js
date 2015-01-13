@@ -89,6 +89,7 @@ function ScreensClient(jiraClient) {
      * Adds field to the given tab
      *
      * @method addFieldToTab
+     * @memberOf {ScreensClient#}
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.screenId The ID of the screen containing the tab.
      * @param {number} opts.tabId the ID of the tab to which the fields will be added.
