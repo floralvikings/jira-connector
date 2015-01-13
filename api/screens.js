@@ -117,7 +117,7 @@ function ScreensClient(jiraClient) {
     };
 
     /**
-     * Gets all fields for a given tab.
+     * Remove the given field from the given tab.
      *
      * @method removeFieldFromTab
      * @memberOf {ScreensClient#}
