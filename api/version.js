@@ -168,6 +168,20 @@ function VersionClient(jiraClient) {
     };
 
     /**
+     * Delete a project version.
+     *
+     * @method deleteVersion
+     * @memberOf VersionClient#
+     * @param {Object} opts The request options sent to the Jira API.
+     * @param {string|number} opts.versionId The ID of the version to delete.
+     * @param callback Called when the version is deleted.
+     */
+    this.deleteVersion = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '', 'DELETE');
+        this.jiraClient.makeRequest(options, callback, 'Version Deleted');
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
