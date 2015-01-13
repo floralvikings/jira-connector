@@ -51,6 +51,18 @@ function VersionClient(jiraClient) {
     };
 
     /**
+     * Get a project version.
+     *
+     * @param {Object} opts The request options sent to the Jira API.
+     * @param {string|number} opts.versionId The ID of the version to retrieve.
+     * @param callback Called when the version is retrieved.
+     */
+    this.getVersion = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '', 'GET');
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
