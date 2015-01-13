@@ -26,6 +26,20 @@ function ScreensClient(jiraClient) {
     };
 
     /**
+     * Returns a list of all tabs for the given screen.
+     *
+     * @method getTabs
+     * @memberOf {ScreensClient#}
+     * @param {Object} opts The request options sent to Jira
+     * @param {number} opts.screenId The ID of the screen to retrieve.
+     * @param callback Called when the tabs have been retrieved.
+     */
+    this.getTabs = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/tabs', 'GET');
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
