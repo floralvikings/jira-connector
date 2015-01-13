@@ -122,6 +122,8 @@ function FilterClient(jiraClient) {
     /**
      * Returns the default share scope of the logged-in user.
      *
+     * @method getDefaultShareScore
+     * @memberOf {FilterClient#}
      * @param opts Ignored.
      * @param callback Called when the default share scope has been retrieved.
      */
