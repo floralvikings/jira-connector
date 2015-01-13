@@ -155,6 +155,22 @@ function ScreensClient(jiraClient) {
     };
 
     /**
+     * Moves tab position
+     *
+     * @method moveTabPosition
+     * @memberOf ScreensClient#
+     * @param {Object} opts The request options sent to the Jira API.
+     * @param {number} opts.screenId The ID of the screen containing the tab.
+     * @param {number} opts.tabId the ID of the tab to move.
+     * @param {number} opts.newPosition The new (zero-indexed) position of the tab.
+     * @param callback Called when the tab has been moved.
+     */
+    this.moveTabPosition = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/tabs/' + opts.tabId + '/move/' + opts.newPosition, 'POST');
+        this.jiraClient.makeRequest(options, callback, 'Tab Moved');
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
