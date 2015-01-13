@@ -65,6 +65,21 @@ function VersionClient(jiraClient) {
     };
 
     /**
+     * Modify an existing version; any omitted fields will be ignored.
+     *
+     * @method createVersion
+     * @memberOf VersionClient#
+     * @param {Object} opts The request options sent to Jira.
+     * @param {string} opts.versionId The ID of the version to edit.
+     * @param {Object} opts.version See {@link https://docs.atlassian.com/jira/REST/latest/#d2e3619}
+     * @param callback Called when the version has been modified.
+     */
+    this.editVersion = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '', 'PUT', opts.version);
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
