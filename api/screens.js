@@ -15,7 +15,7 @@ function ScreensClient(jiraClient) {
      * Gets available fields for screen. i.e ones that haven't already been added.
      *
      * @method getAvailableFields
-     * @memberOf {ScreensClient#}
+     * @memberOf ScreensClient#
      * @param {Object} opts The request options sent to Jira
      * @param {number} opts.screenId The ID of the screen to retrieve.
      * @param callback Called when the available fields have been retrieved
@@ -29,7 +29,7 @@ function ScreensClient(jiraClient) {
      * Returns a list of all tabs for the given screen.
      *
      * @method getTabs
-     * @memberOf {ScreensClient#}
+     * @memberOf ScreensClient#
      * @param {Object} opts The request options sent to Jira
      * @param {number} opts.screenId The ID of the screen to retrieve.
      * @param callback Called when the tabs have been retrieved.
@@ -43,7 +43,7 @@ function ScreensClient(jiraClient) {
      * Creates tab for given screen
      *
      * @method createTab
-     * @memberOf {ScreensClient#}
+     * @memberOf ScreensClient#
      * @param {Object} opts The request options sent to Jira
      * @param {number} opts.screenId The ID of the screen in which to create a tab.
      * @param {string} opts.name The name of the tab to add.  Minimum required to create a tab.
@@ -58,7 +58,7 @@ function ScreensClient(jiraClient) {
      * Renames the given tab on the given screen.
      *
      * @method renameTab
-     * @memberOf {ScreensClient#}
+     * @memberOf ScreensClient#
      * @param {Object} opts The request options sent to the jira API
      * @param {number} opts.screenId The ID of the screen containing the tab to rename.
      * @param {number} opts.tabId The ID of the tab to rename
@@ -74,7 +74,7 @@ function ScreensClient(jiraClient) {
      * Deletes the given tab from the given screen.
      *
      * @method deleteTab
-     * @memberOf {ScreensClient#}
+     * @memberOf ScreensClient#
      * @param {Object} opts The request options sent to the jira API
      * @param {number} opts.screenId The ID of the screen containing the tab to delete.
      * @param {number} opts.tabId The ID of the tab to delete
@@ -89,7 +89,7 @@ function ScreensClient(jiraClient) {
      * Adds field to the given tab
      *
      * @method addFieldToTab
-     * @memberOf {ScreensClient#}
+     * @memberOf ScreensClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.screenId The ID of the screen containing the tab.
      * @param {number} opts.tabId the ID of the tab to which the fields will be added.
@@ -105,7 +105,7 @@ function ScreensClient(jiraClient) {
      * Gets all fields for a given tab.
      *
      * @method getFieldsInTab
-     * @memberOf {ScreensClient#}
+     * @memberOf ScreensClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.screenId The ID of the screen containing the tab.
      * @param {number} opts.tabId the ID of the tab for which to retrieve fields.
@@ -120,7 +120,7 @@ function ScreensClient(jiraClient) {
      * Remove the given field from the given tab.
      *
      * @method removeFieldFromTab
-     * @memberOf {ScreensClient#}
+     * @memberOf ScreensClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.screenId The ID of the screen containing the tab.
      * @param {number} opts.tabId the ID of the tab from which to remove the field.
@@ -159,7 +159,7 @@ function ScreensClient(jiraClient) {
      *
      * @private
      * @method buildRequestOptions
-     * @memberOf {FilterClient#}
+     * @memberOf FilterClient#
      * @param {Object} opts The arguments passed to the method.
      * @param {number} opts.screenId The ID of the screen to use in the path.
      * @param {Array} [opts.fields] The fields to include
