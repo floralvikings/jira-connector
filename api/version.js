@@ -138,6 +138,21 @@ function VersionClient(jiraClient) {
     };
 
     /**
+     * Get a REST sub-resource representing a remote version link.
+     *
+     * @method getRemoteLinks
+     * @memberOf VersionClient#
+     * @param opts The request options sent to the Jira API.
+     * @param opts.versionId The version for which to retrieve the remote link
+     * @param opts.remoteLinkId The global ID of the remote link
+     * @param callback Called when the link has been retrieved.
+     */
+    this.getRemoteLink = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/remotelink/' + opts.remoteLinkId, 'GET');
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
