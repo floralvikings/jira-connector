@@ -17,7 +17,7 @@ function GroupClient(jiraClient) {
      * Creates a group by given group parameter Returns REST representation for the requested group.
      *
      * @method createGroup
-     * @memberOf {GroupClient#}
+     * @memberOf GroupClient#
      * @param opts The request options sent to jira
      * @param opts.group The group to create.  See {@link https://docs.atlassian.com/jira/REST/latest/#d2e2011}
      * @param callback Called when the group is created
@@ -41,7 +41,7 @@ function GroupClient(jiraClient) {
      * This will return 6 users (if there are at least 16 users in this group). Indexes are 0-based and inclusive.
      *
      * @method getGroup
-     * @memberOf {GroupClient#}
+     * @memberOf GroupClient#
      * @param opts The request options sent to the Jira API
      * @param opts.groupName A name of requested group.
      * @param opts.expand Array of fields to expand. Currently only available expand is "users".
@@ -74,7 +74,7 @@ function GroupClient(jiraClient) {
      * Adds given user to a group. Returns the current state of the group.
      *
      * @method addUserToGroup
-     * @memberOf {GroupClient#}
+     * @memberOf GroupClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} opts.groupName A name of requested group.
      * @param {string} opts.userName The name of the user to add to the group.
@@ -101,7 +101,7 @@ function GroupClient(jiraClient) {
      * Removes given user from a group. Returns no content
      *
      * @method removeUserFromGroup
-     * @memberOf {GroupClient#}
+     * @memberOf GroupClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} opts.groupName A name of requested group.
      * @param {string} opts.userName The name of the user to add to the group.
@@ -126,7 +126,7 @@ function GroupClient(jiraClient) {
      * Deletes a group by given group parameter. Returns no content
      *
      * @method deleteGroup
-     * @memberOf {GroupClient#}
+     * @memberOf GroupClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} opts.groupName A group to delete.
      * @param {string} [opts.swapGroup] A group to transfer visibility restrictions of the group that is being deleted
