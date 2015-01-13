@@ -16,7 +16,7 @@ function MyPreferencesClient(jiraClient) {
      * The value is returned exactly as it is.
      *
      * @method getPreference
-     * @memberOf {MyPreferencesClient#}
+     * @memberOf MyPreferencesClient#
      * @param opts The request options send to the Jira API.
      * @param opts.key Key of the preference to be returned.
      * @param callback Called when the preference has been retrieved.
@@ -39,7 +39,7 @@ function MyPreferencesClient(jiraClient) {
      * Sets preference of the currently logged in user. Preference key must be provided as input parameters (key).
      *
      * @method editPreference
-     * @memberOf {MyPreferencesClient#}
+     * @memberOf MyPreferencesClient#
      * @param opts The request options send to the Jira API.
      * @param opts.key Key of the preference to be edited.
      * @param opts.value The new value to set for the preference.
@@ -64,7 +64,7 @@ function MyPreferencesClient(jiraClient) {
      * Removes preference of the currently logged in user. Preference key must be provided as input parameters (key).
      *
      * @method deletePreference
-     * @memberOf {MyPreferencesClient#}
+     * @memberOf MyPreferencesClient#
      * @param opts The request options send to the Jira API.
      * @param opts.key Key of the preference to be deleted.
      * @param callback Called when the preference has been deleted.
