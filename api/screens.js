@@ -117,6 +117,22 @@ function ScreensClient(jiraClient) {
     };
 
     /**
+     * Gets all fields for a given tab.
+     *
+     * @method removeFieldFromTab
+     * @memberOf {ScreensClient#}
+     * @param {Object} opts The request options sent to the Jira API
+     * @param {number} opts.screenId The ID of the screen containing the tab.
+     * @param {number} opts.tabId the ID of the tab from which to remove the field.
+     * @param {string} opts.fieldId The ID of the field to remove from the tab.
+     * @param callback Called when the field has been removed.
+     */
+    this.removeFieldFromTab = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/tabs/' + opts.tabId + '/fields/' + opts.fieldId, 'DELETE');
+        this.jiraClient.makeRequest(options, callback, 'Field Removed From Tab');
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
