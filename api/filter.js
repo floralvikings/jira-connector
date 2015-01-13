@@ -16,7 +16,7 @@ function FilterClient(jiraClient) {
      * sharing permissions
      *
      * @method createFilter
-     * @memberOf {FilterClient#}
+     * @memberOfFilterClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {Array} [opts.expand] The parameters to expand.
      * @param {Object} opts.filter The filter to create.  See
@@ -47,7 +47,7 @@ function FilterClient(jiraClient) {
      * Returns a filter given an id
      *
      * @method getFilter
-     * @memberOf {FilterClient#}
+     * @memberOfFilterClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.filterId The ID of the filter to retrieve
      * @param callback Called when the filter has been retrieved.
@@ -61,7 +61,7 @@ function FilterClient(jiraClient) {
      * Updates an existing filter, and returns its new value.
      *
      * @method updateFilter
-     * @memberOf {FilterClient#}
+     * @memberOfFilterClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.filterId The ID of the filter to update
      * @param {Object} opts.filter The new data for the filter.  See
@@ -77,7 +77,7 @@ function FilterClient(jiraClient) {
      * Delete a filter.
      *
      * @method deleteFilter
-     * @memberOf {FilterClient#}
+     * @memberOfFilterClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.filterId The ID of the filter to delete
      * @param callback Called when the filter has been deleted.
@@ -92,7 +92,7 @@ function FilterClient(jiraClient) {
      * request.
      *
      * @method getFilterColumns
-     * @memberOf {FilterClient#}
+     * @memberOfFilterClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.filterId The ID of the filter for which to retrieve columns.
      * @param callback Called when the columns have been retrieved.
@@ -106,7 +106,7 @@ function FilterClient(jiraClient) {
      * Sets the default columns for the given filter
      *
      * @method setFilterColumns
-     * @memberOf {FilterClient#}
+     * @memberOfFilterClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.filterId The ID of the filter for which to update columns.
      * @param {Array} opts.columns The names of the new columns.
@@ -123,7 +123,7 @@ function FilterClient(jiraClient) {
      * Resets the columns for the given filter such that the filter no longer has its own column config.
      *
      * @method resetFilterColumns
-     * @memberOf {FilterClient#}
+     * @memberOfFilterClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.filterId The ID of the filter for which to reset columns.
      * @param callback Called when the columns have been reset.
@@ -137,7 +137,7 @@ function FilterClient(jiraClient) {
      * Returns the default share scope of the logged-in user.
      *
      * @method getDefaultShareScore
-     * @memberOf {FilterClient#}
+     * @memberOfFilterClient#
      * @param opts Ignored.
      * @param callback Called when the default share scope has been retrieved.
      */
@@ -156,7 +156,7 @@ function FilterClient(jiraClient) {
      * Sets the default share scope of the logged-in user.
      *
      * @method setDefaultShareScope
-     * @memberOf {FilterClient#}
+     * @memberOfFilterClient#
      * @param {Object} opts The request options sent to jira
      * @param {string} opts.scope The new default share scope. Available values are GLOBAL and PRIVATE.
      * @param callback Called when the default share scope has been set.
@@ -178,7 +178,7 @@ function FilterClient(jiraClient) {
      * Returns the favourite filters of the logged-in user.
      *
      * @method getFavouriteFilters
-     * @memberOf {FilterClient#}
+     * @memberOfFilterClient#
      * @param opts Ignored.
      * @param callback Called when the list of favourites has been retrieved.
      */
@@ -197,7 +197,7 @@ function FilterClient(jiraClient) {
      *
      * @private
      * @method buildRequestOptions
-     * @memberOf {FilterClient#}
+     * @memberOfFilterClient#
      * @param {Object} opts The arguments passed to the method.
      * @param {number} opts.filterId The ID of the filter to use in the path.
      * @param {Array} [opts.fields] The fields to include
