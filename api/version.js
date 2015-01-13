@@ -53,6 +53,8 @@ function VersionClient(jiraClient) {
     /**
      * Get a project version.
      *
+     * @method getVersion
+     * @memberOf VersionClient#
      * @param {Object} opts The request options sent to the Jira API.
      * @param {string|number} opts.versionId The ID of the version to retrieve.
      * @param callback Called when the version is retrieved.
