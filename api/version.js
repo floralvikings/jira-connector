@@ -108,6 +108,20 @@ function VersionClient(jiraClient) {
     };
 
     /**
+     * Get the remote version links associated with the given version ID.
+     *
+     * @method getRemoteLinks
+     * @memberOf VersionClient#
+     * @param opts The request options sent to the Jira API.
+     * @param opts.versionId The version for which to retrieve unresolved issues.
+     * @param callback Called when the links have been retrieved.
+     */
+    this.getRemoteLinks = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/remotelink', 'GET');
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
