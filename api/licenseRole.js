@@ -14,7 +14,7 @@ function LicenseRoleClient(jiraClient) {
      * Returns all license roles in the system.
      *
      * @method getAllLicenseRoles
-     * @memberOf {LicenseRoleClient#}
+     * @memberOf LicenseRoleClient#
      * @param opts Ignored
      * @param callback Called when the license roles have been retrieved.
      */
@@ -33,7 +33,7 @@ function LicenseRoleClient(jiraClient) {
      * Gets the passed license role if it exists.
      *
      * @method getLicenseRole
-     * @memberOf {LicenseRoleClient#}
+     * @memberOf LicenseRoleClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.roleId The id of the license role to retrieve.
      * @param callback Called when the license role is retrieved.
@@ -54,7 +54,7 @@ function LicenseRoleClient(jiraClient) {
      * the id or the name of the role will be silently ignored.
      *
      * @method editLicenseRole
-     * @memberOf {LicenseRoleClient#}
+     * @memberOf LicenseRoleClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.roleId The id of the license role to retrieve.
      * @param opts.role The new data to place in the role.  See
