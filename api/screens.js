@@ -56,6 +56,22 @@ function ScreensClient(jiraClient) {
     };
 
     /**
+     * Renames the given tab on the given screen.
+     *
+     * @method renameTab
+     * @memberOf {ScreensClient#}
+     * @param {Object} opts The request options sent to the jira API
+     * @param {number} opts.screenId The ID of the screen containing the tab to rename.
+     * @param {number} opts.tabId The ID of the tab to rename
+     * @param {string} opts.name The new name of the tab.
+     * @param callback
+     */
+    this.renameTab = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/tabs/' + opts.tabId, 'PUT', {name: opts.name});
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
