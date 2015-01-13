@@ -15,7 +15,7 @@ function MyselfClient(jiraClient) {
      * Returns currently logged user. This resource cannot be accessed anonymously.
      *
      * @method getMyself
-     * @memberOf {MyselfClient#}
+     * @memberOf MyselfClient#
      * @param opts Ignored
      * @param callback Called when the current user is retrieved.
      */
@@ -35,7 +35,7 @@ function MyselfClient(jiraClient) {
      * request will not be changed. Only email and display name can be change that way.
      *
      * @method editMyself
-     * @memberOf {MyselfClient#}
+     * @memberOf MyselfClient#
      * @param opts The request options send to the Jira API.
      * @param opts.newData The new data.  See {@link https://docs.atlassian.com/jira/REST/latest/#d2e1242}
      * @param callback Called when the user's data has been modified
@@ -56,7 +56,7 @@ function MyselfClient(jiraClient) {
      * Modify caller password.
      *
      * @method changePassword
-     * @memberOf {MyselfClient#}
+     * @memberOf MyselfClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.newData The new data
      * @param callback Called when the password has been changed.
