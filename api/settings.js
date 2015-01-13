@@ -14,7 +14,7 @@ function SettingsClient(jiraClient) {
      * Sets the base URL that is configured for this JIRA instance.
      *
      * @method setBaseUrl
-     * @memberOf {SettingsClient#}
+     * @memberOf SettingsClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.newUrl The new base url.
      * @param callback Called when the base url has been set.
@@ -35,7 +35,7 @@ function SettingsClient(jiraClient) {
      * Returns the default system columns for issue navigator. Admin permission will be required.
      *
      * @method getIssueNavColumns
-     * @membrOf {SettingsClient#}
+     * @memberOf SettingsClient#
      * @param opts Ignored
      * @param callback Called when the columns have been retrieved
      */
