@@ -115,7 +115,7 @@ var JiraClient = module.exports = function (config) {
     this.host = config.host;
     this.protocol = config.protocol ? config.protocol : 'https';
     this.port = config.port;
-    this.version = 2; // TODO Add support for other versions.
+    this.apiVersion = 2; // TODO Add support for other versions.
 
     if (!config.oauth && !config.basic_auth) {
         throw new Error(errorStrings.NO_AUTHENTICATION_ERROR);
@@ -202,7 +202,7 @@ var JiraClient = module.exports = function (config) {
      */
     this.buildURL = function (path) {
         var apiBasePath = 'rest/api/';
-        var version = this.version;
+        var version = this.apiVersion;
         var requestUrl = url.format({
             protocol: this.protocol,
             hostname: this.host,
