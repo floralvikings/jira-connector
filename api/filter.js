@@ -91,6 +91,7 @@ function FilterClient(jiraClient) {
     /**
      * Sets the default columns for the given filter
      *
+     * @method setFilterColumns
      * @memberOf {FilterClient#}
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.filterId The ID of the filter for which to update columns.
