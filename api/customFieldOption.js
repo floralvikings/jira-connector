@@ -17,7 +17,7 @@ function CustomFieldOptionClient(jiraClient) {
      * Returns a full representation of the Custom Field Option that has the given id.
      *
      * @method getCustomFieldOption
-     * @memberOf {CustomFieldOptionClient#}
+     * @memberOf CustomFieldOptionClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} opts.fieldOptionId A String containing an Custom Field Option id
      * @param callback
