@@ -88,5 +88,5 @@ function FilterClient(jiraClient) {
             followAllRedirects: true,
             json: true
         };
-    }
+    };
 }
