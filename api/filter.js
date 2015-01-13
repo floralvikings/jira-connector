@@ -135,6 +135,26 @@ function FilterClient(jiraClient) {
     };
 
     /**
+     * Sets the default share scope of the logged-in user.
+     *
+     * @param {Object} opts The request options sent to jira
+     * @param {string} opts.scope The new default share scope. Available values are GLOBAL and PRIVATE.
+     * @param callback Called when the default share scope has been set.
+     */
+    this.setDefaultShareScope = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/filter/defaultShareScope'),
+            method: 'PUT',
+            json: true,
+            followAllRedirects: true,
+            body: {
+                scope: opts.scope
+            }
+        };
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
