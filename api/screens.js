@@ -171,6 +171,26 @@ function ScreensClient(jiraClient) {
     };
 
     /**
+     * Adds field or custom field to the default tab
+     *
+     * @method addFieldToDefaultTab
+     * @memberOf ScreensClient#
+     * @param {Object} opts The request options sent to the Jira API.
+     * @param {string} opts.fieldId The ID of the field to add to the default tab.
+     * @param callback Called when the tab has been moved.
+     */
+    this.addFieldToDefaultTab = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/screens/addToDefault/' + opts.fieldId),
+            method: 'POST',
+            json: true,
+            followAllRedirects: true
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
