@@ -74,6 +74,38 @@ function FilterClient(jiraClient) {
     };
 
     /**
+     * Returns the default columns for the given filter. Currently logged in user will be used as the user making such
+     * request.
+     *
+     * @method getFilterColumns
+     * @memberOf {FilterClient#}
+     * @param {Object} opts The request options sent to the Jira API
+     * @param {number} opts.filterId The ID of the filter for which to retrieve columns.
+     * @param callback Called when the columns have been retrieved.
+     */
+    this.getFilterColumns = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/columns', 'GET');
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
+     * Sets the default columns for the given filter
+     *
+     * @memberOf {FilterClient#}
+     * @param {Object} opts The request options sent to the Jira API
+     * @param {number} opts.filterId The ID of the filter for which to retrieve columns.
+     * @param {Array} opts.columns The names of the new columns.
+     *      See {@link https://docs.atlassian.com/jira/REST/latest/#d2e3460}
+     * @param callback Called when the columns have been set
+     */
+    this.setFilterColumns = function (opts, callback) {
+        var body = {columns: opts.columns};
+        var options = this.buildRequestOptions(opts, '/columns', 'PUT', body);
+        console.log(options);
+        this.jiraClient.makeRequest(options, callback, 'Columns Updated');
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
