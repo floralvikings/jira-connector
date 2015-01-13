@@ -14,6 +14,8 @@ function WorkflowClient(jiraClient) {
     /**
      * Returns all workflows.
      *
+     * @method getWorkflows
+     * @memberOf WorkflowClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} [opts.workflowName] The name of the workflow to retrieve.
      * @param callback Called when the workflow(s) have been retrieved.
