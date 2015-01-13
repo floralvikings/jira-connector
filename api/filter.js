@@ -118,6 +118,23 @@ function FilterClient(jiraClient) {
     };
 
     /**
+     * Returns the default share scope of the logged-in user.
+     *
+     * @param opts Ignored.
+     * @param callback Called when the default share scope has been retrieved.
+     */
+    this.getDefaultShareScore = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/filter/defaultShareScope'),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
