@@ -101,7 +101,6 @@ function FilterClient(jiraClient) {
     this.setFilterColumns = function (opts, callback) {
         var body = {columns: opts.columns};
         var options = this.buildRequestOptions(opts, '/columns', 'PUT', body);
-        console.log(options);
         this.jiraClient.makeRequest(options, callback, 'Columns Updated');
     };
 
