@@ -93,7 +93,7 @@ function FilterClient(jiraClient) {
      *
      * @memberOf {FilterClient#}
      * @param {Object} opts The request options sent to the Jira API
-     * @param {number} opts.filterId The ID of the filter for which to retrieve columns.
+     * @param {number} opts.filterId The ID of the filter for which to update columns.
      * @param {Array} opts.columns The names of the new columns.
      *      See {@link https://docs.atlassian.com/jira/REST/latest/#d2e3460}
      * @param callback Called when the columns have been set
