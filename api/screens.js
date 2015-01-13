@@ -28,5 +28,5 @@ function ScreensClient(jiraClient) {
             followAllRedirects: true
         };
         this.jiraClient.makeRequest(options, callback);
-    }
+    };
 }
