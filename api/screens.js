@@ -86,6 +86,21 @@ function ScreensClient(jiraClient) {
     };
 
     /**
+     * Adds field to the given tab
+     *
+     * @method addFieldToTab
+     * @param {Object} opts The request options sent to the Jira API
+     * @param {number} opts.screenId The ID of the screen containing the tab.
+     * @param {number} opts.tabId the ID of the tab to which the fields will be added.
+     * @param {string} opts.newField The field to add
+     * @param callback Called when the fields have been added to the tab.
+     */
+    this.addFieldToTab = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/tabs/' + opts.tabId + '/fields', 'POST', opts.newField);
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
