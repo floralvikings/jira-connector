@@ -137,6 +137,8 @@ function FilterClient(jiraClient) {
     /**
      * Sets the default share scope of the logged-in user.
      *
+     * @method setDefaultShareScope
+     * @memberOf {FilterClient#}
      * @param {Object} opts The request options sent to jira
      * @param {string} opts.scope The new default share scope. Available values are GLOBAL and PRIVATE.
      * @param callback Called when the default share scope has been set.
