@@ -40,6 +40,22 @@ function ScreensClient(jiraClient) {
     };
 
     /**
+     * Creates tab for given screen
+     *
+     * @method createTab
+     * @memberOf {ScreensClient#}
+     * @param {Object} opts The request options sent to Jira
+     * @param {number} opts.screenId The ID of the screen in which to create a tab.
+     * @param {Object} opts.tab The tab to add. See {@link https://docs.atlassian.com/jira/REST/latest/#d2e651}
+     * @param {string} opts.tab.name The name of the tab to add.  Minimum required to create a tab.
+     * @param callback Called when the tab has been created.
+     */
+    this.createTab = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/tabs', 'POST', opts.tab);
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
