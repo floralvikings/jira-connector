@@ -102,6 +102,21 @@ function ScreensClient(jiraClient) {
     };
 
     /**
+     * Gets all fields for a given tab.
+     *
+     * @method getFieldsInTab
+     * @memberOf {ScreensClient#}
+     * @param {Object} opts The request options sent to the Jira API
+     * @param {number} opts.screenId The ID of the screen containing the tab.
+     * @param {number} opts.tabId the ID of the tab for which to retrieve fields.
+     * @param callback Called when the fields have been retrieved.
+     */
+    this.getFieldsInTab = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/tabs/' + opts.tabId + '/fields', 'GET');
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
