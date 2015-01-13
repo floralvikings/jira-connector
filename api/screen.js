@@ -21,6 +21,12 @@ function ScreenClient(jiraClient) {
      * @param callback Called when the available fields have been retrieved
      */
     this.getAvailableFields = function (opts, callback) {
-
+        var options = {
+            uri: this.jiraClient.buildURL('/screens/' + opts.screenId + '/availableFields'),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true
+        };
+        this.jiraClient.makeRequest(options, callback);
     }
 }
