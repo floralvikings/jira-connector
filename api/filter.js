@@ -69,16 +69,16 @@ function FilterClient(jiraClient) {
             opts.fields.forEach(function (field) {
                 qs.fields += field + ','
             });
+            qs.fields = qs.fields.slice(0, -1);
         }
-        qs.fields = qs.fields.slice(0, -1);
 
         if (opts.expand) {
             qs.expand = '';
             opts.expand.forEach(function (ex) {
                 qs.expand += ex + ','
             });
+            qs.expand = qs.expand.slice(0, -1);
         }
-        qs.expand = qs.expand.slice(0, -1);
 
         return {
             uri: this.jiraClient.buildURL(basePath + path),
