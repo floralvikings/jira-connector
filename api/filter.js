@@ -41,5 +41,5 @@ function FilterClient(jiraClient) {
         }
 
         this.jiraClient.makeRequest(options, callback);
-    }
+    };
 }
