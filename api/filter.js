@@ -50,7 +50,7 @@ function FilterClient(jiraClient) {
      * @method buildRequestOptions
      * @memberOf {FilterClient#}
      * @param {Object} opts The arguments passed to the method.
-     * @param {string} opts.filterId The ID of the filter to use in the path.
+     * @param {number} opts.filterId The ID of the filter to use in the path.
      * @param {Array} [opts.fields] The fields to include
      * @param {Array} [opts.expand] The fields to expand
      * @param {string} path The path of the endpoint following /issue/{idOrKey}
