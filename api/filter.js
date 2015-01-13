@@ -58,6 +58,22 @@ function FilterClient(jiraClient) {
     };
 
     /**
+     * Updates an existing filter, and returns its new value.
+     *
+     * @method updateFilter
+     * @memberOf {FilterClient#}
+     * @param {Object} opts The request options sent to the Jira API
+     * @param {number} opts.filterId The ID of the filter to update
+     * @param {Object} opts.filter The new data for the filter.  See
+     *      {@link https://docs.atlassian.com/jira/REST/latest/#d2e3401}
+     * @param callback Called when the filter has been updated.
+     */
+    this.updateFilter = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '', 'PUT', opts.filter);
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
