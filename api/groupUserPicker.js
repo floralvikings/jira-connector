@@ -15,7 +15,7 @@ function GroupUserPickerClient(jiraClient) {
      * anonymously.
      *
      * @method findUsersAndGroups
-     * @memberOf GroupUserPickerClient
+     * @memberOf GroupUserPickerClient#
      * @param {Object} opts The request options to send to the Jira API.
      * @param {string} opts.query A string used to search username, Name or e-mail address
      * @param {number} [opts.maxResults] the maximum number of users to return (defaults to 50). The maximum allowed
