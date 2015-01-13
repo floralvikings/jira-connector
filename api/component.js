@@ -15,7 +15,7 @@ function ComponentClient(jiraClient) {
      * Create a component via POST.
      *
      * @method createComponent
-     * @memberOf {ComponentClient#}
+     * @memberOf ComponentClient#
      * @param opts The request options sent to the Jira API
      * @param opts.component See {@link https://docs.atlassian.com/jira/REST/latest/#d2e3871}
      * @param callback Called when the component has been created.
@@ -38,7 +38,7 @@ function ComponentClient(jiraClient) {
      * removed.
      *
      * @method editComponent
-     * @memberOf {ComponentClient#}
+     * @memberOf ComponentClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.id The ID of the component to edit.
      * @param opts.component The new data to place in the component.  See
@@ -61,7 +61,7 @@ function ComponentClient(jiraClient) {
      * Get a project component.
      *
      * @method getComponent
-     * @memberOf {ComponentClient#}
+     * @memberOf ComponentClient#
      * @param opts The options sent to the Jira API
      * @param opts.id The ID of the component to edit.
      * @param callback Called when the component has been retrieved.
@@ -81,7 +81,7 @@ function ComponentClient(jiraClient) {
      * Delete a project component.
      *
      * @method deleteComponent
-     * @memberOf {ComponentClient#}
+     * @memberOf ComponentClient#
      * @param opts The options sent to the Jira API
      * @param opts.id The ID of the component to edit.
      * @param [opts.moveIssuesTo] The new component applied to issues whose 'id' component will be deleted. If this
@@ -103,7 +103,7 @@ function ComponentClient(jiraClient) {
      * Get counts of issues related to this component.
      *
      * @method getRelatedIssueCounts
-     * @memberOf {ComponentClient#}
+     * @memberOf ComponentClient#
      * @param opts The options sent to the Jira API
      * @param opts.id The ID of the component to edit.
      * @param callback Called when the count has been retrieved.
