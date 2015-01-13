@@ -1,21 +1,21 @@
 "use strict";
 
-module.exports = ScreenClient;
+module.exports = ScreensClient;
 
 /**
  * Used to access Jira REST endpoints in '/rest/api/2/screen'
  *
  * @param {JiraClient} jiraClient
- * @constructor ScreenClient
+ * @constructor ScreensClient
  */
-function ScreenClient(jiraClient) {
+function ScreensClient(jiraClient) {
     this.jiraClient = jiraClient;
 
     /**
      * Gets available fields for screen. i.e ones that haven't already been added.
      *
      * @method getAvailableFields
-     * @memberOf {ScreenClient#}
+     * @memberOf {ScreensClient#}
      * @param {Object} opts The request options sent to Jira
      * @param {number} opts.screenId The ID of the screen to retrieve.
      * @param callback Called when the available fields have been retrieved

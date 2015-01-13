@@ -44,7 +44,7 @@ var component = require('./api/component');
 var group = require('./api/group');
 var workflow = require('./api/workflow');
 var filter = require('./api/filter');
-var screen = require('./api/screen');
+var screens = require('./api/screens');
 
 /**
  * Represents a client for the Jira REST API
@@ -85,7 +85,7 @@ var screen = require('./api/screen');
  * @property {GroupClient} group
  * @property {WorkflowClient} workflow
  * @property {FilterClient} filter
- * @property {ScreenClient} screen
+ * @property {ScreensClient} screens
  *
  * @param config The information needed to access the Jira API
  * @param {string} config.host The hostname of the Jira API.
@@ -184,7 +184,7 @@ var JiraClient = module.exports = function (config) {
     this.group = new group(this);
     this.workflow = new workflow(this);
     this.filter = new filter(this);
-    this.screen = new screen(this);
+    this.screens = new screens(this);
 };
 
 (function () {
