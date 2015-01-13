@@ -108,6 +108,7 @@ function FilterClient(jiraClient) {
     /**
      * Resets the columns for the given filter such that the filter no longer has its own column config.
      *
+     * @method resetFilterColumns
      * @memberOf {FilterClient#}
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.filterId The ID of the filter for which to reset columns.
