@@ -196,6 +196,26 @@ function VersionClient(jiraClient) {
     };
 
     /**
+     * Returns the remote version links for a given global ID.
+     *
+     * @method getGlobalRemoteLink
+     * @memberOf VersionClient#
+     * @param opts The request options sent to the Jira API.
+     * @param opts.globalId The global ID of the remote resource that is linked to the versions
+     * @param callback Called when the remote link is returned.
+     */
+    this.getGlobalRemoteLink = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/version/remotelink'),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true,
+            qs: {globalId: opts.globalId}
+        };
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
