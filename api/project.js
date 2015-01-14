@@ -74,6 +74,20 @@ function ProjectClient(jiraClient) {
     };
 
     /**
+     * Contains a full representation of a the specified project's versions.
+     *
+     * @method getVersions
+     * @memberOf ProjectClient#
+     * @param opts The request options sent to the Jira API.
+     * @param opts.projectIdOrKey The project id or project key
+     * @param callback Called when the versions have been retrieved.
+     */
+    this.getVersions = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/versions', 'GET');
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
