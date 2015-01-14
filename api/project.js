@@ -88,6 +88,20 @@ function ProjectClient(jiraClient) {
     };
 
     /**
+     * Contains a list of roles in this project with links to full details.
+     *
+     * @method getRoles
+     * @memberOf ProjectClient#
+     * @param opts The request options sent to the Jira API.
+     * @param opts.projectIdOrKey The project id or project key
+     * @param callback Called when the roles have been retrieved.
+     */
+    this.getRoles = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/role', 'GET');
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
