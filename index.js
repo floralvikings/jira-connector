@@ -47,6 +47,7 @@ var filter = require('./api/filter');
 var screens = require('./api/screens');
 var version = require('./api/version');
 var project = require('./api/project');
+var user = require('./api/user');
 
 /**
  * Represents a client for the Jira REST API
@@ -90,6 +91,7 @@ var project = require('./api/project');
  * @property {ScreensClient} screens
  * @property {VersionClient} version
  * @property {ProjectClient} project
+ * @property {UserClient} user
  *
  * @param config The information needed to access the Jira API
  * @param {string} config.host The hostname of the Jira API.
@@ -191,6 +193,7 @@ var JiraClient = module.exports = function (config) {
     this.screens = new screens(this);
     this.version = new version(this);
     this.project = new project(this);
+    this.user = new user(this);
 };
 
 (function () {
