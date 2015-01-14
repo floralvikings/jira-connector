@@ -11,6 +11,25 @@ function ProjectClient(jiraClient) {
     this.jiraClient = jiraClient;
 
     /**
+     * Returns all projects which are visible for the currently logged in user. If no user is logged in, it returns the
+     * list of projects that are visible when using anonymous access.
+     *
+     * @method getAllProjects
+     * @memberOf ProjectClient#
+     * @param opts Ignored
+     * @param callback Called when the projects have been retrieved.
+     */
+    this.getAllProjects = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/project'),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true
+        };
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
