@@ -117,6 +117,22 @@ function ProjectClient(jiraClient) {
     };
 
     /**
+     * Updates a project role to contain the sent actors.
+     *
+     * @method updateRole
+     * @memberOf ProjectClient#
+     * @param opts The request options sent to the Jira API.
+     * @param opts.projectIdOrKey The project id or project key
+     * @param opts.roleId The ID of the role to retrieve.
+     * @param opts.newRole See {@link https://docs.atlassian.com/jira/REST/latest/#d2e108}
+     * @param callback Called when the roles have been retrieved.
+     */
+    this.updateRole = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/role/' + opts.roleId, 'PUT', opts.newRole);
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
