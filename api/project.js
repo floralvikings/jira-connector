@@ -36,7 +36,7 @@ function ProjectClient(jiraClient) {
      * @method buildRequestOptions
      * @memberOf ProjectClient#
      * @param {Object} opts The arguments passed to the method.
-     * @param {number} opts.projectId The ID of the project to use in the path.
+     * @param {number} opts.projectIdOrKey The ID of the project to use in the path.
      * @param {Array} [opts.fields] The fields to include
      * @param {Array} [opts.expand] The fields to expand
      * @param {string} path The path of the endpoint following /project/{id}
@@ -46,7 +46,7 @@ function ProjectClient(jiraClient) {
      * @returns {{uri: string, method: string, body: Object, qs: Object, followAllRedirects: boolean, json: boolean}}
      */
     this.buildRequestOptions = function (opts, path, method, body, qs) {
-        var basePath = '/project/' + opts.projectId;
+        var basePath = '/project/' + opts.projectIdOrKey;
         if (!qs) qs = {};
         if (!body) body = {};
 
