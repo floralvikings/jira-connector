@@ -30,6 +30,22 @@ function ProjectClient(jiraClient) {
     };
 
     /**
+     * Contains a full representation of a project in JSON format.
+     *
+     * All project keys associated with the project will only be returned if expand=projectKeys.
+     *
+     * @method getProject
+     * @memberOf ProjectClient#
+     * @param opts The request options sent to the Jira API.
+     * @param opts.projectIdOrKey The project id or project key
+     * @param callback Called when the project is retrieved.
+     */
+    this.getProject = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '', 'GET');
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
