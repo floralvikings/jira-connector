@@ -46,6 +46,20 @@ function ProjectClient(jiraClient) {
     };
 
     /**
+     * Contains a full representation of a the specified project's components.
+     *
+     * @method getComponents
+     * @memberOf ProjectClient#
+     * @param opts The request options sent to the Jira API.
+     * @param opts.projectIdOrKey The project id or project key
+     * @param callback Called when the components are retrieved.
+     */
+    this.getComponents = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/components', 'GET');
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
