@@ -274,4 +274,26 @@ function UserClient(jiraClient) {
         };
         this.jiraClient.makeRequest(options, callback, 'Avatar Deleted');
     };
+
+    /**
+     * Returns all avatars which are visible for the currently logged in user.
+     *
+     * @method getAvatars
+     * @memberOf UserClient#
+     * @param {Object} opts The request options sent to the Jira API
+     * @param {string} opts.username The username
+     * @param callback Called when the avatars have been retrieved.
+     */
+    this.getAvatars = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/user/avatars'),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                username: opts.username
+            }
+        };
+        this.jiraClient.makeRequest(options, callback);
+    };
 }
