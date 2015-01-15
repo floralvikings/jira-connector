@@ -370,4 +370,32 @@ function UserClient(jiraClient) {
         };
         this.jiraClient.makeRequest(options, callback, 'Default Columns Reset');
     };
+
+    /**
+     * Modify user password.
+     *
+     * @method changePassword
+     * @memberOf UserClient#
+     * @param opts The request options sent to the Jira API
+     * @param opts.username The name of the user for which to change the password.
+     * @param opts.userKey The key of the user for which to change the password.
+     * @param opts.password The new password.
+     * @param callback Called when the password has been set.
+     */
+    this.changePassword = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/user/password'),
+            method: 'PUT',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                username: opts.username,
+                key: opts.userKey
+            },
+            body: {
+                password: opts.password
+            }
+        };
+        this.jiraClient.makeRequest(options, callback, 'Password Changed');
+    };
 }
