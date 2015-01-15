@@ -35,4 +35,29 @@ function UserClient(jiraClient) {
 
         this.jiraClient.makeRequest(options, callback);
     };
+
+    /**
+     * Removes user.
+     *
+     * @method deleteUser
+     * @memberOf UserClient#
+     * @param opts The request options sent to the Jira API
+     * @param opts.username The name of the user to delete.
+     * @param opts.userKey The key of the user to delete.
+     * @param callback Called when the user has been deleted.
+     */
+    this.deleteUser = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/user'),
+            method: 'DELETE',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                username: opts.username,
+                key: opts.userKey
+            }
+        };
+
+        this.jiraClient.makeRequest(options, callback, 'User removed.');
+    };
 }
