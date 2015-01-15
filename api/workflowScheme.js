@@ -97,6 +97,21 @@ function WorkflowSchemeClient(jiraClient) {
     };
 
     /**
+     * Remove the default workflow from the passed workflow scheme.
+     *
+     * @method removeDefaultWorkflow
+     * @memberOf WorkflowSchemeClient#
+     * @param opts The request options sent to the Jira API.
+     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.updateDraftIfNeeded
+     * @param callback Called when the defaul workflow has been removed.
+     */
+    this.removeDefaultWorkflow = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/default', 'DELETE', null, {updateDraftIfNeeded: opts.updateDraftIfNeeded});
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
