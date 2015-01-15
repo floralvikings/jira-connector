@@ -412,8 +412,8 @@ function UserClient(jiraClient) {
      * @param {string} opts.username The username filter, list includes all users if unspecified
      * @param {Array} opts.permissions Array of permissions for project or issue returned users must have, see
      *     [Permissions]{@link
-     *     https://developer.atlassian.com/static/javadoc/jira/6.0/reference/com/atlassian/jira/security/Permissions.Permission.html}
-     *     JavaDoc for the list of all possible permissions.
+        *     https://developer.atlassian.com/static/javadoc/jira/6.0/reference/com/atlassian/jira/security/Permissions.Permission.html}
+        *     JavaDoc for the list of all possible permissions.
      * @param {string} [opts.issueKey] the issue key for the issue for which returned users have specified permissions.
      * @param {string} [opts.projectKey] the optional project key to search for users with if no issueKey is supplied.
      * @param {number} [opts.startAt] the index of the first user to return (0-based)
@@ -468,6 +468,39 @@ function UserClient(jiraClient) {
                 maxResults: opts.maxResults,
                 showAvatar: opts.showAvatar,
                 exclude: opts.exclude
+            }
+        };
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
+     * Returns a list of users that match the search string. This resource cannot be accessed anonymously.
+     *
+     * @method search
+     * @memberOf UserClient#
+     * @param {Object} opts The request options sent to the Jira API.
+     * @param {string} opts.username A query string used to search username, name or e-mail address
+     * @param {number} [opts.startAt=0] the index of the first user to return (0-based)
+     * @param {number} [opts.maxResults=50] the maximum number of users to return (defaults to 50). The maximum allowed
+     *     value is 1000. If you specify a value that is higher than this number, your search results will be
+     *     truncated.
+     * @param {boolean} [opts.includeActive=true] If true, then active users are included in the results (default true)
+     * @param {boolean} [opts.includeInactive=false] If true, then inactive users are included in the results (default
+     *     false)
+     * @param callback Called when the search results are retrieved.
+     */
+    this.search = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/user/search'),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                username: opts.username,
+                maxResults: opts.maxResults,
+                startAt: opts.startAt,
+                includeActive: opts.includeActive,
+                includeInactive: opts.includeInactive
             }
         };
         this.jiraClient.makeRequest(options, callback);
