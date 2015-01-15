@@ -158,7 +158,7 @@ function UserClient(jiraClient) {
      * For create only a project key should be supplied. The list of assignable users may be incorrect if it's called
      * with the project key for editing.
      *
-     * @method search
+     * @method searchAssignable
      * @memberOf UserClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} opts.username The username
@@ -171,7 +171,7 @@ function UserClient(jiraClient) {
      * @param {number} [opts.actionDescriptorId]
      * @param callback Called when the search results have been retrieved.
      */
-    this.search = function (opts, callback) {
+    this.searchAssignable = function (opts, callback) {
         var options = {
             uri: this.jiraClient.buildURL('/user/assignable/search'),
             method: 'GET',
