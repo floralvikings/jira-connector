@@ -318,5 +318,5 @@ function UserClient(jiraClient) {
             }
         };
         this.jiraClient.makeRequest(options, callback);
-    }
+    };
 }
