@@ -450,6 +450,8 @@ function UserClient(jiraClient) {
     /**
      * Returns a list of users matching query with highlighting. This resource cannot be accessed anonymously.
      *
+     * @method searchPicker
+     * @memberOf UserClient#
      * @param opts The request options sent to the Jira API.
      * @param {string} opts.query
      * @param {number} [opts.maxResults=50]
