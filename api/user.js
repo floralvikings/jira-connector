@@ -110,4 +110,40 @@ function UserClient(jiraClient) {
 
         this.jiraClient.makeRequest(options, callback);
     };
+
+    /**
+     * Returns a list of users that match the search string and can be assigned issues for all the given projects. This
+     * resource cannot be accessed anonymously.
+     *
+     * @param {Object} opts The request options sent to the Jira API
+     * @param {string} opts.username The name of the user to search.
+     * @param {Array} opts.projectKeys The keys of the projects we are finding assignable users for
+     * @param {number} [opts.startAt] The index of the first user to return (0-based)
+     * @param {number} [opts.maxResults] The maximum number of users to return (defaults to 50). The maximum allowed
+     *     value is 1000. If you specify a value that is higher than this number, your search results will be
+     *     truncated.
+     * @param callback Called when the search results have been retrieved.
+     */
+    this.multiProjectSearch = function (opts, callback) {
+        var projectKeyString = '';
+        if (opts.projectKeys) {
+            opts.projectKeys.forEach(function (key) {
+                projectKeyString += key + ',';
+            });
+            projectKeyString = projectKeyString.slice(0, -1);
+        }
+        var options = {
+            uri: this.jiraClient.buildURL('/user/assignable/multiProjectSearch'),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                username: opts.username,
+                projectKeys: projectKeyString,
+                startAt: opts.startAt,
+                maxResults: opts.maxResults
+            }
+        };
+        this.jiraClient.makeRequest(options, callback);
+    };
 }
