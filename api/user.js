@@ -156,6 +156,8 @@ function UserClient(jiraClient) {
      * For create only a project key should be supplied. The list of assignable users may be incorrect if it's called
      * with the project key for editing.
      *
+     * @method search
+     * @memberOf UserClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} opts.username The username
      * @param {string} opts.project The key of the project we are finding assignable users for
