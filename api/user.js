@@ -296,4 +296,27 @@ function UserClient(jiraClient) {
         };
         this.jiraClient.makeRequest(options, callback);
     };
+
+    /**
+     * Returns the default columns for the given user. Admin permission will be required to get columns for a user
+     * other than the currently logged in user.
+     *
+     * @method getDefaultColumns
+     * @memberOf UserClient#
+     * @param {Object} opts The request options sent to the Jira API
+     * @param {string} opts.username The username
+     * @param callback Called when the columns have been retrieved.
+     */
+    this.getDefaultColumns = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/user/columns'),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                username: opts.username
+            }
+        };
+        this.jiraClient.makeRequest(options, callback);
+    }
 }
