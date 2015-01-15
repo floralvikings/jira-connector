@@ -220,4 +220,29 @@ function UserClient(jiraClient) {
         };
         this.jiraClient.makeRequest(options, callback);
     };
+
+    /**
+     * Converts temporary avatar into a real avatar
+     *
+     * @param {Object} opts The request options sent to the Jira API
+     * @param {string} opts.username The username
+     * @param {Object} opts.crop See {@link https://docs.atlassian.com/jira/REST/latest/#d2e4171}
+     * @param callback Called when the avatar has been converted
+     */
+    this.convertTemporaryAvatar = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/user/avatar/'),
+            method: 'PUT',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                username: opts.username
+            },
+            body: opts.crop,
+            headers: {
+                "X-Atlassian-Token": 'no-check'
+            }
+        };
+        this.jiraClient.makeRequest(options, callback, 'Avatar Converted');
+    };
 }
