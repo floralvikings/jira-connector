@@ -67,6 +67,20 @@ function WorkflowSchemeClient(jiraClient) {
     };
 
     /**
+     * Create a draft for the passed scheme. The draft will be a copy of the state of the parent.
+     *
+     * @method createDraft
+     * @memberOf WorkflowSchemeClient#
+     * @param opts The request options sent to the Jira API.
+     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param callback Called when the draft has been created.
+     */
+    this.createDraft = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/createdraft', 'POST');
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
