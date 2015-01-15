@@ -226,7 +226,7 @@ function UserClient(jiraClient) {
      *
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} opts.username The username
-     * @param {Object} opts.crop See {@link https://docs.atlassian.com/jira/REST/latest/#d2e4171}
+     * @param {Object} opts.avatarId The ID of the temporary avatar to convert.
      * @param callback Called when the avatar has been converted
      */
     this.convertTemporaryAvatar = function (opts, callback) {
@@ -238,7 +238,7 @@ function UserClient(jiraClient) {
             qs: {
                 username: opts.username
             },
-            body: opts.crop,
+            body: {id: opts.avatarId},
             headers: {
                 "X-Atlassian-Token": 'no-check'
             }
