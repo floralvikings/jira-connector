@@ -103,11 +103,32 @@ function WorkflowSchemeClient(jiraClient) {
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.workflowSchemeId The ID of the workflow scheme.
-     * @param opts.updateDraftIfNeeded
+     * @param opts.updateDraftIfNeeded when true will create and return a draft when the workflow scheme cannot be
+     *     edited (e.g. when it is being used by a project).
      * @param callback Called when the defaul workflow has been removed.
      */
     this.removeDefaultWorkflow = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/default', 'DELETE', null, {updateDraftIfNeeded: opts.updateDraftIfNeeded});
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
+     * Remove the default workflow from the passed workflow scheme.
+     *
+     * @method setDefaultWorkflow
+     * @memberOf WorkflowSchemeClient#
+     * @param opts The request options sent to the Jira API.
+     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.workflowName The name of the new deafault workflow
+     * @param opts.updateDraftIfNeeded when true will create and return a draft when the workflow scheme cannot be
+     *     edited (e.g. when it is being used by a project).
+     * @param callback Called when the default workflow has been updated.
+     */
+    this.setDefaultWorkflow = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/default', 'DELETE', {
+            workflow: opts.workflowName,
+            updateDraftIfNeeded: opts.updateDraftIfNeeded
+        });
         this.jiraClient.makeRequest(options, callback);
     };
 
