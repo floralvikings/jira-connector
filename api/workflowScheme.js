@@ -36,7 +36,7 @@ function WorkflowSchemeClient(jiraClient) {
      *
      * @private
      * @method buildRequestOptions
-     * @memberOf ProjectClient#
+     * @memberOf WorkflowSchemeClient#
      * @param {Object} opts The arguments passed to the method.
      * @param {number} opts.workflowSchemeId The ID of the workflowScheme to use in the path.
      * @param {Array} [opts.fields] The fields to include
