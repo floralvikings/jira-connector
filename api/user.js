@@ -118,6 +118,8 @@ function UserClient(jiraClient) {
      * Returns a list of users that match the search string and can be assigned issues for all the given projects. This
      * resource cannot be accessed anonymously.
      *
+     * @method multiProjectSearch
+     * @memberOf UserClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} opts.username The name of the user to search.
      * @param {Array} opts.projectKeys The keys of the projects we are finding assignable users for
