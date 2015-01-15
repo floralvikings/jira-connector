@@ -224,6 +224,8 @@ function UserClient(jiraClient) {
     /**
      * Converts temporary avatar into a real avatar
      *
+     * @method convertTemporaryAvatar
+     * @memberOf UserClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} opts.username The username
      * @param {Object} opts.avatarId The ID of the temporary avatar to convert.
@@ -244,5 +246,28 @@ function UserClient(jiraClient) {
             }
         };
         this.jiraClient.makeRequest(options, callback, 'Avatar Converted');
+    };
+
+    /**
+     * Deletes avatar
+     *
+     * @method deleteAvatar
+     * @memberOf UserClient#
+     * @param {Object} opts The request options sent to the Jira API
+     * @param {string} opts.username The username
+     * @param {Object} opts.avatarId The ID of the temporary avatar to delete.
+     * @param callback Called when the avatar has been deleted.
+     */
+    this.deleteAvatar = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/user/avatar/' + opts.avatarId),
+            method: 'DELETE',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                username: opts.username
+            }
+        };
+        this.jiraClient.makeRequest(options, callback, 'Avatar Deleted');
     };
 }
