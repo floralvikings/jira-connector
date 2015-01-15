@@ -507,4 +507,34 @@ function UserClient(jiraClient) {
         };
         this.jiraClient.makeRequest(options, callback);
     };
+
+    /**
+     * Returns a list of active users that match the search string. This resource cannot be accessed anonymously. Given
+     * an issue key this resource will provide a list of users that match the search string and have the browse issue
+     * permission for the issue provided.
+     *
+     * @param {Object} opts The request options sent to the Jira API.
+     * @param {string} opts.username A query string used to search username, name or e-mail address
+     * @param {string} [opts.issueKey] the issue key for the issue being edited we need to find viewable users for.
+     * @param {string} [opts.projectKey] the optional project key to search for users with if no issueKey is supplied.
+     * @param {number} [opts.startAt=0] the index of the first user to return (0-based)
+     * @param {number} [opts.maxResults=50] the maximum number of users to return (defaults to 50). The maximum allowed
+     * @param callback
+     */
+    this.viewIssueSearch = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/user/viewissue/search'),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                username: opts.username,
+                issueKey: opts.issueKey,
+                projectKey: opts.projectKey,
+                startAt: opts.startAt,
+                maxResults: opts.maxResults
+            }
+        };
+        this.jiraClient.makeRequest(options, callback);
+    };
 }
