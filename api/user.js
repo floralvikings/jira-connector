@@ -118,7 +118,7 @@ function UserClient(jiraClient) {
      * Returns a list of users that match the search string and can be assigned issues for all the given projects. This
      * resource cannot be accessed anonymously.
      *
-     * @method multiProjectSearch
+     * @method multiProjectSearchAssignable
      * @memberOf UserClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} opts.username The name of the user to search.
@@ -129,7 +129,7 @@ function UserClient(jiraClient) {
      *     truncated.
      * @param callback Called when the search results have been retrieved.
      */
-    this.multiProjectSearch = function (opts, callback) {
+    this.multiProjectSearchAssignable = function (opts, callback) {
         var projectKeyString = '';
         if (opts.projectKeys) {
             opts.projectKeys.forEach(function (key) {
