@@ -241,6 +241,8 @@ var JiraClient = module.exports = function (config) {
                 return callback(err ? err : body);
             }
 
+            if (typeof body == 'string') body = JSON.parse(body);
+
             return callback(null, successString ? successString : body);
         });
     };
