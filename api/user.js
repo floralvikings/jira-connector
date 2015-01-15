@@ -513,6 +513,8 @@ function UserClient(jiraClient) {
      * an issue key this resource will provide a list of users that match the search string and have the browse issue
      * permission for the issue provided.
      *
+     * @method viewIssueSearch
+     * @memberOf UserClient#
      * @param {Object} opts The request options sent to the Jira API.
      * @param {string} opts.username A query string used to search username, name or e-mail address
      * @param {string} [opts.issueKey] the issue key for the issue being edited we need to find viewable users for.
