@@ -1,5 +1,8 @@
 "use strict";
 
+var fs = require('fs');
+var path = require('path');
+
 module.exports = UserClient;
 
 /**
@@ -177,6 +180,42 @@ function UserClient(jiraClient) {
                 startAt: opts.startAt,
                 maxResults: opts.maxResults,
                 actionDescriptorId: opts.actionDescriptorId
+            }
+        };
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
+     * Creates temporary avatar. Creating a temporary avatar is part of a 3-step process in uploading a new avatar for
+     * a user: upload, crop, confirm.
+     *
+     * @method createTemporaryAvatar
+     * @memberOf UserClient#
+     * @param {Object} opts The request options sent to the Jira API
+     * @param {string} opts.username The username
+     * @param {string} opts.filepath The path to the file to upload.
+     * @param callback Called when the temporary avatar has been uploaded.
+     */
+    this.createTemporaryAvatar = function (opts, callback) {
+        var extension = path.extname(opts.filepath).slice(1);
+        var baseName = path.basename(opts.filepath);
+        var fileSize = fs.statSync(opts.filepath).size;
+
+        extension = extension == 'jpg' ? 'jpeg' : extension;
+
+        var options = {
+            uri: this.jiraClient.buildURL('/user/avatar/temporary'),
+            method: 'POST',
+            followAllRedirects: true,
+            qs: {
+                username: opts.username,
+                filename: baseName,
+                size: fileSize
+            },
+            body: fs.readFileSync(opts.filepath),
+            headers: {
+                "X-Atlassian-Token": 'no-check',
+                "Content-Type": 'image/' + extension
             }
         };
         this.jiraClient.makeRequest(options, callback);
