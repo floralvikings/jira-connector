@@ -62,7 +62,11 @@ function UserClient(jiraClient) {
     };
 
     /**
+     * Create user. By default created user will not be notified with email. If password field is not set then password
+     * will be randomly generated.
      *
+     * @method createUser
+     * @memberOf UserClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.user See {@link https://docs.atlassian.com/jira/REST/latest/#d2e4049}
      * @param callback Called when the user has been created.
