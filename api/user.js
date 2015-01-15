@@ -446,4 +446,30 @@ function UserClient(jiraClient) {
         };
         this.jiraClient.makeRequest(options, callback);
     };
+
+    /**
+     * Returns a list of users matching query with highlighting. This resource cannot be accessed anonymously.
+     *
+     * @param opts The request options sent to the Jira API.
+     * @param {string} opts.query
+     * @param {number} [opts.maxResults=50]
+     * @param {boolean} [opts.showAvatar=false]
+     * @param {string} [opts.exclude]
+     * @param callback Called when the search results are retrieved.
+     */
+    this.searchPicker = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/user/picker'),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                query: opts.query,
+                maxResults: opts.maxResults,
+                showAvatar: opts.showAvatar,
+                exclude: opts.exclude
+            }
+        };
+        this.jiraClient.makeRequest(options, callback);
+    };
 }
