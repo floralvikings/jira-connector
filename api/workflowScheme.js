@@ -32,6 +32,25 @@ function WorkflowSchemeClient(jiraClient) {
     };
 
     /**
+     * Update the passed workflow scheme. The body of the request is a representation of the workflow scheme. Values
+     * not passed are assumed to indicate no change for that field. The passed representation can have its
+     * updateDraftIfNeeded flag set to true to indicate that the draft should be created and/or updated when the actual
+     * scheme cannot be edited (e.g. when the scheme is being used by a project). Values not appearing the body will
+     * not be touched.
+     *
+     * @method editWorkflowScheme
+     * @memberOf WorkflowSchemeClient#
+     * @param opts The request options sent to the Jira API.
+     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.workflowScheme See {@link https://docs.atlassian.com/jira/REST/latest/#d2e2305}
+     * @param callback Called when the workflow scheme has been created.
+     */
+    this.editWorkflowScheme = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '', 'PUT', opts.workflowScheme);
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
