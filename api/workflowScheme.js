@@ -43,10 +43,26 @@ function WorkflowSchemeClient(jiraClient) {
      * @param opts The request options sent to the Jira API.
      * @param opts.workflowSchemeId The ID of the workflow scheme.
      * @param opts.workflowScheme See {@link https://docs.atlassian.com/jira/REST/latest/#d2e2305}
-     * @param callback Called when the workflow scheme has been created.
+     * @param callback Called when the workflow scheme has been edited.
      */
     this.editWorkflowScheme = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '', 'PUT', opts.workflowScheme);
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
+     * Get the requested workflow scheme
+     *
+     * @method getWorkflowScheme
+     * @memberOf WorkflowSchemeClient#
+     * @param opts The request options sent to the Jira API.
+     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param [opts.returnDraftIfExists=false] when true indicates that a scheme's draft, if it exists, should be
+     *     queried instead of the scheme itself.
+     * @param callback Called when the workflow scheme has been retrieved.
+     */
+    this.getWorkflowScheme = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '', 'GET', null, {returnDraftIfExists: opts.returnDraftIfExists});
         this.jiraClient.makeRequest(options, callback);
     };
 
