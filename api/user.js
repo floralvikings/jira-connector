@@ -146,4 +146,39 @@ function UserClient(jiraClient) {
         };
         this.jiraClient.makeRequest(options, callback);
     };
+
+    /**
+     * Returns a list of users that match the search string. This resource cannot be accessed anonymously. Please note
+     * that this resource should be called with an issue key when a list of assignable users is retrieved for editing.
+     * For create only a project key should be supplied. The list of assignable users may be incorrect if it's called
+     * with the project key for editing.
+     *
+     * @param {Object} opts The request options sent to the Jira API
+     * @param {string} opts.username The username
+     * @param {string} opts.project The key of the project we are finding assignable users for
+     * @param {string} [opts.issueKey] The issue key for the issue being edited we need to find assignable users for.
+     * @param {number} [opts.startAt] The index of the first user to return (0-based)
+     * @param {number} [opts.maxResults] The maximum number of users to return (defaults to 50). The maximum allowed
+     *     value is 1000. If you specify a value that is higher than this number, your search results will be
+     *     truncated.
+     * @param {number} [opts.actionDescriptorId]
+     * @param callback Called when the search results have been retrieved.
+     */
+    this.search = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/user/assignable/search'),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                username: opts.username,
+                project: opts.project,
+                issueKey: opts.issueKey,
+                startAt: opts.startAt,
+                maxResults: opts.maxResults,
+                actionDescriptorId: opts.actionDescriptorId
+            }
+        };
+        this.jiraClient.makeRequest(options, callback);
+    };
 }
