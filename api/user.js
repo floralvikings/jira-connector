@@ -319,4 +319,32 @@ function UserClient(jiraClient) {
         };
         this.jiraClient.makeRequest(options, callback);
     };
+
+    /**
+     * Sets the default columns for the given user. Admin permission will be required to get columns for a user other
+     * than the currently logged in user.
+     *
+     * @method setDefaultColumns
+     * @memberOf UserClient#
+     * @param {Object} opts The request options sent to the Jira API
+     * @param {string} opts.username The username
+     * @param {Array} opts.columns The names of the new columns.  See {@link
+        *     https://docs.atlassian.com/jira/REST/latest/#d2e4566}
+     * @param callback Called when the columns have been set.
+     */
+    this.setDefaultColumns = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/user/columns'),
+            method: 'PUT',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                username: opts.username
+            },
+            body: {
+                columns: opts.columns
+            }
+        };
+        this.jiraClient.makeRequest(options, callback, 'Default Columns Set');
+    };
 }
