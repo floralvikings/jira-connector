@@ -82,4 +82,32 @@ function UserClient(jiraClient) {
 
         this.jiraClient.makeRequest(options, callback);
     };
+
+    /**
+     * Modify user. The "value" fields present will override the existing value. Fields skipped in request will not be
+     * changed.
+     *
+     * @method editUser
+     * @memberOf UserClient#
+     * @param opts The request options sent to the Jira API
+     * @param opts.user See {@link https://docs.atlassian.com/jira/REST/latest/#d2e4081}
+     * @param opts.username The name of the user to edit.
+     * @param opts.userKey The key of the user to edit.
+     * @param callback Called when the user has been edited.
+     */
+    this.editUser = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/user'),
+            method: 'PUT',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                username: opts.username,
+                key: opts.userKey
+            },
+            body: opts.user
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    };
 }
