@@ -60,4 +60,22 @@ function UserClient(jiraClient) {
 
         this.jiraClient.makeRequest(options, callback, 'User removed.');
     };
+
+    /**
+     *
+     * @param opts The request options sent to the Jira API.
+     * @param opts.user See {@link https://docs.atlassian.com/jira/REST/latest/#d2e4049}
+     * @param callback Called when the user has been created.
+     */
+    this.createUser = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/user'),
+            method: 'POST',
+            json: true,
+            followAllRedirects: true,
+            body: opts.user
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    }
 }
