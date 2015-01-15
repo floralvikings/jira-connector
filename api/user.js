@@ -329,7 +329,7 @@ function UserClient(jiraClient) {
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} opts.username The username
      * @param {Array} opts.columns The names of the new columns.  See {@link
-        *     https://docs.atlassian.com/jira/REST/latest/#d2e4566}
+     *     https://docs.atlassian.com/jira/REST/latest/#d2e4566}
      * @param callback Called when the columns have been set.
      */
     this.setDefaultColumns = function (opts, callback) {
