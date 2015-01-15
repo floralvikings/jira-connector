@@ -412,7 +412,7 @@ function UserClient(jiraClient) {
      * @param {string} opts.username The username filter, list includes all users if unspecified
      * @param {Array} opts.permissions Array of permissions for project or issue returned users must have, see
      *     [Permissions]{@link
-        *     https://developer.atlassian.com/static/javadoc/jira/6.0/reference/com/atlassian/jira/security/Permissions.Permission.html}
+     *     https://developer.atlassian.com/static/javadoc/jira/6.0/reference/com/atlassian/jira/security/Permissions.Permission.html}
      *     JavaDoc for the list of all possible permissions.
      * @param {string} [opts.issueKey] the issue key for the issue for which returned users have specified permissions.
      * @param {string} [opts.projectKey] the optional project key to search for users with if no issueKey is supplied.
