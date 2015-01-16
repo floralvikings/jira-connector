@@ -8,7 +8,8 @@
   "opts": {
     "destination": "./docs/",
     "recurse": true,
-    "readme": "./README.md"
+    "readme": "./README.md",
+    "package": "./package.json"
   },
   "plugins": ["plugins/markdown"],
   "markdown": {
