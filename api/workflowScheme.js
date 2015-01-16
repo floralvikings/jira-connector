@@ -177,6 +177,20 @@ function WorkflowSchemeClient(jiraClient) {
     };
 
     /**
+     * Get the default workflow from the passed draft workflow scheme
+     *
+     * @method getDraftDefaultWorkflow
+     * @memberOf WorkflowSchemeClient#
+     * @param opts The request options sent to the Jira API.
+     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param callback Called when the default workflow is returned.
+     */
+    this.getDraftDefaultWorkflow = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/draft/default', 'GET');
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
