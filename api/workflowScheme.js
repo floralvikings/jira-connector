@@ -402,6 +402,21 @@ function WorkflowSchemeClient(jiraClient) {
     };
 
     /**
+     * Delete the passed workflow from the workflow scheme.
+     *
+     * @method deleteWorkflow
+     * @memberOf WorkflowSchemeClient#
+     * @param {Object} opts The request options sent to the Jira API
+     * @param {number} opts.workflowSchemeId The ID of the workflow scheme.
+     * @param {string} opts.workflowName The name of the workflow.
+     * @param callback Called when the workflow has been edited.
+     */
+    this.deleteWorkflow = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/workflow', 'DELETE', null, {workflowName: opts.workflowName});
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
