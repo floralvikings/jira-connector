@@ -223,6 +223,22 @@ function WorkflowSchemeClient(jiraClient) {
     };
 
     /**
+     * Returns the issue type mapping for the passed workflow scheme.
+     *
+     * @param opts The request options sent to the Jira API.
+     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.issueType The issue type
+     * @param opts.returnDraftIfExists when true indicates that a scheme's draft, if it exists, should be queried
+     *     instead of the scheme itself.
+     * @param callback Called when the issue type has been retrieved.
+     */
+    this.getIssueType = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/issuetype/' + opts.issueType, 'GET', null,
+            {returnDraftIfExists: opts.returnDraftIfExists});
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
