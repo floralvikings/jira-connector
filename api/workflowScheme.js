@@ -135,6 +135,8 @@ function WorkflowSchemeClient(jiraClient) {
     /**
      * Get the requested draft workflow scheme
      *
+     * @method getDraft
+     * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.workflowSchemeId The ID of the workflow scheme.
      * @param callback Called when the draft has been retrieved.
