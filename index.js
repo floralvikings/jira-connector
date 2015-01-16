@@ -123,10 +123,6 @@ var JiraClient = module.exports = function (config) {
     this.port = config.port;
     this.apiVersion = 2; // TODO Add support for other versions.
 
-    if (!config.oauth && !config.basic_auth) {
-        throw new Error(errorStrings.NO_AUTHENTICATION_ERROR);
-    }
-
     if (config.oauth) {
         if (!config.oauth.consumer_key) {
             throw new Error(errorStrings.NO_CONSUMER_KEY_ERROR);
@@ -153,8 +149,6 @@ var JiraClient = module.exports = function (config) {
             pass: config.basic_auth.password
         };
 
-    } else {
-        throw new Error(errorStrings.INVALID_AUTHENTICATION_PROPERTY_ERROR);
     }
 
     this.issue = new issue(this);
@@ -236,8 +230,6 @@ var JiraClient = module.exports = function (config) {
             options.oauth = this.oauthConfig;
         } else if (this.basic_auth) {
             options.auth = this.basic_auth;
-        } else {
-            callback(errorStrings.NO_AUTHENTICATION_ERROR);
         }
         request(options, function (err, response, body) {
             if (err || response.statusCode.toString()[0] != 2) {
