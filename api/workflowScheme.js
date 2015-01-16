@@ -265,6 +265,7 @@ function WorkflowSchemeClient(jiraClient) {
     /**
      * Remove the specified issue type mapping from the scheme.
      *
+     * @method removeIssueType
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API
      * @param opts.workflowSchemeId The ID of the workflow scheme.
