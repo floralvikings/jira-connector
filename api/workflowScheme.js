@@ -67,6 +67,20 @@ function WorkflowSchemeClient(jiraClient) {
     };
 
     /**
+     * Delete the passed workflow scheme.
+     *
+     * @method deleteWorkflowScheme
+     * @memberOf WorkflowSchemeClient#
+     * @param opts The request options sent to the Jira API.
+     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param callback Called when the workflow scheme has been deleted.
+     */
+    this.deleteWorkflowScheme = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '', 'DELETE');
+        this.jiraClient.makeRequest(options, callback, 'Workflow Scheme Deleted');
+    };
+
+    /**
      * Create a draft for the passed scheme. The draft will be a copy of the state of the parent.
      *
      * @method createDraft
