@@ -368,12 +368,33 @@ function WorkflowSchemeClient(jiraClient) {
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.workflowSchemeId The ID of the workflow scheme.
      * @param {string} opts.workflowName The name of the workflow.
-     * @param {Array} opts.issueTypes The new issue types to inclue in the workflow.  See {@link
-        *     https://docs.atlassian.com/jira/REST/latest/#d2e2509}
-     * @param callback Called when the workflow has been retrieved.
+     * @param {Array} opts.issueTypes The new issue types to inclue in the workflow.
+     *      See {@link https://docs.atlassian.com/jira/REST/latest/#d2e2509}
+     * @param callback Called when the workflow has been edited.
      */
     this.editWorkflow = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/workflow', 'PUT', {
+            workflow: opts.workflowName,
+            issueTypes: opts.issueTypes
+        }, {workflowName: opts.workflowName});
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
+     * Update the draft scheme to include the passed mapping. The body is a representation of the workflow mapping.
+     * Values not passed are assumed to indicate no change for that field.
+     *
+     * @method editDraftWorkflow
+     * @memberOf WorkflowSchemeClient#
+     * @param {Object} opts The request options sent to the Jira API
+     * @param {number} opts.workflowSchemeId The ID of the workflow scheme.
+     * @param {string} opts.workflowName The name of the workflow.
+     * @param {Array} opts.issueTypes The new issue types to inclue in the workflow.
+     *      See {@link https://docs.atlassian.com/jira/REST/latest/#d2e2670 }
+     * @param callback Called when the workflow has been edited.
+     */
+    this.editDraftWorkflow = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/draft/workflow', 'PUT', {
             workflow: opts.workflowName,
             issueTypes: opts.issueTypes
         }, {workflowName: opts.workflowName});
