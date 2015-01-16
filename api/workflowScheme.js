@@ -263,6 +263,22 @@ function WorkflowSchemeClient(jiraClient) {
     };
 
     /**
+     * Remove the specified issue type mapping from the scheme.
+     *
+     * @memberOf WorkflowSchemeClient#
+     * @param opts The request options sent to the Jira API
+     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.issueType The issue type
+     * @param callback Called when the issue type mapping has been removed.
+     */
+    this.removeIssueType = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/issuetype/' + opts.issueType, 'DELETE', null, {
+            updateDraftIfNeeded: opts.updateDraftIfNeeded
+        });
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
