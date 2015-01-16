@@ -241,6 +241,28 @@ function WorkflowSchemeClient(jiraClient) {
     };
 
     /**
+     * Set the issue type mapping for the passed scheme. The passed representation can have its updateDraftIfNeeded
+     * flag set to true to indicate that the draft should be created/updated when the actual scheme cannot be edited.
+     *
+     * @method editIssueType
+     * @memberOf WorkflowSchemeClient#
+     * @param opts The request options sent to the Jira API
+     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.issueType The issue type
+     * @param opts.workflow The new workflow
+     * @param opts.updateDraftIfNeeded when true will create and return a draft when the workflow scheme cannot be
+     *     edited (e.g. when it is being used by a project).
+     * @param callback Called when the issue type has been edited
+     */
+    this.editIssueType = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/issuetype/' + opts.issueType, 'PUT', {
+            workflow: opts.workflow,
+            updateDraftIfNeeded: opts.updateDraftIfNeeded
+        });
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
