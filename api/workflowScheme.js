@@ -125,7 +125,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @param callback Called when the default workflow has been updated.
      */
     this.setDefaultWorkflow = function (opts, callback) {
-        var options = this.buildRequestOptions(opts, '/default', 'DELETE', {
+        var options = this.buildRequestOptions(opts, '/default', 'PUT', {
             workflow: opts.workflowName,
             updateDraftIfNeeded: opts.updateDraftIfNeeded
         });
