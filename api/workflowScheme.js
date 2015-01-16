@@ -326,6 +326,23 @@ function WorkflowSchemeClient(jiraClient) {
     };
 
     /**
+     * Returns the workflow mappings or requested mapping to the caller for the passed scheme.
+     *
+     * @method getWorkflow
+     * @memberOf WorkflowSchemeClient#
+     * @param opts The request options sent to the Jira API
+     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.workflowName The name of the workflow.
+     * @param callback Called when the workflow has been retrieved.
+     */
+    this.getWorkflow = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/workflow', 'GET', null, {
+            workflowName: opts.workflowName
+        });
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
