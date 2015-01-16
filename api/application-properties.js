@@ -4,7 +4,7 @@ module.exports = ApplicationPropertiesClient;
 
 /**
  * Used to access Jira REST endpoints in '/rest/api/2/application-properties'
- * @constructor IssueClient
+ * @constructor ApplicationPropertiesClient
  * @param {JiraClient} jiraClient
  */
 function ApplicationPropertiesClient(jiraClient) {
