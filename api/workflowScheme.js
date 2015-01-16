@@ -360,6 +360,27 @@ function WorkflowSchemeClient(jiraClient) {
     };
 
     /**
+     * Update the scheme to include the passed mapping. The body is a representation of the workflow mapping. Values
+     * not passed are assumed to indicate no change for that field.
+     *
+     * @method editWorkflow
+     * @memberOf WorkflowSchemeClient#
+     * @param {Object} opts The request options sent to the Jira API
+     * @param {number} opts.workflowSchemeId The ID of the workflow scheme.
+     * @param {string} opts.workflowName The name of the workflow.
+     * @param {Array} opts.issueTypes The new issue types to inclue in the workflow.  See {@link
+        *     https://docs.atlassian.com/jira/REST/latest/#d2e2509}
+     * @param callback Called when the workflow has been retrieved.
+     */
+    this.editWorkflow = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/workflow', 'PUT', {
+            workflow: opts.workflowName,
+            issueTypes: opts.issueTypes
+        }, {workflowName: opts.workflowName});
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Build out the request options necessary to make a particular API call.
      *
      * @private
