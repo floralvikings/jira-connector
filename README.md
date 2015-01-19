@@ -275,7 +275,7 @@ var jira = new JiraClient({
   * setProperty
   * getProperty
   * deleteProperty
-* issueLink
+* issueLink (/rest/api/2/issueLink)
   * createIssueLink
   * getIssueLink
   * deleteIssueLink
