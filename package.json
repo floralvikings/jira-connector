@@ -2,6 +2,11 @@
   "name": "jira-connector",
   "version": "0.1.0",
   "description": "Easy to use NodeJS wrapper for the Jira REST API.",
+  "keywords": [
+    "JIRA",
+    "REST",
+    "OAuth"
+  ],
   "main": ".",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
