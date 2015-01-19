@@ -8,7 +8,7 @@ module.exports = UserClient;
 /**
  * Used to access Jira REST endpoints in '/rest/api/2/user'
  *
- * @param jiraClient
+ * @param {JiraClient} jiraClient
  * @constructor UserClient
  */
 function UserClient(jiraClient) {
