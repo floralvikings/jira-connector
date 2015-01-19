@@ -7,7 +7,7 @@ var errorStrings = require('./../lib/error');
 module.exports = AvatarClient;
 
 /**
- * Used to access Jira REST endpoints in '/rest/api/2/issue'
+ * Used to access Jira REST endpoints in '/rest/api/2/avatar'
  * @param {JiraClient} jiraClient
  * @constructor AvatarClient
  */
