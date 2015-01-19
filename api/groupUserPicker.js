@@ -3,7 +3,7 @@
 module.exports = GroupUserPickerClient;
 
 /**
- *
+ * Used to access Jira REST endpoints in '/rest/api/2/groupuserpicker'
  * @param {JiraClient} jiraClient
  * @constructor GroupUserPickerClient
  */
