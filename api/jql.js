@@ -3,7 +3,7 @@
 module.exports = JqlClient;
 
 /**
- * Used to access Jira REST endpoints in '/rest/api/2/jql'
+ * Used to access Jira REST endpoints in '/rest/api/2/jql/autocompletedata'
  *
  * @param {JiraClient} jiraClient
  * @constructor JqlClient
