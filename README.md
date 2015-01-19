@@ -234,7 +234,7 @@ var jira = new JiraClient({
   * deleteGroup
 * groups (/rest/api/2/groups)
   * findGroups
-* groupUserPicker
+* groupUserPicker (/rest/api/2/groupuserpicker)
   * findUsersAndGroups
 * issue (/rest/api/2/issue)
   * createIssue
