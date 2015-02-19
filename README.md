@@ -85,7 +85,7 @@ var JiraClient = require('jira-connector');
 
 var jira = new JiraClient( {
     host: 'jenjinstudios.atlassian.net',
-    auth: {
+    basic_auth: {
         username: 'SirUserOfName',
         password: 'Password123'
     }
