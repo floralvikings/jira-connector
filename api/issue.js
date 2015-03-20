@@ -509,7 +509,7 @@ function IssueClient(jiraClient) {
     /**
      * Get the remote issue link with the given id on the issue.
      *
-     * @method deleteRemoteLinkByID
+     * @method deleteRemoteLinkById
      * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueId or
      *     issueKey property; issueId will be used over issueKey if both are present.
@@ -518,7 +518,7 @@ function IssueClient(jiraClient) {
      * @param {string} opts.linkId The id of the remote link
      * @param callback Called when the remote links are retrieved.
      */
-    this.deleteRemoteLinkByID = function (opts, callback) {
+    this.deleteRemoteLinkById = function (opts, callback) {
         if (!opts.linkId) {
             throw new Error(errorStrings.NO_LINK_ID_ERROR);
         }
