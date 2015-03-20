@@ -59,7 +59,7 @@ function IssueLinkTypeClient(jiraClient) {
      * @method getIssueLinkType
      * @memberOf IssueLinkTypeClient#
      * @param opts The request options sent to the Jira API
-     * @param opts.issueLinkTypeId The ID of the IssueLink type to retrieve.
+     * @param opts.issueLinkTypeId The id of the IssueLink type to retrieve.
      * @param callback Called when the IssueLink type has been retrieved
      */
     this.getIssueLinkType = function (opts, callback) {
@@ -83,7 +83,7 @@ function IssueLinkTypeClient(jiraClient) {
      * @method deleteIssueLinkType
      * @memberOf IssueLinkTypeClient#
      * @param opts The request options sent to the Jira API
-     * @param opts.issueLinkTypeId The ID of the IssueLink type to delete.
+     * @param opts.issueLinkTypeId The id of the IssueLink type to delete.
      * @param callback Called when the IssueLink type has been delete
      */
     this.deleteIssueLinkType = function (opts, callback) {
@@ -107,7 +107,7 @@ function IssueLinkTypeClient(jiraClient) {
      * @method editIssueLinkType
      * @memberOf IssueLinkTypeClient#
      * @param opts The request options sent to the Jira API
-     * @param opts.issueLinkTypeId The ID of the IssueLink type to retrieve.
+     * @param opts.issueLinkTypeId The id of the IssueLink type to retrieve.
      * @param opts.linkType See {@link https://docs.atlassian.com/jira/REST/latest/#d2e2071}
      * @param callback Called when the IssueLink type has been updated.
      */

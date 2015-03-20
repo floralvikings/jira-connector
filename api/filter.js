@@ -49,7 +49,7 @@ function FilterClient(jiraClient) {
      * @method getFilter
      * @memberOf FilterClient#
      * @param {Object} opts The request options sent to the Jira API
-     * @param {number} opts.filterId The ID of the filter to retrieve
+     * @param {number} opts.filterId The id of the filter to retrieve
      * @param callback Called when the filter has been retrieved.
      */
     this.getFilter = function (opts, callback) {
@@ -63,7 +63,7 @@ function FilterClient(jiraClient) {
      * @method updateFilter
      * @memberOf FilterClient#
      * @param {Object} opts The request options sent to the Jira API
-     * @param {number} opts.filterId The ID of the filter to update
+     * @param {number} opts.filterId The id of the filter to update
      * @param {Object} opts.filter The new data for the filter.  See
      *      {@link https://docs.atlassian.com/jira/REST/latest/#d2e3401}
      * @param callback Called when the filter has been updated.
@@ -79,7 +79,7 @@ function FilterClient(jiraClient) {
      * @method deleteFilter
      * @memberOf FilterClient#
      * @param {Object} opts The request options sent to the Jira API
-     * @param {number} opts.filterId The ID of the filter to delete
+     * @param {number} opts.filterId The id of the filter to delete
      * @param callback Called when the filter has been deleted.
      */
     this.deleteFilter = function (opts, callback) {
@@ -94,7 +94,7 @@ function FilterClient(jiraClient) {
      * @method getFilterColumns
      * @memberOf FilterClient#
      * @param {Object} opts The request options sent to the Jira API
-     * @param {number} opts.filterId The ID of the filter for which to retrieve columns.
+     * @param {number} opts.filterId The id of the filter for which to retrieve columns.
      * @param callback Called when the columns have been retrieved.
      */
     this.getFilterColumns = function (opts, callback) {
@@ -108,7 +108,7 @@ function FilterClient(jiraClient) {
      * @method setFilterColumns
      * @memberOf FilterClient#
      * @param {Object} opts The request options sent to the Jira API
-     * @param {number} opts.filterId The ID of the filter for which to update columns.
+     * @param {number} opts.filterId The id of the filter for which to update columns.
      * @param {Array} opts.columns The names of the new columns.
      *      See {@link https://docs.atlassian.com/jira/REST/latest/#d2e3460}
      * @param callback Called when the columns have been set
@@ -125,7 +125,7 @@ function FilterClient(jiraClient) {
      * @method resetFilterColumns
      * @memberOf FilterClient#
      * @param {Object} opts The request options sent to the Jira API
-     * @param {number} opts.filterId The ID of the filter for which to reset columns.
+     * @param {number} opts.filterId The id of the filter for which to reset columns.
      * @param callback Called when the columns have been reset.
      */
     this.resetFilterColumns = function (opts, callback) {
@@ -199,7 +199,7 @@ function FilterClient(jiraClient) {
      * @method buildRequestOptions
      * @memberOf FilterClient#
      * @param {Object} opts The arguments passed to the method.
-     * @param {number} opts.filterId The ID of the filter to use in the path.
+     * @param {number} opts.filterId The id of the filter to use in the path.
      * @param {Array} [opts.fields] The fields to include
      * @param {Array} [opts.expand] The fields to expand
      * @param {string} path The path of the endpoint following /filter/{id}

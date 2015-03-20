@@ -41,7 +41,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @method editWorkflowScheme
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API.
-     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param opts.workflowScheme See {@link https://docs.atlassian.com/jira/REST/latest/#d2e2305}
      * @param callback Called when the workflow scheme has been edited.
      */
@@ -56,7 +56,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @method getWorkflowScheme
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API.
-     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param [opts.returnDraftIfExists=false] when true indicates that a scheme's draft, if it exists, should be
      *     queried instead of the scheme itself.
      * @param callback Called when the workflow scheme has been retrieved.
@@ -72,7 +72,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @method deleteWorkflowScheme
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API.
-     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param callback Called when the workflow scheme has been deleted.
      */
     this.deleteWorkflowScheme = function (opts, callback) {
@@ -86,7 +86,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @method createDraft
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API.
-     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param callback Called when the draft has been created.
      */
     this.createDraft = function (opts, callback) {
@@ -100,7 +100,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @method getDefaultWorkflow
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API.
-     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param opts.returnDraftIfExists when true indicates that a scheme's draft, if it exists, should be queried
      *     instead of the scheme itself.
      * @param callback Called when the default workflow is returned.
@@ -116,7 +116,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @method removeDefaultWorkflow
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API.
-     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param opts.updateDraftIfNeeded when true will create and return a draft when the workflow scheme cannot be
      *     edited (e.g. when it is being used by a project).
      * @param callback Called when the defaul workflow has been removed.
@@ -132,7 +132,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @method setDefaultWorkflow
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API.
-     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param opts.workflowName The name of the new deafault workflow
      * @param opts.updateDraftIfNeeded when true will create and return a draft when the workflow scheme cannot be
      *     edited (e.g. when it is being used by a project).
@@ -152,7 +152,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @method getDraft
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API.
-     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param callback Called when the draft has been retrieved.
      */
     this.getDraft = function (opts, callback) {
@@ -167,7 +167,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @method editDraft
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API.
-     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param opts.draft See {@link https://docs.atlassian.com/jira/REST/latest/#d2e2575}
      * @param callback Called when the draft has been edited.
      */
@@ -182,7 +182,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @method deleteDraft
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API.
-     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param callback Called when the draft has been deleted.
      */
     this.deleteDraft = function (opts, callback) {
@@ -196,7 +196,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @method getDraftDefaultWorkflow
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API.
-     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param callback Called when the default workflow is returned.
      */
     this.getDraftDefaultWorkflow = function (opts, callback) {
@@ -210,7 +210,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @method setDraftDefaultWorkflow
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API.
-     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param opts.workflowName The name of the new default workflow
      * @param callback Called when the default workflow has been updated.
      */
@@ -228,7 +228,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @method removeDraftDefaultWorkflow
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API.
-     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param callback Called when the defaul workflow has been removed.
      */
     this.removeDraftDefaultWorkflow = function (opts, callback) {
@@ -242,7 +242,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @method getIssueType
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API.
-     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param opts.issueType The issue type
      * @param opts.returnDraftIfExists when true indicates that a scheme's draft, if it exists, should be queried
      *     instead of the scheme itself.
@@ -261,7 +261,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @method editIssueType
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API
-     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param opts.issueType The issue type
      * @param opts.workflow The new workflow
      * @param opts.updateDraftIfNeeded when true will create and return a draft when the workflow scheme cannot be
@@ -282,7 +282,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @method removeIssueType
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API
-     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param opts.issueType The issue type
      * @param callback Called when the issue type mapping has been removed.
      */
@@ -299,7 +299,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @method getDraftIssueType
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API.
-     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param opts.issueType The issue type
      * @param callback Called when the issue type has been retrieved.
      */
@@ -314,7 +314,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @method editDraftIssueType
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API
-     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param opts.issueType The issue type
      * @param opts.workflow The new workflow
      * @param callback Called when the issue type has been edited
@@ -330,7 +330,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @method removeDraftIssueType
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API
-     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param opts.issueType The issue type
      * @param callback Called when the issue type mapping has been removed.
      */
@@ -345,7 +345,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @method getWorkflow
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API
-     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param opts.workflowName The name of the workflow.
      * @param callback Called when the workflow has been retrieved.
      */
@@ -362,7 +362,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @method getDraftWorkflow
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API
-     * @param opts.workflowSchemeId The ID of the workflow scheme.
+     * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param opts.workflowName The name of the workflow.
      * @param callback Called when the workflow has been retrieved.
      */
@@ -380,7 +380,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @method editWorkflow
      * @memberOf WorkflowSchemeClient#
      * @param {Object} opts The request options sent to the Jira API
-     * @param {number} opts.workflowSchemeId The ID of the workflow scheme.
+     * @param {number} opts.workflowSchemeId The id of the workflow scheme.
      * @param {string} opts.workflowName The name of the workflow.
      * @param {Array} opts.issueTypes The new issue types to inclue in the workflow.
      *      See {@link https://docs.atlassian.com/jira/REST/latest/#d2e2509}
@@ -401,7 +401,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @method editDraftWorkflow
      * @memberOf WorkflowSchemeClient#
      * @param {Object} opts The request options sent to the Jira API
-     * @param {number} opts.workflowSchemeId The ID of the workflow scheme.
+     * @param {number} opts.workflowSchemeId The id of the workflow scheme.
      * @param {string} opts.workflowName The name of the workflow.
      * @param {Array} opts.issueTypes The new issue types to inclue in the workflow.
      *      See {@link https://docs.atlassian.com/jira/REST/latest/#d2e2670 }
@@ -421,7 +421,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @method deleteWorkflow
      * @memberOf WorkflowSchemeClient#
      * @param {Object} opts The request options sent to the Jira API
-     * @param {number} opts.workflowSchemeId The ID of the workflow scheme.
+     * @param {number} opts.workflowSchemeId The id of the workflow scheme.
      * @param {string} opts.workflowName The name of the workflow.
      * @param callback Called when the workflow has been edited.
      */
@@ -436,7 +436,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @method deleteDraftWorkflow
      * @memberOf WorkflowSchemeClient#
      * @param {Object} opts The request options sent to the Jira API
-     * @param {number} opts.workflowSchemeId The ID of the workflow scheme.
+     * @param {number} opts.workflowSchemeId The id of the workflow scheme.
      * @param {string} opts.workflowName The name of the workflow.
      * @param callback Called when the workflow has been edited.
      */
@@ -452,7 +452,7 @@ function WorkflowSchemeClient(jiraClient) {
      * @method buildRequestOptions
      * @memberOf WorkflowSchemeClient#
      * @param {Object} opts The arguments passed to the method.
-     * @param {number} opts.workflowSchemeId The ID of the workflowScheme to use in the path.
+     * @param {number} opts.workflowSchemeId The id of the workflowScheme to use in the path.
      * @param {Array} [opts.fields] The fields to include
      * @param {Array} [opts.expand] The fields to expand
      * @param {string} path The path of the endpoint following /workflowScheme/{id}

@@ -232,7 +232,7 @@ function UserClient(jiraClient) {
      * @memberOf UserClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} opts.username The username
-     * @param {Object} opts.avatarId The ID of the temporary avatar to convert.
+     * @param {Object} opts.avatarId The id of the temporary avatar to convert.
      * @param callback Called when the avatar has been converted
      */
     this.convertTemporaryAvatar = function (opts, callback) {
@@ -259,7 +259,7 @@ function UserClient(jiraClient) {
      * @memberOf UserClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} opts.username The username
-     * @param {Object} opts.avatarId The ID of the temporary avatar to delete.
+     * @param {Object} opts.avatarId The id of the temporary avatar to delete.
      * @param callback Called when the avatar has been deleted.
      */
     this.deleteAvatar = function (opts, callback) {

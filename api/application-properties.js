@@ -52,7 +52,7 @@ function ApplicationPropertiesClient(jiraClient) {
      * @method getProperties
      * @memberOf ApplicationPropertiesClient#
      * @param opts The options for modifying the application property.
-     * @param opts.id The ID of the property to be modified
+     * @param opts.id The id of the property to be modified
      * @param opts.property The new data for the property.  See
      *     {@link https://docs.atlassian.com/jira/REST/latest/#d2e4891}
      * @param callback Called when the property has been modified

@@ -19,7 +19,7 @@ function AttachmentClient(jiraClient) {
      * @method getAttachment
      * @memberOf AttachmentClient#
      * @param opts The options for the API request.
-     * @param opts.attachmentId The ID of the attachment to retrieve
+     * @param opts.attachmentId The id of the attachment to retrieve
      * @param callback Called when the attachment metadata is retrieved.
      */
     this.getAttachment = function (opts, callback) {
@@ -43,7 +43,7 @@ function AttachmentClient(jiraClient) {
      * @method deleteAttachment
      * @memberOf AttachmentClient#
      * @param opts The options for the API request.
-     * @param opts.attachmentId The ID of the attachment to delete
+     * @param opts.attachmentId The id of the attachment to delete
      * @param callback Called when the attachment is deleted.
      */
     this.deleteAttachment = function (opts, callback) {

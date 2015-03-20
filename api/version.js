@@ -38,7 +38,7 @@ function VersionClient(jiraClient) {
      * @method moveVersion
      * @memberOf VersionClient#
      * @param {Object} opts The request options sent to the Jira API.
-     * @param {string} opts.versionId The ID of the version to move.
+     * @param {string} opts.versionId The id of the version to move.
      * @param {string} [opts.position] An absolute position, which may have a value of 'First', 'Last', 'Earlier' or
      *     'Later'. Must be provided if opts.after is missing.
      * @param {string} [opts.after] A version to place this version after. The value should be the self link of another
@@ -56,7 +56,7 @@ function VersionClient(jiraClient) {
      * @method getVersion
      * @memberOf VersionClient#
      * @param {Object} opts The request options sent to the Jira API.
-     * @param {string|number} opts.versionId The ID of the version to retrieve.
+     * @param {string|number} opts.versionId The id of the version to retrieve.
      * @param callback Called when the version is retrieved.
      */
     this.getVersion = function (opts, callback) {
@@ -70,7 +70,7 @@ function VersionClient(jiraClient) {
      * @method createVersion
      * @memberOf VersionClient#
      * @param {Object} opts The request options sent to Jira.
-     * @param {string} opts.versionId The ID of the version to edit.
+     * @param {string} opts.versionId The id of the version to edit.
      * @param {Object} opts.version See {@link https://docs.atlassian.com/jira/REST/latest/#d2e3619}
      * @param callback Called when the version has been modified.
      */
@@ -122,7 +122,7 @@ function VersionClient(jiraClient) {
     };
 
     /**
-     * Create a remote version link via POST. The link's global ID will be taken from the JSON payload if provided;
+     * Create a remote version link via POST. The link's global id will be taken from the JSON payload if provided;
      * otherwise, it will be generated.
      *
      * @method createRemoteLink
@@ -144,7 +144,7 @@ function VersionClient(jiraClient) {
      * @memberOf VersionClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.versionId The version for which to retrieve the remote link
-     * @param opts.remoteLinkId The global ID of the remote link
+     * @param opts.remoteLinkId The global id of the remote link
      * @param callback Called when the link has been retrieved.
      */
     this.getRemoteLink = function (opts, callback) {
@@ -159,7 +159,7 @@ function VersionClient(jiraClient) {
      * @memberOf VersionClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.versionId The version ID
-     * @param opts.remoteLinkId The global ID of the remote link
+     * @param opts.remoteLinkId The global id of the remote link
      * @param callback Called when the link has been deleted.
      */
     this.deleteRemoteLink = function (opts, callback) {
@@ -173,7 +173,7 @@ function VersionClient(jiraClient) {
      * @method deleteVersion
      * @memberOf VersionClient#
      * @param {Object} opts The request options sent to the Jira API.
-     * @param {string|number} opts.versionId The ID of the version to delete.
+     * @param {string|number} opts.versionId The id of the version to delete.
      * @param callback Called when the version is deleted.
      */
     this.deleteVersion = function (opts, callback) {
@@ -187,7 +187,7 @@ function VersionClient(jiraClient) {
      * @method deleteAllRemoteLinks
      * @memberOf VersionClient#
      * @param {Object} opts The request options sent to the Jira API.
-     * @param {string|number} opts.versionId The ID of the version to delete.
+     * @param {string|number} opts.versionId The id of the version to delete.
      * @param callback Called when the version is deleted.
      */
     this.deleteAllRemoteLinks = function (opts, callback) {
@@ -201,7 +201,7 @@ function VersionClient(jiraClient) {
      * @method getGlobalRemoteLink
      * @memberOf VersionClient#
      * @param opts The request options sent to the Jira API.
-     * @param opts.globalId The global ID of the remote resource that is linked to the versions
+     * @param opts.globalId The global id of the remote resource that is linked to the versions
      * @param callback Called when the remote link is returned.
      */
     this.getGlobalRemoteLink = function (opts, callback) {
@@ -222,7 +222,7 @@ function VersionClient(jiraClient) {
      * @method buildRequestOptions
      * @memberOf FilterClient#
      * @param {Object} opts The arguments passed to the method.
-     * @param {number} opts.versionId The ID of the screen to use in the path.
+     * @param {number} opts.versionId The id of the screen to use in the path.
      * @param {Array} [opts.fields] The fields to include
      * @param {Array} [opts.expand] The fields to expand
      * @param {string} path The path of the endpoint following /version/{id}

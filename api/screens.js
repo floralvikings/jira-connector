@@ -17,7 +17,7 @@ function ScreensClient(jiraClient) {
      * @method getAvailableFields
      * @memberOf ScreensClient#
      * @param {Object} opts The request options sent to Jira
-     * @param {number} opts.screenId The ID of the screen to retrieve.
+     * @param {number} opts.screenId The id of the screen to retrieve.
      * @param callback Called when the available fields have been retrieved
      */
     this.getAvailableFields = function (opts, callback) {
@@ -31,7 +31,7 @@ function ScreensClient(jiraClient) {
      * @method getTabs
      * @memberOf ScreensClient#
      * @param {Object} opts The request options sent to Jira
-     * @param {number} opts.screenId The ID of the screen to retrieve.
+     * @param {number} opts.screenId The id of the screen to retrieve.
      * @param callback Called when the tabs have been retrieved.
      */
     this.getTabs = function (opts, callback) {
@@ -45,7 +45,7 @@ function ScreensClient(jiraClient) {
      * @method createTab
      * @memberOf ScreensClient#
      * @param {Object} opts The request options sent to Jira
-     * @param {number} opts.screenId The ID of the screen in which to create a tab.
+     * @param {number} opts.screenId The id of the screen in which to create a tab.
      * @param {string} opts.name The name of the tab to add.  Minimum required to create a tab.
      * @param callback Called when the tab has been created.
      */
@@ -60,8 +60,8 @@ function ScreensClient(jiraClient) {
      * @method renameTab
      * @memberOf ScreensClient#
      * @param {Object} opts The request options sent to the jira API
-     * @param {number} opts.screenId The ID of the screen containing the tab to rename.
-     * @param {number} opts.tabId The ID of the tab to rename
+     * @param {number} opts.screenId The id of the screen containing the tab to rename.
+     * @param {number} opts.tabId The id of the tab to rename
      * @param {string} opts.name The new name of the tab.
      * @param callback
      */
@@ -76,8 +76,8 @@ function ScreensClient(jiraClient) {
      * @method deleteTab
      * @memberOf ScreensClient#
      * @param {Object} opts The request options sent to the jira API
-     * @param {number} opts.screenId The ID of the screen containing the tab to delete.
-     * @param {number} opts.tabId The ID of the tab to delete
+     * @param {number} opts.screenId The id of the screen containing the tab to delete.
+     * @param {number} opts.tabId The id of the tab to delete
      * @param callback
      */
     this.deleteTab = function (opts, callback) {
@@ -91,8 +91,8 @@ function ScreensClient(jiraClient) {
      * @method addFieldToTab
      * @memberOf ScreensClient#
      * @param {Object} opts The request options sent to the Jira API
-     * @param {number} opts.screenId The ID of the screen containing the tab.
-     * @param {number} opts.tabId the ID of the tab to which the fields will be added.
+     * @param {number} opts.screenId The id of the screen containing the tab.
+     * @param {number} opts.tabId the id of the tab to which the fields will be added.
      * @param {string} opts.fieldId The field to add
      * @param callback Called when the fields have been added to the tab.
      */
@@ -107,8 +107,8 @@ function ScreensClient(jiraClient) {
      * @method getFieldsInTab
      * @memberOf ScreensClient#
      * @param {Object} opts The request options sent to the Jira API
-     * @param {number} opts.screenId The ID of the screen containing the tab.
-     * @param {number} opts.tabId the ID of the tab for which to retrieve fields.
+     * @param {number} opts.screenId The id of the screen containing the tab.
+     * @param {number} opts.tabId the id of the tab for which to retrieve fields.
      * @param callback Called when the fields have been retrieved.
      */
     this.getFieldsInTab = function (opts, callback) {
@@ -122,9 +122,9 @@ function ScreensClient(jiraClient) {
      * @method removeFieldFromTab
      * @memberOf ScreensClient#
      * @param {Object} opts The request options sent to the Jira API
-     * @param {number} opts.screenId The ID of the screen containing the tab.
-     * @param {number} opts.tabId the ID of the tab from which to remove the field.
-     * @param {string} opts.fieldId The ID of the field to remove from the tab.
+     * @param {number} opts.screenId The id of the screen containing the tab.
+     * @param {number} opts.tabId the id of the tab from which to remove the field.
+     * @param {string} opts.fieldId The id of the field to remove from the tab.
      * @param callback Called when the field has been removed.
      */
     this.removeFieldFromTab = function (opts, callback) {
@@ -138,9 +138,9 @@ function ScreensClient(jiraClient) {
      * @method moveFieldOnTab
      * @memberOf ScreensClient#
      * @param {Object} opts The request options sent to the Jira API
-     * @param {number} opts.screenId The ID of the screen containing the tab.
-     * @param {number} opts.tabId the ID of the tab containing the field.
-     * @param {string} opts.fieldId The ID of the field to remove from the tab.
+     * @param {number} opts.screenId The id of the screen containing the tab.
+     * @param {number} opts.tabId the id of the tab containing the field.
+     * @param {string} opts.fieldId The id of the field to remove from the tab.
      * @param {number} opts.newPosition The position to which the field should be moved.  May be one of:
      *  * Earlier
      *  * Later
@@ -160,8 +160,8 @@ function ScreensClient(jiraClient) {
      * @method moveTabPosition
      * @memberOf ScreensClient#
      * @param {Object} opts The request options sent to the Jira API.
-     * @param {number} opts.screenId The ID of the screen containing the tab.
-     * @param {number} opts.tabId the ID of the tab to move.
+     * @param {number} opts.screenId The id of the screen containing the tab.
+     * @param {number} opts.tabId the id of the tab to move.
      * @param {number} opts.newPosition The new (zero-indexed) position of the tab.
      * @param callback Called when the tab has been moved.
      */
@@ -176,7 +176,7 @@ function ScreensClient(jiraClient) {
      * @method addFieldToDefaultTab
      * @memberOf ScreensClient#
      * @param {Object} opts The request options sent to the Jira API.
-     * @param {string} opts.fieldId The ID of the field to add to the default tab.
+     * @param {string} opts.fieldId The id of the field to add to the default tab.
      * @param callback Called when the tab has been moved.
      */
     this.addFieldToDefaultTab = function (opts, callback) {
@@ -197,7 +197,7 @@ function ScreensClient(jiraClient) {
      * @method buildRequestOptions
      * @memberOf FilterClient#
      * @param {Object} opts The arguments passed to the method.
-     * @param {number} opts.screenId The ID of the screen to use in the path.
+     * @param {number} opts.screenId The id of the screen to use in the path.
      * @param {Array} [opts.fields] The fields to include
      * @param {Array} [opts.expand] The fields to expand
      * @param {string} path The path of the endpoint following /screen/{id}

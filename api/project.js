@@ -108,7 +108,7 @@ function ProjectClient(jiraClient) {
      * @memberOf ProjectClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.projectIdOrKey The project id or project key
-     * @param opts.roleId The ID of the role to retrieve.
+     * @param opts.roleId The id of the role to retrieve.
      * @param callback Called when the roles have been retrieved.
      */
     this.getRole = function (opts, callback) {
@@ -123,7 +123,7 @@ function ProjectClient(jiraClient) {
      * @memberOf ProjectClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.projectIdOrKey The project id or project key
-     * @param opts.roleId The ID of the role to retrieve.
+     * @param opts.roleId The id of the role to retrieve.
      * @param opts.newRole See {@link https://docs.atlassian.com/jira/REST/latest/#d2e108}
      * @param callback Called when the roles have been retrieved.
      */
@@ -139,7 +139,7 @@ function ProjectClient(jiraClient) {
      * @memberOf ProjectClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.projectIdOrKey The project id or project key
-     * @param opts.roleId The ID of the role to retrieve.
+     * @param opts.roleId The id of the role to retrieve.
      * @param opts.newRole See {@link https://docs.atlassian.com/jira/REST/latest/#d2e134}
      * @param callback Called when the roles have been retrieved.
      */
@@ -155,7 +155,7 @@ function ProjectClient(jiraClient) {
      * @method buildRequestOptions
      * @memberOf ProjectClient#
      * @param {Object} opts The arguments passed to the method.
-     * @param {number} opts.projectIdOrKey The ID of the project to use in the path.
+     * @param {number} opts.projectIdOrKey The id of the project to use in the path.
      * @param {Array} [opts.fields] The fields to include
      * @param {Array} [opts.expand] The fields to expand
      * @param {string} path The path of the endpoint following /project/{id}

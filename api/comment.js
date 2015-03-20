@@ -18,7 +18,7 @@ function CommentClient(jiraClient) {
      * @method getCommentPropertyKeys
      * @memberOf CommentClient#
      * @param opts The options passed in the request to the API.
-     * @param opts.commentId The ID of the comment from which keys will be returned.
+     * @param opts.commentId The id of the comment from which keys will be returned.
      * @param callback Called when the keys have been retrieved.
      */
     this.getCommentPropertyKeys = function (opts, callback) {
@@ -35,7 +35,7 @@ function CommentClient(jiraClient) {
      * @method setCommentProperty
      * @memberOf CommentClient#
      * @param opts The options passed in the request to the API.
-     * @param opts.commentId The ID of the comment from which keys will be returned.
+     * @param opts.commentId The id of the comment from which keys will be returned.
      * @param opts.propertyKey The key of the property to be edited.
      * @param opts.propertyValue The new value of the property.
      * @param callback Called when the property has been edited.
@@ -57,7 +57,7 @@ function CommentClient(jiraClient) {
      * @method getCommentProperty
      * @memberOf CommentClient#
      * @param opts The options passed in the request to the API.
-     * @param opts.commentId The ID of the comment from which keys will be returned.
+     * @param opts.commentId The id of the comment from which keys will be returned.
      * @param opts.propertyKey The key of the property to be edited.
      * @param callback Called when the property has been retrieved.
      */
@@ -76,7 +76,7 @@ function CommentClient(jiraClient) {
      * @method deleteCommentProperty
      * @memberOf CommentClient#
      * @param opts The options passed in the request to the API.
-     * @param opts.commentId The ID of the comment from which keys will be returned.
+     * @param opts.commentId The id of the comment from which keys will be returned.
      * @param opts.propertyKey The key of the property to be edited.
      * @param callback Called when the property has been retrieved.
      */

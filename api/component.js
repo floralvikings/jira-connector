@@ -40,7 +40,7 @@ function ComponentClient(jiraClient) {
      * @method editComponent
      * @memberOf ComponentClient#
      * @param opts The request options sent to the Jira API.
-     * @param opts.id The ID of the component to edit.
+     * @param opts.id The id of the component to edit.
      * @param opts.component The new data to place in the component.  See
      *      {@link https://docs.atlassian.com/jira/REST/latest/#d2e3939}
      * @param callback Called when the component has beed edited.
@@ -63,7 +63,7 @@ function ComponentClient(jiraClient) {
      * @method getComponent
      * @memberOf ComponentClient#
      * @param opts The options sent to the Jira API
-     * @param opts.id The ID of the component to edit.
+     * @param opts.id The id of the component to edit.
      * @param callback Called when the component has been retrieved.
      */
     this.getComponent = function (opts, callback) {
@@ -83,7 +83,7 @@ function ComponentClient(jiraClient) {
      * @method deleteComponent
      * @memberOf ComponentClient#
      * @param opts The options sent to the Jira API
-     * @param opts.id The ID of the component to edit.
+     * @param opts.id The id of the component to edit.
      * @param [opts.moveIssuesTo] The new component applied to issues whose 'id' component will be deleted. If this
      *     value is null, then the 'id' component is simply removed from the related isues.
      * @param callback Called when the component has been deleted.
@@ -105,7 +105,7 @@ function ComponentClient(jiraClient) {
      * @method getRelatedIssueCounts
      * @memberOf ComponentClient#
      * @param opts The options sent to the Jira API
-     * @param opts.id The ID of the component to edit.
+     * @param opts.id The id of the component to edit.
      * @param callback Called when the count has been retrieved.
      */
     this.getRelatedIssueCounts = function (opts, callback) {

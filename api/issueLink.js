@@ -50,7 +50,7 @@ function IssueLinkClient(jiraClient) {
      * @method getIssueLink
      * @memberOf IssueLinkClient#
      * @param opts The options used in the request to the Jira API
-     * @param opts.linkId The ID of the link to retrieve.
+     * @param opts.linkId The id of the link to retrieve.
      * @param callback Called when the Issue Link has been retrieved.
      */
     this.getIssueLink = function (opts, callback) {
@@ -75,7 +75,7 @@ function IssueLinkClient(jiraClient) {
      * @method deleteIssueLink
      * @memberOf IssueLinkClient#
      * @param opts The options used in the request to the Jira API
-     * @param opts.linkId The ID of the link to delete.
+     * @param opts.linkId The id of the link to delete.
      * @param callback Called when the Issue Link has been deleted.
      */
     this.deleteIssueLink = function (opts, callback) {
