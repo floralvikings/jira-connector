@@ -108,7 +108,7 @@ function VersionClient(jiraClient) {
     };
 
     /**
-     * Get the remote version links associated with the given version ID.
+     * Get the remote version links associated with the given version id.
      *
      * @method getRemoteLinks
      * @memberOf VersionClient#
@@ -158,7 +158,7 @@ function VersionClient(jiraClient) {
      * @method deleteRemoteLink
      * @memberOf VersionClient#
      * @param opts The request options sent to the Jira API.
-     * @param opts.versionId The version ID
+     * @param opts.versionId The version id
      * @param opts.remoteLinkId The global id of the remote link
      * @param callback Called when the link has been deleted.
      */
@@ -182,7 +182,7 @@ function VersionClient(jiraClient) {
     };
 
     /**
-     * Delete all remote version links for a given version ID.
+     * Delete all remote version links for a given version id.
      *
      * @method deleteAllRemoteLinks
      * @memberOf VersionClient#
@@ -196,7 +196,7 @@ function VersionClient(jiraClient) {
     };
 
     /**
-     * Returns the remote version links for a given global ID.
+     * Returns the remote version links for a given global id.
      *
      * @method getGlobalRemoteLink
      * @memberOf VersionClient#
