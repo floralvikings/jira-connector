@@ -2,6 +2,13 @@
 
 Node.JS module which provides easy-to-use access to the Jira REST API.
 
+## Important Change in Version 1.0.0
+
+Starting with version 1.0.0, all functions and parameters utilize ```xxxId``` instead of ```xxxID```.
+Prior to this update, this naming convention was inconsistent and easily confused.
+
+Please update your code accordingly.
+
 ## Installation
 
 Install with [npm](http://npmjs.org/):
