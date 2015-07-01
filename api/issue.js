@@ -228,12 +228,13 @@ function IssueClient(jiraClient) {
      * @param callback Called when the issue has been assigned.
      */
     this.assignIssue = function (opts, callback) {
-        if (!opts.assignee) {
+        if (typeof opts.assignee === "string" && opts.assignee.length || opts.assignee === null) {
+            var options = this.buildRequestOptions(opts, '/assignee', 'PUT', {name: opts.assignee});
+
+            this.jiraClient.makeRequest(options, callback, 'Issue Assigned');
+        } else {
             throw new Error(errorStrings.NO_ASSIGNEE_ERROR);
         }
-        var options = this.buildRequestOptions(opts, '/assignee', 'PUT', {name: opts.assignee});
-
-        this.jiraClient.makeRequest(options, callback, 'Issue Assigned');
     };
 
     /**
