@@ -149,6 +149,9 @@ var JiraClient = module.exports = function (config) {
             pass: config.basic_auth.password
         };
 
+    } else if (config.cookie_jar) {
+        request = request.defaults({ jar: config.cookie_jar });
+
     }
 
     this.issue = new issue(this);
