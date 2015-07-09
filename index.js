@@ -113,6 +113,7 @@ var workflowScheme = require('./api/workflowScheme');
  * @param {string} [config.oauth.token] The VERIFIED token used to connect to the Jira API.  MUST be included if using
  *     OAuth.
  * @param {string} [config.oauth.token_secret] The secret for the above token.  MUST be included if using Oauth.
+ * @param {CookieJar} [config.cookie_jar] The CookieJar to use for every requests.
  */
 var JiraClient = module.exports = function (config) {
     if(!config.host) {
@@ -149,6 +150,10 @@ var JiraClient = module.exports = function (config) {
             pass: config.basic_auth.password
         };
 
+    }
+
+    if (config.cookie_jar) {
+        this.cookie_jar = config.cookie_jar;
     }
 
     this.issue = new issue(this);
@@ -230,6 +235,9 @@ var JiraClient = module.exports = function (config) {
             options.oauth = this.oauthConfig;
         } else if (this.basic_auth) {
             options.auth = this.basic_auth;
+        }
+        if (this.cookie_jar) {
+            options.jar = this.cookie_jar;
         }
         request(options, function (err, response, body) {
             if (err || response.statusCode.toString()[0] != 2) {

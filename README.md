@@ -187,6 +187,44 @@ var jira = new JiraClient({
 // Jira is now authenticted with your account!
 ```
 
+### Cookie Jar
+
+You can also use a Cookie Jar for your request. It could be an easier way to prompt for a login only once, without the
+pain of setting up an OAuth method.
+
+For example, using `though-cookie-filestore`:
+```javascript
+var JiraClient = require('../jira-connector'),
+    FileCookieStore = require('tough-cookie-filestore'),
+
+    request = require('request'),
+    path = require('path');
+
+var jar = request.jar(new FileCookieStore(path.join(__dirname, 'cookies.json')));
+
+// For the first connection
+var jira = new JiraClient( {
+    host: 'jenjinstudios.atlassian.net',
+    basic_auth: {
+        username: 'SirUserOfName',
+        password: 'Password123'
+    },
+    cookie_jar: jar
+});
+
+// For the following connections
+var jira = new JiraClient( {
+    host: 'jenjinstudios.atlassian.net',
+    cookie_jar: jar
+});
+```
+
+In this example, all your cookies are save in a file, `cookies.json`. Currently, the file **MUST** exist, it's a 
+limitation from `though-cookie-filestore`...
+
+You can now only use the Cookie Jar for all the following request, as long as the file exists and the cookie
+is still valid!
+
 ## Supported API Calls
 
 * application-properties (/rest/api/2/application-properties)
