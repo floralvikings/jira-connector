@@ -120,7 +120,7 @@ helper functions for exactly this purpose:
 ```javascript
 var JiraClient = require('./index.js');
 
-JiraClient.oauth_util.getAuthorizeUrl({
+JiraClient.oauth_util.getAuthorizeURL({
     host: 'jenjinstudios.atlassian.net',
     oauth: {
         consumer_key: 'your-consumer-key',
@@ -155,7 +155,7 @@ JiraClient.oauth_util.swapRequestTokenWithAccessToken({
     oauth: {
         token: 'your-oauth-token',
         token_secret: 'your-token-secret',
-        oauth_verified: 'verifier-code-from-jira',
+        oauth_verifier: 'verifier-code-from-jira',
         consumer_key: 'your-consumer-key',
         private_key: '-----BEGIN RSA PRIVATE KEY-----\n' +
         'SomePrivateKeyHere\n' +
