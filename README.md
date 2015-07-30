@@ -99,6 +99,29 @@ var jira = new JiraClient( {
 });
 ```
 
+
+### Basic Authentication (Base64)
+
+Also not recommended, but slightly better than the above; it will require you to provide a Base64 encoded username
+and password (a Base64 encoding in the format of "username:password") each time you connect to the Jira instance.
+
+More examples [here](https://developer.atlassian.com/jiradev/jira-apis/jira-rest-apis/jira-rest-api-tutorials/jira-rest-api-example-basic-authentication).
+
+Example:
+
+```javascript
+var JiraClient = require('jira-connector');
+
+var jira = new JiraClient( {
+    host: 'jenjinstudios.atlassian.net',
+    basic_auth: {
+        base64: 'U2lyVXNlck9mTmFtZTpQYXNzd29yZDEyMw=='
+    }
+});
+
+// Base64 encoding of 'SirUserOfName:Password123'
+```
+
 ### OAuth Authentication
 
 This should be the preferred method of authentication; it is more secure and does not require disclosing
@@ -219,7 +242,7 @@ var jira = new JiraClient( {
 });
 ```
 
-In this example, all your cookies are save in a file, `cookies.json`. Currently, the file **MUST** exist, it's a 
+In this example, all your cookies are save in a file, `cookies.json`. Currently, the file **MUST** exist, it's a
 limitation from `though-cookie-filestore`...
 
 You can now only use the Cookie Jar for all the following request, as long as the file exists and the cookie
