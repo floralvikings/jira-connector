@@ -139,17 +139,22 @@ var JiraClient = module.exports = function (config) {
         this.oauthConfig.signature_method = 'RSA-SHA1';
 
     } else if (config.basic_auth) {
-        if (!config.basic_auth.username) {
-            throw new Error(errorStrings.NO_USERNAME_ERROR);
-        } else if (!config.basic_auth.password) {
-            throw new Error(errorStrings.NO_PASSWORD_ERROR);
+        if (config.basic_auth.base64) {
+            this.basic_auth = {
+              base64: config.base64
+            }
+        } else {
+            if (!config.basic_auth.username) {
+                throw new Error(errorStrings.NO_USERNAME_ERROR);
+            } else if (!config.basic_auth.password) {
+                throw new Error(errorStrings.NO_PASSWORD_ERROR);
+            }
+
+            this.basic_auth = {
+                user: config.basic_auth.username,
+                pass: config.basic_auth.password
+            };
         }
-
-        this.basic_auth = {
-            user: config.basic_auth.username,
-            pass: config.basic_auth.password
-        };
-
     }
 
     if (config.cookie_jar) {
@@ -234,7 +239,13 @@ var JiraClient = module.exports = function (config) {
         if (this.oauthConfig) {
             options.oauth = this.oauthConfig;
         } else if (this.basic_auth) {
-            options.auth = this.basic_auth;
+            if (this.basic_auth.base64) {
+              options.headers = {
+                Authorization: 'Basic ' + this.basic_auth.base64
+              }
+            } else {
+              options.auth = this.basic_auth;
+            }
         }
         if (this.cookie_jar) {
             options.jar = this.cookie_jar;
@@ -255,4 +266,3 @@ var JiraClient = module.exports = function (config) {
 JiraClient.oauth_util = require('./lib/oauth_util');
 
 exports.oauth_util = oauth_util;
-
