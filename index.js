@@ -141,7 +141,7 @@ var JiraClient = module.exports = function (config) {
     } else if (config.basic_auth) {
         if (config.basic_auth.base64) {
             this.basic_auth = {
-              base64: config.base64
+              base64: config.basic_auth.base64
             }
         } else {
             if (!config.basic_auth.username) {
