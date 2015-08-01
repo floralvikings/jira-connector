@@ -836,7 +836,7 @@ function IssueClient(jiraClient) {
     };
 
     /**
-     * Add an attachment to an issue.
+     * Add an attachments to an issue.
      *
      * @method addAttachment
      * @memberOf IssueClient.js
@@ -844,7 +844,7 @@ function IssueClient(jiraClient) {
      *     issueKey property; issueId will be used over issueKey if both are present.
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param {string} opts.filename The file name of attachment.
+     * @param {string} opts.filename The file name of attachment. If you pass an array of filenames, multiple attachments will be added.
      * @param callback Called when the attachment has been attached.
      */
     this.addAttachment = function (opts, callback) {
@@ -853,7 +853,9 @@ function IssueClient(jiraClient) {
         }
         var options = this.buildRequestOptions(opts, '/attachments', 'POST');
         delete options.body;
-        options.formData = {file: fs.createReadStream(opts.filename)};
+        if (opts.filename.constructor !== Array) opts.filename = [opts.filename];
+        var attachments = opts.filename.map (function (filename) {return fs.createReadStream(filename)});
+        options.formData = {file: attachments};
         options.headers = {
             "X-Atlassian-Token": "nocheck"
         };
