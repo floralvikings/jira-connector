@@ -853,7 +853,9 @@ function IssueClient(jiraClient) {
         }
         var options = this.buildRequestOptions(opts, '/attachments', 'POST');
         delete options.body;
-        options.formData = {file: fs.createReadStream(opts.filename)};
+        if (opts.filename.constructor !== Array) opts.filename = [opts.filename];
+        var attachments = opts.filename.map (function (filename) {return fs.createReadStream(filename)});
+        options.formData = {file: attachments};
         options.headers = {
             "X-Atlassian-Token": "nocheck"
         };
