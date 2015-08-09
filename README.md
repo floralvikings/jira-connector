@@ -20,7 +20,7 @@ Install with [npm](http://npmjs.org/):
 Install via Git clone:
 
 ```
-    $ git clone https://github.com/jenjinstudios/jira-connector.git
+    $ git clone https://github.com/floralvikings/jira-connector.git
     $ cd jira-connector
     $ npm install
 ```
