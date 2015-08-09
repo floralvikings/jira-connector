@@ -9,7 +9,8 @@
   ],
   "main": ".",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postversion": "jsdoc -c jsdoc.json && git add -A docs && git commit -m \"Update docs to $npm_package_version\" && git subtree push --prefix \"docs/jira-connector/$npm_package_version\" origin gh-pages"
   },
   "author": "Caleb Brinkman <floralvikings@gmail.com>",
   "license": "MIT",
