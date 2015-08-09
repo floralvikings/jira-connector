@@ -10,7 +10,7 @@
   "main": ".",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postversion": "jsdoc -c jsdoc.json && git add -A docs && git commit -m \"Update docs to $npm_package_version\" && git subtree push --prefix \"docs/jira-connector/$npm_package_version\" origin gh-pages && git push && git push --tags"
+    "postversion": "jsdoc -c jsdoc.json && git add -A docs && git commit -m \"Update docs to $npm_package_version\" && git push origin --delete gh-pages && git subtree push --prefix \"docs/jira-connector/$npm_package_version\" origin gh-pages && git push && git push --tags"
   },
   "author": "Caleb Brinkman <floralvikings@gmail.com>",
   "license": "MIT",
