@@ -52,7 +52,7 @@ function IssueClient(jiraClient) {
      * The fields in the createmeta correspond to the fields in the create screen for the project/issuetype. Fields not
      * in the screen will not be in the createmeta.
      *
-     * Fields will only be returned if ```expand=projects.issuetypes.fields¬.```
+     * Fields will only be returned if ```expand=projects.issuetypes.fields.```
      *
      * The results can be filtered by project and/or issue type, given by the query params.
      *
@@ -73,6 +73,7 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issuetypeNames] combinded with issuetypeIds, lists the issue types with which to filter
      *     the results. If null, all issue types are returned. This parameter can be specified multiple times, but is
      *     NOT interpreted as a comma-separated list. Specifiying an issue type that does not exist is not an error.
+     * @param {string} [opts.expand] in order to get expanded field descriptions, specify 'projects.issuetypes.fields' here.
      * @param callback Called when the metadata has been retrieved.
      */
     this.getCreateMetadata = function (opts, callback) {
@@ -85,7 +86,8 @@ function IssueClient(jiraClient) {
                 projectIds: opts.projectIds,
                 projectKeys: opts.projectKeys,
                 issuetypeIds: opts.issuetypeIds,
-                issuetypeNames: opts.issuetypeNames
+                issuetypeNames: opts.issuetypeNames,
+                expand: opts.expand
             }
         };
 
