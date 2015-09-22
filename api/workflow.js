@@ -21,14 +21,16 @@ function WorkflowClient(jiraClient) {
      * @param callback Called when the workflow(s) have been retrieved.
      */
     this.getWorkflows = function (opts, callback) {
+        var qs = {};
+        if (opts && typeof opts === 'object' && opts.hasOwnProperty('workflowName')) {
+            qs.workflowName = opts.workflowName;
+        }
         var options = {
             uri: this.jiraClient.buildURL('/workflow'),
             method: 'GET',
             json: true,
             followAllRedirects: true,
-            qs: {
-                workflowName: opts.workflowName
-            }
+            qs: qs
         };
 
         this.jiraClient.makeRequest(options, callback);
