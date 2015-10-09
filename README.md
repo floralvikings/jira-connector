@@ -389,6 +389,9 @@ is still valid!
   * getRole
   * updateRole
   * addToRole
+* projectCategory (/rest/api/2/projectCategory)
+  * getAllProjectCategories
+  * getProjectCategory
 * projectValidate (/rest/api/2/projectvalidate)
   * validateProjectKey
 * reindex (/rest/api/2/reindex)

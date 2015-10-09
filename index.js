@@ -47,6 +47,7 @@ var filter = require('./api/filter');
 var screens = require('./api/screens');
 var version = require('./api/version');
 var project = require('./api/project');
+var projectCategory = require('./api/projectCategory');
 var user = require('./api/user');
 var workflowScheme = require('./api/workflowScheme');
 
@@ -92,6 +93,7 @@ var workflowScheme = require('./api/workflowScheme');
  * @property {ScreensClient} screens
  * @property {VersionClient} version
  * @property {ProjectClient} project
+ * @property {ProjectCategoryClient} projectCategory
  * @property {UserClient} user
  * @property {WorkflowSchemeClient} workflowScheme
  *
@@ -199,6 +201,7 @@ var JiraClient = module.exports = function (config) {
     this.screens = new screens(this);
     this.version = new version(this);
     this.project = new project(this);
+    this.projectCategory = new projectCategory(this);
     this.user = new user(this);
     this.workflowScheme = new workflowScheme(this);
 };
