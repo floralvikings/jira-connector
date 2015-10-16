@@ -563,7 +563,7 @@ function IssueClient(jiraClient) {
      * field is not configured to appear on the transition screen, then it will not be in the transition metadata, and
      * a field validation error will occur if it is submitted.
      *
-     * @method getTransitions
+     * @method transitionIssue
      * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueId or
      *     issueKey property; issueId will be used over issueKey if both are present.
