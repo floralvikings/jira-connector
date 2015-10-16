@@ -577,7 +577,7 @@ function IssueClient(jiraClient) {
             throw new Error(errorStrings.NO_TRANSITION_ERROR);
         }
 
-        var options = this.buildRequestOptions(opts, '/transitions', 'POST', opts.transition);
+        var options = this.buildRequestOptions(opts, '/transitions', 'POST', {transition: opts.transition});
 
         this.jiraClient.makeRequest(options, callback, 'Issue Transitioned');
     };
