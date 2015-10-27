@@ -250,7 +250,7 @@ is still valid!
 
 ## Supported API Calls
 
-* application-properties (/rest/api/2/application-properties)
+* applicationProperties (/rest/api/2/application-properties)
   * getProperties
   * setProperty
 * attachment (/rest/api/2/atachment)
