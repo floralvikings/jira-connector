@@ -581,7 +581,7 @@ function IssueClient(jiraClient) {
         if(!opts.transition.transition) { // To keep backwards compatibility
             options = this.buildRequestOptions(opts, '/transitions', 'POST', opts);
         } else {
-            options = this.buildRequestOptions(opts, '/transitions', 'POST' opts.transition)
+            options = this.buildRequestOptions(opts, '/transitions', 'POST', opts.transition)
         }
         this.jiraClient.makeRequest(options, callback, 'Issue Transitioned');
     };
