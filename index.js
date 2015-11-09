@@ -101,6 +101,7 @@ var workflowScheme = require('./api/workflowScheme');
  * @param {string} config.host The hostname of the Jira API.
  * @param {string} [config.protocol=https] The protocol used to accses the Jira API.
  * @param {number} [config.port=443] The port number used to connect to Jira.
+ * @param {string} [config.path_prefix="/"] The prefix to use in front of the path, if Jira isn't at "/"
  * @param {string} [config.version=2] The version of the Jira API to which you will be connecting.  Currently, only
  *     version 2 is supported.
  * @param config.auth The authentication information used tp connect to Jira. Must contain EITHER username and password
@@ -123,6 +124,7 @@ var JiraClient = module.exports = function (config) {
     }
     this.host = config.host;
     this.protocol = config.protocol ? config.protocol : 'https';
+    this.path_prefix = config.path_prefix ? config.path_prefix : '/';
     this.port = config.port;
     this.apiVersion = 2; // TODO Add support for other versions.
 
@@ -217,7 +219,7 @@ var JiraClient = module.exports = function (config) {
      * @returns {string} The constructed URL.
      */
     this.buildURL = function (path) {
-        var apiBasePath = 'rest/api/';
+        var apiBasePath = this.path_prefix + 'rest/api/';
         var version = this.apiVersion;
         var requestUrl = url.format({
             protocol: this.protocol,
