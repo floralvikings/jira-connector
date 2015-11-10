@@ -1,0 +1,10740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: IssueClient</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Class: IssueClient</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        IssueClient
+        </h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+    <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="IssueClient"><span class="type-signature"></span>new IssueClient<span class="signature">(jiraClient)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Used to access Jira REST endpoints in '/rest/api/2/issue'</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>jiraClient</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="JiraClient.html">JiraClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line8">line 8</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="addComment"><span class="type-signature"></span>addComment<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Add a comment to an issue</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+       issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>comment</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e482">https://docs.atlassian.com/jira/REST/latest/#d2e482</a></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line260">line 260</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="addWatcher"><span class="type-signature"></span>addWatcher<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Adds a user to an issue's watcher list.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+    issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>watcher</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The username of the user to add as a watcher.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called after the watcher is added.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line657">line 657</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="addWorkLog"><span class="type-signature"></span>addWorkLog<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Adds a new worklog entry to an issue.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+    issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>adjustEstimate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Allows you to provide specific instructions to update the remaining time
+    estimate of the issue. Valid values are</p>
+<pre class="prettyprint source"><code>* &quot;new&quot; - sets the estimate to a specific value
+* &quot;leave&quot;- leaves the estimate as is
+* &quot;manual&quot; - specify a specific amount to increase remaining estimate by
+* &quot;auto&quot;- Default option. Will automatically adjust the value based on the
+     new timeSpent specified on the worklog</code></pre></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>newEstimate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>(required when &quot;new&quot; is selected for adjustEstimate) the new value for the
+    remaining estimate field. e.g. &quot;2d&quot;</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>reduceBy</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>(required when &quot;manual&quot; is selected for adjustEstimate) the amount to reduce the
+    remaining estimate by e.g. &quot;2d&quot;</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>worklog</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>See {@link: https://docs.atlassian.com/jira/REST/latest/#d2e1106}</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called after the worklog is added.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line716">line 716</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="assignIssue"><span class="type-signature"></span>assignIssue<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Assigns an issue to a user. You can use this resource to assign issues when the user submitting the request has
+the assign permission but not the edit issue permission. If the name is &quot;-1&quot; automatic assignee is used. A null
+name will remove the assignee.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+       issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>assignee</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The name of the user to whom to assign the issue. -1 for default, null for no
+    assignee.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called when the issue has been assigned.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line217">line 217</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="bulkCreate"><span class="type-signature"></span>bulkCreate<span class="signature">(issues, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Creates issues or sub-tasks from a JSON representation.</p>
+<p>Creates many issues in one bulk operation.</p>
+<p>Creating a sub-task is similar to creating a regular issue. More details can be found in createIssue section:
+IssueResource#createIssue(IssueUpdateBean)}</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issues</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e828">https://docs.atlassian.com/jira/REST/latest/#d2e828</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called when the issues have been created.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line97">line 97</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="createIssue"><span class="type-signature"></span>createIssue<span class="signature">(issue, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Creates an issue or a sub-task from a JSON representation.</p>
+<p>The fields that can be set on create, in either the fields parameter or the update parameter can be determined
+using the /rest/api/2/issue/createmeta resource. If a field is not configured to appear on the create screen,
+then it will not be in the createmeta, and a field validation error will occur if it is submitted.</p>
+<p>Creating a sub-task is similar to creating a regular issue, with two important differences:</p>
+<ul>
+<li>the issueType field must correspond to a sub-task issue type (you can use /issue/createmeta to discover
+sub-task issue types), and</li>
+<li>you must provide a parent field in the issue create request containing the id or key of the parent issue.</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The issue data in the form of POST body to the JIRA API.
+See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e398">https://docs.atlassian.com/jira/REST/latest/#d2e398</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called when the issue has been created.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="createRemoteLink"><span class="type-signature"></span>createRemoteLink<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Creates (or updates) a remote issue link from a JSON representation. If a globalId is provided and a remote issue
+link exists with that globalId, the remote issue link is updated. Otherwise, the remote issue link is created.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+    issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>remoteLink</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e945">https://docs.atlassian.com/jira/REST/latest/#d2e945</a></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called when the remote links are retrieved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line408">line 408</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="deleteComment"><span class="type-signature"></span>deleteComment<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Delete an existing comment.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+       issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>commentId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the comment.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called when the comment is retrieved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line323">line 323</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="deleteIssue"><span class="type-signature"></span>deleteIssue<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Delete an issue. If the issue has subtasks you must set the parameter deleteSubtasks=true to delete the issue.
+You cannot delete an issue without its subtasks also being deleted.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+       issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>deleteSubTasks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>&quot;a String of true or false indicating that any subtasks should also
+       be deleted. If the issue has no subtasks this parameter is ignored. If the issue has subtasks and this
+       parameter is missing or false, then the issue will not be deleted and an error will be returned.&quot;</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line165">line 165</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="deleteRemoteLink"><span class="type-signature"></span>deleteRemoteLink<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Delete the remote issue link with the given global id on the issue.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+    issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>globalId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The global id of the remote issue link</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called when the remote links are retrieved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line445">line 445</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="deleteRemoteLinkById"><span class="type-signature"></span>deleteRemoteLinkById<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Get the remote issue link with the given id on the issue.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+    issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>linkId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the remote link</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called when the remote links are retrieved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line512">line 512</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="deleteWorkLog"><span class="type-signature"></span>deleteWorkLog<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Deletes an existing worklog entry</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+    issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>worklogId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the work log to delete.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>adjustEstimate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Allows you to provide specific instructions to update the remaining time
+    estimate of the issue. Valid values are</p>
+<pre class="prettyprint source"><code>* &quot;new&quot; - sets the estimate to a specific value
+* &quot;leave&quot;- leaves the estimate as is
+* &quot;manual&quot; - specify a specific amount to increase remaining estimate by
+* &quot;auto&quot;- Default option. Will automatically adjust the value based on the
+     new timeSpent specified on the worklog</code></pre></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>newEstimate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>(required when &quot;new&quot; is selected for adjustEstimate) the new value for the
+    remaining estimate field. e.g. &quot;2d&quot;</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>increaseBy</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>(required when &quot;manual&quot; is selected for adjustEstimate) the amount to reduce
+    the remaining estimate by e.g. &quot;2d&quot;</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called after the work log is deleted.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line809">line 809</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="editComment"><span class="type-signature"></span>editComment<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Updates an existing comment using its JSON representation.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+       issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>commentId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the comment.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>comment</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e539">https://docs.atlassian.com/jira/REST/latest/#d2e539</a></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line299">line 299</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="editIssue"><span class="type-signature"></span>editIssue<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Edits an issue from a JSON representation.</p>
+<p>The issue can either be updated by setting explicit the field value(s) or by using an operation to change the
+field value.</p>
+<p>The fields that can be updated, in either the fields parameter or the update parameter, can be determined using
+the <a href="IssueClient.html#getEditMetadata">IssueClient#getEditMetadata</a> method. If a field is not configured to appear on the edit
+screen, then it will not be in the editmeta, and a field validation error will occur if it is submitted.</p>
+<p>Specifying a &quot;field_id&quot;: field_value in the &quot;fields&quot; is a shorthand for a &quot;set&quot; operation in the &quot;update&quot;
+section. Field should appear either in &quot;fields&quot; or &quot;update&quot;, not in both.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+       issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e656">https://docs.atlassian.com/jira/REST/latest/#d2e656</a></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line186">line 186</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getComment"><span class="type-signature"></span>getComment<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Get a specific comment.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+       issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>commentId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the comment.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called when the comment is retrieved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line278">line 278</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getComments"><span class="type-signature"></span>getComments<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Get all the comments for an issue.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+       issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>expand</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e461">https://docs.atlassian.com/jira/REST/latest/#d2e461</a></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called when the issue has been assigned.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line242">line 242</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getCreateMetadata"><span class="type-signature"></span>getCreateMetadata<span class="signature">(opts<span class="signature-attributes">opt</span>, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Returns the meta data for creating issues. This includes the available projects, issue types and fields,
+including field types and whether or not those fields are required. Projects will not be returned if the user
+does not have permission to create issues in that project.</p>
+<p>The fields in the createmeta correspond to the fields in the create screen for the project/issuetype. Fields not
+in the screen will not be in the createmeta.</p>
+<p>Fields will only be returned if <code>expand=projects.issuetypes.fields.</code></p>
+<p>The results can be filtered by project and/or issue type, given by the query params.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The options for the API request.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>projectIds</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>combined with the projectKeys param, lists the projects with which to filter
+    the results. If absent, all projects are returned. This parameter can be specified multiple times, and/or be
+    a comma-separated list. Specifiying a project that does not exist (or that you cannot create issues in) is
+    not an error, but it will not be in the results.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>projectKeys</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>combined with the projectIds param, lists the projects with which to filter
+    the results. If null, all projects are returned. This parameter can be specified multiple times, and/or be a
+    comma-separated list. Specifiying a project that does not exist (or that you cannot create issues in) is not
+    an error, but it will not be in the results.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issuetypeIds</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>combinded with issuetypeNames, lists the issue types with which to filter
+    the results. If null, all issue types are returned. This parameter can be specified multiple times, and/or
+    be a comma-separated list. Specifiying an issue type that does not exist is not an error.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issuetypeNames</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>combinded with issuetypeIds, lists the issue types with which to filter
+    the results. If null, all issue types are returned. This parameter can be specified multiple times, but is
+    NOT interpreted as a comma-separated list. Specifiying an issue type that does not exist is not an error.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>expand</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>in order to get expanded field descriptions, specify 'projects.issuetypes.fields' here.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Called when the metadata has been retrieved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line47">line 47</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getEditMetadata"><span class="type-signature"></span>getEditMetadata<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Returns the meta data for editing an issue.</p>
+<p>The fields in the editmeta correspond to the fields in the edit screen for the issue. Fields not in the screen
+will not be in the editemeta.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+       issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called when the metadata is retrieved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line344">line 344</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getIssue"><span class="type-signature"></span>getIssue<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Returns a full representation of the issue for the given issue key.</p>
+<p>An issue JSON consists of the issue key, a collection of fields, a link to the workflow transition sub-resource,
+and (optionally) the HTML rendered values of any fields that support it (e.g. if wiki syntax is enabled for the
+description or comments).</p>
+<p>The fields param (which can be specified multiple times) gives a comma-separated list of fields to include in
+the response. This can be used to retrieve a subset of fields. A particular field can be excluded by prefixing
+it with a minus.</p>
+<p>By default, all (*all) fields are returned in this get-issue resource. Note: the default is different when doing
+a jql search -- the default there is just navigable fields (*navigable).</p>
+<ul>
+<li>*all - include all fields</li>
+<li>*navigable - include just navigable fields</li>
+<li>summary,comment - include just the summary and comments</li>
+<li>-comment - include everything except comments (the default is *all for get-issue)</li>
+<li>*all,-comment - include everything except comments</li>
+</ul>
+<p>JIRA will attempt to identify the issue by the issueIdOrKey path parameter. This can be an issue id, or an issue
+key. If the issue cannot be found via an exact match, JIRA will also look for the issue in a case-insensitive
+way, or by looking to see if the issue was moved. In either of these cases, the request will proceed as normal
+(a 302 or other redirect will not be returned). The issue key contained in the response will indicate the
+current value of issue's key.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+       issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fields</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e611">https://docs.atlassian.com/jira/REST/latest/#d2e611</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>expand</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e611">https://docs.atlassian.com/jira/REST/latest/#d2e611</a></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line122">line 122</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getProperties"><span class="type-signature"></span>getProperties<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Returns the keys of all properties for the issue identified by the key or by the id.  This function is maked as
+experimental in the Jira API docs, use at your own risk.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+    issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called when the properties are retrieved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line872">line 872</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getProperty"><span class="type-signature"></span>getProperty<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Removes the property from the issue identified by the key or by the id. Ths user removing the property is
+required to have permissions to edit the issue.</p>
+<p>This function is maked as experimental in the Jira API docs, use at your own risk.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+    issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>propertyKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The key of the property being set.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called when the property is deleted.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line939">line 939</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getProperty"><span class="type-signature"></span>getProperty<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Returns the value of the property with a given key from the issue identified by the key or by the id. The user
+who retrieves the property is required to have permissions to read the issue.</p>
+<p>This function is maked as experimental in the Jira API docs, use at your own risk.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+    issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>propertyKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The key of the property being set.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called when the property is retrieved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line916">line 916</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getRemoteLinkById"><span class="type-signature"></span>getRemoteLinkById<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Get the remote issue link with the given id on the issue.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+    issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>linkId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the remote link</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called when the remote links are retrieved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line467">line 467</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getRemoteLinks"><span class="type-signature"></span>getRemoteLinks<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Get a REST sub-resource representing the remote issue links on the issue.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+    issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>globalId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the remote issue link to be returned. If null (not provided) all remote
+    links for the issue are returned. For a full explanation of Issue Link fields please refer to
+    <a href="https://developer.atlassian.com/display/JIRADEV/Fields+in+Remote+Issue+Links">https://developer.atlassian.com/display/JIRADEV/Fields+in+Remote+Issue+Links</a></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called when the remote links are retrieved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line388">line 388</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getTransitions"><span class="type-signature"></span>getTransitions<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Get a list of the transitions possible for this issue by the current user, along with fields that are required
+and their types.</p>
+<p>Fields will only be returned if <code>expand=transitions.fields.</code></p>
+<p>The fields in the metadata correspond to the fields in the transition screen for that transition. Fields not in
+the screen will not be in the metadata.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+    issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>transitionId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If specified, will call back with only the transition with the specified id.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called when the transitions are retrieved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line534">line 534</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getVotes"><span class="type-signature"></span>getVotes<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Get a REST sub-resource representing the voters on the issue.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+    issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called after the votes are retrieved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line623">line 623</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getWatchers"><span class="type-signature"></span>getWatchers<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Returns the list of watchers for the issue with the given key.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+    issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called after the watchers are retrieved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line640">line 640</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getWorkLog"><span class="type-signature"></span>getWorkLog<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Gets a specific worklog.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+    issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>worklogId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the work log to retrieve.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called after the worklog is retrieved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line752">line 752</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getWorkLogs"><span class="type-signature"></span>getWorkLogs<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Gets all work logs for an issue.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+    issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called after the worklogs are retrieved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line699">line 699</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="removeWatcher"><span class="type-signature"></span>removeWatcher<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Adds a user to an issue's watcher list.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+    issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>watcher</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The username of the user to remove as a watcher.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called after the watcher is removed.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line678">line 678</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="sendEmailNotification"><span class="type-signature"></span>sendEmailNotification<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Sends a notification (email) to the list or recipients defined in the request.
+A couple of notes: this may call back with the error 'No recipients were defined for notification.' if all
+of the intended recipients have disabled notifications from Jira.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+       issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>notification</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e435">https://docs.atlassian.com/jira/REST/latest/#d2e435</a></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called when the metadata is retrieved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line364">line 364</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="setProperty"><span class="type-signature"></span>setProperty<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Sets the value of the specified issue's property. You can use this resource to store a custom data against the
+issue identified by the key or by the id. The user who stores the data is required to have permissions to edit
+the issue.</p>
+<p>This function is maked as experimental in the Jira API docs, use at your own risk.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+    issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>propertyKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The key of the property being set.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>propertyValue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The value of the property being set.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called when the property is set.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line889">line 889</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="transitionIssue"><span class="type-signature"></span>transitionIssue<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Perform a transition on an issue. When performing the transition you can udate or set other issue fields.</p>
+<p>The fields that can be set on transtion, in either the fields parameter or the update parameter can be
+determined using the<strong> /rest/api/2/issue/{issueIdOrKey}/transitions?expand=transitions.fields resource</strong>. If a
+field is not configured to appear on the transition screen, then it will not be in the transition metadata, and
+a field validation error will occur if it is submitted.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+    issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>transition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e698">https://docs.atlassian.com/jira/REST/latest/#d2e698</a></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called when the transitions are retrieved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line558">line 558</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="unvote"><span class="type-signature"></span>unvote<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Remove your vote from an issue. (i.e. &quot;unvote&quot;)</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+    issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called after the vote is removed.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line589">line 589</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="updateRemoteLink"><span class="type-signature"></span>updateRemoteLink<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Updates (or creates) a remote issue link from a JSON representation. If a globalId is provided and a remote issue
+link exists with that globalId, the remote issue link is updated. Otherwise, the remote issue link is created.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+    issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>remoteLink</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e945">https://docs.atlassian.com/jira/REST/latest/#d2e945</a></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called when the remote links are retrieved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line427">line 427</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="updateRemoteLinkById"><span class="type-signature"></span>updateRemoteLinkById<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Get the remote issue link with the given id on the issue.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+    issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>linkId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the remote link</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>remoteLink</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e1037">https://docs.atlassian.com/jira/REST/latest/#d2e1037</a></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called when the remote links are retrieved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line489">line 489</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="updateWorkLog"><span class="type-signature"></span>updateWorkLog<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Updates an existing worklog entry using its JSON representation.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+    issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>worklogId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the work log to retrieve.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>adjustEstimate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Allows you to provide specific instructions to update the remaining time
+    estimate of the issue. Valid values are</p>
+<pre class="prettyprint source"><code>* &quot;new&quot; - sets the estimate to a specific value
+* &quot;leave&quot;- leaves the estimate as is
+* &quot;auto&quot;- Default option. Will automatically adjust the value based on the
+     new timeSpent specified on the worklog</code></pre></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>newEstimate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>(required when &quot;new&quot; is selected for adjustEstimate) the new value for the
+    remaining estimate field. e.g. &quot;2d&quot;</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>worklog</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>See {@link: https://docs.atlassian.com/jira/REST/latest/#d2e1161}</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called after the worklog is updated.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line773">line 773</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="vote"><span class="type-signature"></span>vote<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Cast your vote in favour of an issue.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+    issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called after the vote is removed.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line606">line 606</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha13</a> on Tue Nov 10 2015 11:10:10 GMT-0600 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

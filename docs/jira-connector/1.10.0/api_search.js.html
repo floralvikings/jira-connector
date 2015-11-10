@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: api/search.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: api/search.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+
+module.exports = SearchClient;
+
+/**
+ * Used to access Jira REST endpoints in '/rest/api/2/search'
+ *
+ * @param {JiraClient} jiraClient
+ * @constructor SearchClient
+ */
+function SearchClient(jiraClient) {
+    this.jiraClient = jiraClient;
+
+    /**
+     * Searches for issues using JQL.
+     *
+     * Sorting the jql parameter is a full JQL expression, and includes an ORDER BY clause.
+     *
+     * The fields param (which can be specified multiple times) gives a comma-separated list of fields to include in
+     * the response. This can be used to retrieve a subset of fields. A particular field can be excluded by prefixing
+     * it with a minus.
+     *
+     * By default, only navigable (*navigable) fields are returned in this search resource. Note: the default is
+     * different in the get-issue resource -- the default there all fields (*all).
+     *
+     * * *all - include all fields
+     * * navigable - include just navigable fields
+     * * summary,comment - include just the summary and comments
+     * * -description - include navigable fields except the description (the default is *navigable for search)
+     * * *all,-comment - include everything except comments
+     *
+     * Expanding Issues in the Search Result: It is possible to expand the issues returned by directly specifying the
+     * expansion on the expand parameter passed in to this resources.
+     *
+     * For instance, to expand the "changelog" for all the issues on the search result, it is neccesary to specify
+     * "changelog" as one of the values to expand.
+     *
+     * @method search
+     * @memberOf SearchClient#
+     * @param opts The options for the search.
+     * @param {string} opts.jql The JQL query string
+     * @param {number} [opts.startAt] The index of the first issue to return (0-based)
+     * @param {number} [opts.maxResults] The maximum number of issues to return (defaults to 50). The maximum allowable
+     *     value is dictated by the JIRA property 'jira.search.views.default.max'. If you specify a value that is
+     *     higher than this number, your search results will be truncated.
+     * @param {boolean} [opts.validateQuery=true] Whether to validate the JQL query
+     * @param {array} [opts.fields] The list of fields to return for each issue. By default, all navigable fields are
+     *     returned.
+     * @param {array} [opts.expand] A list of the parameters to expand.
+     * @param callback Called with the search results.
+     */
+    this.search = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/search'),
+            method: 'POST',
+            json: true,
+            followAllRedirects: true,
+            body: {
+                jql: opts.jql,
+                startAt: opts.startAt,
+                maxResults: opts.maxResults,
+                validateQuery: opts.validateQuery,
+                fields: opts.fields,
+                expand: opts.expand
+            }
+        };
+
+
+        this.jiraClient.makeRequest(options, callback);
+    }
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha13</a> on Tue Nov 10 2015 11:10:10 GMT-0600 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
