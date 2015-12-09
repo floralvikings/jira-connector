@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: api/issueLink.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: api/issueLink.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+
+var errorStrings = require('./../lib/error');
+
+module.exports = IssueLinkClient;
+
+/**
+ * Used to access Jira REST endpoints in '/rest/api/2/issueLink'
+ * @param {JiraClient} jiraClient
+ * @constructor IssueLinkClient
+ */
+function IssueLinkClient(jiraClient) {
+    this.jiraClient = jiraClient;
+
+    /**
+     * Creates an issue link between two issues. The user requires the link issue permission for the issue which will
+     * be linked to another issue. The specified link type in the request is used to create the link and will create a
+     * link from the first issue to the second issue using the outward description. It also create a link from the
+     * second issue to the first issue using the inward description of the issue link type. It will add the supplied
+     * comment to the first issue. The comment can have a restriction who can view it. If group is specified, only
+     * users of this group can view this comment, if roleLevel is specified only users who have the specified role can
+     * view this comment. The user who creates the issue link needs to belong to the specified group or have the
+     * specified role.
+     *
+     * @memberOf IssueLinkClient#
+     * @method createIssueLink
+     * @param opts The options for the request sent to the Jira API
+     * @param opts.issueLink See {@link https://docs.atlassian.com/jira/REST/latest/#d2e5010}
+     * @param callback Called when the link has been created.
+     */
+    this.createIssueLink = function (opts, callback) {
+        if (!opts.issueLink) {
+            throw new Error(errorStrings.NO_ISSUE_LINK_ERROR);
+        }
+
+        var options = {
+            method: 'POST',
+            uri: this.jiraClient.buildURL('/issueLink'),
+            json: true,
+            followAllRedirects: true,
+            body: opts.issueLink
+        };
+
+        this.jiraClient.makeRequest(options, callback, 'Issue Link Created');
+    };
+
+    /**
+     * Gets an issue link with the specified id.
+     *
+     * @method getIssueLink
+     * @memberOf IssueLinkClient#
+     * @param opts The options used in the request to the Jira API
+     * @param opts.linkId The id of the link to retrieve.
+     * @param callback Called when the Issue Link has been retrieved.
+     */
+    this.getIssueLink = function (opts, callback) {
+        if (!opts.linkId) {
+            throw new Error(errorStrings.NO_ISSUE_LINK_ID_ERROR);
+        }
+
+        var options = {
+            method: 'GET',
+            uri: this.jiraClient.buildURL('/issueLink/' + opts.linkId),
+            json: true,
+            followAllRedirects: true
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
+     * Deletes an issue link with the specified id. To be able to delete an issue link you must be able to view both
+     * issues and must have the link issue permission for at least one of the issues.
+     *
+     * @method deleteIssueLink
+     * @memberOf IssueLinkClient#
+     * @param opts The options used in the request to the Jira API
+     * @param opts.linkId The id of the link to delete.
+     * @param callback Called when the Issue Link has been deleted.
+     */
+    this.deleteIssueLink = function (opts, callback) {
+        if (!opts.linkId) {
+            throw new Error(errorStrings.NO_ISSUE_LINK_ID_ERROR);
+        }
+
+        var options = {
+            method: 'DELETE',
+            uri: this.jiraClient.buildURL('/issueLink/' + opts.linkId),
+            json: true,
+            followAllRedirects: true
+        };
+
+        this.jiraClient.makeRequest(options, callback, 'Issue Link Deleted');
+    };
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha13</a> on Wed Dec 09 2015 13:39:38 GMT-0600 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
