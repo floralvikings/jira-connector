@@ -257,12 +257,12 @@ var JiraClient = module.exports = function (config) {
         }
         request(options, function (err, response, body) {
             if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body);
+                return callback(err ? err : body, null, response);
             }
 
             if (typeof body == 'string') body = JSON.parse(body);
 
-            return callback(null, successString ? successString : body);
+            return callback(null, successString ? successString : body, response);
         });
     };
 
