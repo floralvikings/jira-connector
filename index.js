@@ -50,6 +50,7 @@ var project = require('./api/project');
 var projectCategory = require('./api/projectCategory');
 var user = require('./api/user');
 var workflowScheme = require('./api/workflowScheme');
+var worklog = require('./api/worklog');
 
 /**
  * Represents a client for the Jira REST API
@@ -96,6 +97,7 @@ var workflowScheme = require('./api/workflowScheme');
  * @property {ProjectCategoryClient} projectCategory
  * @property {UserClient} user
  * @property {WorkflowSchemeClient} workflowScheme
+ * @property {WorklogClient} worklog
  *
  * @param config The information needed to access the Jira API
  * @param {string} config.host The hostname of the Jira API.
@@ -206,6 +208,7 @@ var JiraClient = module.exports = function (config) {
     this.projectCategory = new projectCategory(this);
     this.user = new user(this);
     this.workflowScheme = new workflowScheme(this);
+    this.worklog = new worklog(this);
 };
 
 (function () {
