@@ -3,7 +3,7 @@
 module.exports = WorklogClient;
 
 /**
- * Used to access Jira REST endpoints in '/rest/api/2/jql/worklog'
+ * Used to access Jira REST endpoints in '/rest/api/2/worklog'
  *
  * @param {JiraClient} jiraClient
  * @constructor WorkLogClient
