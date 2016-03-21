@@ -67,7 +67,7 @@ function VersionClient(jiraClient) {
     /**
      * Modify an existing version; any omitted fields will be ignored.
      *
-     * @method createVersion
+     * @method editVersion
      * @memberOf VersionClient#
      * @param {Object} opts The request options sent to Jira.
      * @param {string} opts.versionId The id of the version to edit.
