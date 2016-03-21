@@ -3,10 +3,10 @@
 module.exports = WorklogClient;
 
 /**
- * Used to access Jira REST endpoints in '/rest/api/2/jql/autocompletedata'
+ * Used to access Jira REST endpoints in '/rest/api/2/jql/worklog'
  *
  * @param {JiraClient} jiraClient
- * @constructor JqlClient
+ * @constructor WorkLogClient
  */
 function WorklogClient(jiraClient) {
     this.jiraClient = jiraClient;
