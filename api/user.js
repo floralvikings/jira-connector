@@ -22,6 +22,7 @@ function UserClient(jiraClient) {
      * @param opts The request options sent to the Jira API
      * @param opts.username The name of the user to retrieve.
      * @param opts.userKey The key of the user to retrieve.
+     * @param {Object} opts.expand The fields to be expanded.
      * @param callback Called when the user has been retrieved.
      */
     this.getUser = function (opts, callback) {
@@ -32,7 +33,8 @@ function UserClient(jiraClient) {
             followAllRedirects: true,
             qs: {
                 username: opts.username,
-                key: opts.userKey
+                key: opts.userKey,
+                expand: opts.expand
             }
         };
 
