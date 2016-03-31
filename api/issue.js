@@ -270,7 +270,12 @@ function IssueClient(jiraClient) {
      * @param callback
      */
     this.addComment = function (opts, callback) {
-        var options = this.buildRequestOptions(opts, '/comment', 'POST', {body: opts.comment});
+        var options;
+        if(opts.comment.body) {
+            options = this.buildRequestOptions(opts, '/comment', 'POST', opts.comment);
+        } else {
+            options = this.buildRequestOptions(opts, '/comment', 'POST', {body: opts.comment});
+        }
 
         this.jiraClient.makeRequest(options, callback);
     };
