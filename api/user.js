@@ -38,6 +38,13 @@ function UserClient(jiraClient) {
             }
         };
 
+        if (opts.expand) {
+            qs.expand = '';
+            opts.expand.forEach(function (ex) {
+                qs.expand += ex + ','
+            });
+        }
+
         this.jiraClient.makeRequest(options, callback);
     };
 
