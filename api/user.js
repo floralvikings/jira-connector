@@ -39,9 +39,9 @@ function UserClient(jiraClient) {
         };
 
         if (opts.expand) {
-            qs.expand = '';
+            options.qs.expand = '';
             opts.expand.forEach(function (ex) {
-                qs.expand += ex + ','
+                options.qs.expand += ex + ','
             });
         }
 
