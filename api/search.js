@@ -52,9 +52,11 @@ function SearchClient(jiraClient) {
     this.search = function (opts, callback) {
         var options = {
             uri: this.jiraClient.buildURL('/search'),
-            method: 'POST',
+            method: 'GET', // NB1. changed to GET to retrieve all properties when searching.
             json: true,
             followAllRedirects: true,
+            qs: opts //Added opts to be able to send in details to query
+            /* See #NB1
             body: {
                 jql: opts.jql,
                 startAt: opts.startAt,
@@ -62,9 +64,9 @@ function SearchClient(jiraClient) {
                 validateQuery: opts.validateQuery,
                 fields: opts.fields,
                 expand: opts.expand
-            }
+            }*/
         };
-
+        console.log2(options);
 
         this.jiraClient.makeRequest(options, callback);
     }
