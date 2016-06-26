@@ -50,23 +50,31 @@ function SearchClient(jiraClient) {
      * @param callback Called with the search results.
      */
     this.search = function (opts, callback) {
+        opts.method = opts.method || 'POST';
+
         var options = {
             uri: this.jiraClient.buildURL('/search'),
-            method: 'GET', // NB1. changed to GET to retrieve all properties when searching.
+            method: opts.method, 
             json: true,
             followAllRedirects: true,
-            qs: opts //Added opts to be able to send in details to query
-            /* See #NB1
-            body: {
-                jql: opts.jql,
-                startAt: opts.startAt,
-                maxResults: opts.maxResults,
-                validateQuery: opts.validateQuery,
-                fields: opts.fields,
-                expand: opts.expand
-            }*/
+
         };
-        console.log2(options);
+
+        var search_options = {
+            jql: opts.jql,
+            startAt: opts.startAt,
+            maxResults: opts.maxResults,
+            validateQuery: opts.validateQuery,
+            fields: opts.fields,
+            expand: opts.expand
+        };
+
+        if (opts.method === 'POST') {
+            options.body = search_options;
+        } else {
+            options.qs = search_options;
+        }
+
 
         this.jiraClient.makeRequest(options, callback);
     }
