@@ -30,6 +30,56 @@ function ProjectClient(jiraClient) {
     };
 
     /**
+     * Deletes a project 
+     *
+     * @method deleteProject
+     * @memberOf ProjectClient#
+     * @param opts The request options sent to the Jira API.
+     * @param opts.projectIdOrKey The project id or project key
+     * @param callback Called when the project has been deleted.
+     */
+    this.deleteProject = function(opts, callback) {
+        var options = this.buildRequestOptions(opts, '', 'DELETE');
+        this.jiraClient.makeRequest(options, callback, 'Project Deleted');
+    };
+
+    /**
+     * Creates a project.
+     *
+     * @method createProject
+     * @memberOf ProjectClient#
+     * @param project The project properties. See {@link https://docs.atlassian.com/jira/REST/latest/#api/2/project}
+     * @param callback Called when the project has been created.
+     */
+    this.createProject = function (project, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/project'),
+            method: 'POST',
+            followAllRedirects: true,
+            json: true,
+            body: project
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
+     * Gets project propertes.
+     *
+     * @method getProjectProperties
+     * @memberOf ProjectClient#
+     * @param opts.projectIdOrKey The project id or project key
+     * @param callback Called when properties has been retrieved.
+     */
+    this.getProjectProperties = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/properties', 'GET');
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+
+
+
+    /**
      * Contains a full representation of a project in JSON format.
      *
      * All project keys associated with the project will only be returned if expand=projectKeys.
