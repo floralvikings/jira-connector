@@ -14,6 +14,7 @@ var applicationProperties = require('./api/application-properties');
 var attachment = require('./api/attachment');
 var auditing = require('./api/auditing');
 var avatar = require('./api/avatar');
+var board = require('./api/board');
 var comment = require('./api/comment');
 var issueLink = require('./api/issueLink');
 var issueLinkType = require('./api/issueLinkType');
@@ -129,6 +130,7 @@ var JiraClient = module.exports = function (config) {
     this.path_prefix = config.path_prefix ? config.path_prefix : '/';
     this.port = config.port;
     this.apiVersion = 2; // TODO Add support for other versions.
+    this.agileApiVersion = '1.0';
 
     if (config.oauth) {
         if (!config.oauth.consumer_key) {
@@ -172,6 +174,7 @@ var JiraClient = module.exports = function (config) {
     this.attachment = new attachment(this);
     this.auditing = new auditing(this);
     this.avatar = new avatar(this);
+    this.board = new board(this);
     this.comment = new comment(this);
     this.issueLink = new issueLink(this);
     this.issueLinkType = new issueLinkType(this);
@@ -224,6 +227,27 @@ var JiraClient = module.exports = function (config) {
     this.buildURL = function (path) {
         var apiBasePath = this.path_prefix + 'rest/api/';
         var version = this.apiVersion;
+        var requestUrl = url.format({
+            protocol: this.protocol,
+            hostname: this.host,
+            port: this.port,
+            pathname: apiBasePath + version + path
+        });
+
+        return decodeURIComponent(requestUrl);
+    };
+
+    /**
+     * Simple utility to build a REST endpoint URL for the Jira Agile API.
+     *
+     * @method buildAgileURL
+     * @memberOf JiraClient#
+     * @param path The path of the URL without concern for the root of the REST API.
+     * @returns {string} The constructed URL.
+     */
+    this.buildAgileURL = function (path) {
+        var apiBasePath = this.path_prefix + 'rest/agile/';
+        var version = this.agileApiVersion;
         var requestUrl = url.format({
             protocol: this.protocol,
             hostname: this.host,

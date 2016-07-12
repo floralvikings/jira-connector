@@ -264,6 +264,10 @@ is still valid!
   * getAvatars
   * createTemporaryAvatar
   * cropTemporaryAvatar
+* board (/rest/agile/1.0/board)
+  * getAllBoards
+  * getBoard
+  * getIssuesForBoard
 * comment (/rest/api/2/comment)
   * getCommentPropertyKeys
   * setCommentProperty
