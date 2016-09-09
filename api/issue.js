@@ -209,7 +209,7 @@ function IssueClient(jiraClient) {
         if (!opts.issue) {
             throw new Error(errorStrings.NO_ISSUE_ERROR);
         }
-        var options = this.buildRequestOptions(opts, '', 'PUT', opts.issue);
+        var options = this.buildRequestOptions(opts, '', 'PUT', opts.issue, opts.qs);
 
         this.jiraClient.makeRequest(options, callback, 'Issue Updated');
     };
