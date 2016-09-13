@@ -50,6 +50,7 @@ var version = require('./api/version');
 var project = require('./api/project');
 var projectCategory = require('./api/projectCategory');
 var user = require('./api/user');
+var webhook = require('./api/webhook');
 var workflowScheme = require('./api/workflowScheme');
 var worklog = require('./api/worklog');
 
@@ -97,6 +98,7 @@ var worklog = require('./api/worklog');
  * @property {ProjectClient} project
  * @property {ProjectCategoryClient} projectCategory
  * @property {UserClient} user
+ * @property {WebhookClient} webhook
  * @property {WorkflowSchemeClient} workflowScheme
  * @property {WorklogClient} worklog
  *
@@ -131,6 +133,7 @@ var JiraClient = module.exports = function (config) {
     this.port = config.port;
     this.apiVersion = 2; // TODO Add support for other versions.
     this.agileApiVersion = '1.0';
+    this.webhookApiVersion = '1.0';
 
     if (config.oauth) {
         if (!config.oauth.consumer_key) {
@@ -210,6 +213,7 @@ var JiraClient = module.exports = function (config) {
     this.project = new project(this);
     this.projectCategory = new projectCategory(this);
     this.user = new user(this);
+    this.webhook = new webhook(this);
     this.workflowScheme = new workflowScheme(this);
     this.worklog = new worklog(this);
 };
@@ -248,6 +252,27 @@ var JiraClient = module.exports = function (config) {
     this.buildAgileURL = function (path) {
         var apiBasePath = this.path_prefix + 'rest/agile/';
         var version = this.agileApiVersion;
+        var requestUrl = url.format({
+            protocol: this.protocol,
+            hostname: this.host,
+            port: this.port,
+            pathname: apiBasePath + version + path
+        });
+
+        return decodeURIComponent(requestUrl);
+    };
+
+    /**
+     * Simple utility to build a REST endpoint URL for the Jira webhook API.
+     *
+     * @method buildWebhookURL
+     * @memberOf JiraClient#
+     * @param path The path of the URL without concern for the root of the REST API.
+     * @returns {string} The constructed URL.
+     */
+    this.buildWebhookURL = function (path) {
+        var apiBasePath = this.path_prefix + 'rest/webhook/';
+        var version = this.webhookApiVersion;
         var requestUrl = url.format({
             protocol: this.protocol,
             hostname: this.host,
