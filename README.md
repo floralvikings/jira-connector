@@ -463,6 +463,11 @@ is still valid!
   * deleteVersion
   * deleteAllRemoteLinks
   * getGlobalRemoteLink
+* webhook (/rest/webhooks/1.0/webhook)
+  * getAllWebhooks
+  * getWebhook
+  * createWebhook
+  * deleteWebhook
 * workflow (/rest/api/2/workflow)
   * getWorkflows
 * workflowScheme (/rest/api/2/workflowscheme)
