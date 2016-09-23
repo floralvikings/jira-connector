@@ -271,7 +271,7 @@ var JiraClient = module.exports = function (config) {
      * @returns {string} The constructed URL.
      */
     this.buildWebhookURL = function (path) {
-        var apiBasePath = this.path_prefix + 'rest/webhook/';
+        var apiBasePath = this.path_prefix + 'rest/webhooks/';
         var version = this.webhookApiVersion;
         var requestUrl = url.format({
             protocol: this.protocol,
