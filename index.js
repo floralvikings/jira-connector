@@ -46,6 +46,7 @@ var group = require('./api/group');
 var workflow = require('./api/workflow');
 var filter = require('./api/filter');
 var screens = require('./api/screens');
+var sprint = require('./api/sprint');
 var version = require('./api/version');
 var project = require('./api/project');
 var projectCategory = require('./api/projectCategory');
@@ -209,6 +210,7 @@ var JiraClient = module.exports = function (config) {
     this.workflow = new workflow(this);
     this.filter = new filter(this);
     this.screens = new screens(this);
+    this.sprint = new sprint(this);
     this.version = new version(this);
     this.project = new project(this);
     this.projectCategory = new projectCategory(this);
