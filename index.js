@@ -59,47 +59,50 @@ var worklog = require('./api/worklog');
  * Represents a client for the Jira REST API
  *
  * @constructor JiraClient
- * @property {IssueClient} issue
+ * @property {AgileBoardClient} board
+ * @property {AgileSprintClient} sprint
+ *
  * @property {ApplicationPropertiesClient} applicationProperties
  * @property {AttachmentClient} attachment
  * @property {AuditingClient} auditing
  * @property {AvatarClient} avatar
  * @property {CommentClient} comment
- * @property {IssueLinkClient} issueLink
- * @property {IssueLinkTypeClient} issueLinkType
- * @property {GroupsClient} groups
- * @property {GroupUserPickerClient} groupUserPicker
+ * @property {ComponentClient} component
  * @property {CustomFieldOptionClient} customFieldOption
- * @property {JqlClient} jql
- * @property {LicenseValidatorClient} licenseValidator
- * @property {MyPermissionsClient} myPermissions
- * @property {ProjectValidateClient} projectValidate
- * @property {SecurityLevelClient} securityLevel
- * @property {ServerInfoClient} serverInfo
  * @property {DashboardClient} dashboard
  * @property {FieldClient} field
+ * @property {FilterClient} filter
+ * @property {GroupClient} group
+ * @property {GroupUserPickerClient} groupUserPicker
+ * @property {GroupsClient} groups
+ * @property {IssueClient} issue
+ * @property {IssueLinkClient} issueLink
+ * @property {IssueLinkTypeClient} issueLinkType
  * @property {IssueTypeClient} issueType
- * @property {PriorityClient} priority
- * @property {ReindexClient} reindex
- * @property {ResolutionClient} resolution
- * @property {SearchClient} search
- * @property {StatusClient} status
- * @property {StatusCategoryClient} statusCategory
+ * @property {JqlClient} jql
  * @property {LicenseRoleClient} licenseRole
+ * @property {LicenseValidatorClient} licenseValidator
+ * @property {MyPermissionsClient} myPermissions
  * @property {MyPreferencesClient} myPreferences
  * @property {MyselfClient} myself
  * @property {PasswordClient} password
- * @property {SettingsClient} settings
- * @property {ComponentClient} component
- * @property {GroupClient} group
- * @property {WorkflowClient} workflow
- * @property {FilterClient} filter
- * @property {ScreensClient} screens
- * @property {VersionClient} version
- * @property {ProjectClient} project
+ * @property {PriorityClient} priority
  * @property {ProjectCategoryClient} projectCategory
+ * @property {ProjectClient} project
+ * @property {ProjectValidateClient} projectValidate
+ * @property {ReindexClient} reindex
+ * @property {ResolutionClient} resolution
+ * @property {ScreensClient} screens
+ * @property {SearchClient} search
+ * @property {SecurityLevelClient} securityLevel
+ * @property {ServerInfoClient} serverInfo
+ * @property {SettingsClient} settings
+ * @property {StatusCategoryClient} statusCategory
+ * @property {StatusClient} status
  * @property {UserClient} user
+ * @property {VersionClient} version
  * @property {WebhookClient} webhook
+ * @property {WorkflowClient} workflow
  * @property {WorkflowSchemeClient} workflowScheme
  * @property {WorklogClient} worklog
  *
