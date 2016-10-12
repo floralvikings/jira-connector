@@ -425,6 +425,15 @@ is still valid!
 * settings (/rest/api/2/settings)
   * setBaseUrl
   * getIssueNavColumns
+* sprint (/rest/agile/1.0/sprint)
+  * createSprint
+  * getSprint
+  * updateSprint
+  * partiallyUpdateSprint
+  * deleteSprint
+  * getSprintIssues
+  * moveSprintIssues
+  * swapSprint
 * status (/rest/api/2/status)
   * getAllStatuses
   * getStatus
