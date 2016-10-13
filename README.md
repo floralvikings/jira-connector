@@ -310,7 +310,7 @@ is still valid!
   * findUsersAndGroups
 * issue (/rest/api/2/issue)
   * createIssue
-  * getCreateMetaData
+  * getCreateMetadata
   * bulkCreate
   * getIssue
   * deleteIssue
