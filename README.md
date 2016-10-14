@@ -308,7 +308,11 @@ is still valid!
   * findGroups
 * groupUserPicker (/rest/api/2/groupuserpicker)
   * findUsersAndGroups
-* issue (/rest/api/2/issue)
+* issue (/rest/api/2/issue and /rest/agile/1.0/issue)
+  * getIssue (agile api, set `opts.agile: true`)
+  * getIssueEstimation (agile api)
+  * setIssueEstimation (agile api)
+  * setIssueRanks (agile api)
   * createIssue
   * getCreateMetadata
   * bulkCreate
