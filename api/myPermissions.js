@@ -33,7 +33,8 @@ function MyPermissionsClient(jiraClient) {
      * @method getMyPermissions
      * @memberOf MyPermissionsClient#
      * @param opts The request options sent to the Jira API
-     * @param callback Called when the permissions have been returned.
+     * @param [callback] Called when the permissions have been returned.
+     * @return {Promise} Resolved when the permissions have been returned.
      */
     this.getMyPermissions = function (opts, callback) {
         var options = {
@@ -43,6 +44,6 @@ function MyPermissionsClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     }
 }

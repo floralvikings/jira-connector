@@ -18,7 +18,8 @@ function SecurityLevelClient(jiraClient) {
      * @memberOf SecurityLevelClient#
      * @param opts The request options to send to the Jira API.
      * @param opts.securityLevelId The id of the security level to retrieve
-     * @param callback Called when the security level has been retrieved.
+     * @param [callback] Called when the security level has been retrieved.
+     * @return {Promise} Resolved when the security level has been retrieved.
      */
     this.getSecurityLevel = function (opts, callback) {
         var options = {
@@ -28,6 +29,6 @@ function SecurityLevelClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     }
 }

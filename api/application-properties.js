@@ -20,7 +20,8 @@ function ApplicationPropertiesClient(jiraClient) {
      * @param [opts.keyFilter] When fetching a list allows the list to be filtered by the property's start of key e.g.
      *     "jira.lf.*" whould fetch only those permissions that are editable and whose keys start with "jira.lf.". This
      *     is a regex
-     * @param callback Called when the properties are retrieved.
+     * @param [callback] Called when the properties are retrieved.
+     * @return {Promise} Resolved when the properties are retrieved.
      */
     this.getProperties = function (opts, callback) {
         var qs = {};
@@ -43,7 +44,7 @@ function ApplicationPropertiesClient(jiraClient) {
             qs: qs
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -55,7 +56,8 @@ function ApplicationPropertiesClient(jiraClient) {
      * @param opts.id The id of the property to be modified
      * @param opts.property The new data for the property.  See
      *     {@link https://docs.atlassian.com/jira/REST/latest/#d2e4891}
-     * @param callback Called when the property has been modified
+     * @param [callback] Called when the property has been modified
+     * @return {Promise} Resolved when the property has been modified
      */
     this.setProperty = function (opts, callback) {
         var options = {
@@ -65,6 +67,6 @@ function ApplicationPropertiesClient(jiraClient) {
             body: opts.property
         };
 
-        this.jiraClient.makeRequest(options, callback, 'Property Updated');
+        return this.jiraClient.makeRequest(options, callback, 'Property Updated');
     };
 }
