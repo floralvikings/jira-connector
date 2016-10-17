@@ -71,11 +71,13 @@ function IssueClient(jiraClient) {
             json: true,
             followAllRedirects: true,
             body: {
-                boardId: opts.boardId,
                 value: opts.value,
                 filter: opts.filter,
                 startAt: opts.startAt,
                 maxResults: opts.maxResults
+            },
+            qs: {
+              boardId: opts.boardId
             }
         };
 
