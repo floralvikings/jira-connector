@@ -17,7 +17,8 @@ function ProjectCategoryClient(jiraClient) {
      * @method getAllProjectCategories
      * @memberOf ProjectCategoryClient#
      * @param opts Ignored
-     * @param callback Called when the statusCategories have been retrieved.
+     * @param [callback] Called when the statusCategories have been retrieved.
+     * @return {Promise} Resolved when the statusCategories have been retrieved.
      */
     this.getAllProjectCategories = function (opts, callback) {
         var options = {
@@ -27,7 +28,7 @@ function ProjectCategoryClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -37,7 +38,8 @@ function ProjectCategoryClient(jiraClient) {
      * @memberOf ProjectCategoryClient#
      * @param opts The options sent to the Jira API
      * @param opts.projectCategoryId A String containing a projectCategory id
-     * @param callback Called when the projectCategory has been retrieved.
+     * @param [callback] Called when the projectCategory has been retrieved.
+     * @return {Promise} Resolved when the projectCategory has been retrieved.
      */
     this.getProjectCategory = function (opts, callback) {
         var options = {
@@ -47,6 +49,6 @@ function ProjectCategoryClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 }

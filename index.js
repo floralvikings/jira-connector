@@ -294,8 +294,9 @@ var JiraClient = module.exports = function (config) {
      * @method makeRequest
      * @memberOf JiraClient#
      * @param options The request options.
-     * @param callback Called with the APIs response.
+     * @param [callback] Called with the APIs response.
      * @param {string} [successString] If supplied, this is reported instead of the response body.
+     * @return {Promise} Resolved with APIs response or rejected with error
      */
     this.makeRequest = function (options, callback, successString) {
         if (this.oauthConfig) {
@@ -312,10 +313,12 @@ var JiraClient = module.exports = function (config) {
         if (this.cookie_jar) {
             options.jar = this.cookie_jar;
         }
-        request(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body, null, response);
-            }
+
+        if (callback) {
+            request(options, function (err, response, body) {
+                if (err || response.statusCode.toString()[0] != 2) {
+                    return callback(err ? err : body, null, response);
+                }
 
             if (typeof body == 'string') {
                 try {
@@ -325,8 +328,29 @@ var JiraClient = module.exports = function (config) {
                 }
             }
 
-            return callback(null, successString ? successString : body, response);
-        });
+                return callback(null, successString ? successString : body, response);
+            });
+        } else  {
+            return new Promise(function (resolve, reject) {
+                request(options, function (err, response, body) {
+                    if (err || response.statusCode.toString()[0] != 2) {
+                        reject(err || new Error(body));
+                        return;
+                    }
+
+                    if (successString) {
+                        resolve(successString)
+                    } else {
+                        if (typeof body == 'string') {
+                            body = JSON.parse(body);
+                        }
+
+                        resolve(body);
+                    }
+                });
+            });
+        }
+
     };
 
 }).call(JiraClient.prototype);

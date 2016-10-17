@@ -23,7 +23,8 @@ function ReindexClient(jiraClient) {
      *     foreground reindex, where comments are always reindexed.
      * @param {boolean} [opts.indexChangeHistory=false] Indicates that changeHistory should also be reindexed. Not
      *     relevant for foreground reindex, where changeHistory is always reindexed.
-     * @param callback Called when the reindex has been started.
+     * @param [callback] Called when the reindex has been started.
+     * @return {Promise} Resolved when the reindex has been started.
      */
     this.doReindex = function (opts, callback) {
         var options = {
@@ -38,7 +39,7 @@ function ReindexClient(jiraClient) {
             }
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -52,7 +53,8 @@ function ReindexClient(jiraClient) {
      * @param [opts.taskId] The id of an indexing task you wish to obtain details on. If omitted, then defaults to the
      *     standard behaviour and returns information on the active reindex task, or the last task to run if no reindex
      *     is taking place. . If there is no reindexing task with that id then a 404 is returned.
-     * @param callback Called when the reindex data has been retrieved.
+     * @param [callback] Called when the reindex data has been retrieved.
+     * @return {Promise} Resolved when the reindex data has been retrieved.
      */
     this.getReindex = function (opts, callback) {
         var options = {
@@ -65,6 +67,6 @@ function ReindexClient(jiraClient) {
             }
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     }
 }

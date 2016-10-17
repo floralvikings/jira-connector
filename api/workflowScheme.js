@@ -18,7 +18,8 @@ function WorkflowSchemeClient(jiraClient) {
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.workflowScheme See {@link https://docs.atlassian.com/jira/REST/latest/#d2e2196}
-     * @param callback Called when the workflow scheme has been created.
+     * @param [callback] Called when the workflow scheme has been created.
+     * @return {Promise} Resolved when the workflow scheme has been created.
      */
     this.createWorkflowScheme = function (opts, callback) {
         var options = {
@@ -28,7 +29,7 @@ function WorkflowSchemeClient(jiraClient) {
             followAllRedirects: true,
             body: opts.workflowScheme
         };
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -43,11 +44,12 @@ function WorkflowSchemeClient(jiraClient) {
      * @param opts The request options sent to the Jira API.
      * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param opts.workflowScheme See {@link https://docs.atlassian.com/jira/REST/latest/#d2e2305}
-     * @param callback Called when the workflow scheme has been edited.
+     * @param [callback] Called when the workflow scheme has been edited.
+     * @return {Promise} Resolved when the workflow scheme has been edited.
      */
     this.editWorkflowScheme = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '', 'PUT', opts.workflowScheme);
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -59,11 +61,12 @@ function WorkflowSchemeClient(jiraClient) {
      * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param [opts.returnDraftIfExists=false] when true indicates that a scheme's draft, if it exists, should be
      *     queried instead of the scheme itself.
-     * @param callback Called when the workflow scheme has been retrieved.
+     * @param [callback] Called when the workflow scheme has been retrieved.
+     * @return {Promise} Resolved when the workflow scheme has been retrieved.
      */
     this.getWorkflowScheme = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '', 'GET', null, {returnDraftIfExists: opts.returnDraftIfExists});
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -73,11 +76,12 @@ function WorkflowSchemeClient(jiraClient) {
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.workflowSchemeId The id of the workflow scheme.
-     * @param callback Called when the workflow scheme has been deleted.
+     * @param [callback] Called when the workflow scheme has been deleted.
+     * @return {Promise} Resolved when the workflow scheme has been deleted.
      */
     this.deleteWorkflowScheme = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '', 'DELETE');
-        this.jiraClient.makeRequest(options, callback, 'Workflow Scheme Deleted');
+        return this.jiraClient.makeRequest(options, callback, 'Workflow Scheme Deleted');
     };
 
     /**
@@ -87,11 +91,12 @@ function WorkflowSchemeClient(jiraClient) {
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.workflowSchemeId The id of the workflow scheme.
-     * @param callback Called when the draft has been created.
+     * @param [callback] Called when the draft has been created.
+     * @return {Promise} Resolved when the draft has been created.
      */
     this.createDraft = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/createdraft', 'POST');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -103,11 +108,12 @@ function WorkflowSchemeClient(jiraClient) {
      * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param opts.returnDraftIfExists when true indicates that a scheme's draft, if it exists, should be queried
      *     instead of the scheme itself.
-     * @param callback Called when the default workflow is returned.
+     * @param [callback] Called when the default workflow is returned.
+     * @return {Promise} Resolved when the default workflow is returned.
      */
     this.getDefaultWorkflow = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/default', 'GET', null, {returnDraftIfExists: opts.returnDraftIfExists});
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -119,11 +125,12 @@ function WorkflowSchemeClient(jiraClient) {
      * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param opts.updateDraftIfNeeded when true will create and return a draft when the workflow scheme cannot be
      *     edited (e.g. when it is being used by a project).
-     * @param callback Called when the defaul workflow has been removed.
+     * @param [callback] Called when the defaul workflow has been removed.
+     * @return {Promise} Resolved when the defaul workflow has been removed.
      */
     this.removeDefaultWorkflow = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/default', 'DELETE', null, {updateDraftIfNeeded: opts.updateDraftIfNeeded});
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -136,14 +143,15 @@ function WorkflowSchemeClient(jiraClient) {
      * @param opts.workflowName The name of the new deafault workflow
      * @param opts.updateDraftIfNeeded when true will create and return a draft when the workflow scheme cannot be
      *     edited (e.g. when it is being used by a project).
-     * @param callback Called when the default workflow has been updated.
+     * @param [callback] Called when the default workflow has been updated.
+     * @return {Promise} Resolved when the default workflow has been updated.
      */
     this.setDefaultWorkflow = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/default', 'PUT', {
             workflow: opts.workflowName,
             updateDraftIfNeeded: opts.updateDraftIfNeeded
         });
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -153,11 +161,12 @@ function WorkflowSchemeClient(jiraClient) {
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.workflowSchemeId The id of the workflow scheme.
-     * @param callback Called when the draft has been retrieved.
+     * @param [callback] Called when the draft has been retrieved.
+     * @return {Promise} Resolved when the draft has been retrieved.
      */
     this.getDraft = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/draft', 'GET');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -169,11 +178,12 @@ function WorkflowSchemeClient(jiraClient) {
      * @param opts The request options sent to the Jira API.
      * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param opts.draft See {@link https://docs.atlassian.com/jira/REST/latest/#d2e2575}
-     * @param callback Called when the draft has been edited.
+     * @param [callback] Called when the draft has been edited.
+     * @return {Promise} Resolved when the draft has been edited.
      */
     this.editDraft = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/draft', 'PUT', opts.draft);
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -183,11 +193,12 @@ function WorkflowSchemeClient(jiraClient) {
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.workflowSchemeId The id of the workflow scheme.
-     * @param callback Called when the draft has been deleted.
+     * @param [callback] Called when the draft has been deleted.
+     * @return {Promise} Resolved when the draft has been deleted.
      */
     this.deleteDraft = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/draft', 'DELETE');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -197,11 +208,12 @@ function WorkflowSchemeClient(jiraClient) {
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.workflowSchemeId The id of the workflow scheme.
-     * @param callback Called when the default workflow is returned.
+     * @param [callback] Called when the default workflow is returned.
+     * @return {Promise} Resolved when the default workflow is returned.
      */
     this.getDraftDefaultWorkflow = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/draft/default', 'GET');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -212,14 +224,15 @@ function WorkflowSchemeClient(jiraClient) {
      * @param opts The request options sent to the Jira API.
      * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param opts.workflowName The name of the new default workflow
-     * @param callback Called when the default workflow has been updated.
+     * @param [callback] Called when the default workflow has been updated.
+     * @return {Promise} Resolved when the default workflow has been updated.
      */
     this.setDraftDefaultWorkflow = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/draft/default', 'PUT', {
             workflow: opts.workflowName,
             updateDraftIfNeeded: opts.updateDraftIfNeeded
         });
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -229,11 +242,12 @@ function WorkflowSchemeClient(jiraClient) {
      * @memberOf WorkflowSchemeClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.workflowSchemeId The id of the workflow scheme.
-     * @param callback Called when the defaul workflow has been removed.
+     * @param [callback] Called when the defaul workflow has been removed.
+     * @return {Promise} Resolved when the defaul workflow has been removed.
      */
     this.removeDraftDefaultWorkflow = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/draft/default', 'DELETE');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -246,12 +260,13 @@ function WorkflowSchemeClient(jiraClient) {
      * @param opts.issueType The issue type
      * @param opts.returnDraftIfExists when true indicates that a scheme's draft, if it exists, should be queried
      *     instead of the scheme itself.
-     * @param callback Called when the issue type has been retrieved.
+     * @param [callback] Called when the issue type has been retrieved.
+     * @return {Promise} Resolved when the issue type has been retrieved.
      */
     this.getIssueType = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/issuetype/' + opts.issueType, 'GET', null,
             {returnDraftIfExists: opts.returnDraftIfExists});
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -266,14 +281,15 @@ function WorkflowSchemeClient(jiraClient) {
      * @param opts.workflow The new workflow
      * @param opts.updateDraftIfNeeded when true will create and return a draft when the workflow scheme cannot be
      *     edited (e.g. when it is being used by a project).
-     * @param callback Called when the issue type has been edited
+     * @param [callback] Called when the issue type has been edited
+     * @return {Promise} Resolved when the issue type has been edited
      */
     this.editIssueType = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/issuetype/' + opts.issueType, 'PUT', {
             workflow: opts.workflow,
             updateDraftIfNeeded: opts.updateDraftIfNeeded
         });
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -284,13 +300,14 @@ function WorkflowSchemeClient(jiraClient) {
      * @param opts The request options sent to the Jira API
      * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param opts.issueType The issue type
-     * @param callback Called when the issue type mapping has been removed.
+     * @param [callback] Called when the issue type mapping has been removed.
+     * @return {Promise} Resolved when the issue type mapping has been removed.
      */
     this.removeIssueType = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/issuetype/' + opts.issueType, 'DELETE', null, {
             updateDraftIfNeeded: opts.updateDraftIfNeeded
         });
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -301,11 +318,12 @@ function WorkflowSchemeClient(jiraClient) {
      * @param opts The request options sent to the Jira API.
      * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param opts.issueType The issue type
-     * @param callback Called when the issue type has been retrieved.
+     * @param [callback] Called when the issue type has been retrieved.
+     * @return {Promise} Resolved when the issue type has been retrieved.
      */
     this.getDraftIssueType = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/draft/issuetype/' + opts.issueType, 'GET');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -317,11 +335,12 @@ function WorkflowSchemeClient(jiraClient) {
      * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param opts.issueType The issue type
      * @param opts.workflow The new workflow
-     * @param callback Called when the issue type has been edited
+     * @param [callback] Called when the issue type has been edited
+     * @return {Promise} Resolved when the issue type has been edited
      */
     this.editDraftIssueType = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/draft/issuetype/' + opts.issueType, 'PUT', {workflow: opts.workflow});
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -332,11 +351,12 @@ function WorkflowSchemeClient(jiraClient) {
      * @param opts The request options sent to the Jira API
      * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param opts.issueType The issue type
-     * @param callback Called when the issue type mapping has been removed.
+     * @param [callback] Called when the issue type mapping has been removed.
+     * @return {Promise} Resolved when the issue type mapping has been removed.
      */
     this.removeDraftIssueType = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/draft/issuetype/' + opts.issueType, 'DELETE');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -347,13 +367,14 @@ function WorkflowSchemeClient(jiraClient) {
      * @param opts The request options sent to the Jira API
      * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param opts.workflowName The name of the workflow.
-     * @param callback Called when the workflow has been retrieved.
+     * @param [callback] Called when the workflow has been retrieved.
+     * @return {Promise} Resolved when the workflow has been retrieved.
      */
     this.getWorkflow = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/workflow', 'GET', null, {
             workflowName: opts.workflowName
         });
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -364,13 +385,14 @@ function WorkflowSchemeClient(jiraClient) {
      * @param opts The request options sent to the Jira API
      * @param opts.workflowSchemeId The id of the workflow scheme.
      * @param opts.workflowName The name of the workflow.
-     * @param callback Called when the workflow has been retrieved.
+     * @param [callback] Called when the workflow has been retrieved.
+     * @return {Promise} Resolved when the workflow has been retrieved.
      */
     this.getDraftWorkflow = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/draft/workflow', 'GET', null, {
             workflowName: opts.workflowName
         });
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -384,14 +406,15 @@ function WorkflowSchemeClient(jiraClient) {
      * @param {string} opts.workflowName The name of the workflow.
      * @param {Array} opts.issueTypes The new issue types to inclue in the workflow.
      *      See {@link https://docs.atlassian.com/jira/REST/latest/#d2e2509}
-     * @param callback Called when the workflow has been edited.
+     * @param [callback] Called when the workflow has been edited.
+     * @return {Promise} Resolved when the workflow has been edited.
      */
     this.editWorkflow = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/workflow', 'PUT', {
             workflow: opts.workflowName,
             issueTypes: opts.issueTypes
         }, {workflowName: opts.workflowName});
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -405,14 +428,15 @@ function WorkflowSchemeClient(jiraClient) {
      * @param {string} opts.workflowName The name of the workflow.
      * @param {Array} opts.issueTypes The new issue types to inclue in the workflow.
      *      See {@link https://docs.atlassian.com/jira/REST/latest/#d2e2670 }
-     * @param callback Called when the workflow has been edited.
+     * @param [callback] Called when the workflow has been edited.
+     * @return {Promise} Resolved when the workflow has been edited.
      */
     this.editDraftWorkflow = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/draft/workflow', 'PUT', {
             workflow: opts.workflowName,
             issueTypes: opts.issueTypes
         }, {workflowName: opts.workflowName});
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -423,11 +447,12 @@ function WorkflowSchemeClient(jiraClient) {
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.workflowSchemeId The id of the workflow scheme.
      * @param {string} opts.workflowName The name of the workflow.
-     * @param callback Called when the workflow has been edited.
+     * @param [callback] Called when the workflow has been edited.
+     * @return {Promise} Resolved when the workflow has been edited.
      */
     this.deleteWorkflow = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/workflow', 'DELETE', null, {workflowName: opts.workflowName});
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -438,11 +463,12 @@ function WorkflowSchemeClient(jiraClient) {
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.workflowSchemeId The id of the workflow scheme.
      * @param {string} opts.workflowName The name of the workflow.
-     * @param callback Called when the workflow has been edited.
+     * @param [callback] Called when the workflow has been edited.
+     * @return {Promise} Resolved when the workflow has been edited.
      */
     this.deleteDraftWorkflow = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/draft/workflow', 'DELETE', null, {workflowName: opts.workflowName});
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**

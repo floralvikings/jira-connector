@@ -17,7 +17,8 @@ function ResolutionClient(jiraClient) {
      * @method getAllResolutions
      * @memberOf ResolutionClient#
      * @param opts Ignored
-     * @param callback Called when the resolutions have been retrieved.
+     * @param [callback] Called when the resolutions have been retrieved.
+     * @return {Promise} Resolved when the resolutions have been retrieved.
      */
     this.getAllResolutions = function (opts, callback) {
         var options = {
@@ -27,7 +28,7 @@ function ResolutionClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -37,7 +38,8 @@ function ResolutionClient(jiraClient) {
      * @memberOf ResolutionClient#
      * @param opts The options sent to the Jira API
      * @param opts.resolutionId A String containing a resolution id
-     * @param callback Called when the resolution has been retrieved.
+     * @param [callback] Called when the resolution has been retrieved.
+     * @return {Promise} Resolved when the resolution has been retrieved.
      */
     this.getResolution = function (opts, callback) {
         var options = {
@@ -47,6 +49,6 @@ function ResolutionClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 }

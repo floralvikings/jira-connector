@@ -18,7 +18,8 @@ function ComponentClient(jiraClient) {
      * @memberOf ComponentClient#
      * @param opts The request options sent to the Jira API
      * @param opts.component See {@link https://docs.atlassian.com/jira/REST/latest/#d2e3871}
-     * @param callback Called when the component has been created.
+     * @param [callback] Called when the component has been created.
+     * @return {Promise} Resolved when the component has been created.
      */
     this.createComponent = function (opts, callback) {
         var options = {
@@ -29,7 +30,7 @@ function ComponentClient(jiraClient) {
             body: opts.component
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -43,7 +44,8 @@ function ComponentClient(jiraClient) {
      * @param opts.id The id of the component to edit.
      * @param opts.component The new data to place in the component.  See
      *      {@link https://docs.atlassian.com/jira/REST/latest/#d2e3939}
-     * @param callback Called when the component has beed edited.
+     * @param [callback] Called when the component has beed edited.
+     * @return {Promise} Resolved when the component has beed edited.
      */
     this.editComponent = function (opts, callback) {
         var options = {
@@ -54,7 +56,7 @@ function ComponentClient(jiraClient) {
             body: opts.component
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -64,7 +66,8 @@ function ComponentClient(jiraClient) {
      * @memberOf ComponentClient#
      * @param opts The options sent to the Jira API
      * @param opts.id The id of the component to edit.
-     * @param callback Called when the component has been retrieved.
+     * @param [callback] Called when the component has been retrieved.
+     * @return {Promise} Resolved when the component has been retrieved.
      */
     this.getComponent = function (opts, callback) {
         var options = {
@@ -74,7 +77,7 @@ function ComponentClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -86,7 +89,8 @@ function ComponentClient(jiraClient) {
      * @param opts.id The id of the component to edit.
      * @param [opts.moveIssuesTo] The new component applied to issues whose 'id' component will be deleted. If this
      *     value is null, then the 'id' component is simply removed from the related isues.
-     * @param callback Called when the component has been deleted.
+     * @param [callback] Called when the component has been deleted.
+     * @return {Promise} Resolved when the component has been deleted.
      */
     this.deleteComponent = function (opts, callback) {
         var options = {
@@ -96,7 +100,7 @@ function ComponentClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback, 'Project Component Deleted');
+        return this.jiraClient.makeRequest(options, callback, 'Project Component Deleted');
     };
 
     /**
@@ -106,7 +110,8 @@ function ComponentClient(jiraClient) {
      * @memberOf ComponentClient#
      * @param opts The options sent to the Jira API
      * @param opts.id The id of the component to edit.
-     * @param callback Called when the count has been retrieved.
+     * @param [callback] Called when the count has been retrieved.
+     * @return {Promise} Resolved when the count has been retrieved.
      */
     this.getRelatedIssueCounts = function (opts, callback) {
         var options = {
@@ -116,6 +121,6 @@ function ComponentClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     }
 }
