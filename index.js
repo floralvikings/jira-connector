@@ -122,6 +122,8 @@ var worklog = require('./api/worklog');
  *     OAuth.
  * @param {string} [config.oauth.token_secret] The secret for the above token.  MUST be included if using Oauth.
  * @param {CookieJar} [config.cookie_jar] The CookieJar to use for every requests.
+ * @param {Promise} [config.promise] Any function (constructor) compatible with Promise (bluebird, Q,...).
+ *      Default - native Promise.
  */
 var JiraClient = module.exports = function (config) {
     if(!config.host) {
@@ -134,6 +136,7 @@ var JiraClient = module.exports = function (config) {
     this.apiVersion = 2; // TODO Add support for other versions.
     this.agileApiVersion = '1.0';
     this.webhookApiVersion = '1.0';
+    this.promise = config.promise || Promise;
 
     if (config.oauth) {
         if (!config.oauth.consumer_key) {
@@ -319,8 +322,8 @@ var JiraClient = module.exports = function (config) {
 
                 return callback(null, successString ? successString : body, response);
             });
-        } else  {
-            return new Promise(function (resolve, reject) {
+        } else if (this.promise) {
+            return new this.promise(function (resolve, reject) {
                 request(options, function (err, response, body) {
                     if (err || response.statusCode.toString()[0] != 2) {
                         reject(err || new Error(body));
