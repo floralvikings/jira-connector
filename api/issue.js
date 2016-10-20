@@ -262,6 +262,7 @@ function IssueClient(jiraClient) {
                     filter: opts.filter,
                     startAt: opts.startAt,
                     maxResults: opts.maxResults
+                    // TODO: expand
                 }
             };
         }

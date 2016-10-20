@@ -96,7 +96,7 @@ function AgileSprintClient(jiraClient) {
     delete sprint.sprintId;
 
     var options = {
-      uri: this.jiraClient.buildAgileURL('/sprint' + sprintId),
+      uri: this.jiraClient.buildAgileURL('/sprint/' + sprintId),
       method: 'POST',
       followAllRedirects: true,
       json: true,
@@ -168,21 +168,21 @@ function AgileSprintClient(jiraClient) {
    *
    * @method moveSprintIssues
    * @memberOf AgileSprintClient#
-   * @param {Object} issues The issue data in the form of POST body to the
+   * @param {Object} opts The issue data in the form of POST body to the
    *   Jira API.
-   * @param {string} [issues.sprintId] The sprint id.
+   * @param {string} [opts.sprintId] The sprint id.
    * @param callback Called when the sprint has been retrieved.
    */
-  this.moveSprintIssues = function (issues, callback) {
-    var sprintId = issues.sprintId;
-    delete issues.sprintId;
+  this.moveSprintIssues = function (opts, callback) {
+    var sprintId = opts.sprintId;
+    delete opts.sprintId;
 
     var options = {
       uri: this.jiraClient.buildAgileURL('/sprint/' + sprintId + '/issue'),
       method: 'POST',
       followAllRedirects: true,
       json: true,
-      body: issues
+      body: opts
     };
 
     this.jiraClient.makeRequest(options, callback);
@@ -213,8 +213,4 @@ function AgileSprintClient(jiraClient) {
     this.jiraClient.makeRequest(options, callback);
   };
 
-  // TODO: Get properties keys
-  // TODO: Set property
-  // TODO: Get property
-  // TODO: Delete property
 }
