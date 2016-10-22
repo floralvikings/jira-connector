@@ -327,7 +327,7 @@ var JiraClient = module.exports = function (config) {
 
                 request(options)
                     .on('response', response => {
-                        const error = response.statusCode.toString()[0] !== 2;
+                        const error = response.statusCode.toString()[0] !== '2';
 
                         const body = [];
                         const push = body.push.bind(body);
