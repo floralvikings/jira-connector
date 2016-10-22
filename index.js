@@ -325,30 +325,39 @@ var JiraClient = module.exports = function (config) {
         } else if (this.promise) {
             return new this.promise(function (resolve, reject) {
 
-                const body = [];
-
                 request(options)
                     .on('response', response => {
-                        if (response.statusCode.toString()[0] != 2) {
-                            reject(new Error(JSON.stringify(response)));
-                        }
+                        const error = response.statusCode.toString()[0] !== 2;
+
+                        const body = [];
+                        const push = body.push.bind(body);
+
+                        response.on('data', push);
+
+                        response.on('end', function () {
+
+                                let result = body.join('');
+
+                                if (result[0] === '[' || result[0] === '{') {
+                                    try {
+                                        result = JSON.parse(result);
+                                    } catch(e) {
+                                        // nothing to do
+                                    }
+                                }
+
+                                if (error) {
+                                    response.body = result;
+                                    reject(JSON.stringify(response));
+                                    return;
+                                }
+
+                                resolve(result);
+                            });
+
                     })
                     .on('error', reject)
-                    .on('data', chunk => body.push(chunk))
-                    .on('end', function () {
 
-                        let result = body.join('');
-
-                        if (result[0] === '[' || result[0] === '{') {
-                            try {
-                                result = JSON.parse(result);
-                            } catch(e) {
-                                // nothing to do
-                            }
-                        }
-
-                        resolve(result);
-                    });
             });
         }
 
