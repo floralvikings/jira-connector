@@ -335,22 +335,31 @@ var JiraClient = module.exports = function (config) {
             });
         } else if (this.promise) {
             return new this.promise(function (resolve, reject) {
-                request(options, function (err, response, body) {
-                    if (err || response.statusCode.toString()[0] != 2) {
-                        reject(err || new Error(body));
-                        return;
-                    }
 
-                    if (successString) {
-                        resolve(successString)
-                    } else {
-                        if (typeof body == 'string') {
-                            body = JSON.parse(body);
+                const body = [];
+
+                request(options)
+                    .on('response', response => {
+                        if (response.statusCode.toString()[0] != 2) {
+                            reject(new Error(JSON.stringify(response)));
+                        }
+                    })
+                    .on('error', reject)
+                    .on('data', chunk => body.push(chunk))
+                    .on('end', function () {
+
+                        let result = body.join('');
+
+                        if (result[0] === '[' || result[0] === '{') {
+                            try {
+                                result = JSON.parse(result);
+                            } catch(e) {
+                                // nothing to do
+                            }
                         }
 
-                        resolve(body);
-                    }
-                });
+                        resolve(result);
+                    });
             });
         }
 
