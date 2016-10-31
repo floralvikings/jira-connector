@@ -3,7 +3,7 @@
 // Core packages
 var url = require('url');
 
-// npm Packages
+// Npm packages
 var request = require('request');
 
 // Custom packages
