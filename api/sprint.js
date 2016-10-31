@@ -118,7 +118,7 @@ function AgileSprintClient(jiraClient) {
   this.deleteSprint = function (opts, callback) {
     var options = {
       uri: this.jiraClient.buildAgileURL('/sprint/' + opts.sprintId),
-      method: 'GET',
+      method: 'DELETE',
       json: true,
       followAllRedirects: true,
       qs: {
