@@ -246,6 +246,7 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {Object} [opts.fields] See {@link https://docs.atlassian.com/jira/REST/latest/#d2e611}
      * @param {Object} [opts.expand] See {@link https://docs.atlassian.com/jira/REST/latest/#d2e611}
+     * @param {Object} [opts.properties] See {@link https://docs.atlassian.com/jira/REST/latest/#d2e611}
      * @param callback
      */
     this.getIssue = function (opts, callback) {
@@ -1104,6 +1105,13 @@ function IssueClient(jiraClient) {
             qs.expand = '';
             opts.expand.forEach(function (ex) {
                 qs.expand += ex + ','
+            });
+        }
+        
+        if (opts.properties) {
+            qs.properties = '';
+            opts.properties.forEach(function (prop) {
+                qs.properties += prop + ','
             });
         }
 
