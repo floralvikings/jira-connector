@@ -312,7 +312,13 @@ var JiraClient = module.exports = function (config) {
                 return callback(err ? err : body, null, response);
             }
 
-            if (typeof body == 'string') body = JSON.parse(body);
+            if (typeof body == 'string') {
+                try {
+                    body = JSON.parse(body);
+                } catch (jsonErr) {
+                    return callback(jsonErr, null, response);
+                }
+            }
 
             return callback(null, successString ? successString : body, response);
         });
