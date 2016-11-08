@@ -308,9 +308,13 @@ is still valid!
   * findGroups
 * groupUserPicker (/rest/api/2/groupuserpicker)
   * findUsersAndGroups
-* issue (/rest/api/2/issue)
+* issue (/rest/api/2/issue and /rest/agile/1.0/issue)
+  * getIssue (agile api, set `opts.agile: true`)
+  * getIssueEstimation (agile api)
+  * setIssueEstimation (agile api)
+  * setIssueRanks (agile api)
   * createIssue
-  * getCreateMetaData
+  * getCreateMetadata
   * bulkCreate
   * getIssue
   * deleteIssue
@@ -425,6 +429,15 @@ is still valid!
 * settings (/rest/api/2/settings)
   * setBaseUrl
   * getIssueNavColumns
+* sprint (/rest/agile/1.0/sprint)
+  * createSprint
+  * getSprint
+  * updateSprint
+  * partiallyUpdateSprint
+  * deleteSprint
+  * getSprintIssues
+  * moveSprintIssues
+  * swapSprint
 * status (/rest/api/2/status)
   * getAllStatuses
   * getStatus

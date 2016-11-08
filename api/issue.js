@@ -6,12 +6,104 @@ var fs = require('fs');
 module.exports = IssueClient;
 
 /**
- * Used to access Jira REST endpoints in '/rest/api/2/issue'
+ * Used to access Jira REST endpoints in '/rest/api/2/issue' and '/rest/agile/1.0/issue'
  * @constructor IssueClient
  * @param {JiraClient} jiraClient
  */
 function IssueClient(jiraClient) {
     this.jiraClient = jiraClient;
+
+    /**
+     * Returns the estimation of the issue and a filedId of the field that is
+     * used for it.  The boardId parameter is required, and determines which
+     * field will be updated on an issue.
+     *
+     * @method getIssueEstimation
+     * @memberOf IssueClient#
+     * @param {Object} opts The options to pass to the API.  Note that this
+     *        object must contain EITHER an issueId or issueKey property;
+     *        issueId will be used over issueKey if both are present.
+     * @param {string} [opts.issueId] The id of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of teh issue.  EX: JWR-3
+     * @param {string} [opts.boardId] The id of the board required to
+     *        determine which field is used for estimation.
+     * @param callback
+     */
+    this.getIssueEstimation = function (opts, callback) {
+        var endpoint = '/issue/' + (opts.issueId || opts.issueKey) + '/estimation';
+        var options = {
+            uri: this.jiraClient.buildAgileURL(endpoint),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                boardId: opts.boardId,
+                filter: opts.filter,
+                startAt: opts.startAt,
+                maxResults: opts.maxResults
+            }
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
+     * Updates the estimation of the issue.  The boardId parameter is required,
+     * and determines which field will be updated on an issue.
+     *
+     * @method setIssueEstimation
+     * @memberOf IssueClient#
+     * @param {Object} opts The options to pass to the API.  Note that this
+     *        object must contain EITHER an issueId or issueKey property;
+     *        issueId will be used over issueKey if both are present.
+     * @param {string} [opts.value] The value to set the issue estimation as.
+     * @param {string} [opts.issueId] The id of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of teh issue.  EX: JWR-3
+     * @param {string} [opts.boardId] The id of the board required to
+     *        determine which field is used for estimation.
+     * @param callback
+     */
+    this.setIssueEstimation = function (opts, callback) {
+        var endpoint = '/issue/' + (opts.issueId || opts.issueKey) + '/estimation';
+        var options = {
+            uri: this.jiraClient.buildAgileURL(endpoint),
+            method: 'PUT',
+            json: true,
+            followAllRedirects: true,
+            body: {
+                value: opts.value,
+                filter: opts.filter,
+                startAt: opts.startAt,
+                maxResults: opts.maxResults
+            },
+            qs: {
+              boardId: opts.boardId
+            }
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
+     * Moves (ranks) issues before or after a given issue.
+     *
+     * @method setIssueRanks
+     * @memberOf IssueClient#
+     * @param {Object} ranking The ranking data in the form of PUT body to the
+     *        Jira API.
+     * @param callback
+     */
+    this.setIssueRanks = function (ranking, callback) {
+        var options = {
+            uri: this.jiraClient.buildAgileURL('/issue/rank'),
+            method: 'PUT',
+            json: true,
+            followAllRedirects: true,
+            body: ranking
+        };
+
+        this.jiraClient.makeRequest(options, callback);
+    };
 
     /**
      * Creates an issue or a sub-task from a JSON representation.
@@ -149,6 +241,7 @@ function IssueClient(jiraClient) {
      * @memberof IssueClient#
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueId or
      *        issueKey property; issueId will be used over issueKey if both are present.
+     * @param {boolean} [opts.agile] Whether or not to call the agile version of this endpoint.  Defaults to false.
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {Object} [opts.fields] See {@link https://docs.atlassian.com/jira/REST/latest/#d2e611}
@@ -156,10 +249,25 @@ function IssueClient(jiraClient) {
      * @param callback
      */
     this.getIssue = function (opts, callback) {
-        var options = this.buildRequestOptions(opts, '', 'GET');
+        if (!opts.agile) {
+            var options = this.buildRequestOptions(opts, '', 'GET');
+        } else {
+            var endpoint = '/issue/' + (opts.issueId || opts.issueKey);
+            var options = {
+                uri: this.jiraClient.buildAgileURL(endpoint),
+                method: 'GET',
+                json: true,
+                followAllRedirects: true,
+                qs: {
+                    filter: opts.filter,
+                    startAt: opts.startAt,
+                    maxResults: opts.maxResults,
+                    expand: opts.expand
+                }
+            };
+        }
 
         this.jiraClient.makeRequest(options, callback);
-
     };
 
     /**
