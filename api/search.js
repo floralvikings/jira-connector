@@ -47,6 +47,7 @@ function SearchClient(jiraClient) {
      * @param {array} [opts.fields] The list of fields to return for each issue. By default, all navigable fields are
      *     returned.
      * @param {array} [opts.expand] A list of the parameters to expand.
+     * @param {array} [opts.properties] A list of the properties to include (5 max).
      * @param callback Called with the search results.
      */
     this.search = function (opts, callback) {
@@ -66,7 +67,8 @@ function SearchClient(jiraClient) {
             maxResults: opts.maxResults,
             validateQuery: opts.validateQuery,
             fields: opts.fields,
-            expand: opts.expand
+            expand: opts.expand,
+            properties: opts.properties
         };
 
         if (opts.method === 'POST') {
