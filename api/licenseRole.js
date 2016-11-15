@@ -16,7 +16,8 @@ function LicenseRoleClient(jiraClient) {
      * @method getAllLicenseRoles
      * @memberOf LicenseRoleClient#
      * @param opts Ignored
-     * @param callback Called when the license roles have been retrieved.
+     * @param [callback] Called when the license roles have been retrieved.
+     * @return {Promise} Resolved when the license roles have been retrieved.
      */
     this.getAllLicenseRoles = function (opts, callback) {
         var options = {
@@ -26,7 +27,7 @@ function LicenseRoleClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -36,7 +37,8 @@ function LicenseRoleClient(jiraClient) {
      * @memberOf LicenseRoleClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.roleId The id of the license role to retrieve.
-     * @param callback Called when the license role is retrieved.
+     * @param [callback] Called when the license role is retrieved.
+     * @return {Promise} Resolved when the license role is retrieved.
      */
     this.getLicenseRole = function (opts, callback) {
         var options = {
@@ -46,7 +48,7 @@ function LicenseRoleClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -59,7 +61,8 @@ function LicenseRoleClient(jiraClient) {
      * @param opts.roleId The id of the license role to retrieve.
      * @param opts.role The new data to place in the role.  See
      *  {@link https://docs.atlassian.com/jira/REST/latest/#d2e365}
-     * @param callback Called when the license role is edited.
+     * @param [callback] Called when the license role is edited.
+     * @return {Promise} Resolved when the license role is edited.
      */
     this.editLicenseRole = function (opts, callback) {
         var options = {
@@ -70,6 +73,6 @@ function LicenseRoleClient(jiraClient) {
             body: opts.role
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     }
 }

@@ -19,7 +19,8 @@ function IssueLinkTypeClient(jiraClient) {
      * @method getAvailableTypes
      * @memberOf IssueLinkTypeClient#
      * @param opts The request options for the API.  Ignored in this function.
-     * @param callback Called when the available IssueLink types are retrieved.
+     * @param [callback] Called when the available IssueLink types are retrieved.
+     * @return {Promise} Resolved when the available IssueLink types are retrieved.
      */
     this.getAvailableTypes = function (opts, callback) {
         var options = {
@@ -29,7 +30,7 @@ function IssueLinkTypeClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -39,7 +40,8 @@ function IssueLinkTypeClient(jiraClient) {
      * @memberOf IssueLinkTypeClient#
      * @param opts The request options sent to the Jira API
      * @param opts.linkType See {@link https://docs.atlassian.com/jira/REST/latest/#d2e2018}
-     * @param callback Called when the IssueLink type has been created.
+     * @param [callback] Called when the IssueLink type has been created.
+     * @return {Promise} Resolved when the IssueLink type has been created.
      */
     this.createIssueLinkType = function (opts, callback) {
         var options = {
@@ -50,7 +52,7 @@ function IssueLinkTypeClient(jiraClient) {
             body: opts.linkType
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -60,7 +62,8 @@ function IssueLinkTypeClient(jiraClient) {
      * @memberOf IssueLinkTypeClient#
      * @param opts The request options sent to the Jira API
      * @param opts.issueLinkTypeId The id of the IssueLink type to retrieve.
-     * @param callback Called when the IssueLink type has been retrieved
+     * @param [callback] Called when the IssueLink type has been retrieved
+     * @return {Promise} Resolved when the IssueLink type has been retrieved
      */
     this.getIssueLinkType = function (opts, callback) {
         if (!opts.issueLinkTypeId) {
@@ -74,7 +77,7 @@ function IssueLinkTypeClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -84,7 +87,8 @@ function IssueLinkTypeClient(jiraClient) {
      * @memberOf IssueLinkTypeClient#
      * @param opts The request options sent to the Jira API
      * @param opts.issueLinkTypeId The id of the IssueLink type to delete.
-     * @param callback Called when the IssueLink type has been delete
+     * @param [callback] Called when the IssueLink type has been delete
+     * @return {Promise} Resolved when the IssueLink type has been delete
      */
     this.deleteIssueLinkType = function (opts, callback) {
         if (!opts.issueLinkTypeId) {
@@ -98,7 +102,7 @@ function IssueLinkTypeClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback, 'IssueLink type deleted.');
+        return this.jiraClient.makeRequest(options, callback, 'IssueLink type deleted.');
     };
 
     /**
@@ -109,7 +113,8 @@ function IssueLinkTypeClient(jiraClient) {
      * @param opts The request options sent to the Jira API
      * @param opts.issueLinkTypeId The id of the IssueLink type to retrieve.
      * @param opts.linkType See {@link https://docs.atlassian.com/jira/REST/latest/#d2e2071}
-     * @param callback Called when the IssueLink type has been updated.
+     * @param [callback] Called when the IssueLink type has been updated.
+     * @return {Promise} Resolved when the IssueLink type has been updated.
      */
     this.editIssueLinkType = function (opts, callback) {
         if (!opts.issueLinkTypeId) {
@@ -124,6 +129,6 @@ function IssueLinkTypeClient(jiraClient) {
             body: opts.issueLinkType
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 }

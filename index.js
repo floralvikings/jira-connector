@@ -126,6 +126,8 @@ var worklog = require('./api/worklog');
  *     OAuth.
  * @param {string} [config.oauth.token_secret] The secret for the above token.  MUST be included if using Oauth.
  * @param {CookieJar} [config.cookie_jar] The CookieJar to use for every requests.
+ * @param {Promise} [config.promise] Any function (constructor) compatible with Promise (bluebird, Q,...).
+ *      Default - native Promise.
  */
 var JiraClient = module.exports = function (config) {
     if(!config.host) {
@@ -138,6 +140,7 @@ var JiraClient = module.exports = function (config) {
     this.apiVersion = 2; // TODO Add support for other versions.
     this.agileApiVersion = '1.0';
     this.webhookApiVersion = '1.0';
+    this.promise = config.promise || Promise;
 
     if (config.oauth) {
         if (!config.oauth.consumer_key) {
@@ -294,8 +297,9 @@ var JiraClient = module.exports = function (config) {
      * @method makeRequest
      * @memberOf JiraClient#
      * @param options The request options.
-     * @param callback Called with the APIs response.
+     * @param [callback] Called with the APIs response.
      * @param {string} [successString] If supplied, this is reported instead of the response body.
+     * @return {Promise} Resolved with APIs response or rejected with error
      */
     this.makeRequest = function (options, callback, successString) {
         if (this.oauthConfig) {
@@ -312,10 +316,12 @@ var JiraClient = module.exports = function (config) {
         if (this.cookie_jar) {
             options.jar = this.cookie_jar;
         }
-        request(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body, null, response);
-            }
+
+        if (callback) {
+            request(options, function (err, response, body) {
+                if (err || response.statusCode.toString()[0] != 2) {
+                    return callback(err ? err : body, null, response);
+                }
 
             if (typeof body == 'string') {
                 try {
@@ -325,8 +331,47 @@ var JiraClient = module.exports = function (config) {
                 }
             }
 
-            return callback(null, successString ? successString : body, response);
-        });
+                return callback(null, successString ? successString : body, response);
+            });
+        } else if (this.promise) {
+            return new this.promise(function (resolve, reject) {
+
+                request(options)
+                    .on('response', response => {
+                        const error = response.statusCode.toString()[0] !== '2';
+
+                        const body = [];
+                        const push = body.push.bind(body);
+
+                        response.on('data', push);
+
+                        response.on('end', function () {
+
+                                let result = body.join('');
+
+                                if (result[0] === '[' || result[0] === '{') {
+                                    try {
+                                        result = JSON.parse(result);
+                                    } catch(e) {
+                                        // nothing to do
+                                    }
+                                }
+
+                                if (error) {
+                                    response.body = result;
+                                    reject(JSON.stringify(response));
+                                    return;
+                                }
+
+                                resolve(result);
+                            });
+
+                    })
+                    .on('error', reject)
+
+            });
+        }
+
     };
 
 }).call(JiraClient.prototype);

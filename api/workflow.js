@@ -18,7 +18,8 @@ function WorkflowClient(jiraClient) {
      * @memberOf WorkflowClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} [opts.workflowName] The name of the workflow to retrieve.
-     * @param callback Called when the workflow(s) have been retrieved.
+     * @param [callback] Called when the workflow(s) have been retrieved.
+     * @return {Promise} Resolved when the workflow(s) have been retrieved.
      */
     this.getWorkflows = function (opts, callback) {
         var qs = {};
@@ -33,6 +34,6 @@ function WorkflowClient(jiraClient) {
             qs: qs
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 }

@@ -18,11 +18,12 @@ function ScreensClient(jiraClient) {
      * @memberOf ScreensClient#
      * @param {Object} opts The request options sent to Jira
      * @param {number} opts.screenId The id of the screen to retrieve.
-     * @param callback Called when the available fields have been retrieved
+     * @param [callback] Called when the available fields have been retrieved
+     * @return {Promise} Resolved when the available fields have been retrieved
      */
     this.getAvailableFields = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/availableFields', 'GET');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -32,11 +33,12 @@ function ScreensClient(jiraClient) {
      * @memberOf ScreensClient#
      * @param {Object} opts The request options sent to Jira
      * @param {number} opts.screenId The id of the screen to retrieve.
-     * @param callback Called when the tabs have been retrieved.
+     * @param [callback] Called when the tabs have been retrieved.
+     * @return {Promise} Resolved when the tabs have been retrieved.
      */
     this.getTabs = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/tabs', 'GET');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -47,11 +49,12 @@ function ScreensClient(jiraClient) {
      * @param {Object} opts The request options sent to Jira
      * @param {number} opts.screenId The id of the screen in which to create a tab.
      * @param {string} opts.name The name of the tab to add.  Minimum required to create a tab.
-     * @param callback Called when the tab has been created.
+     * @param [callback] Called when the tab has been created.
+     * @return {Promise} Resolved when the tab has been created.
      */
     this.createTab = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/tabs', 'POST', {name: opts.name});
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -63,11 +66,12 @@ function ScreensClient(jiraClient) {
      * @param {number} opts.screenId The id of the screen containing the tab to rename.
      * @param {number} opts.tabId The id of the tab to rename
      * @param {string} opts.name The new name of the tab.
-     * @param callback
+     * @param [callback] Called when data has been retrieved
+     * @return {Promise} Resolved when data has been retrieved
      */
     this.renameTab = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/tabs/' + opts.tabId, 'PUT', {name: opts.name});
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -78,11 +82,12 @@ function ScreensClient(jiraClient) {
      * @param {Object} opts The request options sent to the jira API
      * @param {number} opts.screenId The id of the screen containing the tab to delete.
      * @param {number} opts.tabId The id of the tab to delete
-     * @param callback
+     * @param [callback] Called when data has been retrieved
+     * @return {Promise} Resolved when data has been retrieved
      */
     this.deleteTab = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/tabs/' + opts.tabId, 'DELETE');
-        this.jiraClient.makeRequest(options, callback, 'Tab Deleted');
+        return this.jiraClient.makeRequest(options, callback, 'Tab Deleted');
     };
 
     /**
@@ -94,11 +99,12 @@ function ScreensClient(jiraClient) {
      * @param {number} opts.screenId The id of the screen containing the tab.
      * @param {number} opts.tabId the id of the tab to which the fields will be added.
      * @param {string} opts.fieldId The field to add
-     * @param callback Called when the fields have been added to the tab.
+     * @param [callback] Called when the fields have been added to the tab.
+     * @return {Promise} Resolved when the fields have been added to the tab.
      */
     this.addFieldToTab = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/tabs/' + opts.tabId + '/fields', 'POST', opts.fieldId);
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -109,11 +115,12 @@ function ScreensClient(jiraClient) {
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.screenId The id of the screen containing the tab.
      * @param {number} opts.tabId the id of the tab for which to retrieve fields.
-     * @param callback Called when the fields have been retrieved.
+     * @param [callback] Called when the fields have been retrieved.
+     * @return {Promise} Resolved when the fields have been retrieved.
      */
     this.getFieldsInTab = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/tabs/' + opts.tabId + '/fields', 'GET');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -125,11 +132,12 @@ function ScreensClient(jiraClient) {
      * @param {number} opts.screenId The id of the screen containing the tab.
      * @param {number} opts.tabId the id of the tab from which to remove the field.
      * @param {string} opts.fieldId The id of the field to remove from the tab.
-     * @param callback Called when the field has been removed.
+     * @param [callback] Called when the field has been removed.
+     * @return {Promise} Resolved when the field has been removed.
      */
     this.removeFieldFromTab = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/tabs/' + opts.tabId + '/fields/' + opts.fieldId, 'DELETE');
-        this.jiraClient.makeRequest(options, callback, 'Field Removed From Tab');
+        return this.jiraClient.makeRequest(options, callback, 'Field Removed From Tab');
     };
 
     /**
@@ -146,12 +154,13 @@ function ScreensClient(jiraClient) {
      *  * Later
      *  * First
      *  * Last
-     * @param callback Called when the field has been removed.
+     * @param [callback] Called when the field has been removed.
+     * @return {Promise} Resolved when the field has been removed.
      */
     this.moveFieldOnTab = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/tabs/' + opts.tabId + '/fields/' + opts.fieldId + '/move',
             'POST', {position: opts.newPosition});
-        this.jiraClient.makeRequest(options, callback, 'Field Moved');
+        return this.jiraClient.makeRequest(options, callback, 'Field Moved');
     };
 
     /**
@@ -163,11 +172,12 @@ function ScreensClient(jiraClient) {
      * @param {number} opts.screenId The id of the screen containing the tab.
      * @param {number} opts.tabId the id of the tab to move.
      * @param {number} opts.newPosition The new (zero-indexed) position of the tab.
-     * @param callback Called when the tab has been moved.
+     * @param [callback] Called when the tab has been moved.
+     * @return {Promise} Resolved when the tab has been moved.
      */
     this.moveTabPosition = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/tabs/' + opts.tabId + '/move/' + opts.newPosition, 'POST');
-        this.jiraClient.makeRequest(options, callback, 'Tab Moved');
+        return this.jiraClient.makeRequest(options, callback, 'Tab Moved');
     };
 
     /**
@@ -177,7 +187,8 @@ function ScreensClient(jiraClient) {
      * @memberOf ScreensClient#
      * @param {Object} opts The request options sent to the Jira API.
      * @param {string} opts.fieldId The id of the field to add to the default tab.
-     * @param callback Called when the tab has been moved.
+     * @param [callback] Called when the tab has been moved.
+     * @return {Promise} Resolved when the tab has been moved.
      */
     this.addFieldToDefaultTab = function (opts, callback) {
         var options = {
@@ -187,7 +198,7 @@ function ScreensClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**

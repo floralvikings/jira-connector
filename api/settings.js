@@ -17,7 +17,8 @@ function SettingsClient(jiraClient) {
      * @memberOf SettingsClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.newUrl The new base url.
-     * @param callback Called when the base url has been set.
+     * @param [callback] Called when the base url has been set.
+     * @return {Promise} Resolved when the base url has been set.
      */
     this.setBaseUrl = function (opts, callback) {
         var options = {
@@ -28,7 +29,7 @@ function SettingsClient(jiraClient) {
             body: opts.newUrl
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -37,7 +38,8 @@ function SettingsClient(jiraClient) {
      * @method getIssueNavColumns
      * @memberOf SettingsClient#
      * @param opts Ignored
-     * @param callback Called when the columns have been retrieved
+     * @param [callback] Called when the columns have been retrieved
+     * @return {Promise} Resolved when the columns have been retrieved
      */
     this.getIssueNavColumns = function (opts, callback) {
         var options = {
@@ -47,6 +49,6 @@ function SettingsClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 }

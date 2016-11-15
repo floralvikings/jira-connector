@@ -20,7 +20,8 @@ function ProjectValidateClient(jiraClient) {
      * @memberOf ProjectValidateClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.projectKey The key of the project.
-     * @param callback Called when the key has been validated.
+     * @param [callback] Called when the key has been validated.
+     * @return {Promise} Resolved when the key has been validated.
      */
     this.validateProjectKey = function (opts, callback) {
         var options = {
@@ -33,6 +34,6 @@ function ProjectValidateClient(jiraClient) {
             }
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     }
 }

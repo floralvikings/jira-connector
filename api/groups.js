@@ -24,7 +24,8 @@ function GroupsClient(jiraClient) {
      * @param {string} opts.query A string against which to match groups.  Leave this blank to return all groups.
      * @param {string} opts.exclude A string specifying groups to exclude.
      * @param {number} opts.maxResults The maximum number of results to return.
-     * @param callback Called when the groups have been retrieved.
+     * @param [callback] Called when the groups have been retrieved.
+     * @return {Promise} Resolved when the groups have been retrieved.
      */
     this.findGroups = function (opts, callback) {
         var options = {
@@ -39,6 +40,6 @@ function GroupsClient(jiraClient) {
             }
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     }
 }

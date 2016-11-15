@@ -17,7 +17,8 @@ function FieldClient(jiraClient) {
      * @method getAllFields
      * @memberOf FieldClient#
      * @param opts Ignored
-     * @param callback Called when the fields have been retrieved.
+     * @param [callback] Called when the fields have been retrieved.
+     * @return {Promise} Resolved when the fields have been retrieved.
      */
     this.getAllFields = function (opts, callback) {
         var options = {
@@ -27,7 +28,7 @@ function FieldClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -37,7 +38,8 @@ function FieldClient(jiraClient) {
      * @memberOf FieldClient#
      * @param opts The request options to send to Jira
      * @param opts.field See {@link https://docs.atlassian.com/jira/REST/latest/#d2e3412}
-     * @param callback Called when the custom field has been created.
+     * @param [callback] Called when the custom field has been created.
+     * @return {Promise} Resolved when the custom field has been created.
      */
     this.createCustomField = function (opts, callback) {
         var options = {
@@ -48,6 +50,6 @@ function FieldClient(jiraClient) {
             body: opts.field
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     }
 }
