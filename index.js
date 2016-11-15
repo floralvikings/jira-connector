@@ -302,9 +302,10 @@ var JiraClient = module.exports = function (config) {
             options.oauth = this.oauthConfig;
         } else if (this.basic_auth) {
             if (this.basic_auth.base64) {
-              options.headers = {
-                Authorization: 'Basic ' + this.basic_auth.base64
+              if (!options.headers) {
+                options.headers = {}
               }
+              options.headers['Authorization'] = 'Basic ' + this.basic_auth.base64
             } else {
               options.auth = this.basic_auth;
             }
