@@ -17,7 +17,8 @@ function VersionClient(jiraClient) {
      * @memberOf VersionClient#
      * @param {Object} opts The request options sent to Jira.
      * @param {Object} opts.version See {@link https://docs.atlassian.com/jira/REST/latest/#d2e3549}
-     * @param callback Called when the version has been created.
+     * @param [callback] Called when the version has been created.
+     * @return {Promise} Resolved when the version has been created.
      */
     this.createVersion = function (opts, callback) {
         var options = {
@@ -28,7 +29,7 @@ function VersionClient(jiraClient) {
             body: opts.version
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -43,11 +44,12 @@ function VersionClient(jiraClient) {
      *     'Later'. Must be provided if opts.after is missing.
      * @param {string} [opts.after] A version to place this version after. The value should be the self link of another
      *     version. Must be provided if opts.position is missing
-     * @param callback Called when the version has been moved.
+     * @param [callback] Called when the version has been moved.
+     * @return {Promise} Resolved when the version has been moved.
      */
     this.moveVersion = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/move', 'POST', {position: opts.position, after: opts.after});
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -57,11 +59,12 @@ function VersionClient(jiraClient) {
      * @memberOf VersionClient#
      * @param {Object} opts The request options sent to the Jira API.
      * @param {string|number} opts.versionId The id of the version to retrieve.
-     * @param callback Called when the version is retrieved.
+     * @param [callback] Called when the version is retrieved.
+     * @return {Promise} Resolved when the version is retrieved.
      */
     this.getVersion = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '', 'GET');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -72,11 +75,12 @@ function VersionClient(jiraClient) {
      * @param {Object} opts The request options sent to Jira.
      * @param {string} opts.versionId The id of the version to edit.
      * @param {Object} opts.version See {@link https://docs.atlassian.com/jira/REST/latest/#d2e3619}
-     * @param callback Called when the version has been modified.
+     * @param [callback] Called when the version has been modified.
+     * @return {Promise} Resolved when the version has been modified.
      */
     this.editVersion = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '', 'PUT', opts.version);
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -86,11 +90,12 @@ function VersionClient(jiraClient) {
      * @memberOf VersionClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.versionId The version for which to retrieve related issues.
-     * @param callback Called when the count has been retrieved.
+     * @param [callback] Called when the count has been retrieved.
+     * @return {Promise} Resolved when the count has been retrieved.
      */
     this.getRelatedIssueCounts = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/relatedIssueCounts', 'GET');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -100,11 +105,12 @@ function VersionClient(jiraClient) {
      * @memberOf VersionClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.versionId The version for which to retrieve unresolved issues.
-     * @param callback Called when the count has been retrieved.
+     * @param [callback] Called when the count has been retrieved.
+     * @return {Promise} Resolved when the count has been retrieved.
      */
     this.getUnresolvedIssueCount = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/unresolvedIssueCount', 'GET');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -114,11 +120,12 @@ function VersionClient(jiraClient) {
      * @memberOf VersionClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.versionId The version for which to retrieve remote links.
-     * @param callback Called when the links have been retrieved.
+     * @param [callback] Called when the links have been retrieved.
+     * @return {Promise} Resolved when the links have been retrieved.
      */
     this.getRemoteLinks = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/remotelink', 'GET');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -130,11 +137,12 @@ function VersionClient(jiraClient) {
      * @param opts The request options sent to the Jira API.
      * @param opts.versionId The version for which to retrieve unresolved issues.
      * @param opts.remoteLink See {@link https://docs.atlassian.com/jira/REST/latest/#d2e3753}
-     * @param callback Called when the remote link has been created.
+     * @param [callback] Called when the remote link has been created.
+     * @return {Promise} Resolved when the remote link has been created.
      */
     this.createRemoteLink = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/remotelink', 'POST', opts.remoteLink);
-        this.jiraClient.makeRequest(options, callback, 'Remotelink Created');
+        return this.jiraClient.makeRequest(options, callback, 'Remotelink Created');
     };
 
     /**
@@ -145,11 +153,12 @@ function VersionClient(jiraClient) {
      * @param opts The request options sent to the Jira API.
      * @param opts.versionId The version for which to retrieve the remote link
      * @param opts.remoteLinkId The global id of the remote link
-     * @param callback Called when the link has been retrieved.
+     * @param [callback] Called when the link has been retrieved.
+     * @return {Promise} Resolved when the link has been retrieved.
      */
     this.getRemoteLink = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/remotelink/' + opts.remoteLinkId, 'GET');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -160,11 +169,12 @@ function VersionClient(jiraClient) {
      * @param opts The request options sent to the Jira API.
      * @param opts.versionId The version id
      * @param opts.remoteLinkId The global id of the remote link
-     * @param callback Called when the link has been deleted.
+     * @param [callback] Called when the link has been deleted.
+     * @return {Promise} Resolved when the link has been deleted.
      */
     this.deleteRemoteLink = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/remotelink/' + opts.remoteLinkId, 'DELETE');
-        this.jiraClient.makeRequest(options, callback, 'Remote Link Deleted');
+        return this.jiraClient.makeRequest(options, callback, 'Remote Link Deleted');
     };
 
     /**
@@ -174,11 +184,12 @@ function VersionClient(jiraClient) {
      * @memberOf VersionClient#
      * @param {Object} opts The request options sent to the Jira API.
      * @param {string|number} opts.versionId The id of the version to delete.
-     * @param callback Called when the version is deleted.
+     * @param [callback] Called when the version is deleted.
+     * @return {Promise} Resolved when the version is deleted.
      */
     this.deleteVersion = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '', 'DELETE');
-        this.jiraClient.makeRequest(options, callback, 'Version Deleted');
+        return this.jiraClient.makeRequest(options, callback, 'Version Deleted');
     };
 
     /**
@@ -188,11 +199,12 @@ function VersionClient(jiraClient) {
      * @memberOf VersionClient#
      * @param {Object} opts The request options sent to the Jira API.
      * @param {string|number} opts.versionId The id of the version to delete.
-     * @param callback Called when the version is deleted.
+     * @param [callback] Called when the version is deleted.
+     * @return {Promise} Resolved when the version is deleted.
      */
     this.deleteAllRemoteLinks = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/remotelink', 'DELETE');
-        this.jiraClient.makeRequest(options, callback, 'Remote Links Deleted');
+        return this.jiraClient.makeRequest(options, callback, 'Remote Links Deleted');
     };
 
     /**
@@ -202,7 +214,8 @@ function VersionClient(jiraClient) {
      * @memberOf VersionClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.globalId The global id of the remote resource that is linked to the versions
-     * @param callback Called when the remote link is returned.
+     * @param [callback] Called when the remote link is returned.
+     * @return {Promise} Resolved when the remote link is returned.
      */
     this.getGlobalRemoteLink = function (opts, callback) {
         var options = {
@@ -212,7 +225,7 @@ function VersionClient(jiraClient) {
             followAllRedirects: true,
             qs: {globalId: opts.globalId}
         };
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**

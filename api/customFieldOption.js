@@ -20,7 +20,8 @@ function CustomFieldOptionClient(jiraClient) {
      * @memberOf CustomFieldOptionClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} opts.fieldOptionId A String containing an Custom Field Option id
-     * @param callback
+     * @param [callback] Called when data has been retrieved
+     * @return {Promise} Resolved when data has been retrieved
      */
     this.getCustomFieldOption = function (opts, callback) {
         if (!opts.fieldOptionId) {
@@ -34,6 +35,6 @@ function CustomFieldOptionClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 }

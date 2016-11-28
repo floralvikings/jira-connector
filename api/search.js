@@ -47,7 +47,8 @@ function SearchClient(jiraClient) {
      * @param {array} [opts.fields] The list of fields to return for each issue. By default, all navigable fields are
      *     returned.
      * @param {array} [opts.expand] A list of the parameters to expand.
-     * @param callback Called with the search results.
+     * @param [callback] Called with the search results.
+     * @return {Promise} Resolved with the search results.
      */
     this.search = function (opts, callback) {
         opts.method = opts.method || 'POST';
@@ -56,7 +57,7 @@ function SearchClient(jiraClient) {
             uri: this.jiraClient.buildURL('/search'),
             method: opts.method, 
             json: true,
-            followAllRedirects: true,
+            followAllRedirects: true
 
         };
 
@@ -76,6 +77,6 @@ function SearchClient(jiraClient) {
         }
 
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     }
 }

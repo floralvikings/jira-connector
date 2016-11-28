@@ -29,7 +29,8 @@ function AuditingClient(jiraClient) {
      * @param [opts.to] Timestamp in past; 'from' must be less or equal 'to', otherwise the result set will be empty
      *     only records that where created in the same moment or earlier than the 'to' timestamp will be provided in
      *     response
-     * @param callback Called when the audits are retrieved.
+     * @param [callback] Called when the audits are retrieved.
+     * @return {Promise} Resolved when the audits are retrieved.
      */
     this.getAudits = function (opts, callback) {
         var options = {
@@ -46,7 +47,7 @@ function AuditingClient(jiraClient) {
             }
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -55,7 +56,8 @@ function AuditingClient(jiraClient) {
      * @memberOf AuditingClient#
      * @param opts The request options.
      * @param opts.audit See {@link https://docs.atlassian.com/jira/REST/latest/#d2e2557}
-     * @param callback Called when the audit is created.
+     * @param [callback] Called when the audit is created.
+     * @return {Promise} Resolved when the audit is created.
      */
     this.createAudit = function (opts, callback) {
         if (!opts.audit) {
@@ -70,6 +72,6 @@ function AuditingClient(jiraClient) {
             body: opts.audit
         };
 
-        this.jiraClient.makeRequest(options, callback, 'Audit Record Added');
+        return this.jiraClient.makeRequest(options, callback, 'Audit Record Added');
     };
 }

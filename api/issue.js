@@ -27,7 +27,8 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueKey] The Key of teh issue.  EX: JWR-3
      * @param {string} [opts.boardId] The id of the board required to
      *        determine which field is used for estimation.
-     * @param callback
+     * @param [callback] Called when the issue estimation has been retrieved.
+     * @return {Promise} Resolved when the issue estimation has been retrieved.
      */
     this.getIssueEstimation = function (opts, callback) {
         var endpoint = '/issue/' + (opts.issueId || opts.issueKey) + '/estimation';
@@ -44,7 +45,7 @@ function IssueClient(jiraClient) {
             }
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -61,7 +62,8 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueKey] The Key of teh issue.  EX: JWR-3
      * @param {string} [opts.boardId] The id of the board required to
      *        determine which field is used for estimation.
-     * @param callback
+     * @param [callback] Called when the issue estimation has been created.
+     * @return {Promise} Resolved when the issue estimation has been created.
      */
     this.setIssueEstimation = function (opts, callback) {
         var endpoint = '/issue/' + (opts.issueId || opts.issueKey) + '/estimation';
@@ -81,7 +83,7 @@ function IssueClient(jiraClient) {
             }
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -91,7 +93,8 @@ function IssueClient(jiraClient) {
      * @memberOf IssueClient#
      * @param {Object} ranking The ranking data in the form of PUT body to the
      *        Jira API.
-     * @param callback
+     * @param [callback] Called when the issue rank has been created.
+     * @return {Promise} Resolved when the issue rank has been created.
      */
     this.setIssueRanks = function (ranking, callback) {
         var options = {
@@ -102,7 +105,7 @@ function IssueClient(jiraClient) {
             body: ranking
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -122,7 +125,8 @@ function IssueClient(jiraClient) {
      * @memberof IssueClient#
      * @param {Object} issue The issue data in the form of POST body to the JIRA API.
      * See {@link https://docs.atlassian.com/jira/REST/latest/#d2e398}
-     * @param callback Called when the issue has been created.
+     * @param [callback] Called when the issue has been created.
+     * @return {Promise} Resolved when the issue has been created.
      */
     this.createIssue = function (issue, callback) {
         var options = {
@@ -133,7 +137,7 @@ function IssueClient(jiraClient) {
             body: issue
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -166,7 +170,8 @@ function IssueClient(jiraClient) {
      *     the results. If null, all issue types are returned. This parameter can be specified multiple times, but is
      *     NOT interpreted as a comma-separated list. Specifiying an issue type that does not exist is not an error.
      * @param {string} [opts.expand] in order to get expanded field descriptions, specify 'projects.issuetypes.fields' here.
-     * @param callback Called when the metadata has been retrieved.
+     * @param [callback] Called when the metadata has been retrieved.
+     * @return {Promise} Resolved when the metadata has been retrieved.
      */
     this.getCreateMetadata = function (opts, callback) {
         var options = {
@@ -183,7 +188,7 @@ function IssueClient(jiraClient) {
             }
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -197,7 +202,8 @@ function IssueClient(jiraClient) {
      * @method bulkCreate
      * @memberof IssueClient#
      * @param issues See {@link https://docs.atlassian.com/jira/REST/latest/#d2e828}
-     * @param callback Called when the issues have been created.
+     * @param [callback] Called when the issues have been created.
+     * @return {Promise} Resolved when the issues have been created.
      */
     this.bulkCreate = function (issues, callback) {
         var options = {
@@ -208,7 +214,7 @@ function IssueClient(jiraClient) {
             body: issues
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -247,7 +253,8 @@ function IssueClient(jiraClient) {
      * @param {Object} [opts.fields] See {@link https://docs.atlassian.com/jira/REST/latest/#d2e611}
      * @param {Object} [opts.expand] See {@link https://docs.atlassian.com/jira/REST/latest/#d2e611}
      * @param {Object} [opts.properties] See {@link https://docs.atlassian.com/jira/REST/latest/#d2e611}
-     * @param callback
+     * @param [callback] Called when data has been retrieved
+     * @return {Promise} Resolved when data has been retrieved
      */
     this.getIssue = function (opts, callback) {
         if (!opts.agile) {
@@ -268,7 +275,7 @@ function IssueClient(jiraClient) {
             };
         }
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -284,12 +291,13 @@ function IssueClient(jiraClient) {
      * @param {boolean} [opts.deleteSubTasks] "a String of true or false indicating that any subtasks should also
      *        be deleted. If the issue has no subtasks this parameter is ignored. If the issue has subtasks and this
      *        parameter is missing or false, then the issue will not be deleted and an error will be returned."
-     * @param callback
+     * @param [callback] Called when data has been retrieved
+     * @return {Promise} Resolved when data has been retrieved
      */
     this.deleteIssue = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '', 'DELETE', null, {deleteSubTasks: opts.deleteSubTasks});
 
-        this.jiraClient.makeRequest(options, callback, 'Issue Deleted');
+        return this.jiraClient.makeRequest(options, callback, 'Issue Deleted');
     };
 
     /**
@@ -312,7 +320,8 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {Object} opts.issue See {@link https://docs.atlassian.com/jira/REST/latest/#d2e656}
-     * @param callback
+     * @param [callback] Called when data has been retrieved
+     * @return {Promise} Resolved when data has been retrieved
      */
     this.editIssue = function (opts, callback) {
         if (!opts.issue) {
@@ -320,7 +329,7 @@ function IssueClient(jiraClient) {
         }
         var options = this.buildRequestOptions(opts, '', 'PUT', opts.issue, opts.qs);
 
-        this.jiraClient.makeRequest(options, callback, 'Issue Updated');
+        return this.jiraClient.makeRequest(options, callback, 'Issue Updated');
     };
 
     /**
@@ -336,16 +345,17 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.assignee The name of the user to whom to assign the issue. -1 for default, null for no
      *     assignee.
-     * @param callback Called when the issue has been assigned.
+     * @param [callback] Called when the issue has been assigned.
+     * @return {Promise} Resolved when the issue has been assigned.
      */
     this.assignIssue = function (opts, callback) {
-        if (typeof opts.assignee === "string" && opts.assignee.length || opts.assignee === null) {
-            var options = this.buildRequestOptions(opts, '/assignee', 'PUT', {name: opts.assignee});
-
-            this.jiraClient.makeRequest(options, callback, 'Issue Assigned');
-        } else {
+        if (!(typeof opts.assignee === "string" && opts.assignee.length || opts.assignee === null)) {
             throw new Error(errorStrings.NO_ASSIGNEE_ERROR);
         }
+
+        var options = this.buildRequestOptions(opts, '/assignee', 'PUT', {name: opts.assignee});
+
+        return this.jiraClient.makeRequest(options, callback, 'Issue Assigned');
     };
 
     /**
@@ -358,12 +368,13 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {Object} opts.expand See {@link https://docs.atlassian.com/jira/REST/latest/#d2e461}
-     * @param callback Called when the issue has been assigned.
+     * @param [callback] Called when the issue has been assigned.
+     * @return {Promise} Resolved when the issue has been assigned.
      */
     this.getComments = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/comment', 'GET');
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -376,7 +387,8 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {Object} opts.comment See {@link https://docs.atlassian.com/jira/REST/latest/#d2e482}
-     * @param callback
+     * @param [callback] Called when data has been retrieved
+     * @return {Promise} Resolved when data has been retrieved
      */
     this.addComment = function (opts, callback) {
         var options;
@@ -386,7 +398,7 @@ function IssueClient(jiraClient) {
             options = this.buildRequestOptions(opts, '/comment', 'POST', {body: opts.comment});
         }
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -399,7 +411,8 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.commentId The id of the comment.
-     * @param callback Called when the comment is retrieved.
+     * @param [callback] Called when the comment is retrieved.
+     * @return {Promise} Resolved when the comment is retrieved.
      */
     this.getComment = function (opts, callback) {
         if (!opts.commentId) {
@@ -407,7 +420,7 @@ function IssueClient(jiraClient) {
         }
         var options = this.buildRequestOptions(opts, '/comment/' + opts.commentId, 'GET');
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -421,7 +434,8 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.commentId The id of the comment.
      * @param {Object} opts.comment See {@link https://docs.atlassian.com/jira/REST/latest/#d2e539}
-     * @param callback
+     * @param [callback] Called when data has been retrieved
+     * @return {Promise} Resolved when data has been retrieved
      */
     this.editComment = function (opts, callback) {
         if (!opts.comment) {
@@ -431,7 +445,7 @@ function IssueClient(jiraClient) {
         }
         var options = this.buildRequestOptions(opts, '/comment/' + opts.commentId, 'PUT', opts.comment);
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -444,7 +458,8 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.commentId The id of the comment.
-     * @param callback Called when the comment is retrieved.
+     * @param [callback] Called when the comment is retrieved.
+     * @return {Promise} Resolved when the comment is retrieved.
      */
     this.deleteComment = function (opts, callback) {
         if (!opts.commentId) {
@@ -452,7 +467,7 @@ function IssueClient(jiraClient) {
         }
         var options = this.buildRequestOptions(opts, '/comment/' + opts.commentId, 'DELETE');
 
-        this.jiraClient.makeRequest(options, callback, 'Comment Deleted');
+        return this.jiraClient.makeRequest(options, callback, 'Comment Deleted');
     };
 
     /**
@@ -467,12 +482,13 @@ function IssueClient(jiraClient) {
      *        issueKey property; issueId will be used over issueKey if both are present.
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param callback Called when the metadata is retrieved.
+     * @param [callback] Called when the metadata is retrieved.
+     * @return {Promise} Resolved when the metadata is retrieved.
      */
     this.getEditMetadata = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/editmeta', 'GET');
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -487,7 +503,8 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {Object} opts.notification See {@link https://docs.atlassian.com/jira/REST/latest/#d2e435}
-     * @param callback Called when the metadata is retrieved.
+     * @param [callback] Called when the metadata is retrieved.
+     * @return {Promise} Resolved when the metadata is retrieved.
      */
     this.sendEmailNotification = function (opts, callback) {
         if (!opts.notification) {
@@ -496,7 +513,7 @@ function IssueClient(jiraClient) {
 
         var options = this.buildRequestOptions(opts, '/notify', 'POST', opts.notification);
 
-        this.jiraClient.makeRequest(options, callback, 'Notifications Sent');
+        return this.jiraClient.makeRequest(options, callback, 'Notifications Sent');
     };
 
     /**
@@ -511,12 +528,13 @@ function IssueClient(jiraClient) {
      * @param {string} opts.globalId The id of the remote issue link to be returned. If null (not provided) all remote
      *     links for the issue are returned. For a full explanation of Issue Link fields please refer to
      *     {@link https://developer.atlassian.com/display/JIRADEV/Fields+in+Remote+Issue+Links}
-     * @param callback Called when the remote links are retrieved.
+     * @param [callback] Called when the remote links are retrieved.
+     * @return {Promise} Resolved when the remote links are retrieved.
      */
     this.getRemoteLinks = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/remotelink', 'GET', null, {globalId: opts.globalId});
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -530,12 +548,13 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {Object} opts.remoteLink See {@link https://docs.atlassian.com/jira/REST/latest/#d2e945}
-     * @param callback Called when the remote links are retrieved.
+     * @param [callback] Called when the remote links are retrieved.
+     * @return {Promise} Resolved when the remote links are retrieved.
      */
     this.createRemoteLink = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/remotelink', 'POST', opts.remoteLink);
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -549,7 +568,8 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {Object} opts.remoteLink See {@link https://docs.atlassian.com/jira/REST/latest/#d2e945}
-     * @param callback Called when the remote links are retrieved.
+     * @param [callback] Called when the remote links are retrieved.
+     * @return {Promise} Resolved when the remote links are retrieved.
      */
     this.updateRemoteLink = function (opts, callback) {
         // The one API endpoint handles both updates and creation.
@@ -566,7 +586,8 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.globalId The global id of the remote issue link
-     * @param callback Called when the remote links are retrieved.
+     * @param [callback] Called when the remote links are retrieved.
+     * @return {Promise} Resolved when the remote links are retrieved.
      */
     this.deleteRemoteLink = function (opts, callback) {
         if (!opts.globalId) {
@@ -575,7 +596,7 @@ function IssueClient(jiraClient) {
 
         var options = this.buildRequestOptions(opts, '/remotelink', 'DELETE', null, {globalId: opts.globalId});
 
-        this.jiraClient.makeRequest(options, callback, 'RemoteLink Deleted');
+        return this.jiraClient.makeRequest(options, callback, 'RemoteLink Deleted');
     };
 
     /**
@@ -588,7 +609,8 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.linkId The id of the remote link
-     * @param callback Called when the remote links are retrieved.
+     * @param [callback] Called when the remote links are retrieved.
+     * @return {Promise} Resolved when the remote links are retrieved.
      */
     this.getRemoteLinkById = function (opts, callback) {
         if (!opts.linkId) {
@@ -597,7 +619,7 @@ function IssueClient(jiraClient) {
 
         var options = this.buildRequestOptions(opts, '/remotelink/' + opts.linkId, 'GET');
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -611,7 +633,8 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.linkId The id of the remote link
      * @param {string} opts.remoteLink See {@link https://docs.atlassian.com/jira/REST/latest/#d2e1037}
-     * @param callback Called when the remote links are retrieved.
+     * @param [callback] Called when the remote links are retrieved.
+     * @return {Promise} Resolved when the remote links are retrieved.
      */
     this.updateRemoteLinkById = function (opts, callback) {
         if (!opts.linkId) {
@@ -620,7 +643,7 @@ function IssueClient(jiraClient) {
 
         var options = this.buildRequestOptions(opts, '/remotelink/' + opts.linkId, 'PUT', opts.remoteLink);
 
-        this.jiraClient.makeRequest(options, callback, 'RemoteLink Updated');
+        return this.jiraClient.makeRequest(options, callback, 'RemoteLink Updated');
     };
 
     /**
@@ -633,7 +656,8 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.linkId The id of the remote link
-     * @param callback Called when the remote links are retrieved.
+     * @param [callback] Called when the remote links are retrieved.
+     * @return {Promise} Resolved when the remote links are retrieved.
      */
     this.deleteRemoteLinkById = function (opts, callback) {
         if (!opts.linkId) {
@@ -642,7 +666,7 @@ function IssueClient(jiraClient) {
 
         var options = this.buildRequestOptions(opts, '/remotelink/' + opts.linkId, 'DELETE');
 
-        this.jiraClient.makeRequest(options, callback, 'RemoteLink Deleted');
+        return this.jiraClient.makeRequest(options, callback, 'RemoteLink Deleted');
     };
 
     /**
@@ -661,12 +685,13 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.transitionId If specified, will call back with only the transition with the specified id.
-     * @param callback Called when the transitions are retrieved.
+     * @param [callback] Called when the transitions are retrieved.
+     * @return {Promise} Resolved when the transitions are retrieved.
      */
     this.getTransitions = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/transitions', 'GET', null, {transitionId: opts.transitionId});
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -684,7 +709,8 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.transition See {@link https://docs.atlassian.com/jira/REST/latest/#d2e698}
-     * @param callback Called when the transitions are retrieved.
+     * @param [callback] Called when the transitions are retrieved.
+     * @return {Promise} Resolved when the transitions are retrieved.
      */
     this.transitionIssue = function (opts, callback) {
         if (!opts.transition) {
@@ -697,7 +723,7 @@ function IssueClient(jiraClient) {
         } else {
             options = this.buildRequestOptions(opts, '/transitions', 'POST', opts.transition)
         }
-        this.jiraClient.makeRequest(options, callback, 'Issue Transitioned');
+        return this.jiraClient.makeRequest(options, callback, 'Issue Transitioned');
     };
 
     /**
@@ -709,12 +735,13 @@ function IssueClient(jiraClient) {
      *     issueKey property; issueId will be used over issueKey if both are present.
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param callback Called after the vote is removed.
+     * @param [callback] Called after the vote is removed.
+     * @return {Promise} Resolved after the vote is removed.
      */
     this.unvote = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/votes', 'DELETE');
 
-        this.jiraClient.makeRequest(options, callback, 'Vote Removed');
+        return this.jiraClient.makeRequest(options, callback, 'Vote Removed');
     };
 
     /**
@@ -726,12 +753,13 @@ function IssueClient(jiraClient) {
      *     issueKey property; issueId will be used over issueKey if both are present.
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param callback Called after the vote is removed.
+     * @param [callback] Called after the vote is removed.
+     * @return {Promise} Resolved after the vote is removed.
      */
     this.vote = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/votes', 'POST');
 
-        this.jiraClient.makeRequest(options, callback, 'Vote Added');
+        return this.jiraClient.makeRequest(options, callback, 'Vote Added');
     };
 
     /**
@@ -743,12 +771,13 @@ function IssueClient(jiraClient) {
      *     issueKey property; issueId will be used over issueKey if both are present.
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param callback Called after the votes are retrieved.
+     * @param [callback] Called after the votes are retrieved.
+     * @return {Promise} Resolved after the votes are retrieved.
      */
     this.getVotes = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/votes', 'GET');
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -760,12 +789,13 @@ function IssueClient(jiraClient) {
      *     issueKey property; issueId will be used over issueKey if both are present.
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param callback Called after the watchers are retrieved.
+     * @param [callback] Called after the watchers are retrieved.
+     * @return {Promise} Resolved after the watchers are retrieved.
      */
     this.getWatchers = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/watchers', 'GET');
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -778,7 +808,8 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.watcher The username of the user to add as a watcher.
-     * @param callback Called after the watcher is added.
+     * @param [callback] Called after the watcher is added.
+     * @return {Promise} Resolved after the watcher is added.
      */
     this.addWatcher = function (opts, callback) {
         if (!opts.watcher) {
@@ -786,7 +817,7 @@ function IssueClient(jiraClient) {
         }
         var options = this.buildRequestOptions(opts, '/watchers', 'POST', opts.watcher);
 
-        this.jiraClient.makeRequest(options, callback, 'Watcher Added');
+        return this.jiraClient.makeRequest(options, callback, 'Watcher Added');
     };
 
     /**
@@ -799,7 +830,8 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.watcher The username of the user to remove as a watcher.
-     * @param callback Called after the watcher is removed.
+     * @param [callback] Called after the watcher is removed.
+     * @return {Promise} Resolved after the watcher is removed.
      */
     this.removeWatcher = function (opts, callback) {
         if (!opts.watcher) {
@@ -807,7 +839,7 @@ function IssueClient(jiraClient) {
         }
         var options = this.buildRequestOptions(opts, '/watchers', 'DELETE', null, {username: opts.watcher});
 
-        this.jiraClient.makeRequest(options, callback, 'Watcher Removed');
+        return this.jiraClient.makeRequest(options, callback, 'Watcher Removed');
     };
 
     /**
@@ -819,12 +851,13 @@ function IssueClient(jiraClient) {
      *     issueKey property; issueId will be used over issueKey if both are present.
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param callback Called after the worklogs are retrieved.
+     * @param [callback] Called after the worklogs are retrieved.
+     * @return {Promise} Resolved after the worklogs are retrieved.
      */
     this.getWorkLogs = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/worklog', 'GET');
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -848,7 +881,8 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.reduceBy] (required when "manual" is selected for adjustEstimate) the amount to reduce the
      *     remaining estimate by e.g. "2d"
      * @param {Object} opts.worklog See {@link: https://docs.atlassian.com/jira/REST/latest/#d2e1106}
-     * @param callback Called after the worklog is added.
+     * @param [callback] Called after the worklog is added.
+     * @return {Promise} Resolved after the worklog is added.
      */
     this.addWorkLog = function (opts, callback) {
         if (!opts.worklog) {
@@ -860,7 +894,7 @@ function IssueClient(jiraClient) {
             adjustEstimate: opts.adjustEstimate
         });
 
-        this.jiraClient.makeRequest(options, callback, 'Worklog Added');
+        return this.jiraClient.makeRequest(options, callback, 'Worklog Added');
     };
 
     /**
@@ -873,7 +907,8 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.worklogId The id of the work log to retrieve.
-     * @param callback Called after the worklog is retrieved.
+     * @param [callback] Called after the worklog is retrieved.
+     * @return {Promise} Resolved after the worklog is retrieved.
      */
     this.getWorkLog = function (opts, callback) {
         if (!opts.worklogId) {
@@ -881,7 +916,7 @@ function IssueClient(jiraClient) {
         }
         var options = this.buildRequestOptions(opts, '/worklog/' + opts.worklogId, 'GET');
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -903,7 +938,8 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.newEstimate] (required when "new" is selected for adjustEstimate) the new value for the
      *     remaining estimate field. e.g. "2d"
      * @param {Object} opts.worklog See {@link: https://docs.atlassian.com/jira/REST/latest/#d2e1161}
-     * @param callback Called after the worklog is updated.
+     * @param [callback] Called after the worklog is updated.
+     * @return {Promise} Resolved after the worklog is updated.
      */
     this.updateWorkLog = function (opts, callback) {
         if (!opts.worklogId) {
@@ -917,7 +953,7 @@ function IssueClient(jiraClient) {
             adjustEstimate: opts.adjustEstimate
         });
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -941,7 +977,8 @@ function IssueClient(jiraClient) {
      *     remaining estimate field. e.g. "2d"
      * @param {string} [opts.increaseBy] (required when "manual" is selected for adjustEstimate) the amount to reduce
      *     the remaining estimate by e.g. "2d"
-     * @param callback Called after the work log is deleted.
+     * @param [callback] Called after the work log is deleted.
+     * @return {Promise} Resolved after the work log is deleted.
      */
     this.deleteWorkLog = function (opts, callback) {
         if (!opts.worklogId) {
@@ -952,20 +989,21 @@ function IssueClient(jiraClient) {
             increaseBy: opts.increaseBy,
             adjustEstimate: opts.adjustEstimate
         });
-        this.jiraClient.makeRequest(options, callback, 'Work Log Deleted');
+        return this.jiraClient.makeRequest(options, callback, 'Work Log Deleted');
     };
 
     /**
      * Add an attachments to an issue.
      *
      * @method addAttachment
-     * @memberOf IssueClient.js
+     * @memberOf IssueClient
      * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueId or
      *     issueKey property; issueId will be used over issueKey if both are present.
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.filename The file name of attachment. If you pass an array of filenames, multiple attachments will be added.
-     * @param callback Called when the attachment has been attached.
+     * @param [callback] Called when the attachment has been attached.
+     * @return {Promise} Resolved when the attachment has been attached.
      */
     this.addAttachment = function (opts, callback) {
         if (!opts.filename) {
@@ -980,7 +1018,7 @@ function IssueClient(jiraClient) {
             "X-Atlassian-Token": "nocheck"
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -993,11 +1031,12 @@ function IssueClient(jiraClient) {
      *     issueKey property; issueId will be used over issueKey if both are present.
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param callback Called when the properties are retrieved.
+     * @param [callback] Called when the properties are retrieved.
+     * @return {Promise} Resolved when the properties are retrieved.
      */
     this.getProperties = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/properties', 'GET');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -1015,7 +1054,8 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.propertyKey The key of the property being set.
      * @param {Object} opts.propertyValue The value of the property being set.
-     * @param callback Called when the property is set.
+     * @param [callback] Called when the property is set.
+     * @return {Promise} Resolved when the property is set.
      */
     this.setProperty = function (opts, callback) {
         if (!opts.propertyKey) {
@@ -1024,7 +1064,7 @@ function IssueClient(jiraClient) {
             throw new Error(errorStrings.NO_PROPERTY_VALUE_ERROR);
         }
         var options = this.buildRequestOptions(opts, '/properties/' + opts.propertyKey, 'PUT', opts.propertyValue);
-        this.jiraClient.makeRequest(options, callback, 'Property Set');
+        return this.jiraClient.makeRequest(options, callback, 'Property Set');
     };
 
     /**
@@ -1040,14 +1080,15 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.propertyKey The key of the property being set.
-     * @param callback Called when the property is retrieved.
+     * @param [callback] Called when the property is retrieved.
+     * @return {Promise} Resolved when the property is retrieved.
      */
     this.getProperty = function (opts, callback) {
         if (!opts.propertyKey) {
             throw new Error(errorStrings.NO_PROPERTY_KEY_ERROR);
         }
         var options = this.buildRequestOptions(opts, '/properties/' + opts.propertyKey, 'GET');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -1063,14 +1104,15 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} opts.propertyKey The key of the property being set.
-     * @param callback Called when the property is deleted.
+     * @param [callback] Called when the property is deleted.
+     * @return {Promise} Resolved when the property is deleted.
      */
     this.deleteProperty = function (opts, callback) {
         if (!opts.propertyKey) {
             throw new Error(errorStrings.NO_PROPERTY_KEY_ERROR);
         }
         var options = this.buildRequestOptions(opts, '/properties/' + opts.propertyKey, 'DELETE');
-        this.jiraClient.makeRequest(options, callback, 'Property Deleted');
+        return this.jiraClient.makeRequest(options, callback, 'Property Deleted');
     };
 
     /**
@@ -1107,7 +1149,7 @@ function IssueClient(jiraClient) {
                 qs.expand += ex + ','
             });
         }
-        
+
         if (opts.properties) {
             qs.properties = '';
             opts.properties.forEach(function (prop) {

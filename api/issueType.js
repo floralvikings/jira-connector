@@ -17,7 +17,8 @@ function IssueTypeClient(jiraClient) {
      * @method getAllIssueTypes
      * @memberOf IssueTypeClient#
      * @param opts Ignored
-     * @param callback Called when the issue types have been retrieved.
+     * @param [callback] Called when the issue types have been retrieved.
+     * @return {Promise} Resolved when the issue types have been retrieved.
      */
     this.getAllIssueTypes = function (opts, callback) {
         var options = {
@@ -27,7 +28,7 @@ function IssueTypeClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -37,7 +38,8 @@ function IssueTypeClient(jiraClient) {
      * @memberOf IssueTypeClient#
      * @param opts The options sent to the Jira API
      * @param opts.issueTypeId A String containing an issue type id
-     * @param callback Called when the issue type has been retrieved.
+     * @param [callback] Called when the issue type has been retrieved.
+     * @return {Promise} Resolved when the issue type has been retrieved.
      */
     this.getIssueType = function (opts, callback) {
         var options = {
@@ -47,6 +49,6 @@ function IssueTypeClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 }

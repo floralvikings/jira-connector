@@ -20,7 +20,8 @@ function WorklogClient(jiraClient) {
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.since A date time in unix timestamp format since when deleted worklogs will be returned.
      *      Default: 0
-     * @param callback Called when the search results are retrieved.
+     * @param [callback] Called when the search results are retrieved.
+     * @return {Promise} Resolved when the search results are retrieved.
      */ 
     this.getWorklogDeleted = function (opts, callback) {
         var options = {
@@ -32,8 +33,8 @@ function WorklogClient(jiraClient) {
                 since: opts.since
             }
         };
-        this.jiraClient.makeRequest(options, callback)
-    }
+        return this.jiraClient.makeRequest(options, callback)
+    };
 
     /**
      * Returns Returns worklogs for given worklog ids. Only worklogs to which the calling user has permissions, 
@@ -43,7 +44,8 @@ function WorklogClient(jiraClient) {
      * @memberOf WorklogClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {array} [opts.ids] a JSON array named ids which contains a list of issue IDs
-     * @param callback Called when the search results are retrieved.
+     * @param [callback] Called when the search results are retrieved.
+     * @return {Promise} Resolved when the search results are retrieved.
      */ 
     this.worklogList = function (opts, callback) {
         var options = {
@@ -55,8 +57,8 @@ function WorklogClient(jiraClient) {
                 ids: opts.ids
             }
         };
-        this.jiraClient.makeRequest(options, callback)
-    }
+        return this.jiraClient.makeRequest(options, callback)
+    };
 
     /**
      * Returns worklogs id and update time of worklogs that were updated since given time. The returns set of worklogs is 
@@ -67,7 +69,8 @@ function WorklogClient(jiraClient) {
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.since A date time in unix timestamp format since when updated worklogs will be returned.
      *      Default: 0
-     * @param callback Called when the search results are retrieved.
+     * @param [callback] Called when the search results are retrieved.
+     * @return {Promise} Resolved when the search results are retrieved.
      */ 
     this.getWorklogUpdated = function (opts, callback) {
         var options = {
@@ -79,6 +82,6 @@ function WorklogClient(jiraClient) {
                 since: opts.since
             }
         };
-        this.jiraClient.makeRequest(options, callback)
+        return this.jiraClient.makeRequest(options, callback)
     }
 }
