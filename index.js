@@ -142,7 +142,7 @@ var JiraClient = module.exports = function (config) {
     this.port = config.port;
     this.apiVersion = 2; // TODO Add support for other versions.
     this.agileApiVersion = '1.0';
-    this.authApiVersion = '1.0';
+    this.authApiVersion = '1';
     this.webhookApiVersion = '1.0';
     this.promise = config.promise || Promise;
 
