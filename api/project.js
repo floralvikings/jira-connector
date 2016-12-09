@@ -17,7 +17,8 @@ function ProjectClient(jiraClient) {
      * @method getAllProjects
      * @memberOf ProjectClient#
      * @param opts Ignored
-     * @param callback Called when the projects have been retrieved.
+     * @param [callback] Called when the projects have been retrieved.
+     * @return {Promise} Resolved when the projects have been retrieved.
      */
     this.getAllProjects = function (opts, callback) {
         var options = {
@@ -26,7 +27,7 @@ function ProjectClient(jiraClient) {
             json: true,
             followAllRedirects: true
         };
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -36,11 +37,12 @@ function ProjectClient(jiraClient) {
      * @memberOf ProjectClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.projectIdOrKey The project id or project key
-     * @param callback Called when the project has been deleted.
+     * @param [callback] Called when the project has been deleted.
+     * @return {Promise} Resolved when the project has been deleted.
      */
     this.deleteProject = function(opts, callback) {
         var options = this.buildRequestOptions(opts, '', 'DELETE');
-        this.jiraClient.makeRequest(options, callback, 'Project Deleted');
+        return this.jiraClient.makeRequest(options, callback, 'Project Deleted');
     };
 
     /**
@@ -49,7 +51,8 @@ function ProjectClient(jiraClient) {
      * @method createProject
      * @memberOf ProjectClient#
      * @param project The project properties. See {@link https://docs.atlassian.com/jira/REST/latest/#api/2/project}
-     * @param callback Called when the project has been created.
+     * @param [callback] Called when the project has been created.
+     * @return {Promise} Resolved when the project has been created.
      */
     this.createProject = function (project, callback) {
         var options = {
@@ -60,7 +63,7 @@ function ProjectClient(jiraClient) {
             body: project
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -68,12 +71,14 @@ function ProjectClient(jiraClient) {
      *
      * @method getProjectProperties
      * @memberOf ProjectClient#
+     * @param opts Options
      * @param opts.projectIdOrKey The project id or project key
-     * @param callback Called when properties has been retrieved.
+     * @param [callback] Called when properties has been retrieved.
+     * @return {Promise} Resolved when properties has been retrieved.
      */
     this.getProjectProperties = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/properties', 'GET');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
 
@@ -88,11 +93,12 @@ function ProjectClient(jiraClient) {
      * @memberOf ProjectClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.projectIdOrKey The project id or project key
-     * @param callback Called when the project is retrieved.
+     * @param [callback] Called when the project is retrieved.
+     * @return {Promise} Resolved when the project is retrieved.
      */
     this.getProject = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '', 'GET');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -102,11 +108,12 @@ function ProjectClient(jiraClient) {
      * @memberOf ProjectClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.projectIdOrKey The project id or project key
-     * @param callback Called when the components are retrieved.
+     * @param [callback] Called when the components are retrieved.
+     * @return {Promise} Resolved when the components are retrieved.
      */
     this.getComponents = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/components', 'GET');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -116,11 +123,12 @@ function ProjectClient(jiraClient) {
      * @memberOf ProjectClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.projectIdOrKey The project id or project key
-     * @param callback Called when the statuses have been retrieved.
+     * @param [callback] Called when the statuses have been retrieved.
+     * @return {Promise} Resolved when the statuses have been retrieved.
      */
     this.getStatuses = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/statuses', 'GET');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -130,11 +138,12 @@ function ProjectClient(jiraClient) {
      * @memberOf ProjectClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.projectIdOrKey The project id or project key
-     * @param callback Called when the versions have been retrieved.
+     * @param [callback] Called when the versions have been retrieved.
+     * @return {Promise} Resolved when the versions have been retrieved.
      */
     this.getVersions = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/versions', 'GET');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -144,11 +153,12 @@ function ProjectClient(jiraClient) {
      * @memberOf ProjectClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.projectIdOrKey The project id or project key
-     * @param callback Called when the roles have been retrieved.
+     * @param [callback] Called when the roles have been retrieved.
+     * @return {Promise} Resolved when the roles have been retrieved.
      */
     this.getRoles = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/role', 'GET');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -159,11 +169,12 @@ function ProjectClient(jiraClient) {
      * @param opts The request options sent to the Jira API.
      * @param opts.projectIdOrKey The project id or project key
      * @param opts.roleId The id of the role to retrieve.
-     * @param callback Called when the roles have been retrieved.
+     * @param [callback] Called when the roles have been retrieved.
+     * @return {Promise} Resolved when the roles have been retrieved.
      */
     this.getRole = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/role/' + opts.roleId, 'GET');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -175,11 +186,12 @@ function ProjectClient(jiraClient) {
      * @param opts.projectIdOrKey The project id or project key
      * @param opts.roleId The id of the role to retrieve.
      * @param opts.newRole See {@link https://docs.atlassian.com/jira/REST/latest/#d2e108}
-     * @param callback Called when the roles have been retrieved.
+     * @param [callback] Called when the roles have been retrieved.
+     * @return {Promise} Resolved when the roles have been retrieved.
      */
     this.updateRole = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/role/' + opts.roleId, 'PUT', opts.newRole);
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -191,11 +203,12 @@ function ProjectClient(jiraClient) {
      * @param opts.projectIdOrKey The project id or project key
      * @param opts.roleId The id of the role to retrieve.
      * @param opts.newRole See {@link https://docs.atlassian.com/jira/REST/latest/#d2e134}
-     * @param callback Called when the roles have been retrieved.
+     * @param [callback] Called when the roles have been retrieved.
+     * @return {Promise} Resolved when the roles have been retrieved.
      */
     this.addToRole = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/role/' + opts.roleId, 'POST', opts.newRole);
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**

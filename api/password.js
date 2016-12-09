@@ -20,7 +20,8 @@ function PasswordClient(jiraClient) {
      * @param {boolean} [opts.hasOldPassword=false] Whether or not the user will be required to enter their current
      *     password. Use false (the default) if this is a new user or if an administrator is forcibly changing another
      *     user's password.
-     * @param callback Called when the password policy has been retrieved.
+     * @param [callback] Called when the password policy has been retrieved.
+     * @return {Promise} Resolved when the password policy has been retrieved.
      */
     this.getPasswordPolicy = function (opts, callback) {
         var options = {
@@ -33,6 +34,6 @@ function PasswordClient(jiraClient) {
             }
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     }
 }

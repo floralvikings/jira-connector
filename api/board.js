@@ -24,7 +24,8 @@ function AgileBoardClient(jiraClient) {
    *     provides, dues to lack or resources or any other condition. When this happens, your results will be
    *     truncated. Callers should always check the returned maxResults to determine the value that is effectively
    *     being used.
-   * @param callback Called when the dashboards have been retrieved.
+   * @param [callback] Called when the dashboards have been retrieved.
+   * @return {Promise} Resolved when the dashboards have been retrieved.
    */
   this.getAllBoards = function (opts, callback) {
     var options = {
@@ -39,7 +40,7 @@ function AgileBoardClient(jiraClient) {
       }
     };
 
-    this.jiraClient.makeRequest(options, callback);
+      return this.jiraClient.makeRequest(options, callback);
   };
 
   /**
@@ -49,7 +50,8 @@ function AgileBoardClient(jiraClient) {
    * @memberOf AgileBoardClient#
    * @param opts The request options sent to the Jira API.
    * @param opts.boardId The agile board id.
-   * @param callback Called when the dashboard has been retrieved
+   * @param [callback] Called when the dashboard has been retrieved
+   * @return {Promise} Resolved when the dashboard has been retrieved
    */
   this.getBoard = function (opts, callback) {
     var options = {
@@ -64,7 +66,7 @@ function AgileBoardClient(jiraClient) {
       }
     };
 
-    this.jiraClient.makeRequest(options, callback);
+      return this.jiraClient.makeRequest(options, callback);
   };
 
 
@@ -82,7 +84,8 @@ function AgileBoardClient(jiraClient) {
    *     provides, dues to lack or resources or any other condition. When this happens, your results will be
    *     truncated. Callers should always check the returned maxResults to determine the value that is effectively
    *     being used.
-   * @param callback Called when the dashboards have been retrieved.
+   * @param [callback] Called when the dashboards have been retrieved.
+   * @return {Promise} Resolved when the dashboards have been retrieved.
    */
   this.getIssuesForBoard = function (opts, callback) {
     var options = {
@@ -96,6 +99,6 @@ function AgileBoardClient(jiraClient) {
       }
     };
 
-    this.jiraClient.makeRequest(options, callback);
+      return this.jiraClient.makeRequest(options, callback);
   };
 }

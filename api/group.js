@@ -20,7 +20,8 @@ function GroupClient(jiraClient) {
      * @memberOf GroupClient#
      * @param opts The request options sent to jira
      * @param opts.group The group to create.  See {@link https://docs.atlassian.com/jira/REST/latest/#d2e2011}
-     * @param callback Called when the group is created
+     * @param [callback] Called when the group is created
+     * @return {Promise} Resolved when the group is created
      */
     this.createGroup = function (opts, callback) {
         var options = {
@@ -31,7 +32,7 @@ function GroupClient(jiraClient) {
             body: opts.group
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -45,7 +46,8 @@ function GroupClient(jiraClient) {
      * @param opts The request options sent to the Jira API
      * @param opts.groupName A name of requested group.
      * @param opts.expand Array of fields to expand. Currently only available expand is "users".
-     * @param callback Called when the group is retrieved.
+     * @param [callback] Called when the group is retrieved.
+     * @return {Promise} Resolved when the group is retrieved.
      */
     this.getGroup = function (opts, callback) {
         var qs = {
@@ -67,7 +69,7 @@ function GroupClient(jiraClient) {
             qs: qs
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -78,7 +80,8 @@ function GroupClient(jiraClient) {
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} opts.groupName A name of requested group.
      * @param {string} opts.userName The name of the user to add to the group.
-     * @param callback Called when the user has been added to the group.
+     * @param [callback] Called when the user has been added to the group.
+     * @return {Promise} Resolved when the user has been added to the group.
      */
     this.addUserToGroup = function (opts, callback) {
         var options = {
@@ -94,7 +97,7 @@ function GroupClient(jiraClient) {
             }
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -105,7 +108,8 @@ function GroupClient(jiraClient) {
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} opts.groupName A name of requested group.
      * @param {string} opts.userName The name of the user to add to the group.
-     * @param callback Called when the user has been added to the group.
+     * @param [callback] Called when the user has been added to the group.
+     * @return {Promise} Resolved when the user has been added to the group.
      */
     this.removeUserFromGroup = function (opts, callback) {
         var options = {
@@ -119,7 +123,7 @@ function GroupClient(jiraClient) {
             }
         };
 
-        this.jiraClient.makeRequest(options, callback, 'User Removed from Group');
+        return this.jiraClient.makeRequest(options, callback, 'User Removed from Group');
     };
 
     /**
@@ -130,7 +134,8 @@ function GroupClient(jiraClient) {
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} opts.groupName A group to delete.
      * @param {string} [opts.swapGroup] A group to transfer visibility restrictions of the group that is being deleted
-     * @param callback Called when the group has been deleted.
+     * @param [callback] Called when the group has been deleted.
+     * @return {Promise} Resolved when the group has been deleted.
      */
     this.deleteGroup = function (opts, callback) {
         var options = {
@@ -144,6 +149,6 @@ function GroupClient(jiraClient) {
             }
         };
 
-        this.jiraClient.makeRequest(options, callback, 'Group Deleted');
+        return this.jiraClient.makeRequest(options, callback, 'Group Deleted');
     };
 }

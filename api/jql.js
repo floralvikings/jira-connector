@@ -17,7 +17,8 @@ function JqlClient(jiraClient) {
      * @method getAutoCompleteData
      * @memberOf JqlClient#
      * @param opts The options sent to the Jira API.  Ignored by this function.
-     * @param callback Called when the autocomplete data is returned.
+     * @param [callback] Called when the autocomplete data is returned.
+     * @return {Promise} Resolved when the autocomplete data is returned.
      */
     this.getAutoCompleteData = function (opts, callback) {
         var options = {
@@ -27,6 +28,6 @@ function JqlClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback)
+        return this.jiraClient.makeRequest(options, callback)
     }
 }

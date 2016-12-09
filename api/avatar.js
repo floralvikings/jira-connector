@@ -21,7 +21,8 @@ function AvatarClient(jiraClient) {
      * @memberOf AvatarClient#
      * @param opts The options to be used in the API request.
      * @param opts.avatarType The avatar type.  May be 'project' or 'user'.
-     * @param callback Called when the avatars are retrieved.
+     * @param [callback] Called when the avatars are retrieved.
+     * @return {Promise} Resolved when the avatars are retrieved.
      */
     this.getAvatars = function (opts, callback) {
         if (!opts.avatarType) {
@@ -34,7 +35,7 @@ function AvatarClient(jiraClient) {
             uri: this.jiraClient.buildURL('/avatar/' + opts.avatarType + '/system')
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -48,7 +49,8 @@ function AvatarClient(jiraClient) {
      * @param opts.avatarFilename The name of the file being uploaded
      * @param opts.avatarFileSize The size of the file
      * @param opts.avatarFilePath The path to the avatar file.
-     * @param callback Called when the avatar is created.
+     * @param [callback] Called when the avatar is created.
+     * @return {Promise} Resolved when the avatar is created.
      */
     this.createTemporaryAvatar = function (opts, callback) {
         if (!opts.avatarType) {
@@ -74,7 +76,7 @@ function AvatarClient(jiraClient) {
         };
         delete options.body;
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -86,7 +88,8 @@ function AvatarClient(jiraClient) {
      * @param {Object} opts The options to be used in the API request.
      * @param {string} opts.avatarType The avatar type.  May be 'project' or 'user'.
      * @param {Object} opts.crop See {@link https://docs.atlassian.com/jira/REST/latest/#d2e3316}
-     * @param callback Called when the avatar has been cropped.
+     * @param [callback] Called when the avatar has been cropped.
+     * @return {Promise} Resolved when the avatar has been cropped.
      */
     this.cropTemporaryAvatar = function (opts, callback) {
         if (!opts.avatarType) {
@@ -104,6 +107,6 @@ function AvatarClient(jiraClient) {
             body: opts.crop
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 }

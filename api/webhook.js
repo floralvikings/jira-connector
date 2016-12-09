@@ -17,7 +17,8 @@ function WebhookClient(jiraClient) {
      * @method getAllWebhooks
      * @memberOf WebhookClient#
      * @param opts Ignored
-     * @param callback Called when the webhooks have been retrieved.
+     * @param [callback] Called when the webhooks have been retrieved.
+     * @return {Promise} Resolved when the webhooks have been retrieved.
      */
     this.getAllWebhooks = function (opts, callback) {
         var options = {
@@ -27,7 +28,7 @@ function WebhookClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -37,7 +38,8 @@ function WebhookClient(jiraClient) {
      * @memberOf WebhookClient#
      * @param opts The options sent to the JIRA API.
      * @param opts.webhookId The numerical webhook ID.
-     * @param callback Called when the webhook has been retrieved.
+     * @param [callback] Called when the webhook has been retrieved.
+     * @return {Promise} Resolved when the webhook has been retrieved.
      */
     this.getWebhook = function (opts, callback) {
         var options = {
@@ -47,7 +49,7 @@ function WebhookClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -64,7 +66,8 @@ function WebhookClient(jiraClient) {
      * @param opts.filter An object containing filter configuration.
      * @param opts.filter.issue-related-events-section A filter for issues, written in JQL.
      * @param opts.excludeBody Whether to send an empty body to the webhook URL.
-     * @param callback Called when the webhook has been retrieved.
+     * @param [callback] Called when the webhook has been retrieved.
+     * @return {Promise} Resolved when the webhook has been retrieved.
      */
     this.createWebhook = function (opts, callback) {
         var options = {
@@ -75,7 +78,7 @@ function WebhookClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -85,7 +88,8 @@ function WebhookClient(jiraClient) {
      * @memberOf WebhookClient#
      * @param opts The options sent to the JIRA API.
      * @param opts.webhookId The numerical webhook ID.
-     * @param callback Called when the webhook has been retrieved.
+     * @param [callback] Called when the webhook has been retrieved.
+     * @return {Promise} Resolved when the webhook has been retrieved.
      */
     this.deleteWebhook = function (opts, callback) {
         var options = {
@@ -95,6 +99,6 @@ function WebhookClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 }

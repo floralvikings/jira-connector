@@ -21,7 +21,8 @@ function FilterClient(jiraClient) {
      * @param {Array} [opts.expand] The parameters to expand.
      * @param {Object} opts.filter The filter to create.  See
      *      {@link https://docs.atlassian.com/jira/REST/latest/#d2e3347}
-     * @param callback Called when the filter has been created.
+     * @param [callback] Called when the filter has been created.
+     * @return {Promise} Resolved when the filter has been created.
      */
     this.createFilter = function (opts, callback) {
         var options = {
@@ -40,7 +41,7 @@ function FilterClient(jiraClient) {
             });
         }
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -50,11 +51,12 @@ function FilterClient(jiraClient) {
      * @memberOf FilterClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.filterId The id of the filter to retrieve
-     * @param callback Called when the filter has been retrieved.
+     * @param [callback] Called when the filter has been retrieved.
+     * @return {Promise} Resolved when the filter has been retrieved.
      */
     this.getFilter = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '', 'GET');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -66,11 +68,12 @@ function FilterClient(jiraClient) {
      * @param {number} opts.filterId The id of the filter to update
      * @param {Object} opts.filter The new data for the filter.  See
      *      {@link https://docs.atlassian.com/jira/REST/latest/#d2e3401}
-     * @param callback Called when the filter has been updated.
+     * @param [callback] Called when the filter has been updated.
+     * @return {Promise} Resolved when the filter has been updated.
      */
     this.updateFilter = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '', 'PUT', opts.filter);
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -80,11 +83,12 @@ function FilterClient(jiraClient) {
      * @memberOf FilterClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.filterId The id of the filter to delete
-     * @param callback Called when the filter has been deleted.
+     * @param [callback] Called when the filter has been deleted.
+     * @return {Promise} Resolved when the filter has been deleted.
      */
     this.deleteFilter = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '', 'DELETE');
-        this.jiraClient.makeRequest(options, callback, 'Filter Deleted');
+        return this.jiraClient.makeRequest(options, callback, 'Filter Deleted');
     };
 
     /**
@@ -95,11 +99,12 @@ function FilterClient(jiraClient) {
      * @memberOf FilterClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.filterId The id of the filter for which to retrieve columns.
-     * @param callback Called when the columns have been retrieved.
+     * @param [callback] Called when the columns have been retrieved.
+     * @return {Promise} Resolved when the columns have been retrieved.
      */
     this.getFilterColumns = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/columns', 'GET');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -111,12 +116,13 @@ function FilterClient(jiraClient) {
      * @param {number} opts.filterId The id of the filter for which to update columns.
      * @param {Array} opts.columns The names of the new columns.
      *      See {@link https://docs.atlassian.com/jira/REST/latest/#d2e3460}
-     * @param callback Called when the columns have been set
+     * @param [callback] Called when the columns have been set
+     * @return {Promise} Resolved when the columns have been set
      */
     this.setFilterColumns = function (opts, callback) {
         var body = {columns: opts.columns};
         var options = this.buildRequestOptions(opts, '/columns', 'PUT', body);
-        this.jiraClient.makeRequest(options, callback, 'Columns Updated');
+        return this.jiraClient.makeRequest(options, callback, 'Columns Updated');
     };
 
     /**
@@ -126,11 +132,12 @@ function FilterClient(jiraClient) {
      * @memberOf FilterClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.filterId The id of the filter for which to reset columns.
-     * @param callback Called when the columns have been reset.
+     * @param [callback] Called when the columns have been reset.
+     * @return {Promise} Resolved when the columns have been reset.
      */
     this.resetFilterColumns = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/columns', 'DELETE');
-        this.jiraClient.makeRequest(options, callback, 'Columns Reset');
+        return this.jiraClient.makeRequest(options, callback, 'Columns Reset');
     };
 
     /**
@@ -139,7 +146,8 @@ function FilterClient(jiraClient) {
      * @method getDefaultShareScore
      * @memberOf FilterClient#
      * @param opts Ignored.
-     * @param callback Called when the default share scope has been retrieved.
+     * @param [callback] Called when the default share scope has been retrieved.
+     * @return {Promise} Resolved when the default share scope has been retrieved.
      */
     this.getDefaultShareScore = function (opts, callback) {
         var options = {
@@ -149,7 +157,7 @@ function FilterClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -159,7 +167,8 @@ function FilterClient(jiraClient) {
      * @memberOf FilterClient#
      * @param {Object} opts The request options sent to jira
      * @param {string} opts.scope The new default share scope. Available values are GLOBAL and PRIVATE.
-     * @param callback Called when the default share scope has been set.
+     * @param [callback] Called when the default share scope has been set.
+     * @return {Promise} Resolved when the default share scope has been set.
      */
     this.setDefaultShareScope = function (opts, callback) {
         var options = {
@@ -171,7 +180,7 @@ function FilterClient(jiraClient) {
                 scope: opts.scope
             }
         };
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -180,7 +189,8 @@ function FilterClient(jiraClient) {
      * @method getFavouriteFilters
      * @memberOf FilterClient#
      * @param opts Ignored.
-     * @param callback Called when the list of favourites has been retrieved.
+     * @param [callback] Called when the list of favourites has been retrieved.
+     * @return {Promise} Resolved when the list of favourites has been retrieved.
      */
     this.getFavoriteFilters = function (opts, callback) {
         var options = {
@@ -189,7 +199,7 @@ function FilterClient(jiraClient) {
             json: true,
             followAllRedirects: true
         };
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**

@@ -23,7 +23,8 @@ function UserClient(jiraClient) {
      * @param opts.username The name of the user to retrieve.
      * @param opts.userKey The key of the user to retrieve.
      * @param {Object} opts.expand The fields to be expanded.
-     * @param callback Called when the user has been retrieved.
+     * @param [callback] Called when the user has been retrieved.
+     * @return {Promise} Resolved when the user has been retrieved.
      */
     this.getUser = function (opts, callback) {
         var options = {
@@ -45,7 +46,7 @@ function UserClient(jiraClient) {
             });
         }
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -56,7 +57,8 @@ function UserClient(jiraClient) {
      * @param opts The request options sent to the Jira API
      * @param opts.username The name of the user to delete.
      * @param opts.userKey The key of the user to delete.
-     * @param callback Called when the user has been deleted.
+     * @param [callback] Called when the user has been deleted.
+     * @return {Promise} Resolved when the user has been deleted.
      */
     this.deleteUser = function (opts, callback) {
         var options = {
@@ -70,7 +72,7 @@ function UserClient(jiraClient) {
             }
         };
 
-        this.jiraClient.makeRequest(options, callback, 'User removed.');
+        return this.jiraClient.makeRequest(options, callback, 'User removed.');
     };
 
     /**
@@ -81,7 +83,8 @@ function UserClient(jiraClient) {
      * @memberOf UserClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.user See {@link https://docs.atlassian.com/jira/REST/latest/#d2e4049}
-     * @param callback Called when the user has been created.
+     * @param [callback] Called when the user has been created.
+     * @return {Promise} Resolved when the user has been created.
      */
     this.createUser = function (opts, callback) {
         var options = {
@@ -92,7 +95,7 @@ function UserClient(jiraClient) {
             body: opts.user
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -105,7 +108,8 @@ function UserClient(jiraClient) {
      * @param opts.user See {@link https://docs.atlassian.com/jira/REST/latest/#d2e4081}
      * @param opts.username The name of the user to edit.
      * @param opts.userKey The key of the user to edit.
-     * @param callback Called when the user has been edited.
+     * @param [callback] Called when the user has been edited.
+     * @return {Promise} Resolved when the user has been edited.
      */
     this.editUser = function (opts, callback) {
         var options = {
@@ -120,7 +124,7 @@ function UserClient(jiraClient) {
             body: opts.user
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -136,7 +140,8 @@ function UserClient(jiraClient) {
      * @param {number} [opts.maxResults] The maximum number of users to return (defaults to 50). The maximum allowed
      *     value is 1000. If you specify a value that is higher than this number, your search results will be
      *     truncated.
-     * @param callback Called when the search results have been retrieved.
+     * @param [callback] Called when the search results have been retrieved.
+     * @return {Promise} Resolved when the search results have been retrieved.
      */
     this.multiProjectSearchAssignable = function (opts, callback) {
         var projectKeyString = '';
@@ -158,7 +163,7 @@ function UserClient(jiraClient) {
                 maxResults: opts.maxResults
             }
         };
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -178,7 +183,8 @@ function UserClient(jiraClient) {
      *     value is 1000. If you specify a value that is higher than this number, your search results will be
      *     truncated.
      * @param {number} [opts.actionDescriptorId]
-     * @param callback Called when the search results have been retrieved.
+     * @param [callback] Called when the search results have been retrieved.
+     * @return {Promise} Resolved when the search results have been retrieved.
      */
     this.searchAssignable = function (opts, callback) {
         var options = {
@@ -195,7 +201,7 @@ function UserClient(jiraClient) {
                 actionDescriptorId: opts.actionDescriptorId
             }
         };
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -207,7 +213,8 @@ function UserClient(jiraClient) {
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} opts.username The username
      * @param {string} opts.filepath The path to the file to upload.
-     * @param callback Called when the temporary avatar has been uploaded.
+     * @param [callback] Called when the temporary avatar has been uploaded.
+     * @return {Promise} Resolved when the temporary avatar has been uploaded.
      */
     this.createTemporaryAvatar = function (opts, callback) {
         var extension = path.extname(opts.filepath).slice(1);
@@ -231,7 +238,7 @@ function UserClient(jiraClient) {
                 "Content-Type": 'image/' + extension
             }
         };
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -242,7 +249,8 @@ function UserClient(jiraClient) {
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} opts.username The username
      * @param {Object} opts.avatarId The id of the temporary avatar to convert.
-     * @param callback Called when the avatar has been converted
+     * @param [callback] Called when the avatar has been converted
+     * @return {Promise} Resolved when the avatar has been converted
      */
     this.convertTemporaryAvatar = function (opts, callback) {
         var options = {
@@ -258,7 +266,7 @@ function UserClient(jiraClient) {
                 "X-Atlassian-Token": 'no-check'
             }
         };
-        this.jiraClient.makeRequest(options, callback, 'Avatar Converted');
+        return this.jiraClient.makeRequest(options, callback, 'Avatar Converted');
     };
 
     /**
@@ -269,7 +277,8 @@ function UserClient(jiraClient) {
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} opts.username The username
      * @param {Object} opts.avatarId The id of the temporary avatar to delete.
-     * @param callback Called when the avatar has been deleted.
+     * @param [callback] Called when the avatar has been deleted.
+     * @return {Promise} Resolved when the avatar has been deleted.
      */
     this.deleteAvatar = function (opts, callback) {
         var options = {
@@ -281,7 +290,7 @@ function UserClient(jiraClient) {
                 username: opts.username
             }
         };
-        this.jiraClient.makeRequest(options, callback, 'Avatar Deleted');
+        return this.jiraClient.makeRequest(options, callback, 'Avatar Deleted');
     };
 
     /**
@@ -291,7 +300,8 @@ function UserClient(jiraClient) {
      * @memberOf UserClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} opts.username The username
-     * @param callback Called when the avatars have been retrieved.
+     * @param [callback] Called when the avatars have been retrieved.
+     * @return {Promise} Resolved when the avatars have been retrieved.
      */
     this.getAvatars = function (opts, callback) {
         var options = {
@@ -303,7 +313,7 @@ function UserClient(jiraClient) {
                 username: opts.username
             }
         };
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -314,7 +324,8 @@ function UserClient(jiraClient) {
      * @memberOf UserClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} opts.username The username
-     * @param callback Called when the columns have been retrieved.
+     * @param [callback] Called when the columns have been retrieved.
+     * @return {Promise} Resolved when the columns have been retrieved.
      */
     this.getDefaultColumns = function (opts, callback) {
         var options = {
@@ -326,7 +337,7 @@ function UserClient(jiraClient) {
                 username: opts.username
             }
         };
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -339,7 +350,8 @@ function UserClient(jiraClient) {
      * @param {string} opts.username The username
      * @param {Array} opts.columns The names of the new columns.  See {@link
         *     https://docs.atlassian.com/jira/REST/latest/#d2e4566}
-     * @param callback Called when the columns have been set.
+     * @param [callback] Called when the columns have been set.
+     * @return {Promise} Resolved when the columns have been set.
      */
     this.setDefaultColumns = function (opts, callback) {
         var options = {
@@ -354,7 +366,7 @@ function UserClient(jiraClient) {
                 columns: opts.columns
             }
         };
-        this.jiraClient.makeRequest(options, callback, 'Default Columns Set');
+        return this.jiraClient.makeRequest(options, callback, 'Default Columns Set');
     };
 
     /**
@@ -365,7 +377,8 @@ function UserClient(jiraClient) {
      * @memberOf UserClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} opts.username The username
-     * @param callback Called when the columns have been reset.
+     * @param [callback] Called when the columns have been reset.
+     * @return {Promise} Resolved when the columns have been reset.
      */
     this.resetDefaultColumns = function (opts, callback) {
         var options = {
@@ -377,7 +390,7 @@ function UserClient(jiraClient) {
                 username: opts.username
             }
         };
-        this.jiraClient.makeRequest(options, callback, 'Default Columns Reset');
+        return this.jiraClient.makeRequest(options, callback, 'Default Columns Reset');
     };
 
     /**
@@ -389,7 +402,8 @@ function UserClient(jiraClient) {
      * @param opts.username The name of the user for which to change the password.
      * @param opts.userKey The key of the user for which to change the password.
      * @param opts.password The new password.
-     * @param callback Called when the password has been set.
+     * @param [callback] Called when the password has been set.
+     * @return {Promise} Resolved when the password has been set.
      */
     this.changePassword = function (opts, callback) {
         var options = {
@@ -405,7 +419,7 @@ function UserClient(jiraClient) {
                 password: opts.password
             }
         };
-        this.jiraClient.makeRequest(options, callback, 'Password Changed');
+        return this.jiraClient.makeRequest(options, callback, 'Password Changed');
     };
 
     /**
@@ -429,7 +443,8 @@ function UserClient(jiraClient) {
      * @param {number} [opts.maxResults] the maximum number of users to return (defaults to 50). The maximum allowed
      *     value is 1000. If you specify a value that is higher than this number, your search results will be
      *     truncated.
-     * @param callback Called when the search results are retrieved.
+     * @param [callback] Called when the search results are retrieved.
+     * @return {Promise} Resolved when the search results are retrieved.
      */
     this.searchPermissions = function (opts, callback) {
         var permissions = '';
@@ -453,7 +468,7 @@ function UserClient(jiraClient) {
                 maxResults: opts.maxResults
             }
         };
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -466,7 +481,8 @@ function UserClient(jiraClient) {
      * @param {number} [opts.maxResults=50]
      * @param {boolean} [opts.showAvatar=false]
      * @param {string} [opts.exclude]
-     * @param callback Called when the search results are retrieved.
+     * @param [callback] Called when the search results are retrieved.
+     * @return {Promise} Resolved when the search results are retrieved.
      */
     this.searchPicker = function (opts, callback) {
         var options = {
@@ -481,7 +497,7 @@ function UserClient(jiraClient) {
                 exclude: opts.exclude
             }
         };
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -498,7 +514,8 @@ function UserClient(jiraClient) {
      * @param {boolean} [opts.includeActive=true] If true, then active users are included in the results (default true)
      * @param {boolean} [opts.includeInactive=false] If true, then inactive users are included in the results (default
      *     false)
-     * @param callback Called when the search results are retrieved.
+     * @param [callback] Called when the search results are retrieved.
+     * @return {Promise} Resolved when the search results are retrieved.
      */
     this.search = function (opts, callback) {
         var options = {
@@ -514,7 +531,7 @@ function UserClient(jiraClient) {
                 includeInactive: opts.includeInactive
             }
         };
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -530,7 +547,8 @@ function UserClient(jiraClient) {
      * @param {string} [opts.projectKey] the optional project key to search for users with if no issueKey is supplied.
      * @param {number} [opts.startAt=0] the index of the first user to return (0-based)
      * @param {number} [opts.maxResults=50] the maximum number of users to return (defaults to 50). The maximum allowed
-     * @param callback
+     * @param [callback] Called when data has been retrieved
+     * @return {Promise} Resolved when data has been retrieved
      */
     this.viewIssueSearch = function (opts, callback) {
         var options = {
@@ -546,6 +564,6 @@ function UserClient(jiraClient) {
                 maxResults: opts.maxResults
             }
         };
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 }

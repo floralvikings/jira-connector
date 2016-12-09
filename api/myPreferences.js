@@ -19,7 +19,8 @@ function MyPreferencesClient(jiraClient) {
      * @memberOf MyPreferencesClient#
      * @param opts The request options send to the Jira API.
      * @param opts.key Key of the preference to be returned.
-     * @param callback Called when the preference has been retrieved.
+     * @param [callback] Called when the preference has been retrieved.
+     * @return {Promise} Resolved when the preference has been retrieved.
      */
     this.getPreference = function (opts, callback) {
         var options = {
@@ -32,7 +33,7 @@ function MyPreferencesClient(jiraClient) {
             }
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -43,7 +44,8 @@ function MyPreferencesClient(jiraClient) {
      * @param opts The request options send to the Jira API.
      * @param opts.key Key of the preference to be edited.
      * @param opts.value The new value to set for the preference.
-     * @param callback Called when the preference has been edited.
+     * @param [callback] Called when the preference has been edited.
+     * @return {Promise} Resolved when the preference has been edited.
      */
     this.editPreference = function (opts, callback) {
         var options = {
@@ -57,7 +59,7 @@ function MyPreferencesClient(jiraClient) {
             body: opts.value
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -67,7 +69,8 @@ function MyPreferencesClient(jiraClient) {
      * @memberOf MyPreferencesClient#
      * @param opts The request options send to the Jira API.
      * @param opts.key Key of the preference to be deleted.
-     * @param callback Called when the preference has been deleted.
+     * @param [callback] Called when the preference has been deleted.
+     * @return {Promise} Resolved when the preference has been deleted.
      */
     this.deletePreference = function (opts, callback) {
         var options = {
@@ -80,6 +83,6 @@ function MyPreferencesClient(jiraClient) {
             }
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     }
 }
