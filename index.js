@@ -143,7 +143,7 @@ var JiraClient = module.exports = function (config) {
     this.agileApiVersion = '1.0';
     this.webhookApiVersion = '1.0';
     this.promise = config.promise || Promise;
-    this.request = config.request || request;
+    this.requestLib = config.request || request;
 
     if (config.oauth) {
         if (!config.oauth.consumer_key) {
@@ -305,6 +305,8 @@ var JiraClient = module.exports = function (config) {
      * @return {Promise} Resolved with APIs response or rejected with error
      */
     this.makeRequest = function (options, callback, successString) {
+        let requestLib = this.requestLib;
+
         if (this.oauthConfig) {
             options.oauth = this.oauthConfig;
         } else if (this.basic_auth) {
@@ -321,7 +323,7 @@ var JiraClient = module.exports = function (config) {
         }
 
         if (callback) {
-            this.request(options, function (err, response, body) {
+            requestLib(options, function (err, response, body) {
                 if (err || response.statusCode.toString()[0] != 2) {
                     return callback(err ? err : body, null, response);
                 }
@@ -339,7 +341,7 @@ var JiraClient = module.exports = function (config) {
         } else if (this.promise) {
             return new this.promise(function (resolve, reject) {
 
-                var req = this.request(options);
+                var req = requestLib(options);
 
                 req.on('response', function(response) {
 
