@@ -16,22 +16,18 @@ function ProjectClient(jiraClient) {
      *
      * @method getAllProjects
      * @memberOf ProjectClient#
-     * @param opts Ignored
+     * @param opts The request options sent to the Jira API.
      * @param [callback] Called when the projects have been retrieved.
      * @return {Promise} Resolved when the projects have been retrieved.
      */
     this.getAllProjects = function (opts, callback) {
-        var options = {
-            uri: this.jiraClient.buildURL('/project'),
-            method: 'GET',
-            json: true,
-            followAllRedirects: true
-        };
+        var options = this.buildRequestOptions(opts, '', 'GET');
+
         return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
-     * Deletes a project 
+     * Deletes a project
      *
      * @method deleteProject
      * @memberOf ProjectClient#
@@ -228,7 +224,10 @@ function ProjectClient(jiraClient) {
      * @returns {{uri: string, method: string, body: Object, qs: Object, followAllRedirects: boolean, json: boolean}}
      */
     this.buildRequestOptions = function (opts, path, method, body, qs) {
-        var basePath = '/project/' + opts.projectIdOrKey;
+        opts = opts || {};
+
+        var basePath = opts.projectIdOrKey ? '/project/' + opts.projectIdOrKey : '/project';
+
         if (!qs) qs = {};
         if (!body) body = {};
 
