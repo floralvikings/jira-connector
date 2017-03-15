@@ -51,7 +51,32 @@ function VersionClient(jiraClient) {
         var options = this.buildRequestOptions(opts, '/move', 'POST', {position: opts.position, after: opts.after});
         return this.jiraClient.makeRequest(options, callback);
     };
-
+    
+     /**
+     * Get a all versions from specific board.
+     *
+     * @method getAllVersions
+     * @memberOf VersionClient#
+     * @param {Object} opts The request options sent to the Jira API.
+     * @param {string|number} opts.boardId The id of the board which contains versions to retrieve.
+     * @param [callback] Called when all versions are retrieved.
+     * @return {Promise} Resolved when all versions are retrieved.
+     */
+    this.getAllVersions = function(opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildAgileURL(`/board/${opts.boardId}/version`),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                filter: opts.filter,
+                startAt: opts.startAt,
+                maxResults: opts.maxResults
+            }
+        }
+        return this.jiraClient.makeRequest(options, callback);
+    }
+    
     /**
      * Get a project version.
      *
