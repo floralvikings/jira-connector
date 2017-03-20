@@ -116,6 +116,7 @@ function AgileBoardClient(jiraClient) {
    *     provides, dues to lack or resources or any other condition. When this happens, your results will be
    *     truncated. Callers should always check the returned maxResults to determine the value that is effectively
    *     being used.
+   * @param [opts.state] Optionally filter by state, e.g. 'active'.
    * @param callback Called when the sprints have been retrieved.
    * @return {Promise} Resolved when the sprints have been retrieved.
    */
@@ -127,7 +128,8 @@ function AgileBoardClient(jiraClient) {
       followAllRedirects: true,
       qs: {
         startAt: opts.startAt,
-        maxResults: opts.maxResults
+        maxResults: opts.maxResults,
+        state: opts.state
       }
     };
 
