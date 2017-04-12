@@ -93,9 +93,12 @@ function AgileBoardClient(jiraClient) {
       method: 'GET',
       json: true,
       followAllRedirects: true,
+      useQuerystring: true,
       qs: {
         startAt: opts.startAt,
-        maxResults: opts.maxResults
+        maxResults: opts.maxResults,
+        fields: opts.fields,
+        jql: opts.jql
       }
     };
 
