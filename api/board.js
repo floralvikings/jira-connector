@@ -130,7 +130,8 @@ function AgileBoardClient(jiraClient) {
       followAllRedirects: true,
       qs: {
         startAt: opts.startAt,
-        maxResults: opts.maxResults
+        maxResults: opts.maxResults,
+        state: opts.state,
       }
     };
 
