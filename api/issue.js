@@ -1115,6 +1115,42 @@ function IssueClient(jiraClient) {
         return this.jiraClient.makeRequest(options, callback, 'Property Deleted');
     };
 
+    this.setWorklogProperty = function (opts, callback) {
+        if (!opts.propertyKey) {
+            throw new Error(errorStrings.NO_PROPERTY_KEY_ERROR);
+        } else if (!opts.propertyValue) {
+            throw new Error(errorStrings.NO_PROPERTY_VALUE_ERROR);
+        }
+      var options = this.buildRequestOptions(
+        opts,
+        '/worklog/' + opts.worklogId + '/properties/' + opts.propertyKey,
+        'PUT',
+        opts.propertyValue
+      );
+      return this.jiraClient.makeRequest(options, callback, 'Property Set');
+    };
+
+    this.getWorkLogProperties = function (opts, callback) {
+      var options = this.buildRequestOptions(
+        opts,
+        '/worklog/' + opts.worklogId + '/properties/',
+        'GET'
+      );
+      return this.jiraClient.makeRequest(options, callback);
+    };
+
+    this.getWorkLogProperty = function (opts, callback) {
+      if (!opts.propertyKey) {
+          throw new Error(errorStrings.NO_PROPERTY_KEY_ERROR);
+      }
+      var options = this.buildRequestOptions(
+        opts,
+        '/worklog/' + opts.worklogId + '/properties/' + opts.propertyKey,
+        'GET'
+      );
+      return this.jiraClient.makeRequest(options, callback);
+    };
+
     /**
      * Build out the request options necessary to make a particular API call.
      *
