@@ -17,7 +17,8 @@ function PriorityClient(jiraClient) {
      * @method getAllPriorities
      * @memberOf PriorityClient#
      * @param opts Ignored
-     * @param callback Called when the priorities have been retrieved.
+     * @param [callback] Called when the priorities have been retrieved.
+     * @return {Promise} Resolved when the priorities have been retrieved.
      */
     this.getAllPriorities = function (opts, callback) {
         var options = {
@@ -27,7 +28,7 @@ function PriorityClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -37,7 +38,8 @@ function PriorityClient(jiraClient) {
      * @memberOf PriorityClient#
      * @param opts The options sent to the Jira API
      * @param opts.priorityId A String containing a priority id
-     * @param callback Called when the priority has been retrieved.
+     * @param [callback] Called when the priority has been retrieved.
+     * @return {Promise} Resolved when the priority has been retrieved.
      */
     this.getPriority = function (opts, callback) {
         var options = {
@@ -47,6 +49,6 @@ function PriorityClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 }

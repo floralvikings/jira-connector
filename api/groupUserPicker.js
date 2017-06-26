@@ -31,7 +31,8 @@ function GroupUserPickerClient(jiraClient) {
      *     occur multiple times to pass in multiple issue type ids. Comma separated value is not supported. Special
      *     values such as -1 (all standard issue types), -2 (all subtask issue types) are supported. This parameter is
      *     only used when fieldId is present.
-     * @param callback Called when the search is completed.
+     * @param [callback] Called when the search is completed.
+     * @return {Promise} Resolved when the search is completed.
      */
     this.findUsersAndGroups = function (opts, callback) {
         var options = {
@@ -49,6 +50,6 @@ function GroupUserPickerClient(jiraClient) {
             }
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 }

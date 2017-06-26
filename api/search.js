@@ -48,7 +48,8 @@ function SearchClient(jiraClient) {
      *     returned.
      * @param {array} [opts.expand] A list of the parameters to expand.
      * @param {array} [opts.properties] A list of the properties to include (5 max).
-     * @param callback Called with the search results.
+     * @param [callback] Called with the search results.
+     * @return {Promise} Resolved with the search results.
      */
     this.search = function (opts, callback) {
         opts.method = opts.method || 'POST';
@@ -57,7 +58,7 @@ function SearchClient(jiraClient) {
             uri: this.jiraClient.buildURL('/search'),
             method: opts.method, 
             json: true,
-            followAllRedirects: true,
+            followAllRedirects: true
 
         };
 
@@ -78,6 +79,6 @@ function SearchClient(jiraClient) {
         }
 
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     }
 }

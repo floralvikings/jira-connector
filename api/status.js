@@ -12,12 +12,13 @@ function StatusClient(jiraClient) {
     this.jiraClient = jiraClient;
 
     /**
-     * Returns a list of all statuss visible to the user
+     * Returns a list of all statuses visible to the user
      *
      * @method getAllStatuses
      * @memberOf StatusClient#
      * @param opts Ignored
-     * @param callback Called when the statuss have been retrieved.
+     * @param [callback] Called when statuses have been retrieved.
+     * @return {Promise} Resolved when statuses have been retrieved.
      */
     this.getAllStatuses = function (opts, callback) {
         var options = {
@@ -27,7 +28,7 @@ function StatusClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -37,7 +38,8 @@ function StatusClient(jiraClient) {
      * @memberOf StatusClient#
      * @param opts The options sent to the Jira API
      * @param opts.statusId A String containing a status id
-     * @param callback Called when the status has been retrieved.
+     * @param [callback] Called when the status has been retrieved.
+     * @return {Promise} Resolved when the status has been retrieved.
      */
     this.getStatus = function (opts, callback) {
         var options = {
@@ -47,6 +49,6 @@ function StatusClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 }

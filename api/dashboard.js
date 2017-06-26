@@ -26,7 +26,8 @@ function DashboardClient(jiraClient) {
      *     provides, dues to lack or resources or any other condition. When this happens, your results will be
      *     truncated. Callers should always check the returned maxResults to determine the value that is effectively
      *     being used.
-     * @param callback Called when the dashboards have been retrieved.
+     * @param [callback] Called when the dashboards have been retrieved.
+     * @return {Promise} Resolved when the dashboards have been retrieved.
      */
     this.getAllDashboards = function (opts, callback) {
         var options = {
@@ -41,7 +42,7 @@ function DashboardClient(jiraClient) {
             }
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -51,7 +52,8 @@ function DashboardClient(jiraClient) {
      * @memberOf DashboardClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.dashboardId The dashboard id.
-     * @param callback Called when the dashboard has been retrieved
+     * @param [callback] Called when the dashboard has been retrieved
+     * @return {Promise} Resolved when the dashboard has been retrieved
      */
     this.getDashboard = function (opts, callback) {
         var options = {
@@ -66,6 +68,6 @@ function DashboardClient(jiraClient) {
             }
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     }
 }

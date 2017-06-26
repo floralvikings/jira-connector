@@ -17,7 +17,8 @@ function LicenseValidatorClient(jiraClient) {
      * @memberOf LicenseValidatorClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.license The license to validate.
-     * @param callback Called when the license has been validated, or fails to validate.
+     * @param [callback] Called when the license has been validated, or fails to validate.
+     * @return {Promise} Resolved when the license has been validated, or fails to validate.
      */
     this.validateLicense = function (opts, callback) {
         var options = {
@@ -28,6 +29,6 @@ function LicenseValidatorClient(jiraClient) {
             body: opts.license
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     }
 }

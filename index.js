@@ -10,6 +10,7 @@ var request = require('request');
 var applicationProperties = require('./api/application-properties');
 var attachment = require('./api/attachment');
 var auditing = require('./api/auditing');
+var auth = require('./api/auth');
 var avatar = require('./api/avatar');
 var board = require('./api/board');
 var comment = require('./api/comment');
@@ -65,6 +66,7 @@ var worklog = require('./api/worklog');
  * @property {ApplicationPropertiesClient} applicationProperties
  * @property {AttachmentClient} attachment
  * @property {AuditingClient} auditing
+ * @property {AuthClient} auth
  * @property {AvatarClient} avatar
  * @property {CommentClient} comment
  * @property {ComponentClient} component
@@ -126,7 +128,10 @@ var worklog = require('./api/worklog');
  *     OAuth.
  * @param {string} [config.oauth.token_secret] The secret for the above token.  MUST be included if using Oauth.
  * @param {CookieJar} [config.cookie_jar] The CookieJar to use for every requests.
+ * @param {Promise} [config.promise] Any function (constructor) compatible with Promise (bluebird, Q,...).
+ *      Default - native Promise.
  */
+
 var JiraClient = module.exports = function (config) {
     if(!config.host) {
         throw new Error(errorStrings.NO_HOST_ERROR);
@@ -137,7 +142,9 @@ var JiraClient = module.exports = function (config) {
     this.port = config.port;
     this.apiVersion = 2; // TODO Add support for other versions.
     this.agileApiVersion = '1.0';
+    this.authApiVersion = '1';
     this.webhookApiVersion = '1.0';
+    this.promise = config.promise || Promise;
 
     if (config.oauth) {
         if (!config.oauth.consumer_key) {
@@ -179,6 +186,7 @@ var JiraClient = module.exports = function (config) {
     this.applicationProperties = new applicationProperties(this);
     this.attachment = new attachment(this);
     this.auditing = new auditing(this);
+    this.auth = new auth(this);
     this.avatar = new avatar(this);
     this.board = new board(this);
     this.comment = new comment(this);
@@ -268,6 +276,27 @@ var JiraClient = module.exports = function (config) {
     };
 
     /**
+     * Simple utility to build a REST endpoint URL for the Jira Auth API.
+     *
+     * @method buildAuthURL
+     * @memberOf JiraClient#
+     * @param path The path of the URL without concern for the root of the REST API.
+     * @returns {string} The constructed URL.
+     */
+    this.buildAuthURL = function (path) {
+        var apiBasePath = this.path_prefix + 'rest/auth/';
+        var version = this.authApiVersion;
+        var requestUrl = url.format({
+            protocol: this.protocol,
+            hostname: this.host,
+            port: this.port,
+            pathname: apiBasePath + version + path
+        });
+
+        return decodeURIComponent(requestUrl);
+    };
+
+    /**
      * Simple utility to build a REST endpoint URL for the Jira webhook API.
      *
      * @method buildWebhookURL
@@ -294,17 +323,19 @@ var JiraClient = module.exports = function (config) {
      * @method makeRequest
      * @memberOf JiraClient#
      * @param options The request options.
-     * @param callback Called with the APIs response.
+     * @param [callback] Called with the APIs response.
      * @param {string} [successString] If supplied, this is reported instead of the response body.
+     * @return {Promise} Resolved with APIs response or rejected with error
      */
     this.makeRequest = function (options, callback, successString) {
         if (this.oauthConfig) {
             options.oauth = this.oauthConfig;
         } else if (this.basic_auth) {
             if (this.basic_auth.base64) {
-              options.headers = {
-                Authorization: 'Basic ' + this.basic_auth.base64
+              if (!options.headers) {
+                options.headers = {}
               }
+              options.headers['Authorization'] = 'Basic ' + this.basic_auth.base64
             } else {
               options.auth = this.basic_auth;
             }
@@ -312,10 +343,12 @@ var JiraClient = module.exports = function (config) {
         if (this.cookie_jar) {
             options.jar = this.cookie_jar;
         }
-        request(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body, null, response);
-            }
+
+        if (callback) {
+            request(options, function (err, response, body) {
+                if (err || response.statusCode.toString()[0] != 2) {
+                    return callback(err ? err : body, null, response);
+                }
 
             if (typeof body == 'string') {
                 try {
@@ -325,8 +358,53 @@ var JiraClient = module.exports = function (config) {
                 }
             }
 
-            return callback(null, successString ? successString : body, response);
-        });
+                return callback(null, successString ? successString : body, response);
+            });
+        } else if (this.promise) {
+            return new this.promise(function (resolve, reject) {
+
+                var req = request(options);
+
+                req.on('response', function(response) {
+
+                    // Saving error
+                    var error = response.statusCode.toString()[0] !== '2';
+
+                    // Collecting data
+                    var body = [];
+                    var push = body.push.bind(body);
+                    response.on('data', push);
+
+                    // Data collected
+                    response.on('end', function () {
+
+                        var result = body.join('');
+
+                        // Parsing JSON
+                        if (result[0] === '[' || result[0] === '{') {
+                            try {
+                                result = JSON.parse(result);
+                            } catch(e) {
+                                // nothing to do
+                            }
+                        }
+
+                        if (error) {
+                            response.body = result;
+                            reject(JSON.stringify(response));
+                            return;
+                        }
+
+                        resolve(result);
+                    });
+
+                });
+
+                req.on('error', reject);
+
+            });
+        }
+
     };
 
 }).call(JiraClient.prototype);

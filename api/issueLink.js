@@ -26,7 +26,8 @@ function IssueLinkClient(jiraClient) {
      * @method createIssueLink
      * @param opts The options for the request sent to the Jira API
      * @param opts.issueLink See {@link https://docs.atlassian.com/jira/REST/latest/#d2e5010}
-     * @param callback Called when the link has been created.
+     * @param [callback] Called when the link has been created.
+     * @return {Promise} Resolved when the link has been created.
      */
     this.createIssueLink = function (opts, callback) {
         if (!opts.issueLink) {
@@ -41,7 +42,7 @@ function IssueLinkClient(jiraClient) {
             body: opts.issueLink
         };
 
-        this.jiraClient.makeRequest(options, callback, 'Issue Link Created');
+        return this.jiraClient.makeRequest(options, callback, 'Issue Link Created');
     };
 
     /**
@@ -51,7 +52,8 @@ function IssueLinkClient(jiraClient) {
      * @memberOf IssueLinkClient#
      * @param opts The options used in the request to the Jira API
      * @param opts.linkId The id of the link to retrieve.
-     * @param callback Called when the Issue Link has been retrieved.
+     * @param [callback] Called when the Issue Link has been retrieved.
+     * @return {Promise} Resolved when the Issue Link has been retrieved.
      */
     this.getIssueLink = function (opts, callback) {
         if (!opts.linkId) {
@@ -65,7 +67,7 @@ function IssueLinkClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -76,7 +78,8 @@ function IssueLinkClient(jiraClient) {
      * @memberOf IssueLinkClient#
      * @param opts The options used in the request to the Jira API
      * @param opts.linkId The id of the link to delete.
-     * @param callback Called when the Issue Link has been deleted.
+     * @param [callback] Called when the Issue Link has been deleted.
+     * @return {Promise} Resolved when the Issue Link has been deleted.
      */
     this.deleteIssueLink = function (opts, callback) {
         if (!opts.linkId) {
@@ -90,6 +93,6 @@ function IssueLinkClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback, 'Issue Link Deleted');
+        return this.jiraClient.makeRequest(options, callback, 'Issue Link Deleted');
     };
 }

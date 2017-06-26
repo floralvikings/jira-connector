@@ -19,11 +19,12 @@ function CommentClient(jiraClient) {
      * @memberOf CommentClient#
      * @param opts The options passed in the request to the API.
      * @param opts.commentId The id of the comment from which keys will be returned.
-     * @param callback Called when the keys have been retrieved.
+     * @param [callback] Called when the keys have been retrieved.
+     * @return {Promise} Resolved when the keys have been retrieved.
      */
     this.getCommentPropertyKeys = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '', 'GET');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -38,7 +39,8 @@ function CommentClient(jiraClient) {
      * @param opts.commentId The id of the comment from which keys will be returned.
      * @param opts.propertyKey The key of the property to be edited.
      * @param opts.propertyValue The new value of the property.
-     * @param callback Called when the property has been edited.
+     * @param [callback] Called when the property has been edited.
+     * @return {Promise} Resolved when the property has been edited.
      */
     this.setCommentProperty = function (opts, callback) {
         if (!opts.propertyKey) {
@@ -47,7 +49,7 @@ function CommentClient(jiraClient) {
             throw new Error(errorStrings.NO_COMMENT_PROPERTY_VALUE_ERROR);
         }
         var options = this.buildRequestOptions(opts, '/' + opts.propertyKey, 'PUT', opts.propertyValue);
-        this.jiraClient.makeRequest(options, callback, 'Property Edited');
+        return this.jiraClient.makeRequest(options, callback, 'Property Edited');
     };
 
     /**
@@ -59,14 +61,15 @@ function CommentClient(jiraClient) {
      * @param opts The options passed in the request to the API.
      * @param opts.commentId The id of the comment from which keys will be returned.
      * @param opts.propertyKey The key of the property to be edited.
-     * @param callback Called when the property has been retrieved.
+     * @param [callback] Called when the property has been retrieved.
+     * @return {Promise} Resolved when the property has been retrieved.
      */
     this.getCommentProperty = function (opts, callback) {
         if (!opts.propertyKey) {
             throw new Error(errorStrings.NO_COMMENT_PROPERTY_KEY_ERROR);
         }
         var options = this.buildRequestOptions(opts, '/' + opts.propertyKey, 'GET');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -78,14 +81,15 @@ function CommentClient(jiraClient) {
      * @param opts The options passed in the request to the API.
      * @param opts.commentId The id of the comment from which keys will be returned.
      * @param opts.propertyKey The key of the property to be edited.
-     * @param callback Called when the property has been retrieved.
+     * @param [callback] Called when the property has been retrieved.
+     * @return {Promise} Resolved when the property has been retrieved.
      */
     this.deleteCommentProperty = function (opts, callback) {
         if (!opts.propertyKey) {
             throw new Error(errorStrings.NO_COMMENT_PROPERTY_KEY_ERROR);
         }
         var options = this.buildRequestOptions(opts, '/' + opts.propertyKey, 'DELETE');
-        this.jiraClient.makeRequest(options, callback, 'Comment property deleted');
+        return this.jiraClient.makeRequest(options, callback, 'Comment property deleted');
     };
 
     /**

@@ -17,7 +17,8 @@ function MyselfClient(jiraClient) {
      * @method getMyself
      * @memberOf MyselfClient#
      * @param opts Ignored
-     * @param callback Called when the current user is retrieved.
+     * @param [callback] Called when the current user is retrieved.
+     * @return {Promise} Resolved when the current user is retrieved.
      */
     this.getMyself = function (opts, callback) {
         var options = {
@@ -27,7 +28,7 @@ function MyselfClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -38,7 +39,8 @@ function MyselfClient(jiraClient) {
      * @memberOf MyselfClient#
      * @param opts The request options send to the Jira API.
      * @param opts.newData The new data.  See {@link https://docs.atlassian.com/jira/REST/latest/#d2e1242}
-     * @param callback Called when the user's data has been modified
+     * @param [callback] Called when the user's data has been modified
+     * @return {Promise} Resolved when the user's data has been modified
      */
     this.editMyself = function (opts, callback) {
         var options = {
@@ -49,7 +51,7 @@ function MyselfClient(jiraClient) {
             body: opts.newData
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -59,7 +61,8 @@ function MyselfClient(jiraClient) {
      * @memberOf MyselfClient#
      * @param opts The request options sent to the Jira API.
      * @param opts.newData The new data
-     * @param callback Called when the password has been changed.
+     * @param [callback] Called when the password has been changed.
+     * @return {Promise} Resolved when the password has been changed.
      */
     this.changePassword = function (opts, callback) {
         var options = {
@@ -70,6 +73,6 @@ function MyselfClient(jiraClient) {
             body: opts.newData
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     }
 }

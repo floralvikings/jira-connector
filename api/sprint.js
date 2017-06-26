@@ -17,7 +17,8 @@ function AgileSprintClient(jiraClient) {
    * @memberOf AgileSprintClient#
    * @param {Object} sprint The sprint data in the form of POST body to the
    *   Jira API.
-   * @param callback Called when the sprint has been created.
+   * @param [callback] Called when the sprint has been created.
+   * @return {Promise} Resolved when the sprint has been created.
    */
   this.createSprint = function (sprint, callback) {
     var options = {
@@ -28,7 +29,7 @@ function AgileSprintClient(jiraClient) {
       body: sprint
     };
 
-    this.jiraClient.makeRequest(options, callback);
+    return this.jiraClient.makeRequest(options, callback);
   };
 
   /**
@@ -38,7 +39,8 @@ function AgileSprintClient(jiraClient) {
    * @memberOf AgileSprintClient#
    * @param {object} opts The request options sent to the Jira API.
    * @param opts.sprintId The sprint id.
-   * @param callback Called when the sprint has been retrieved.
+   * @param [callback] Called when the sprint has been retrieved.
+   * @return {Promise} Resolved when the sprint has been retrieved.
    */
   this.getSprint = function (opts, callback) {
     var options = {
@@ -53,7 +55,7 @@ function AgileSprintClient(jiraClient) {
       }
     };
 
-    this.jiraClient.makeRequest(options, callback);
+    return this.jiraClient.makeRequest(options, callback);
   };
 
   /**
@@ -64,7 +66,8 @@ function AgileSprintClient(jiraClient) {
    * @param {Object} sprint The sprint data in the form of PUT body to the
    *   Jira API.
    * @param {string} [sprint.sprintId] The id of the sprint.  EX: 331
-   * @param callback Called when the sprint has been updated.
+   * @param [callback] Called when the sprint has been updated.
+   * @return {Promise} Resolved when the sprint has been updated.
    */
   this.updateSprint = function (sprint, callback) {
     var sprintId = sprint.sprintId;
@@ -78,7 +81,7 @@ function AgileSprintClient(jiraClient) {
       body: sprint
     };
 
-    this.jiraClient.makeRequest(options, callback);
+    return this.jiraClient.makeRequest(options, callback);
   };
 
   /**
@@ -90,6 +93,7 @@ function AgileSprintClient(jiraClient) {
    *   Jira API.
    * @param {string} [sprint.sprintId] The id of the sprint.  EX: 331.
    * @param callback Called when the sprint has been updated.
+   * @return {Promise} Resolved when the sprint has been updated.
    */
   this.partiallyUpdateSprint = function (sprint, callback) {
     var sprintId = sprint.sprintId;
@@ -103,7 +107,7 @@ function AgileSprintClient(jiraClient) {
       body: sprint
     };
 
-    this.jiraClient.makeRequest(options, callback);
+    return this.jiraClient.makeRequest(options, callback);
   };
 
   /**
@@ -113,7 +117,8 @@ function AgileSprintClient(jiraClient) {
    * @memberOf AgileSprintClient#
    * @param {Object} opts The request options sent to the Jira API.
    * @param {string} opts.sprintId The id of the sprint.  EX: 331
-   * @param callback Called when the sprint is deleted.
+   * @param [callback] Called when the sprint is deleted.
+   * @return {Promise} Resolved when the sprint is deleted.
    */
   this.deleteSprint = function (opts, callback) {
     var options = {
@@ -128,7 +133,7 @@ function AgileSprintClient(jiraClient) {
       }
     };
 
-    this.jiraClient.makeRequest(options, callback);
+    return this.jiraClient.makeRequest(options, callback);
   };
 
   /**
@@ -142,7 +147,8 @@ function AgileSprintClient(jiraClient) {
    * @param {boolean} validateQuery Specifies whether to valide the JQL query.
    * @param {string} fields The list of fields to return for each issue.
    * @param {string} expand A comma-separated list of the parameters to expand.
-   * @param callback Called when the issues are returned.
+   * @param [callback] Called when the issues are returned.
+   * @return {Promise} Resolved when the issues are returned.
    */
   this.getSprintIssues = function (opts, callback) {
     var options = {
@@ -160,7 +166,7 @@ function AgileSprintClient(jiraClient) {
       }
     };
 
-    this.jiraClient.makeRequest(options, callback);
+    return this.jiraClient.makeRequest(options, callback);
   };
 
   /**
@@ -171,7 +177,8 @@ function AgileSprintClient(jiraClient) {
    * @param {Object} opts The issue data in the form of POST body to the
    *   Jira API.
    * @param {string} [opts.sprintId] The sprint id.
-   * @param callback Called when the sprint has been retrieved.
+   * @param [callback] Called when the sprint has been retrieved.
+   * @return {Promise} Resolved when the sprint has been retrieved.
    */
   this.moveSprintIssues = function (opts, callback) {
     var sprintId = opts.sprintId;
@@ -185,7 +192,7 @@ function AgileSprintClient(jiraClient) {
       body: opts
     };
 
-    this.jiraClient.makeRequest(options, callback);
+    return this.jiraClient.makeRequest(options, callback);
   };
 
   /**
@@ -196,7 +203,8 @@ function AgileSprintClient(jiraClient) {
    * @memberOf AgileSprintClient#
    * @param {Object} swapped The data in the form of POST body to the Jira API.
    * @param {string} [swapped.sprintId] The id of the sprint.  EX: 311
-   * @param callback Called when the sprint has been retrived.
+   * @param [callback] Called when the sprint has been retrived.
+   * @return {Promise} Resolved when the sprint has been retrived.
    */
   this.swapSprint = function (swapped, callback) {
     var sprintId = swapped.sprintId;
@@ -210,7 +218,7 @@ function AgileSprintClient(jiraClient) {
       body: swapped
     };
 
-    this.jiraClient.makeRequest(options, callback);
+    return this.jiraClient.makeRequest(options, callback);
   };
 
 }
