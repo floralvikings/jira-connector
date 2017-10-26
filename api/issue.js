@@ -288,7 +288,7 @@ function IssueClient(jiraClient) {
      *        issueKey property; issueId will be used over issueKey if both are present.
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param {boolean} [opts.deleteSubtasks] "a String of true or false indicating that any subtasks should also
+     * @param {string} [opts.deleteSubtasks] "a String of true or false indicating that any subtasks should also
      *        be deleted. If the issue has no subtasks this parameter is ignored. If the issue has subtasks and this
      *        parameter is missing or false, then the issue will not be deleted and an error will be returned."
      * @param [callback] Called when data has been retrieved
