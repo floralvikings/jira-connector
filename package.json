@@ -14,8 +14,9 @@
   "author": "Caleb Brinkman <floralvikings@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "oauth": "^0.9.12",
-    "request": "^2.51.0"
+    "oauth": "^0.9.15",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
   },
   "repository": {
     "type": "git",
