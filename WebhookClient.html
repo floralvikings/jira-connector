@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: IssueLinkClient</title>
+    <title>JSDoc: Class: WebhookClient</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: IssueLinkClient</h1>
+    <h1 class="page-title">Class: WebhookClient</h1>
 
     
 
@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>IssueLinkClient<span class="signature">(jiraClient)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>WebhookClient<span class="signature">(jiraClient)</span><span class="type-signature"></span></h2>
         
     
 </header>
@@ -41,7 +41,7 @@
     
 
     
-    <h4 class="name" id="IssueLinkClient"><span class="type-signature"></span>new IssueLinkClient<span class="signature">(jiraClient)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="WebhookClient"><span class="type-signature"></span>new WebhookClient<span class="signature">(jiraClient)</span><span class="type-signature"></span></h4>
     
 
     
@@ -49,7 +49,7 @@
 
 
 <div class="description">
-    <p>Used to access Jira REST endpoints in '/rest/api/2/issueLink'</p>
+    <p>Used to access Jira REST endpoints in '/rest/webhook/1.0/webhook'</p>
 </div>
 
 
@@ -142,7 +142,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issueLink.js.html">api/issueLink.js</a>, <a href="api_issueLink.js.html#line7">line 7</a>
+        <a href="api_webhook.js.html">api/webhook.js</a>, <a href="api_webhook.js.html#line5">line 5</a>
     </li></ul></dd>
     
 
@@ -196,7 +196,7 @@
     
 
     
-    <h4 class="name" id="createIssueLink"><span class="type-signature"></span>createIssueLink<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="createWebhook"><span class="type-signature"></span>createWebhook<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
     
 
     
@@ -204,14 +204,7 @@
 
 
 <div class="description">
-    <p>Creates an issue link between two issues. The user requires the link issue permission for the issue which will
-be linked to another issue. The specified link type in the request is used to create the link and will create a
-link from the first issue to the second issue using the outward description. It also create a link from the
-second issue to the first issue using the inward description of the issue link type. It will add the supplied
-comment to the first issue. The comment can have a restriction who can view it. If group is specified, only
-users of this group can view this comment, if roleLevel is specified only users who have the specified role can
-view this comment. The user who creates the issue link needs to belong to the specified group or have the
-specified role.</p>
+    <p>Registers a new webhook.</p>
 </div>
 
 
@@ -268,7 +261,7 @@ specified role.</p>
 
             
 
-            <td class="description last"><p>The options for the request sent to the Jira API</p>
+            <td class="description last"><p>The options sent to the JIRA API.</p>
                 <h6>Properties</h6>
                 
 
@@ -294,7 +287,7 @@ specified role.</p>
 
         <tr>
             
-                <td class="name"><code>issueLink</code></td>
+                <td class="name"><code>name</code></td>
             
 
             <td class="type">
@@ -305,7 +298,142 @@ specified role.</p>
 
             
 
-            <td class="description last"><p>See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e5010">https://docs.atlassian.com/jira/REST/latest/#d2e5010</a></p></td>
+            <td class="description last"><p>The name of the webhook.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>url</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The URL of the webhook.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>events</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An array of events with which the webhook should be registered. See
+  <a href="https://developer.atlassian.com/jiradev/jira-apis/webhooks#Webhooks-configureConfiguringawebhook">https://developer.atlassian.com/jiradev/jira-apis/webhooks#Webhooks-configureConfiguringawebhook</a>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>enabled</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Whether the webhook is enabled.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>filter</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An object containing filter configuration.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issue-related-events-section</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A filter for issues, written in JQL.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>excludeBody</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Whether to send an empty body to the webhook URL.</p></td>
         </tr>
 
     
@@ -340,7 +468,7 @@ specified role.</p>
 
             
 
-            <td class="description last"><p>Called when the link has been created.</p></td>
+            <td class="description last"><p>Called when the webhook has been retrieved.</p></td>
         </tr>
 
     
@@ -381,7 +509,7 @@ specified role.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issueLink.js.html">api/issueLink.js</a>, <a href="api_issueLink.js.html#line15">line 15</a>
+        <a href="api_webhook.js.html">api/webhook.js</a>, <a href="api_webhook.js.html#line55">line 55</a>
     </li></ul></dd>
     
 
@@ -408,7 +536,7 @@ specified role.</p>
 
         
 <div class="param-desc">
-    <p>Resolved when the link has been created.</p>
+    <p>Resolved when the webhook has been retrieved.</p>
 </div>
 
 
@@ -437,7 +565,7 @@ specified role.</p>
     
 
     
-    <h4 class="name" id="deleteIssueLink"><span class="type-signature"></span>deleteIssueLink<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="deleteWebhook"><span class="type-signature"></span>deleteWebhook<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
     
 
     
@@ -445,8 +573,7 @@ specified role.</p>
 
 
 <div class="description">
-    <p>Deletes an issue link with the specified id. To be able to delete an issue link you must be able to view both
-issues and must have the link issue permission for at least one of the issues.</p>
+    <p>Deletes a registered webhook.</p>
 </div>
 
 
@@ -503,7 +630,7 @@ issues and must have the link issue permission for at least one of the issues.</
 
             
 
-            <td class="description last"><p>The options used in the request to the Jira API</p>
+            <td class="description last"><p>The options sent to the JIRA API.</p>
                 <h6>Properties</h6>
                 
 
@@ -529,7 +656,7 @@ issues and must have the link issue permission for at least one of the issues.</
 
         <tr>
             
-                <td class="name"><code>linkId</code></td>
+                <td class="name"><code>webhookId</code></td>
             
 
             <td class="type">
@@ -540,7 +667,7 @@ issues and must have the link issue permission for at least one of the issues.</
 
             
 
-            <td class="description last"><p>The id of the link to delete.</p></td>
+            <td class="description last"><p>The numerical webhook ID.</p></td>
         </tr>
 
     
@@ -575,7 +702,7 @@ issues and must have the link issue permission for at least one of the issues.</
 
             
 
-            <td class="description last"><p>Called when the Issue Link has been deleted.</p></td>
+            <td class="description last"><p>Called when the webhook has been retrieved.</p></td>
         </tr>
 
     
@@ -616,7 +743,7 @@ issues and must have the link issue permission for at least one of the issues.</
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issueLink.js.html">api/issueLink.js</a>, <a href="api_issueLink.js.html#line73">line 73</a>
+        <a href="api_webhook.js.html">api/webhook.js</a>, <a href="api_webhook.js.html#line84">line 84</a>
     </li></ul></dd>
     
 
@@ -643,7 +770,7 @@ issues and must have the link issue permission for at least one of the issues.</
 
         
 <div class="param-desc">
-    <p>Resolved when the Issue Link has been deleted.</p>
+    <p>Resolved when the webhook has been retrieved.</p>
 </div>
 
 
@@ -672,7 +799,7 @@ issues and must have the link issue permission for at least one of the issues.</
     
 
     
-    <h4 class="name" id="getIssueLink"><span class="type-signature"></span>getIssueLink<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="getAllWebhooks"><span class="type-signature"></span>getAllWebhooks<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
     
 
     
@@ -680,7 +807,7 @@ issues and must have the link issue permission for at least one of the issues.</
 
 
 <div class="description">
-    <p>Gets an issue link with the specified id.</p>
+    <p>Returns a list of all registered webhooks.</p>
 </div>
 
 
@@ -737,51 +864,7 @@ issues and must have the link issue permission for at least one of the issues.</
 
             
 
-            <td class="description last"><p>The options used in the request to the Jira API</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>linkId</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The id of the link to retrieve.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
+            <td class="description last"><p>Ignored</p></td>
         </tr>
 
     
@@ -809,7 +892,7 @@ issues and must have the link issue permission for at least one of the issues.</
 
             
 
-            <td class="description last"><p>Called when the Issue Link has been retrieved.</p></td>
+            <td class="description last"><p>Called when the webhooks have been retrieved.</p></td>
         </tr>
 
     
@@ -850,7 +933,7 @@ issues and must have the link issue permission for at least one of the issues.</
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issueLink.js.html">api/issueLink.js</a>, <a href="api_issueLink.js.html#line48">line 48</a>
+        <a href="api_webhook.js.html">api/webhook.js</a>, <a href="api_webhook.js.html#line14">line 14</a>
     </li></ul></dd>
     
 
@@ -877,7 +960,241 @@ issues and must have the link issue permission for at least one of the issues.</
 
         
 <div class="param-desc">
-    <p>Resolved when the Issue Link has been retrieved.</p>
+    <p>Resolved when the webhooks have been retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="getWebhook"><span class="type-signature"></span>getWebhook<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Returns a webhook with a specific ID.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The options sent to the JIRA API.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>webhookId</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The numerical webhook ID.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Called when the webhook has been retrieved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_webhook.js.html">api/webhook.js</a>, <a href="api_webhook.js.html#line34">line 34</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the webhook has been retrieved.</p>
 </div>
 
 

@@ -28,9 +28,7 @@
 
 <header>
     
-        <h2>
-        VersionClient
-        </h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>VersionClient<span class="signature">(jiraClient)</span><span class="type-signature"></span></h2>
         
     
 </header>
@@ -41,10 +39,10 @@
         
 
     
-    <h2>Constructor</h2>
-    
 
+    
     <h4 class="name" id="VersionClient"><span class="type-signature"></span>new VersionClient<span class="signature">(jiraClient)</span><span class="type-signature"></span></h4>
+    
 
     
 
@@ -114,6 +112,7 @@
 
 
 
+
 <dl class="details">
 
     
@@ -169,6 +168,8 @@
 
 
 
+
+
     
     </div>
 
@@ -178,7 +179,9 @@
 
     
 
-     
+    
+
+    
 
     
 
@@ -192,7 +195,9 @@
 
     
 
-    <h4 class="name" id="createRemoteLink"><span class="type-signature"></span>createRemoteLink<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="createRemoteLink"><span class="type-signature"></span>createRemoteLink<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -224,6 +229,8 @@ otherwise, it will be generated.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -243,6 +250,14 @@ otherwise, it will be generated.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -308,6 +323,7 @@ otherwise, it will be generated.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -323,6 +339,16 @@ otherwise, it will be generated.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -332,6 +358,7 @@ otherwise, it will be generated.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -366,7 +393,7 @@ otherwise, it will be generated.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line124">line 124</a>
+        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line131">line 131</a>
     </li></ul></dd>
     
 
@@ -389,6 +416,30 @@ otherwise, it will be generated.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the remote link has been created.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -397,7 +448,999 @@ otherwise, it will be generated.</p>
 
     
 
-    <h4 class="name" id="createVersion"><span class="type-signature"></span>createVersion<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="createVersion"><span class="type-signature"></span>createVersion<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Creates a version</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The request options sent to Jira.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>version</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e3549">https://docs.atlassian.com/jira/REST/latest/#d2e3549</a></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Called when the version has been created.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line13">line 13</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the version has been created.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="deleteAllRemoteLinks"><span class="type-signature"></span>deleteAllRemoteLinks<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Delete all remote version links for a given version id.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The request options sent to the Jira API.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>versionId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the version to delete.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Called when the version is deleted.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line195">line 195</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the version is deleted.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="deleteRemoteLink"><span class="type-signature"></span>deleteRemoteLink<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Delete a remote version link.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The request options sent to the Jira API.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>versionId</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The version id</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>remoteLinkId</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The global id of the remote link</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Called when the link has been deleted.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line164">line 164</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the link has been deleted.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="deleteVersion"><span class="type-signature"></span>deleteVersion<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Delete a project version.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The request options sent to the Jira API.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>versionId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the version to delete.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Called when the version is deleted.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line180">line 180</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the version is deleted.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="editVersion"><span class="type-signature"></span>editVersion<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -428,6 +1471,8 @@ otherwise, it will be generated.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -452,6 +1497,14 @@ otherwise, it will be generated.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -527,6 +1580,7 @@ otherwise, it will be generated.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -541,6 +1595,16 @@ otherwise, it will be generated.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -556,6 +1620,7 @@ otherwise, it will be generated.</p>
 
 
 
+
 <dl class="details">
 
     
@@ -585,7 +1650,7 @@ otherwise, it will be generated.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line67">line 67</a>
+        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line70">line 70</a>
     </li></ul></dd>
     
 
@@ -608,200 +1673,28 @@ otherwise, it will be generated.</p>
 
 
 
-
-
+<h5>Returns:</h5>
 
         
-            
-
-    
-
-    <h4 class="name" id="createVersion"><span class="type-signature"></span>createVersion<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Creates a version</p>
+<div class="param-desc">
+    <p>Resolved when the version has been modified.</p>
 </div>
 
 
 
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
         
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>opts</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
+<span class="param-type">Promise</span>
 
 
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The request options sent to Jira.</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>version</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e3549">https://docs.atlassian.com/jira/REST/latest/#d2e3549</a></p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Called when the version has been created.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line13">line 13</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
+    </dd>
 </dl>
 
-
-
-
-
-
-
-
-
-
-
+    
 
 
 
@@ -812,609 +1705,9 @@ otherwise, it will be generated.</p>
 
     
 
-    <h4 class="name" id="deleteAllRemoteLinks"><span class="type-signature"></span>deleteAllRemoteLinks<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
-
     
-
-
-
-<div class="description">
-    <p>Delete all remote version links for a given version id.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
+    <h4 class="name" id="getGlobalRemoteLink"><span class="type-signature"></span>getGlobalRemoteLink<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
     
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>opts</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The request options sent to the Jira API.</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>versionId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The id of the version to delete.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Called when the version is deleted.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line184">line 184</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="deleteRemoteLink"><span class="type-signature"></span>deleteRemoteLink<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Delete a remote version link.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>opts</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The request options sent to the Jira API.</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>versionId</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The version id</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>remoteLinkId</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The global id of the remote link</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Called when the link has been deleted.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line155">line 155</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="deleteVersion"><span class="type-signature"></span>deleteVersion<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Delete a project version.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>opts</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The request options sent to the Jira API.</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>versionId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The id of the version to delete.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Called when the version is deleted.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line170">line 170</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="getGlobalRemoteLink"><span class="type-signature"></span>getGlobalRemoteLink<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
 
     
 
@@ -1445,6 +1738,8 @@ otherwise, it will be generated.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1464,6 +1759,14 @@ otherwise, it will be generated.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1511,6 +1814,7 @@ otherwise, it will be generated.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -1526,6 +1830,16 @@ otherwise, it will be generated.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1535,6 +1849,7 @@ otherwise, it will be generated.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -1569,7 +1884,7 @@ otherwise, it will be generated.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line198">line 198</a>
+        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line210">line 210</a>
     </li></ul></dd>
     
 
@@ -1592,6 +1907,30 @@ otherwise, it will be generated.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the remote link is returned.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -1600,7 +1939,9 @@ otherwise, it will be generated.</p>
 
     
 
-    <h4 class="name" id="getRelatedIssueCounts"><span class="type-signature"></span>getRelatedIssueCounts<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="getRelatedIssueCounts"><span class="type-signature"></span>getRelatedIssueCounts<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -1631,6 +1972,8 @@ otherwise, it will be generated.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1650,6 +1993,14 @@ otherwise, it will be generated.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1697,6 +2048,7 @@ otherwise, it will be generated.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -1712,6 +2064,16 @@ otherwise, it will be generated.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1721,6 +2083,7 @@ otherwise, it will be generated.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -1755,7 +2118,7 @@ otherwise, it will be generated.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line82">line 82</a>
+        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line86">line 86</a>
     </li></ul></dd>
     
 
@@ -1778,6 +2141,30 @@ otherwise, it will be generated.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the count has been retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -1786,7 +2173,9 @@ otherwise, it will be generated.</p>
 
     
 
-    <h4 class="name" id="getRemoteLinks"><span class="type-signature"></span>getRemoteLinks<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="getRemoteLinks"><span class="type-signature"></span>getRemoteLinks<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -1817,6 +2206,8 @@ otherwise, it will be generated.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1836,6 +2227,14 @@ otherwise, it will be generated.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1883,6 +2282,7 @@ otherwise, it will be generated.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -1898,6 +2298,16 @@ otherwise, it will be generated.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1907,6 +2317,7 @@ otherwise, it will be generated.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -1941,7 +2352,7 @@ otherwise, it will be generated.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line110">line 110</a>
+        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line116">line 116</a>
     </li></ul></dd>
     
 
@@ -1964,6 +2375,30 @@ otherwise, it will be generated.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the links have been retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -1972,7 +2407,9 @@ otherwise, it will be generated.</p>
 
     
 
-    <h4 class="name" id="getRemoteLinks"><span class="type-signature"></span>getRemoteLinks<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="getRemoteLinks"><span class="type-signature"></span>getRemoteLinks<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -2003,6 +2440,8 @@ otherwise, it will be generated.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -2022,6 +2461,14 @@ otherwise, it will be generated.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -2087,6 +2534,7 @@ otherwise, it will be generated.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -2102,6 +2550,16 @@ otherwise, it will be generated.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -2111,6 +2569,7 @@ otherwise, it will be generated.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -2145,7 +2604,7 @@ otherwise, it will be generated.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line140">line 140</a>
+        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line148">line 148</a>
     </li></ul></dd>
     
 
@@ -2168,6 +2627,30 @@ otherwise, it will be generated.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the link has been retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -2176,7 +2659,9 @@ otherwise, it will be generated.</p>
 
     
 
-    <h4 class="name" id="getUnresolvedIssueCount"><span class="type-signature"></span>getUnresolvedIssueCount<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="getUnresolvedIssueCount"><span class="type-signature"></span>getUnresolvedIssueCount<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -2207,6 +2692,8 @@ otherwise, it will be generated.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -2226,6 +2713,14 @@ otherwise, it will be generated.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -2273,6 +2768,7 @@ otherwise, it will be generated.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -2288,6 +2784,16 @@ otherwise, it will be generated.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -2297,6 +2803,7 @@ otherwise, it will be generated.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -2331,7 +2838,7 @@ otherwise, it will be generated.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line96">line 96</a>
+        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line101">line 101</a>
     </li></ul></dd>
     
 
@@ -2354,6 +2861,30 @@ otherwise, it will be generated.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the count has been retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -2362,7 +2893,9 @@ otherwise, it will be generated.</p>
 
     
 
-    <h4 class="name" id="getVersion"><span class="type-signature"></span>getVersion<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="getVersion"><span class="type-signature"></span>getVersion<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -2393,6 +2926,8 @@ otherwise, it will be generated.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -2417,6 +2952,14 @@ otherwise, it will be generated.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -2472,6 +3015,7 @@ otherwise, it will be generated.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -2487,6 +3031,16 @@ otherwise, it will be generated.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -2496,6 +3050,7 @@ otherwise, it will be generated.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -2530,7 +3085,7 @@ otherwise, it will be generated.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line53">line 53</a>
+        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line55">line 55</a>
     </li></ul></dd>
     
 
@@ -2553,6 +3108,30 @@ otherwise, it will be generated.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the version is retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -2561,7 +3140,9 @@ otherwise, it will be generated.</p>
 
     
 
-    <h4 class="name" id="moveVersion"><span class="type-signature"></span>moveVersion<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="moveVersion"><span class="type-signature"></span>moveVersion<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -2593,6 +3174,8 @@ otherwise, it will be generated.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -2617,6 +3200,14 @@ otherwise, it will be generated.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -2747,6 +3338,7 @@ otherwise, it will be generated.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -2762,6 +3354,16 @@ otherwise, it will be generated.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -2771,6 +3373,7 @@ otherwise, it will be generated.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -2805,7 +3408,7 @@ otherwise, it will be generated.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line34">line 34</a>
+        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line35">line 35</a>
     </li></ul></dd>
     
 
@@ -2828,6 +3431,30 @@ otherwise, it will be generated.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the version has been moved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -2847,13 +3474,13 @@ otherwise, it will be generated.</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AgileBoardClient.html">AgileBoardClient</a></li><li><a href="AgileSprintClient.html">AgileSprintClient</a></li><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WebhookClient.html">WebhookClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li><li><a href="WorkLogClient.html">WorkLogClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha13</a> on Wed Dec 09 2015 13:39:38 GMT-0600 (CST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jan 30 2018 10:10:04 GMT-0600 (CST)
 </footer>
 
 <script> prettyPrint(); </script>

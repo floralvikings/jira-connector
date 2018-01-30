@@ -28,9 +28,7 @@
 
 <header>
     
-        <h2>
-        JiraClient
-        </h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>JiraClient<span class="signature">(config)</span><span class="type-signature"></span></h2>
         
     
 </header>
@@ -41,10 +39,10 @@
         
 
     
-    <h2>Constructor</h2>
-    
 
+    
     <h4 class="name" id="JiraClient"><span class="type-signature"></span>new JiraClient<span class="signature">(config)</span><span class="type-signature"></span></h4>
+    
 
     
 
@@ -611,14 +609,92 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>promise</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Promise</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Any function (constructor) compatible with Promise (bluebird, Q,...).
+     Default - native Promise.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>request</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Request</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Any function (constructor) compatible with Request (request, supertest,...).
+     Default - require('request').</p></td>
+        </tr>
+
+    
     </tbody>
 </table>
+
             </td>
         </tr>
 
     
     </tbody>
 </table>
+
 
 
 
@@ -650,13 +726,36 @@
 
         <tr>
             
-                <td class="name"><code>issue</code></td>
+                <td class="name"><code>board</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="IssueClient.html">IssueClient</a></span>
+<span class="param-type"><a href="AgileBoardClient.html">AgileBoardClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sprint</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="AgileSprintClient.html">AgileSprintClient</a></span>
 
 
             
@@ -742,6 +841,29 @@
 
         <tr>
             
+                <td class="name"><code>auth</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">AuthClient</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>avatar</code></td>
             
 
@@ -788,82 +910,13 @@
 
         <tr>
             
-                <td class="name"><code>issueLink</code></td>
+                <td class="name"><code>component</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="IssueLinkClient.html">IssueLinkClient</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>issueLinkType</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>groups</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="GroupsClient.html">GroupsClient</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>groupUserPicker</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></span>
+<span class="param-type"><a href="ComponentClient.html">ComponentClient</a></span>
 
 
             
@@ -887,144 +940,6 @@
             
                 
 <span class="param-type"><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>jql</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="JqlClient.html">JqlClient</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>licenseValidator</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>myPermissions</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="MyPermissionsClient.html">MyPermissionsClient</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>projectValidate</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="ProjectValidateClient.html">ProjectValidateClient</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>securityLevel</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="SecurityLevelClient.html">SecurityLevelClient</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>serverInfo</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="ServerInfoClient.html">ServerInfoClient</a></span>
 
 
             
@@ -1087,6 +1002,167 @@
 
         <tr>
             
+                <td class="name"><code>filter</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="FilterClient.html">FilterClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>group</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="GroupClient.html">GroupClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>groupUserPicker</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>groups</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="GroupsClient.html">GroupsClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="IssueClient.html">IssueClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueLink</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="IssueLinkClient.html">IssueLinkClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueLinkType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>issueType</code></td>
             
 
@@ -1110,128 +1186,13 @@
 
         <tr>
             
-                <td class="name"><code>priority</code></td>
+                <td class="name"><code>jql</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="PriorityClient.html">PriorityClient</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>reindex</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="ReindexClient.html">ReindexClient</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>resolution</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="ResolutionClient.html">ResolutionClient</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>search</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="SearchClient.html">SearchClient</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>status</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="StatusClient.html">StatusClient</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>statusCategory</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="StatusCategoryClient.html">StatusCategoryClient</a></span>
+<span class="param-type"><a href="JqlClient.html">JqlClient</a></span>
 
 
             
@@ -1255,6 +1216,52 @@
             
                 
 <span class="param-type"><a href="LicenseRoleClient.html">LicenseRoleClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>licenseValidator</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>myPermissions</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="MyPermissionsClient.html">MyPermissionsClient</a></span>
 
 
             
@@ -1340,174 +1347,13 @@
 
         <tr>
             
-                <td class="name"><code>settings</code></td>
+                <td class="name"><code>priority</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="SettingsClient.html">SettingsClient</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>component</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="ComponentClient.html">ComponentClient</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>group</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="GroupClient.html">GroupClient</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>workflow</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="WorkflowClient.html">WorkflowClient</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>filter</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="FilterClient.html">FilterClient</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>screens</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="ScreensClient.html">ScreensClient</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>version</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="VersionClient.html">VersionClient</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>project</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="ProjectClient.html">ProjectClient</a></span>
+<span class="param-type"><a href="PriorityClient.html">PriorityClient</a></span>
 
 
             
@@ -1547,6 +1393,259 @@
 
         <tr>
             
+                <td class="name"><code>project</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="ProjectClient.html">ProjectClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>projectValidate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="ProjectValidateClient.html">ProjectValidateClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>reindex</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="ReindexClient.html">ReindexClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>resolution</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="ResolutionClient.html">ResolutionClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>screens</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="ScreensClient.html">ScreensClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>search</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="SearchClient.html">SearchClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>securityLevel</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="SecurityLevelClient.html">SecurityLevelClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>serverInfo</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="ServerInfoClient.html">ServerInfoClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>settings</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="SettingsClient.html">SettingsClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>statusCategory</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="StatusCategoryClient.html">StatusCategoryClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>status</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="StatusClient.html">StatusClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>user</code></td>
             
 
@@ -1570,6 +1669,75 @@
 
         <tr>
             
+                <td class="name"><code>version</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="VersionClient.html">VersionClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>webhook</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="WebhookClient.html">WebhookClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>workflow</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="WorkflowClient.html">WorkflowClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>workflowScheme</code></td>
             
 
@@ -1577,6 +1745,29 @@
             
                 
 <span class="param-type"><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>worklog</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="WorklogClient_.html">WorklogClient</a></span>
 
 
             
@@ -1625,7 +1816,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line54">line 54</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line59">line 59</a>
     </li></ul></dd>
     
 
@@ -1651,6 +1842,8 @@
 
 
 
+
+
     
     </div>
 
@@ -1660,7 +1853,9 @@
 
     
 
-     
+    
+
+    
 
     
 
@@ -1674,7 +1869,313 @@
 
     
 
+    
+    <h4 class="name" id="buildAgileURL"><span class="type-signature"></span>buildAgileURL<span class="signature">(path)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Simple utility to build a REST endpoint URL for the Jira Agile API.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>path</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The path of the URL without concern for the root of the REST API.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line260">line 260</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The constructed URL.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="buildAuthURL"><span class="type-signature"></span>buildAuthURL<span class="signature">(path)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Simple utility to build a REST endpoint URL for the Jira Auth API.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>path</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The path of the URL without concern for the root of the REST API.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line281">line 281</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The constructed URL.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="buildURL"><span class="type-signature"></span>buildURL<span class="signature">(path)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    
 
     
 
@@ -1739,6 +2240,7 @@
 
 
 
+
 <dl class="details">
 
     
@@ -1768,7 +2270,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line213">line 213</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line239">line 239</a>
     </li></ul></dd>
     
 
@@ -1816,12 +2318,168 @@
 
 
 
+
+
         
             
 
     
 
-    <h4 class="name" id="makeRequest"><span class="type-signature"></span>makeRequest<span class="signature">(options, callback, successString<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="buildWebhookURL"><span class="type-signature"></span>buildWebhookURL<span class="signature">(path)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Simple utility to build a REST endpoint URL for the Jira webhook API.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>path</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The path of the URL without concern for the root of the REST API.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line302">line 302</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The constructed URL.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="makeRequest"><span class="type-signature"></span>makeRequest<span class="signature">(options, callback<span class="signature-attributes">opt</span>, successString<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -1902,6 +2560,8 @@
             
                 <td class="attributes">
                 
+                    &lt;optional><br>
+                
 
                 
 
@@ -1955,6 +2615,7 @@
 
 
 
+
 <dl class="details">
 
     
@@ -1984,7 +2645,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line234">line 234</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line323">line 323</a>
     </li></ul></dd>
     
 
@@ -2007,6 +2668,30 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved with APIs response or rejected with error</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -2026,13 +2711,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AgileBoardClient.html">AgileBoardClient</a></li><li><a href="AgileSprintClient.html">AgileSprintClient</a></li><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WebhookClient.html">WebhookClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li><li><a href="WorkLogClient.html">WorkLogClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha13</a> on Wed Dec 09 2015 13:39:38 GMT-0600 (CST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jan 30 2018 10:10:04 GMT-0600 (CST)
 </footer>
 
 <script> prettyPrint(); </script>

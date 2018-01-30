@@ -31,99 +31,110 @@
 // Core packages
 var url = require('url');
 
-// npm Packages
+// Npm packages
 var request = require('request');
 
 // Custom packages
-var oauth_util = require('./lib/oauth_util');
-var errorStrings = require('./lib/error');
-var issue = require('./api/issue');
 var applicationProperties = require('./api/application-properties');
 var attachment = require('./api/attachment');
 var auditing = require('./api/auditing');
+var auth = require('./api/auth');
 var avatar = require('./api/avatar');
+var board = require('./api/board');
 var comment = require('./api/comment');
+var component = require('./api/component');
+var customFieldOption = require('./api/customFieldOption');
+var dashboard = require('./api/dashboard');
+var errorStrings = require('./lib/error');
+var field = require('./api/field');
+var filter = require('./api/filter');
+var group = require('./api/group');
+var groupUserPicker = require('./api/groupUserPicker');
+var groups = require('./api/groups');
+var issue = require('./api/issue');
 var issueLink = require('./api/issueLink');
 var issueLinkType = require('./api/issueLinkType');
-var groups = require('./api/groups');
-var groupUserPicker = require('./api/groupUserPicker');
-var customFieldOption = require('./api/customFieldOption');
+var issueType = require('./api/issueType');
 var jql = require('./api/jql');
+var licenseRole = require('./api/licenseRole');
 var licenseValidator = require('./api/licenseValidator');
 var myPermissions = require('./api/myPermissions');
-var projectValidate = require('./api/projectValidate');
-var securityLevel = require('./api/securityLevel');
-var serverInfo = require('./api/serverInfo');
-var dashboard = require('./api/dashboard');
-var field = require('./api/field');
-var issueType = require('./api/issueType');
-var priority = require('./api/priority');
-var reindex = require('./api/reindex');
-var resolution = require('./api/resolution');
-var search = require('./api/search');
-var status = require('./api/status');
-var statusCategory = require('./api/statusCategory');
-var licenseRole = require('./api/licenseRole');
 var myPreferences = require('./api/myPreferences');
 var myself = require('./api/myself');
+var oauth_util = require('./lib/oauth_util');
 var password = require('./api/password');
-var settings = require('./api/settings');
-var component = require('./api/component');
-var group = require('./api/group');
-var workflow = require('./api/workflow');
-var filter = require('./api/filter');
-var screens = require('./api/screens');
-var version = require('./api/version');
+var priority = require('./api/priority');
 var project = require('./api/project');
 var projectCategory = require('./api/projectCategory');
+var projectValidate = require('./api/projectValidate');
+var reindex = require('./api/reindex');
+var resolution = require('./api/resolution');
+var screens = require('./api/screens');
+var search = require('./api/search');
+var securityLevel = require('./api/securityLevel');
+var serverInfo = require('./api/serverInfo');
+var settings = require('./api/settings');
+var sprint = require('./api/sprint');
+var status = require('./api/status');
+var statusCategory = require('./api/statusCategory');
 var user = require('./api/user');
+var version = require('./api/version');
+var webhook = require('./api/webhook');
+var workflow = require('./api/workflow');
 var workflowScheme = require('./api/workflowScheme');
+var worklog = require('./api/worklog');
 
 /**
  * Represents a client for the Jira REST API
  *
  * @constructor JiraClient
- * @property {IssueClient} issue
+ * @property {AgileBoardClient} board
+ * @property {AgileSprintClient} sprint
+ *
  * @property {ApplicationPropertiesClient} applicationProperties
  * @property {AttachmentClient} attachment
  * @property {AuditingClient} auditing
+ * @property {AuthClient} auth
  * @property {AvatarClient} avatar
  * @property {CommentClient} comment
- * @property {IssueLinkClient} issueLink
- * @property {IssueLinkTypeClient} issueLinkType
- * @property {GroupsClient} groups
- * @property {GroupUserPickerClient} groupUserPicker
+ * @property {ComponentClient} component
  * @property {CustomFieldOptionClient} customFieldOption
- * @property {JqlClient} jql
- * @property {LicenseValidatorClient} licenseValidator
- * @property {MyPermissionsClient} myPermissions
- * @property {ProjectValidateClient} projectValidate
- * @property {SecurityLevelClient} securityLevel
- * @property {ServerInfoClient} serverInfo
  * @property {DashboardClient} dashboard
  * @property {FieldClient} field
+ * @property {FilterClient} filter
+ * @property {GroupClient} group
+ * @property {GroupUserPickerClient} groupUserPicker
+ * @property {GroupsClient} groups
+ * @property {IssueClient} issue
+ * @property {IssueLinkClient} issueLink
+ * @property {IssueLinkTypeClient} issueLinkType
  * @property {IssueTypeClient} issueType
- * @property {PriorityClient} priority
- * @property {ReindexClient} reindex
- * @property {ResolutionClient} resolution
- * @property {SearchClient} search
- * @property {StatusClient} status
- * @property {StatusCategoryClient} statusCategory
+ * @property {JqlClient} jql
  * @property {LicenseRoleClient} licenseRole
+ * @property {LicenseValidatorClient} licenseValidator
+ * @property {MyPermissionsClient} myPermissions
  * @property {MyPreferencesClient} myPreferences
  * @property {MyselfClient} myself
  * @property {PasswordClient} password
- * @property {SettingsClient} settings
- * @property {ComponentClient} component
- * @property {GroupClient} group
- * @property {WorkflowClient} workflow
- * @property {FilterClient} filter
- * @property {ScreensClient} screens
- * @property {VersionClient} version
- * @property {ProjectClient} project
+ * @property {PriorityClient} priority
  * @property {ProjectCategoryClient} projectCategory
+ * @property {ProjectClient} project
+ * @property {ProjectValidateClient} projectValidate
+ * @property {ReindexClient} reindex
+ * @property {ResolutionClient} resolution
+ * @property {ScreensClient} screens
+ * @property {SearchClient} search
+ * @property {SecurityLevelClient} securityLevel
+ * @property {ServerInfoClient} serverInfo
+ * @property {SettingsClient} settings
+ * @property {StatusCategoryClient} statusCategory
+ * @property {StatusClient} status
  * @property {UserClient} user
+ * @property {VersionClient} version
+ * @property {WebhookClient} webhook
+ * @property {WorkflowClient} workflow
  * @property {WorkflowSchemeClient} workflowScheme
+ * @property {WorklogClient} worklog
  *
  * @param config The information needed to access the Jira API
  * @param {string} config.host The hostname of the Jira API.
@@ -145,7 +156,12 @@ var workflowScheme = require('./api/workflowScheme');
  *     OAuth.
  * @param {string} [config.oauth.token_secret] The secret for the above token.  MUST be included if using Oauth.
  * @param {CookieJar} [config.cookie_jar] The CookieJar to use for every requests.
+ * @param {Promise} [config.promise] Any function (constructor) compatible with Promise (bluebird, Q,...).
+ *      Default - native Promise.
+ * @param {Request} [config.request] Any function (constructor) compatible with Request (request, supertest,...).
+ *      Default - require('request').
  */
+
 var JiraClient = module.exports = function (config) {
     if(!config.host) {
         throw new Error(errorStrings.NO_HOST_ERROR);
@@ -155,6 +171,11 @@ var JiraClient = module.exports = function (config) {
     this.path_prefix = config.path_prefix ? config.path_prefix : '/';
     this.port = config.port;
     this.apiVersion = 2; // TODO Add support for other versions.
+    this.agileApiVersion = '1.0';
+    this.authApiVersion = '1';
+    this.webhookApiVersion = '1.0';
+    this.promise = config.promise || Promise;
+    this.requestLib = config.request || request;
 
     if (config.oauth) {
         if (!config.oauth.consumer_key) {
@@ -193,47 +214,52 @@ var JiraClient = module.exports = function (config) {
         this.cookie_jar = config.cookie_jar;
     }
 
-    this.issue = new issue(this);
     this.applicationProperties = new applicationProperties(this);
     this.attachment = new attachment(this);
     this.auditing = new auditing(this);
+    this.auth = new auth(this);
     this.avatar = new avatar(this);
+    this.board = new board(this);
     this.comment = new comment(this);
-    this.issueLink = new issueLink(this);
-    this.issueLinkType = new issueLinkType(this);
-    this.groups = new groups(this);
-    this.groupUserPicker = new groupUserPicker(this);
+    this.component = new component(this);
     this.customFieldOption = new customFieldOption(this);
-    this.jql = new jql(this);
-    this.licenseValidator = new licenseValidator(this);
-    this.myPermissions = new myPermissions(this);
-    this.projectValidate = new projectValidate(this);
-    this.securityLevel = new securityLevel(this);
-    this.serverInfo = new serverInfo(this);
     this.dashboard = new dashboard(this);
     this.field = new field(this);
+    this.filter = new filter(this);
+    this.group = new group(this);
+    this.groupUserPicker = new groupUserPicker(this);
+    this.groups = new groups(this);
+    this.issue = new issue(this);
+    this.issueLink = new issueLink(this);
+    this.issueLinkType = new issueLinkType(this);
     this.issueType = new issueType(this);
-    this.priority = new priority(this);
-    this.reindex = new reindex(this);
-    this.resolution = new resolution(this);
-    this.search = new search(this);
-    this.status = new status(this);
-    this.statusCategory = new statusCategory(this);
+    this.jql = new jql(this);
     this.licenseRole = new licenseRole(this);
+    this.licenseValidator = new licenseValidator(this);
+    this.myPermissions = new myPermissions(this);
     this.myPreferences = new myPreferences(this);
     this.myself = new myself(this);
     this.password = new password(this);
-    this.settings = new settings(this);
-    this.component = new component(this);
-    this.group = new group(this);
-    this.workflow = new workflow(this);
-    this.filter = new filter(this);
-    this.screens = new screens(this);
-    this.version = new version(this);
+    this.priority = new priority(this);
     this.project = new project(this);
     this.projectCategory = new projectCategory(this);
+    this.projectValidate = new projectValidate(this);
+    this.reindex = new reindex(this);
+    this.resolution = new resolution(this);
+    this.screens = new screens(this);
+    this.search = new search(this);
+    this.securityLevel = new securityLevel(this);
+    this.serverInfo = new serverInfo(this);
+    this.settings = new settings(this);
+    this.sprint = new sprint(this);
+    this.status = new status(this);
+    this.statusCategory = new statusCategory(this);
     this.user = new user(this);
+    this.version = new version(this);
+    this.webhook = new webhook(this);
+    this.workflow = new workflow(this);
     this.workflowScheme = new workflowScheme(this);
+    this.worklog = new worklog(this);
 };
 
 (function () {
@@ -260,22 +286,89 @@ var JiraClient = module.exports = function (config) {
     };
 
     /**
+     * Simple utility to build a REST endpoint URL for the Jira Agile API.
+     *
+     * @method buildAgileURL
+     * @memberOf JiraClient#
+     * @param path The path of the URL without concern for the root of the REST API.
+     * @returns {string} The constructed URL.
+     */
+    this.buildAgileURL = function (path) {
+        var apiBasePath = this.path_prefix + 'rest/agile/';
+        var version = this.agileApiVersion;
+        var requestUrl = url.format({
+            protocol: this.protocol,
+            hostname: this.host,
+            port: this.port,
+            pathname: apiBasePath + version + path
+        });
+
+        return decodeURIComponent(requestUrl);
+    };
+
+    /**
+     * Simple utility to build a REST endpoint URL for the Jira Auth API.
+     *
+     * @method buildAuthURL
+     * @memberOf JiraClient#
+     * @param path The path of the URL without concern for the root of the REST API.
+     * @returns {string} The constructed URL.
+     */
+    this.buildAuthURL = function (path) {
+        var apiBasePath = this.path_prefix + 'rest/auth/';
+        var version = this.authApiVersion;
+        var requestUrl = url.format({
+            protocol: this.protocol,
+            hostname: this.host,
+            port: this.port,
+            pathname: apiBasePath + version + path
+        });
+
+        return decodeURIComponent(requestUrl);
+    };
+
+    /**
+     * Simple utility to build a REST endpoint URL for the Jira webhook API.
+     *
+     * @method buildWebhookURL
+     * @memberOf JiraClient#
+     * @param path The path of the URL without concern for the root of the REST API.
+     * @returns {string} The constructed URL.
+     */
+    this.buildWebhookURL = function (path) {
+        var apiBasePath = this.path_prefix + 'rest/webhooks/';
+        var version = this.webhookApiVersion;
+        var requestUrl = url.format({
+            protocol: this.protocol,
+            hostname: this.host,
+            port: this.port,
+            pathname: apiBasePath + version + path
+        });
+
+        return decodeURIComponent(requestUrl);
+    };
+
+    /**
      * Make a request to the Jira API and call back with it's response.
      *
      * @method makeRequest
      * @memberOf JiraClient#
      * @param options The request options.
-     * @param callback Called with the APIs response.
+     * @param [callback] Called with the APIs response.
      * @param {string} [successString] If supplied, this is reported instead of the response body.
+     * @return {Promise} Resolved with APIs response or rejected with error
      */
     this.makeRequest = function (options, callback, successString) {
+        let requestLib = this.requestLib;
+
         if (this.oauthConfig) {
             options.oauth = this.oauthConfig;
         } else if (this.basic_auth) {
             if (this.basic_auth.base64) {
-              options.headers = {
-                Authorization: 'Basic ' + this.basic_auth.base64
+              if (!options.headers) {
+                options.headers = {}
               }
+              options.headers['Authorization'] = 'Basic ' + this.basic_auth.base64
             } else {
               options.auth = this.basic_auth;
             }
@@ -283,15 +376,68 @@ var JiraClient = module.exports = function (config) {
         if (this.cookie_jar) {
             options.jar = this.cookie_jar;
         }
-        request(options, function (err, response, body) {
-            if (err || response.statusCode.toString()[0] != 2) {
-                return callback(err ? err : body);
+
+        if (callback) {
+            requestLib(options, function (err, response, body) {
+                if (err || response.statusCode.toString()[0] != 2) {
+                    return callback(err ? err : body, null, response);
+                }
+
+            if (typeof body == 'string') {
+                try {
+                    body = JSON.parse(body);
+                } catch (jsonErr) {
+                    return callback(jsonErr, null, response);
+                }
             }
 
-            if (typeof body == 'string') body = JSON.parse(body);
+                return callback(null, successString ? successString : body, response);
+            });
+        } else if (this.promise) {
+            return new this.promise(function (resolve, reject) {
 
-            return callback(null, successString ? successString : body);
-        });
+                var req = requestLib(options);
+
+                req.on('response', function(response) {
+
+                    // Saving error
+                    var error = response.statusCode.toString()[0] !== '2';
+
+                    // Collecting data
+                    var body = [];
+                    var push = body.push.bind(body);
+                    response.on('data', push);
+
+                    // Data collected
+                    response.on('end', function () {
+
+                        var result = body.join('');
+
+                        // Parsing JSON
+                        if (result[0] === '[' || result[0] === '{') {
+                            try {
+                                result = JSON.parse(result);
+                            } catch(e) {
+                                // nothing to do
+                            }
+                        }
+
+                        if (error) {
+                            response.body = result;
+                            reject(JSON.stringify(response));
+                            return;
+                        }
+
+                        resolve(result);
+                    });
+
+                });
+
+                req.on('error', reject);
+
+            });
+        }
+
     };
 
 }).call(JiraClient.prototype);
@@ -309,13 +455,13 @@ exports.oauth_util = oauth_util;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AgileBoardClient.html">AgileBoardClient</a></li><li><a href="AgileSprintClient.html">AgileSprintClient</a></li><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WebhookClient.html">WebhookClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li><li><a href="WorkLogClient.html">WorkLogClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha13</a> on Wed Dec 09 2015 13:39:38 GMT-0600 (CST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jan 30 2018 10:10:04 GMT-0600 (CST)
 </footer>
 
 <script> prettyPrint(); </script>

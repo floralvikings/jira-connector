@@ -28,9 +28,7 @@
 
 <header>
     
-        <h2>
-        IssueClient
-        </h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>IssueClient<span class="signature">(jiraClient)</span><span class="type-signature"></span></h2>
         
     
 </header>
@@ -41,17 +39,17 @@
         
 
     
-    <h2>Constructor</h2>
-    
 
+    
     <h4 class="name" id="IssueClient"><span class="type-signature"></span>new IssueClient<span class="signature">(jiraClient)</span><span class="type-signature"></span></h4>
+    
 
     
 
 
 
 <div class="description">
-    <p>Used to access Jira REST endpoints in '/rest/api/2/issue'</p>
+    <p>Used to access Jira REST endpoints in '/rest/api/2/issue' and '/rest/agile/1.0/issue'</p>
 </div>
 
 
@@ -114,6 +112,7 @@
 
 
 
+
 <dl class="details">
 
     
@@ -169,6 +168,8 @@
 
 
 
+
+
     
     </div>
 
@@ -178,7 +179,9 @@
 
     
 
-     
+    
+
+    
 
     
 
@@ -192,7 +195,330 @@
 
     
 
-    <h4 class="name" id="addComment"><span class="type-signature"></span>addComment<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id=".addAttachment"><span class="type-signature">(static) </span>addAttachment<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Add an attachments to an issue.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+    issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>filename</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The file name of attachment. If you pass an array of filenames, multiple attachments will be added.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Called when the attachment has been attached.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line995">line 995</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the attachment has been attached.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="addComment"><span class="type-signature"></span>addComment<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -223,6 +549,8 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -247,6 +575,14 @@
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -376,6 +712,7 @@
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -391,15 +728,26 @@
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>Called when data has been retrieved</p></td>
         </tr>
 
     
     </tbody>
 </table>
+
 
 
 
@@ -434,7 +782,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line260">line 260</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line380">line 380</a>
     </li></ul></dd>
     
 
@@ -457,6 +805,30 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when data has been retrieved</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -465,7 +837,9 @@
 
     
 
-    <h4 class="name" id="addWatcher"><span class="type-signature"></span>addWatcher<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="addWatcher"><span class="type-signature"></span>addWatcher<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -496,6 +870,8 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -520,6 +896,14 @@
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -649,6 +1033,7 @@
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -664,6 +1049,16 @@
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -673,6 +1068,7 @@
     
     </tbody>
 </table>
+
 
 
 
@@ -707,7 +1103,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line657">line 657</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line801">line 801</a>
     </li></ul></dd>
     
 
@@ -730,6 +1126,30 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved after the watcher is added.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -738,7 +1158,9 @@
 
     
 
-    <h4 class="name" id="addWorkLog"><span class="type-signature"></span>addWorkLog<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="addWorkLog"><span class="type-signature"></span>addWorkLog<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -769,6 +1191,8 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -793,6 +1217,14 @@
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1029,6 +1461,7 @@
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -1044,6 +1477,16 @@
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1053,6 +1496,7 @@
     
     </tbody>
 </table>
+
 
 
 
@@ -1087,7 +1531,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line716">line 716</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line863">line 863</a>
     </li></ul></dd>
     
 
@@ -1110,6 +1554,30 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved after the worklog is added.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -1118,7 +1586,9 @@
 
     
 
-    <h4 class="name" id="assignIssue"><span class="type-signature"></span>assignIssue<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="assignIssue"><span class="type-signature"></span>assignIssue<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -1151,6 +1621,8 @@ name will remove the assignee.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1175,6 +1647,14 @@ name will remove the assignee.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1305,6 +1785,7 @@ name will remove the assignee.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -1320,6 +1801,16 @@ name will remove the assignee.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1329,6 +1820,7 @@ name will remove the assignee.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -1363,7 +1855,7 @@ name will remove the assignee.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line217">line 217</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line335">line 335</a>
     </li></ul></dd>
     
 
@@ -1386,6 +1878,30 @@ name will remove the assignee.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the issue has been assigned.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -1394,7 +1910,9 @@ name will remove the assignee.</p>
 
     
 
-    <h4 class="name" id="bulkCreate"><span class="type-signature"></span>bulkCreate<span class="signature">(issues, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="bulkCreate"><span class="type-signature"></span>bulkCreate<span class="signature">(issues, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -1428,6 +1946,8 @@ IssueResource#createIssue(IssueUpdateBean)}</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1448,6 +1968,14 @@ IssueResource#createIssue(IssueUpdateBean)}</p>
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1466,6 +1994,16 @@ IssueResource#createIssue(IssueUpdateBean)}</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1475,6 +2013,7 @@ IssueResource#createIssue(IssueUpdateBean)}</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -1509,7 +2048,7 @@ IssueResource#createIssue(IssueUpdateBean)}</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line97">line 97</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line194">line 194</a>
     </li></ul></dd>
     
 
@@ -1532,6 +2071,30 @@ IssueResource#createIssue(IssueUpdateBean)}</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the issues have been created.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -1540,7 +2103,9 @@ IssueResource#createIssue(IssueUpdateBean)}</p>
 
     
 
-    <h4 class="name" id="createIssue"><span class="type-signature"></span>createIssue<span class="signature">(issue, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="createIssue"><span class="type-signature"></span>createIssue<span class="signature">(issue, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -1580,6 +2145,8 @@ sub-task issue types), and</li>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1605,6 +2172,14 @@ sub-task issue types), and</li>
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1624,6 +2199,16 @@ See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e398">https://docs.a
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1633,6 +2218,7 @@ See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e398">https://docs.a
     
     </tbody>
 </table>
+
 
 
 
@@ -1667,7 +2253,7 @@ See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e398">https://docs.a
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line16">line 16</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line111">line 111</a>
     </li></ul></dd>
     
 
@@ -1690,6 +2276,30 @@ See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e398">https://docs.a
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the issue has been created.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -1698,7 +2308,9 @@ See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e398">https://docs.a
 
     
 
-    <h4 class="name" id="createRemoteLink"><span class="type-signature"></span>createRemoteLink<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="createRemoteLink"><span class="type-signature"></span>createRemoteLink<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -1730,6 +2342,8 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1754,6 +2368,14 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1883,6 +2505,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -1898,6 +2521,16 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1907,6 +2540,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
     
     </tbody>
 </table>
+
 
 
 
@@ -1941,7 +2575,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line408">line 408</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line540">line 540</a>
     </li></ul></dd>
     
 
@@ -1964,6 +2598,30 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the remote links are retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -1972,7 +2630,9 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
 
     
 
-    <h4 class="name" id="deleteComment"><span class="type-signature"></span>deleteComment<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="deleteComment"><span class="type-signature"></span>deleteComment<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -2003,6 +2663,8 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -2027,6 +2689,14 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -2156,6 +2826,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -2171,6 +2842,16 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -2180,6 +2861,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
     
     </tbody>
 </table>
+
 
 
 
@@ -2214,7 +2896,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line323">line 323</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line451">line 451</a>
     </li></ul></dd>
     
 
@@ -2237,6 +2919,30 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the comment is retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -2245,7 +2951,9 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
 
     
 
-    <h4 class="name" id="deleteIssue"><span class="type-signature"></span>deleteIssue<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="deleteIssue"><span class="type-signature"></span>deleteIssue<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -2277,6 +2985,8 @@ You cannot delete an issue without its subtasks also being deleted.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -2301,6 +3011,14 @@ You cannot delete an issue without its subtasks also being deleted.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -2400,13 +3118,13 @@ You cannot delete an issue without its subtasks also being deleted.</p>
 
         <tr>
             
-                <td class="name"><code>deleteSubTasks</code></td>
+                <td class="name"><code>deleteSubtasks</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">boolean</span>
+<span class="param-type">string</span>
 
 
             
@@ -2434,6 +3152,7 @@ You cannot delete an issue without its subtasks also being deleted.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -2449,15 +3168,26 @@ You cannot delete an issue without its subtasks also being deleted.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>Called when data has been retrieved</p></td>
         </tr>
 
     
     </tbody>
 </table>
+
 
 
 
@@ -2492,7 +3222,7 @@ You cannot delete an issue without its subtasks also being deleted.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line165">line 165</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line281">line 281</a>
     </li></ul></dd>
     
 
@@ -2515,6 +3245,30 @@ You cannot delete an issue without its subtasks also being deleted.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when data has been retrieved</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -2523,7 +3277,9 @@ You cannot delete an issue without its subtasks also being deleted.</p>
 
     
 
-    <h4 class="name" id="deleteRemoteLink"><span class="type-signature"></span>deleteRemoteLink<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="deleteRemoteLink"><span class="type-signature"></span>deleteRemoteLink<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -2554,6 +3310,8 @@ You cannot delete an issue without its subtasks also being deleted.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -2578,6 +3336,14 @@ You cannot delete an issue without its subtasks also being deleted.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -2707,6 +3473,7 @@ You cannot delete an issue without its subtasks also being deleted.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -2722,6 +3489,16 @@ You cannot delete an issue without its subtasks also being deleted.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -2731,6 +3508,7 @@ You cannot delete an issue without its subtasks also being deleted.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -2765,7 +3543,7 @@ You cannot delete an issue without its subtasks also being deleted.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line445">line 445</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line579">line 579</a>
     </li></ul></dd>
     
 
@@ -2788,6 +3566,30 @@ You cannot delete an issue without its subtasks also being deleted.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the remote links are retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -2796,7 +3598,9 @@ You cannot delete an issue without its subtasks also being deleted.</p>
 
     
 
-    <h4 class="name" id="deleteRemoteLinkById"><span class="type-signature"></span>deleteRemoteLinkById<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="deleteRemoteLinkById"><span class="type-signature"></span>deleteRemoteLinkById<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -2827,6 +3631,8 @@ You cannot delete an issue without its subtasks also being deleted.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -2851,6 +3657,14 @@ You cannot delete an issue without its subtasks also being deleted.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -2980,6 +3794,7 @@ You cannot delete an issue without its subtasks also being deleted.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -2995,6 +3810,16 @@ You cannot delete an issue without its subtasks also being deleted.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -3004,6 +3829,7 @@ You cannot delete an issue without its subtasks also being deleted.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -3038,7 +3864,7 @@ You cannot delete an issue without its subtasks also being deleted.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line512">line 512</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line649">line 649</a>
     </li></ul></dd>
     
 
@@ -3061,6 +3887,30 @@ You cannot delete an issue without its subtasks also being deleted.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the remote links are retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -3069,7 +3919,9 @@ You cannot delete an issue without its subtasks also being deleted.</p>
 
     
 
-    <h4 class="name" id="deleteWorkLog"><span class="type-signature"></span>deleteWorkLog<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="deleteWorkLog"><span class="type-signature"></span>deleteWorkLog<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -3100,6 +3952,8 @@ You cannot delete an issue without its subtasks also being deleted.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -3124,6 +3978,14 @@ You cannot delete an issue without its subtasks also being deleted.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -3360,6 +4222,7 @@ You cannot delete an issue without its subtasks also being deleted.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -3375,6 +4238,16 @@ You cannot delete an issue without its subtasks also being deleted.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -3384,6 +4257,7 @@ You cannot delete an issue without its subtasks also being deleted.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -3418,7 +4292,7 @@ You cannot delete an issue without its subtasks also being deleted.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line809">line 809</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line959">line 959</a>
     </li></ul></dd>
     
 
@@ -3441,6 +4315,30 @@ You cannot delete an issue without its subtasks also being deleted.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved after the work log is deleted.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -3449,7 +4347,9 @@ You cannot delete an issue without its subtasks also being deleted.</p>
 
     
 
-    <h4 class="name" id="editComment"><span class="type-signature"></span>editComment<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="editComment"><span class="type-signature"></span>editComment<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -3480,6 +4380,8 @@ You cannot delete an issue without its subtasks also being deleted.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -3504,6 +4406,14 @@ You cannot delete an issue without its subtasks also being deleted.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -3664,6 +4574,7 @@ You cannot delete an issue without its subtasks also being deleted.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -3679,15 +4590,26 @@ You cannot delete an issue without its subtasks also being deleted.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>Called when data has been retrieved</p></td>
         </tr>
 
     
     </tbody>
 </table>
+
 
 
 
@@ -3722,7 +4644,7 @@ You cannot delete an issue without its subtasks also being deleted.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line299">line 299</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line426">line 426</a>
     </li></ul></dd>
     
 
@@ -3745,6 +4667,30 @@ You cannot delete an issue without its subtasks also being deleted.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when data has been retrieved</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -3753,7 +4699,9 @@ You cannot delete an issue without its subtasks also being deleted.</p>
 
     
 
-    <h4 class="name" id="editIssue"><span class="type-signature"></span>editIssue<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="editIssue"><span class="type-signature"></span>editIssue<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -3791,6 +4739,8 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -3815,6 +4765,14 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -3944,6 +4902,7 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -3959,15 +4918,26 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>Called when data has been retrieved</p></td>
         </tr>
 
     
     </tbody>
 </table>
+
 
 
 
@@ -4002,7 +4972,7 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line186">line 186</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line303">line 303</a>
     </li></ul></dd>
     
 
@@ -4025,6 +4995,30 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when data has been retrieved</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -4033,7 +5027,9 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
 
     
 
-    <h4 class="name" id="getComment"><span class="type-signature"></span>getComment<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="getComment"><span class="type-signature"></span>getComment<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -4064,6 +5060,8 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -4088,6 +5086,14 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -4217,6 +5223,7 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -4232,6 +5239,16 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -4241,6 +5258,7 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
     
     </tbody>
 </table>
+
 
 
 
@@ -4275,7 +5293,7 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line278">line 278</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line404">line 404</a>
     </li></ul></dd>
     
 
@@ -4298,6 +5316,30 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the comment is retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -4306,7 +5348,9 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
 
     
 
-    <h4 class="name" id="getComments"><span class="type-signature"></span>getComments<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="getComments"><span class="type-signature"></span>getComments<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -4337,6 +5381,8 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -4361,6 +5407,14 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -4490,6 +5544,7 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -4505,6 +5560,16 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -4514,6 +5579,7 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
     
     </tbody>
 </table>
+
 
 
 
@@ -4548,7 +5614,7 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line242">line 242</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line361">line 361</a>
     </li></ul></dd>
     
 
@@ -4571,6 +5637,30 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the issue has been assigned.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -4579,7 +5669,9 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
 
     
 
-    <h4 class="name" id="getCreateMetadata"><span class="type-signature"></span>getCreateMetadata<span class="signature">(opts<span class="signature-attributes">opt</span>, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="getCreateMetadata"><span class="type-signature"></span>getCreateMetadata<span class="signature">(opts<span class="signature-attributes">opt</span>, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -4858,6 +5950,7 @@ in the screen will not be in the createmeta.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -4875,6 +5968,8 @@ in the screen will not be in the createmeta.</p>
             
                 <td class="attributes">
                 
+                    &lt;optional><br>
+                
 
                 
 
@@ -4890,6 +5985,7 @@ in the screen will not be in the createmeta.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -4924,7 +6020,7 @@ in the screen will not be in the createmeta.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line47">line 47</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line143">line 143</a>
     </li></ul></dd>
     
 
@@ -4947,6 +6043,30 @@ in the screen will not be in the createmeta.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the metadata has been retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -4955,7 +6075,9 @@ in the screen will not be in the createmeta.</p>
 
     
 
-    <h4 class="name" id="getEditMetadata"><span class="type-signature"></span>getEditMetadata<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="getEditMetadata"><span class="type-signature"></span>getEditMetadata<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -4988,6 +6110,8 @@ will not be in the editemeta.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -5012,6 +6136,14 @@ will not be in the editemeta.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -5110,6 +6242,7 @@ will not be in the editemeta.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -5125,6 +6258,16 @@ will not be in the editemeta.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -5134,6 +6277,7 @@ will not be in the editemeta.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -5168,7 +6312,7 @@ will not be in the editemeta.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line344">line 344</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line473">line 473</a>
     </li></ul></dd>
     
 
@@ -5191,6 +6335,30 @@ will not be in the editemeta.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the metadata is retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -5199,7 +6367,9 @@ will not be in the editemeta.</p>
 
     
 
-    <h4 class="name" id="getIssue"><span class="type-signature"></span>getIssue<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="getIssue"><span class="type-signature"></span>getIssue<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -5250,6 +6420,8 @@ current value of issue's key.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -5274,6 +6446,14 @@ current value of issue's key.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -5303,6 +6483,39 @@ current value of issue's key.</p>
     </thead>
 
     <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>agile</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Whether or not to call the agile version of this endpoint.  Defaults to false.</p></td>
+        </tr>
+
     
 
         <tr>
@@ -5436,8 +6649,42 @@ current value of issue's key.</p>
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>properties</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e611">https://docs.atlassian.com/jira/REST/latest/#d2e611</a></p></td>
+        </tr>
+
+    
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -5453,15 +6700,26 @@ current value of issue's key.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>Called when data has been retrieved</p></td>
         </tr>
 
     
     </tbody>
 </table>
+
 
 
 
@@ -5496,7 +6754,7 @@ current value of issue's key.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line122">line 122</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line220">line 220</a>
     </li></ul></dd>
     
 
@@ -5519,6 +6777,30 @@ current value of issue's key.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when data has been retrieved</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -5527,7 +6809,336 @@ current value of issue's key.</p>
 
     
 
-    <h4 class="name" id="getProperties"><span class="type-signature"></span>getProperties<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="getIssueEstimation"><span class="type-signature"></span>getIssueEstimation<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Returns the estimation of the issue and a filedId of the field that is
+used for it.  The boardId parameter is required, and determines which
+field will be updated on an issue.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this
+       object must contain EITHER an issueId or issueKey property;
+       issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of teh issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>boardId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the board required to
+       determine which field is used for estimation.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Called when the issue estimation has been retrieved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the issue estimation has been retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="getProperties"><span class="type-signature"></span>getProperties<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -5559,6 +7170,8 @@ experimental in the Jira API docs, use at your own risk.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -5583,6 +7196,14 @@ experimental in the Jira API docs, use at your own risk.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -5681,6 +7302,7 @@ experimental in the Jira API docs, use at your own risk.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -5695,6 +7317,16 @@ experimental in the Jira API docs, use at your own risk.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -5710,6 +7342,7 @@ experimental in the Jira API docs, use at your own risk.</p>
 
 
 
+
 <dl class="details">
 
     
@@ -5739,7 +7372,7 @@ experimental in the Jira API docs, use at your own risk.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line872">line 872</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1024">line 1024</a>
     </li></ul></dd>
     
 
@@ -5762,279 +7395,28 @@ experimental in the Jira API docs, use at your own risk.</p>
 
 
 
-
-
+<h5>Returns:</h5>
 
         
-            
-
-    
-
-    <h4 class="name" id="getProperty"><span class="type-signature"></span>getProperty<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Removes the property from the issue identified by the key or by the id. Ths user removing the property is
-required to have permissions to edit the issue.</p>
-<p>This function is maked as experimental in the Jira API docs, use at your own risk.</p>
+<div class="param-desc">
+    <p>Resolved when the properties are retrieved.</p>
 </div>
 
 
 
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
         
-        <th>Name</th>
-        
+<span class="param-type">Promise</span>
 
-        <th>Type</th>
 
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>opts</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-    issueKey property; issueId will be used over issueKey if both are present.</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>issueId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>issueKey</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>propertyKey</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The key of the property being set.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Called when the property is deleted.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line939">line 939</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
+    </dd>
 </dl>
 
-
-
-
-
-
-
-
-
-
-
+    
 
 
 
@@ -6045,7 +7427,9 @@ required to have permissions to edit the issue.</p>
 
     
 
-    <h4 class="name" id="getProperty"><span class="type-signature"></span>getProperty<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="getProperty"><span class="type-signature"></span>getProperty<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -6078,6 +7462,8 @@ who retrieves the property is required to have permissions to read the issue.</p
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -6102,6 +7488,14 @@ who retrieves the property is required to have permissions to read the issue.</p
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -6231,6 +7625,7 @@ who retrieves the property is required to have permissions to read the issue.</p
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -6246,6 +7641,16 @@ who retrieves the property is required to have permissions to read the issue.</p
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -6255,6 +7660,7 @@ who retrieves the property is required to have permissions to read the issue.</p
     
     </tbody>
 </table>
+
 
 
 
@@ -6289,7 +7695,7 @@ who retrieves the property is required to have permissions to read the issue.</p
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line916">line 916</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1070">line 1070</a>
     </li></ul></dd>
     
 
@@ -6312,6 +7718,30 @@ who retrieves the property is required to have permissions to read the issue.</p
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the property is retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -6320,7 +7750,332 @@ who retrieves the property is required to have permissions to read the issue.</p
 
     
 
-    <h4 class="name" id="getRemoteLinkById"><span class="type-signature"></span>getRemoteLinkById<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="getProperty"><span class="type-signature"></span>getProperty<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Removes the property from the issue identified by the key or by the id. Ths user removing the property is
+required to have permissions to edit the issue.</p>
+<p>This function is maked as experimental in the Jira API docs, use at your own risk.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
+    issueKey property; issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of the issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>propertyKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The key of the property being set.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Called when the property is deleted.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1094">line 1094</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the property is deleted.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="getRemoteLinkById"><span class="type-signature"></span>getRemoteLinkById<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -6351,6 +8106,8 @@ who retrieves the property is required to have permissions to read the issue.</p
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -6375,6 +8132,14 @@ who retrieves the property is required to have permissions to read the issue.</p
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -6504,6 +8269,7 @@ who retrieves the property is required to have permissions to read the issue.</p
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -6519,6 +8285,16 @@ who retrieves the property is required to have permissions to read the issue.</p
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -6528,6 +8304,7 @@ who retrieves the property is required to have permissions to read the issue.</p
     
     </tbody>
 </table>
+
 
 
 
@@ -6562,7 +8339,7 @@ who retrieves the property is required to have permissions to read the issue.</p
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line467">line 467</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line602">line 602</a>
     </li></ul></dd>
     
 
@@ -6585,6 +8362,30 @@ who retrieves the property is required to have permissions to read the issue.</p
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the remote links are retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -6593,7 +8394,9 @@ who retrieves the property is required to have permissions to read the issue.</p
 
     
 
-    <h4 class="name" id="getRemoteLinks"><span class="type-signature"></span>getRemoteLinks<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="getRemoteLinks"><span class="type-signature"></span>getRemoteLinks<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -6624,6 +8427,8 @@ who retrieves the property is required to have permissions to read the issue.</p
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -6648,6 +8453,14 @@ who retrieves the property is required to have permissions to read the issue.</p
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -6779,6 +8592,7 @@ who retrieves the property is required to have permissions to read the issue.</p
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -6794,6 +8608,16 @@ who retrieves the property is required to have permissions to read the issue.</p
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -6803,6 +8627,7 @@ who retrieves the property is required to have permissions to read the issue.</p
     
     </tbody>
 </table>
+
 
 
 
@@ -6837,7 +8662,7 @@ who retrieves the property is required to have permissions to read the issue.</p
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line388">line 388</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line519">line 519</a>
     </li></ul></dd>
     
 
@@ -6860,6 +8685,30 @@ who retrieves the property is required to have permissions to read the issue.</p
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the remote links are retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -6868,7 +8717,9 @@ who retrieves the property is required to have permissions to read the issue.</p
 
     
 
-    <h4 class="name" id="getTransitions"><span class="type-signature"></span>getTransitions<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="getTransitions"><span class="type-signature"></span>getTransitions<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -6903,6 +8754,8 @@ the screen will not be in the metadata.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -6927,6 +8780,14 @@ the screen will not be in the metadata.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -7056,6 +8917,7 @@ the screen will not be in the metadata.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -7071,6 +8933,16 @@ the screen will not be in the metadata.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -7080,6 +8952,7 @@ the screen will not be in the metadata.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -7114,7 +8987,7 @@ the screen will not be in the metadata.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line534">line 534</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line672">line 672</a>
     </li></ul></dd>
     
 
@@ -7137,6 +9010,30 @@ the screen will not be in the metadata.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the transitions are retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -7145,7 +9042,9 @@ the screen will not be in the metadata.</p>
 
     
 
-    <h4 class="name" id="getVotes"><span class="type-signature"></span>getVotes<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="getVotes"><span class="type-signature"></span>getVotes<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -7176,6 +9075,8 @@ the screen will not be in the metadata.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -7200,6 +9101,14 @@ the screen will not be in the metadata.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -7298,6 +9207,7 @@ the screen will not be in the metadata.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -7313,6 +9223,16 @@ the screen will not be in the metadata.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -7322,6 +9242,7 @@ the screen will not be in the metadata.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -7356,7 +9277,7 @@ the screen will not be in the metadata.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line623">line 623</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line765">line 765</a>
     </li></ul></dd>
     
 
@@ -7379,6 +9300,30 @@ the screen will not be in the metadata.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved after the votes are retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -7387,7 +9332,9 @@ the screen will not be in the metadata.</p>
 
     
 
-    <h4 class="name" id="getWatchers"><span class="type-signature"></span>getWatchers<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="getWatchers"><span class="type-signature"></span>getWatchers<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -7418,6 +9365,8 @@ the screen will not be in the metadata.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -7442,6 +9391,14 @@ the screen will not be in the metadata.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -7540,6 +9497,7 @@ the screen will not be in the metadata.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -7555,6 +9513,16 @@ the screen will not be in the metadata.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -7564,6 +9532,7 @@ the screen will not be in the metadata.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -7598,7 +9567,7 @@ the screen will not be in the metadata.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line640">line 640</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line783">line 783</a>
     </li></ul></dd>
     
 
@@ -7621,6 +9590,30 @@ the screen will not be in the metadata.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved after the watchers are retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -7629,7 +9622,9 @@ the screen will not be in the metadata.</p>
 
     
 
-    <h4 class="name" id="getWorkLog"><span class="type-signature"></span>getWorkLog<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="getWorkLog"><span class="type-signature"></span>getWorkLog<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -7660,6 +9655,8 @@ the screen will not be in the metadata.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -7684,6 +9681,14 @@ the screen will not be in the metadata.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -7813,6 +9818,7 @@ the screen will not be in the metadata.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -7828,6 +9834,16 @@ the screen will not be in the metadata.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -7837,6 +9853,7 @@ the screen will not be in the metadata.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -7871,7 +9888,7 @@ the screen will not be in the metadata.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line752">line 752</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line900">line 900</a>
     </li></ul></dd>
     
 
@@ -7894,6 +9911,30 @@ the screen will not be in the metadata.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved after the worklog is retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -7902,7 +9943,9 @@ the screen will not be in the metadata.</p>
 
     
 
-    <h4 class="name" id="getWorkLogs"><span class="type-signature"></span>getWorkLogs<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="getWorkLogs"><span class="type-signature"></span>getWorkLogs<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -7933,6 +9976,8 @@ the screen will not be in the metadata.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -7957,6 +10002,14 @@ the screen will not be in the metadata.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -8055,6 +10108,7 @@ the screen will not be in the metadata.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -8070,6 +10124,16 @@ the screen will not be in the metadata.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -8079,6 +10143,7 @@ the screen will not be in the metadata.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -8113,7 +10178,7 @@ the screen will not be in the metadata.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line699">line 699</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line845">line 845</a>
     </li></ul></dd>
     
 
@@ -8136,6 +10201,30 @@ the screen will not be in the metadata.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved after the worklogs are retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -8144,7 +10233,9 @@ the screen will not be in the metadata.</p>
 
     
 
-    <h4 class="name" id="removeWatcher"><span class="type-signature"></span>removeWatcher<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="removeWatcher"><span class="type-signature"></span>removeWatcher<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -8175,6 +10266,8 @@ the screen will not be in the metadata.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -8199,6 +10292,14 @@ the screen will not be in the metadata.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -8328,6 +10429,7 @@ the screen will not be in the metadata.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -8343,6 +10445,16 @@ the screen will not be in the metadata.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -8352,6 +10464,7 @@ the screen will not be in the metadata.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -8386,7 +10499,7 @@ the screen will not be in the metadata.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line678">line 678</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line823">line 823</a>
     </li></ul></dd>
     
 
@@ -8409,6 +10522,30 @@ the screen will not be in the metadata.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved after the watcher is removed.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -8417,7 +10554,9 @@ the screen will not be in the metadata.</p>
 
     
 
-    <h4 class="name" id="sendEmailNotification"><span class="type-signature"></span>sendEmailNotification<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="sendEmailNotification"><span class="type-signature"></span>sendEmailNotification<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -8450,6 +10589,8 @@ of the intended recipients have disabled notifications from Jira.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -8474,6 +10615,14 @@ of the intended recipients have disabled notifications from Jira.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -8603,6 +10752,7 @@ of the intended recipients have disabled notifications from Jira.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -8618,6 +10768,16 @@ of the intended recipients have disabled notifications from Jira.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -8627,6 +10787,7 @@ of the intended recipients have disabled notifications from Jira.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -8661,7 +10822,7 @@ of the intended recipients have disabled notifications from Jira.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line364">line 364</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line494">line 494</a>
     </li></ul></dd>
     
 
@@ -8684,6 +10845,30 @@ of the intended recipients have disabled notifications from Jira.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the metadata is retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -8692,7 +10877,564 @@ of the intended recipients have disabled notifications from Jira.</p>
 
     
 
-    <h4 class="name" id="setProperty"><span class="type-signature"></span>setProperty<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="setIssueEstimation"><span class="type-signature"></span>setIssueEstimation<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Updates the estimation of the issue.  The boardId parameter is required,
+and determines which field will be updated on an issue.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.  Note that this
+       object must contain EITHER an issueId or issueKey property;
+       issueId will be used over issueKey if both are present.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The value to set the issue estimation as.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the issue.  EX: 10002</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The Key of teh issue.  EX: JWR-3</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>boardId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the board required to
+       determine which field is used for estimation.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Called when the issue estimation has been created.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line51">line 51</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the issue estimation has been created.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="setIssueRanks"><span class="type-signature"></span>setIssueRanks<span class="signature">(ranking, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Moves (ranks) issues before or after a given issue.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>ranking</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The ranking data in the form of PUT body to the
+       Jira API.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Called when the issue rank has been created.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line89">line 89</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the issue rank has been created.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="setProperty"><span class="type-signature"></span>setProperty<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -8726,6 +11468,8 @@ the issue.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -8750,6 +11494,14 @@ the issue.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -8910,6 +11662,7 @@ the issue.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -8925,6 +11678,16 @@ the issue.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -8934,6 +11697,7 @@ the issue.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -8968,7 +11732,7 @@ the issue.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line889">line 889</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1042">line 1042</a>
     </li></ul></dd>
     
 
@@ -8991,6 +11755,30 @@ the issue.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the property is set.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -8999,7 +11787,9 @@ the issue.</p>
 
     
 
-    <h4 class="name" id="transitionIssue"><span class="type-signature"></span>transitionIssue<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="transitionIssue"><span class="type-signature"></span>transitionIssue<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -9034,6 +11824,8 @@ a field validation error will occur if it is submitted.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -9058,6 +11850,14 @@ a field validation error will occur if it is submitted.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -9187,6 +11987,7 @@ a field validation error will occur if it is submitted.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -9202,6 +12003,16 @@ a field validation error will occur if it is submitted.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -9211,6 +12022,7 @@ a field validation error will occur if it is submitted.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -9245,7 +12057,7 @@ a field validation error will occur if it is submitted.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line558">line 558</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line697">line 697</a>
     </li></ul></dd>
     
 
@@ -9268,6 +12080,30 @@ a field validation error will occur if it is submitted.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the transitions are retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -9276,7 +12112,9 @@ a field validation error will occur if it is submitted.</p>
 
     
 
-    <h4 class="name" id="unvote"><span class="type-signature"></span>unvote<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="unvote"><span class="type-signature"></span>unvote<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -9307,6 +12145,8 @@ a field validation error will occur if it is submitted.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -9331,6 +12171,14 @@ a field validation error will occur if it is submitted.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -9429,6 +12277,7 @@ a field validation error will occur if it is submitted.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -9444,6 +12293,16 @@ a field validation error will occur if it is submitted.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -9453,6 +12312,7 @@ a field validation error will occur if it is submitted.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -9487,7 +12347,7 @@ a field validation error will occur if it is submitted.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line589">line 589</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line729">line 729</a>
     </li></ul></dd>
     
 
@@ -9510,6 +12370,30 @@ a field validation error will occur if it is submitted.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved after the vote is removed.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -9518,7 +12402,9 @@ a field validation error will occur if it is submitted.</p>
 
     
 
-    <h4 class="name" id="updateRemoteLink"><span class="type-signature"></span>updateRemoteLink<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="updateRemoteLink"><span class="type-signature"></span>updateRemoteLink<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -9550,6 +12436,8 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -9574,6 +12462,14 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -9703,6 +12599,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -9718,6 +12615,16 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -9727,6 +12634,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
     
     </tbody>
 </table>
+
 
 
 
@@ -9761,7 +12669,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line427">line 427</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line560">line 560</a>
     </li></ul></dd>
     
 
@@ -9784,6 +12692,30 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the remote links are retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -9792,7 +12724,9 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
 
     
 
-    <h4 class="name" id="updateRemoteLinkById"><span class="type-signature"></span>updateRemoteLinkById<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="updateRemoteLinkById"><span class="type-signature"></span>updateRemoteLinkById<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -9823,6 +12757,8 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -9847,6 +12783,14 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -10007,6 +12951,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -10022,6 +12967,16 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -10031,6 +12986,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
     
     </tbody>
 </table>
+
 
 
 
@@ -10065,7 +13021,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line489">line 489</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line625">line 625</a>
     </li></ul></dd>
     
 
@@ -10088,6 +13044,30 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the remote links are retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -10096,7 +13076,9 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
 
     
 
-    <h4 class="name" id="updateWorkLog"><span class="type-signature"></span>updateWorkLog<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="updateWorkLog"><span class="type-signature"></span>updateWorkLog<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -10127,6 +13109,8 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -10151,6 +13135,14 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -10383,6 +13375,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -10398,6 +13391,16 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -10407,6 +13410,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
     
     </tbody>
 </table>
+
 
 
 
@@ -10441,7 +13445,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line773">line 773</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line922">line 922</a>
     </li></ul></dd>
     
 
@@ -10464,6 +13468,30 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved after the worklog is updated.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -10472,7 +13500,9 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
 
     
 
-    <h4 class="name" id="vote"><span class="type-signature"></span>vote<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="vote"><span class="type-signature"></span>vote<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -10503,6 +13533,8 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -10527,6 +13559,14 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -10625,6 +13665,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -10640,6 +13681,16 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -10649,6 +13700,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
     
     </tbody>
 </table>
+
 
 
 
@@ -10683,7 +13735,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line606">line 606</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line747">line 747</a>
     </li></ul></dd>
     
 
@@ -10706,6 +13758,30 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved after the vote is removed.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -10725,13 +13801,13 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AgileBoardClient.html">AgileBoardClient</a></li><li><a href="AgileSprintClient.html">AgileSprintClient</a></li><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WebhookClient.html">WebhookClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li><li><a href="WorkLogClient.html">WorkLogClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha13</a> on Wed Dec 09 2015 13:39:38 GMT-0600 (CST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jan 30 2018 10:10:04 GMT-0600 (CST)
 </footer>
 
 <script> prettyPrint(); </script>

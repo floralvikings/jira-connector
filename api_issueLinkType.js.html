@@ -47,7 +47,8 @@ function IssueLinkTypeClient(jiraClient) {
      * @method getAvailableTypes
      * @memberOf IssueLinkTypeClient#
      * @param opts The request options for the API.  Ignored in this function.
-     * @param callback Called when the available IssueLink types are retrieved.
+     * @param [callback] Called when the available IssueLink types are retrieved.
+     * @return {Promise} Resolved when the available IssueLink types are retrieved.
      */
     this.getAvailableTypes = function (opts, callback) {
         var options = {
@@ -57,7 +58,7 @@ function IssueLinkTypeClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -67,7 +68,8 @@ function IssueLinkTypeClient(jiraClient) {
      * @memberOf IssueLinkTypeClient#
      * @param opts The request options sent to the Jira API
      * @param opts.linkType See {@link https://docs.atlassian.com/jira/REST/latest/#d2e2018}
-     * @param callback Called when the IssueLink type has been created.
+     * @param [callback] Called when the IssueLink type has been created.
+     * @return {Promise} Resolved when the IssueLink type has been created.
      */
     this.createIssueLinkType = function (opts, callback) {
         var options = {
@@ -78,7 +80,7 @@ function IssueLinkTypeClient(jiraClient) {
             body: opts.linkType
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -88,7 +90,8 @@ function IssueLinkTypeClient(jiraClient) {
      * @memberOf IssueLinkTypeClient#
      * @param opts The request options sent to the Jira API
      * @param opts.issueLinkTypeId The id of the IssueLink type to retrieve.
-     * @param callback Called when the IssueLink type has been retrieved
+     * @param [callback] Called when the IssueLink type has been retrieved
+     * @return {Promise} Resolved when the IssueLink type has been retrieved
      */
     this.getIssueLinkType = function (opts, callback) {
         if (!opts.issueLinkTypeId) {
@@ -102,7 +105,7 @@ function IssueLinkTypeClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -112,7 +115,8 @@ function IssueLinkTypeClient(jiraClient) {
      * @memberOf IssueLinkTypeClient#
      * @param opts The request options sent to the Jira API
      * @param opts.issueLinkTypeId The id of the IssueLink type to delete.
-     * @param callback Called when the IssueLink type has been delete
+     * @param [callback] Called when the IssueLink type has been delete
+     * @return {Promise} Resolved when the IssueLink type has been delete
      */
     this.deleteIssueLinkType = function (opts, callback) {
         if (!opts.issueLinkTypeId) {
@@ -126,7 +130,7 @@ function IssueLinkTypeClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback, 'IssueLink type deleted.');
+        return this.jiraClient.makeRequest(options, callback, 'IssueLink type deleted.');
     };
 
     /**
@@ -137,7 +141,8 @@ function IssueLinkTypeClient(jiraClient) {
      * @param opts The request options sent to the Jira API
      * @param opts.issueLinkTypeId The id of the IssueLink type to retrieve.
      * @param opts.linkType See {@link https://docs.atlassian.com/jira/REST/latest/#d2e2071}
-     * @param callback Called when the IssueLink type has been updated.
+     * @param [callback] Called when the IssueLink type has been updated.
+     * @return {Promise} Resolved when the IssueLink type has been updated.
      */
     this.editIssueLinkType = function (opts, callback) {
         if (!opts.issueLinkTypeId) {
@@ -152,7 +157,7 @@ function IssueLinkTypeClient(jiraClient) {
             body: opts.issueLinkType
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 }</code></pre>
         </article>
@@ -164,13 +169,13 @@ function IssueLinkTypeClient(jiraClient) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AgileBoardClient.html">AgileBoardClient</a></li><li><a href="AgileSprintClient.html">AgileSprintClient</a></li><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WebhookClient.html">WebhookClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li><li><a href="WorkLogClient.html">WorkLogClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha13</a> on Wed Dec 09 2015 13:39:38 GMT-0600 (CST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jan 30 2018 10:10:04 GMT-0600 (CST)
 </footer>
 
 <script> prettyPrint(); </script>

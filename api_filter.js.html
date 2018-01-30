@@ -49,7 +49,8 @@ function FilterClient(jiraClient) {
      * @param {Array} [opts.expand] The parameters to expand.
      * @param {Object} opts.filter The filter to create.  See
      *      {@link https://docs.atlassian.com/jira/REST/latest/#d2e3347}
-     * @param callback Called when the filter has been created.
+     * @param [callback] Called when the filter has been created.
+     * @return {Promise} Resolved when the filter has been created.
      */
     this.createFilter = function (opts, callback) {
         var options = {
@@ -68,7 +69,7 @@ function FilterClient(jiraClient) {
             });
         }
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -78,11 +79,12 @@ function FilterClient(jiraClient) {
      * @memberOf FilterClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.filterId The id of the filter to retrieve
-     * @param callback Called when the filter has been retrieved.
+     * @param [callback] Called when the filter has been retrieved.
+     * @return {Promise} Resolved when the filter has been retrieved.
      */
     this.getFilter = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '', 'GET');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -94,11 +96,12 @@ function FilterClient(jiraClient) {
      * @param {number} opts.filterId The id of the filter to update
      * @param {Object} opts.filter The new data for the filter.  See
      *      {@link https://docs.atlassian.com/jira/REST/latest/#d2e3401}
-     * @param callback Called when the filter has been updated.
+     * @param [callback] Called when the filter has been updated.
+     * @return {Promise} Resolved when the filter has been updated.
      */
     this.updateFilter = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '', 'PUT', opts.filter);
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -108,11 +111,12 @@ function FilterClient(jiraClient) {
      * @memberOf FilterClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.filterId The id of the filter to delete
-     * @param callback Called when the filter has been deleted.
+     * @param [callback] Called when the filter has been deleted.
+     * @return {Promise} Resolved when the filter has been deleted.
      */
     this.deleteFilter = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '', 'DELETE');
-        this.jiraClient.makeRequest(options, callback, 'Filter Deleted');
+        return this.jiraClient.makeRequest(options, callback, 'Filter Deleted');
     };
 
     /**
@@ -123,11 +127,12 @@ function FilterClient(jiraClient) {
      * @memberOf FilterClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.filterId The id of the filter for which to retrieve columns.
-     * @param callback Called when the columns have been retrieved.
+     * @param [callback] Called when the columns have been retrieved.
+     * @return {Promise} Resolved when the columns have been retrieved.
      */
     this.getFilterColumns = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/columns', 'GET');
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -139,12 +144,13 @@ function FilterClient(jiraClient) {
      * @param {number} opts.filterId The id of the filter for which to update columns.
      * @param {Array} opts.columns The names of the new columns.
      *      See {@link https://docs.atlassian.com/jira/REST/latest/#d2e3460}
-     * @param callback Called when the columns have been set
+     * @param [callback] Called when the columns have been set
+     * @return {Promise} Resolved when the columns have been set
      */
     this.setFilterColumns = function (opts, callback) {
         var body = {columns: opts.columns};
         var options = this.buildRequestOptions(opts, '/columns', 'PUT', body);
-        this.jiraClient.makeRequest(options, callback, 'Columns Updated');
+        return this.jiraClient.makeRequest(options, callback, 'Columns Updated');
     };
 
     /**
@@ -154,12 +160,29 @@ function FilterClient(jiraClient) {
      * @memberOf FilterClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.filterId The id of the filter for which to reset columns.
-     * @param callback Called when the columns have been reset.
+     * @param [callback] Called when the columns have been reset.
+     * @return {Promise} Resolved when the columns have been reset.
      */
     this.resetFilterColumns = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '/columns', 'DELETE');
-        this.jiraClient.makeRequest(options, callback, 'Columns Reset');
+        return this.jiraClient.makeRequest(options, callback, 'Columns Reset');
     };
+
+     /**
+     * Adds a share permission for the given filter
+     *
+     * @method addSharePermission
+     * @memberOf FilterClient#
+     * @param {Object} opts The request options sent to the Jira API
+     * @param {number} opts.filterId The id of the filter for which to reset columns.
+     * @param {Object} opts.permission The share permission to apply
+     * @param [callback] Called when the columns have been reset.
+     * @return {Promise} Resolved when the columns have been reset.
+     */
+    this.addSharePermission = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/permission', 'POST', opts.permission);
+        return this.jiraClient.makeRequest(options, callback, 'Share Permission Added');
+    }
 
     /**
      * Returns the default share scope of the logged-in user.
@@ -167,7 +190,8 @@ function FilterClient(jiraClient) {
      * @method getDefaultShareScore
      * @memberOf FilterClient#
      * @param opts Ignored.
-     * @param callback Called when the default share scope has been retrieved.
+     * @param [callback] Called when the default share scope has been retrieved.
+     * @return {Promise} Resolved when the default share scope has been retrieved.
      */
     this.getDefaultShareScore = function (opts, callback) {
         var options = {
@@ -177,7 +201,7 @@ function FilterClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -187,7 +211,8 @@ function FilterClient(jiraClient) {
      * @memberOf FilterClient#
      * @param {Object} opts The request options sent to jira
      * @param {string} opts.scope The new default share scope. Available values are GLOBAL and PRIVATE.
-     * @param callback Called when the default share scope has been set.
+     * @param [callback] Called when the default share scope has been set.
+     * @return {Promise} Resolved when the default share scope has been set.
      */
     this.setDefaultShareScope = function (opts, callback) {
         var options = {
@@ -199,7 +224,7 @@ function FilterClient(jiraClient) {
                 scope: opts.scope
             }
         };
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -208,7 +233,8 @@ function FilterClient(jiraClient) {
      * @method getFavouriteFilters
      * @memberOf FilterClient#
      * @param opts Ignored.
-     * @param callback Called when the list of favourites has been retrieved.
+     * @param [callback] Called when the list of favourites has been retrieved.
+     * @return {Promise} Resolved when the list of favourites has been retrieved.
      */
     this.getFavoriteFilters = function (opts, callback) {
         var options = {
@@ -217,7 +243,7 @@ function FilterClient(jiraClient) {
             json: true,
             followAllRedirects: true
         };
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -276,13 +302,13 @@ function FilterClient(jiraClient) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AgileBoardClient.html">AgileBoardClient</a></li><li><a href="AgileSprintClient.html">AgileSprintClient</a></li><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WebhookClient.html">WebhookClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li><li><a href="WorkLogClient.html">WorkLogClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha13</a> on Wed Dec 09 2015 13:39:38 GMT-0600 (CST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jan 30 2018 10:10:04 GMT-0600 (CST)
 </footer>
 
 <script> prettyPrint(); </script>

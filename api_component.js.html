@@ -46,7 +46,8 @@ function ComponentClient(jiraClient) {
      * @memberOf ComponentClient#
      * @param opts The request options sent to the Jira API
      * @param opts.component See {@link https://docs.atlassian.com/jira/REST/latest/#d2e3871}
-     * @param callback Called when the component has been created.
+     * @param [callback] Called when the component has been created.
+     * @return {Promise} Resolved when the component has been created.
      */
     this.createComponent = function (opts, callback) {
         var options = {
@@ -57,7 +58,7 @@ function ComponentClient(jiraClient) {
             body: opts.component
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -71,7 +72,8 @@ function ComponentClient(jiraClient) {
      * @param opts.id The id of the component to edit.
      * @param opts.component The new data to place in the component.  See
      *      {@link https://docs.atlassian.com/jira/REST/latest/#d2e3939}
-     * @param callback Called when the component has beed edited.
+     * @param [callback] Called when the component has beed edited.
+     * @return {Promise} Resolved when the component has beed edited.
      */
     this.editComponent = function (opts, callback) {
         var options = {
@@ -82,7 +84,7 @@ function ComponentClient(jiraClient) {
             body: opts.component
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -92,7 +94,8 @@ function ComponentClient(jiraClient) {
      * @memberOf ComponentClient#
      * @param opts The options sent to the Jira API
      * @param opts.id The id of the component to edit.
-     * @param callback Called when the component has been retrieved.
+     * @param [callback] Called when the component has been retrieved.
+     * @return {Promise} Resolved when the component has been retrieved.
      */
     this.getComponent = function (opts, callback) {
         var options = {
@@ -102,7 +105,7 @@ function ComponentClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -114,7 +117,8 @@ function ComponentClient(jiraClient) {
      * @param opts.id The id of the component to edit.
      * @param [opts.moveIssuesTo] The new component applied to issues whose 'id' component will be deleted. If this
      *     value is null, then the 'id' component is simply removed from the related isues.
-     * @param callback Called when the component has been deleted.
+     * @param [callback] Called when the component has been deleted.
+     * @return {Promise} Resolved when the component has been deleted.
      */
     this.deleteComponent = function (opts, callback) {
         var options = {
@@ -124,7 +128,7 @@ function ComponentClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback, 'Project Component Deleted');
+        return this.jiraClient.makeRequest(options, callback, 'Project Component Deleted');
     };
 
     /**
@@ -134,7 +138,8 @@ function ComponentClient(jiraClient) {
      * @memberOf ComponentClient#
      * @param opts The options sent to the Jira API
      * @param opts.id The id of the component to edit.
-     * @param callback Called when the count has been retrieved.
+     * @param [callback] Called when the count has been retrieved.
+     * @return {Promise} Resolved when the count has been retrieved.
      */
     this.getRelatedIssueCounts = function (opts, callback) {
         var options = {
@@ -144,7 +149,7 @@ function ComponentClient(jiraClient) {
             followAllRedirects: true
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     }
 }</code></pre>
         </article>
@@ -156,13 +161,13 @@ function ComponentClient(jiraClient) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AgileBoardClient.html">AgileBoardClient</a></li><li><a href="AgileSprintClient.html">AgileSprintClient</a></li><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WebhookClient.html">WebhookClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li><li><a href="WorkLogClient.html">WorkLogClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha13</a> on Wed Dec 09 2015 13:39:38 GMT-0600 (CST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jan 30 2018 10:10:04 GMT-0600 (CST)
 </footer>
 
 <script> prettyPrint(); </script>

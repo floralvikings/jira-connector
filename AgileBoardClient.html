@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: ComponentClient</title>
+    <title>JSDoc: Class: AgileBoardClient</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: ComponentClient</h1>
+    <h1 class="page-title">Class: AgileBoardClient</h1>
 
     
 
@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>ComponentClient<span class="signature">(jiraClient)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>AgileBoardClient<span class="signature">(jiraClient)</span><span class="type-signature"></span></h2>
         
     
 </header>
@@ -41,7 +41,7 @@
     
 
     
-    <h4 class="name" id="ComponentClient"><span class="type-signature"></span>new ComponentClient<span class="signature">(jiraClient)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="AgileBoardClient"><span class="type-signature"></span>new AgileBoardClient<span class="signature">(jiraClient)</span><span class="type-signature"></span></h4>
     
 
     
@@ -49,7 +49,7 @@
 
 
 <div class="description">
-    <p>Used to access Jira REST endpoints in '/rest/api/2/component'</p>
+    <p>Used to access Jira REST endpoints in '/rest/agile/1.0/dashboard'</p>
 </div>
 
 
@@ -142,7 +142,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_component.js.html">api/component.js</a>, <a href="api_component.js.html#line5">line 5</a>
+        <a href="api_board.js.html">api/board.js</a>, <a href="api_board.js.html#line5">line 5</a>
     </li></ul></dd>
     
 
@@ -196,7 +196,7 @@
     
 
     
-    <h4 class="name" id="createComponent"><span class="type-signature"></span>createComponent<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="getAllBoards"><span class="type-signature"></span>getAllBoards<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
     
 
     
@@ -204,7 +204,7 @@
 
 
 <div class="description">
-    <p>Create a component via POST.</p>
+    <p>Get a list of all dashboards, optionally filtering them.</p>
 </div>
 
 
@@ -261,7 +261,7 @@
 
             
 
-            <td class="description last"><p>The request options sent to the Jira API</p>
+            <td class="description last"><p>The request options to send to the Jira API</p>
                 <h6>Properties</h6>
                 
 
@@ -275,6 +275,8 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -287,7 +289,7 @@
 
         <tr>
             
-                <td class="name"><code>component</code></td>
+                <td class="name"><code>type</code></td>
             
 
             <td class="type">
@@ -295,10 +297,81 @@
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e3871">https://docs.atlassian.com/jira/REST/latest/#d2e3871</a></p></td>
+            <td class="description last"><p>Limits returning boards of a specific type: <code>scrum</code> or <code>kanban</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>startAt</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The index of the first dashboard to return (0-based). must be 0 or a multiple of
+    maxResults</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>maxResults</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>A hint as to the the maximum number of dashboards to return in each call. Note that the
+    JIRA server reserves the right to impose a maxResults limit that is lower than the value that a client
+    provides, dues to lack or resources or any other condition. When this happens, your results will be
+    truncated. Callers should always check the returned maxResults to determine the value that is effectively
+    being used.</p></td>
         </tr>
 
     
@@ -333,7 +406,7 @@
 
             
 
-            <td class="description last"><p>Called when the component has been created.</p></td>
+            <td class="description last"><p>Called when the dashboards have been retrieved.</p></td>
         </tr>
 
     
@@ -374,7 +447,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_component.js.html">api/component.js</a>, <a href="api_component.js.html#line14">line 14</a>
+        <a href="api_board.js.html">api/board.js</a>, <a href="api_board.js.html#line13">line 13</a>
     </li></ul></dd>
     
 
@@ -401,7 +474,7 @@
 
         
 <div class="param-desc">
-    <p>Resolved when the component has been created.</p>
+    <p>Resolved when the dashboards have been retrieved.</p>
 </div>
 
 
@@ -430,7 +503,7 @@
     
 
     
-    <h4 class="name" id="deleteComponent"><span class="type-signature"></span>deleteComponent<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="getBoard"><span class="type-signature"></span>getBoard<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
     
 
     
@@ -438,282 +511,7 @@
 
 
 <div class="description">
-    <p>Delete a project component.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>opts</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The options sent to the Jira API</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The id of the component to edit.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>moveIssuesTo</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The new component applied to issues whose 'id' component will be deleted. If this
-    value is null, then the 'id' component is simply removed from the related isues.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>Called when the component has been deleted.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_component.js.html">api/component.js</a>, <a href="api_component.js.html#line83">line 83</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>Resolved when the component has been deleted.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="editComponent"><span class="type-signature"></span>editComponent<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Modify a component via PUT. Any fields present in the PUT will override existing values. As a convenience, if a
-field is not present, it is silently ignored. If leadUserName is an empty string (&quot;&quot;) the component lead will be
-removed.</p>
+    <p>Get a single agile board.</p>
 </div>
 
 
@@ -796,7 +594,7 @@ removed.</p>
 
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>boardId</code></td>
             
 
             <td class="type">
@@ -807,26 +605,7 @@ removed.</p>
 
             
 
-            <td class="description last"><p>The id of the component to edit.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>component</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The new data to place in the component.  See
-     <a href="https://docs.atlassian.com/jira/REST/latest/#d2e3939">https://docs.atlassian.com/jira/REST/latest/#d2e3939</a></p></td>
+            <td class="description last"><p>The agile board id.</p></td>
         </tr>
 
     
@@ -861,7 +640,7 @@ removed.</p>
 
             
 
-            <td class="description last"><p>Called when the component has beed edited.</p></td>
+            <td class="description last"><p>Called when the dashboard has been retrieved</p></td>
         </tr>
 
     
@@ -902,7 +681,7 @@ removed.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_component.js.html">api/component.js</a>, <a href="api_component.js.html#line36">line 36</a>
+        <a href="api_board.js.html">api/board.js</a>, <a href="api_board.js.html#line46">line 46</a>
     </li></ul></dd>
     
 
@@ -929,7 +708,7 @@ removed.</p>
 
         
 <div class="param-desc">
-    <p>Resolved when the component has beed edited.</p>
+    <p>Resolved when the dashboard has been retrieved</p>
 </div>
 
 
@@ -958,7 +737,7 @@ removed.</p>
     
 
     
-    <h4 class="name" id="getComponent"><span class="type-signature"></span>getComponent<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="getIssuesForBacklog"><span class="type-signature"></span>getIssuesForBacklog<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
     
 
     
@@ -966,7 +745,7 @@ removed.</p>
 
 
 <div class="description">
-    <p>Get a project component.</p>
+    <p>Get a list of all issues from the board's backlog, for the given board Id.</p>
 </div>
 
 
@@ -1023,7 +802,7 @@ removed.</p>
 
             
 
-            <td class="description last"><p>The options sent to the Jira API</p>
+            <td class="description last"><p>The request options to send to the Jira API</p>
                 <h6>Properties</h6>
                 
 
@@ -1037,6 +816,8 @@ removed.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1049,7 +830,7 @@ removed.</p>
 
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>boardId</code></td>
             
 
             <td class="type">
@@ -1057,10 +838,79 @@ removed.</p>
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The id of the component to edit.</p></td>
+            <td class="description last"><p>The agile board id.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>startAt</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The index of the first dashboard to return (0-based). must be 0 or a multiple of
+    maxResults</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>maxResults</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>A hint as to the the maximum number of issues to return in each call. Note that the
+    JIRA server reserves the right to impose a maxResults limit that is lower than the value that a client
+    provides, dues to lack or resources or any other condition. When this happens, your results will be
+    truncated. Callers should always check the returned maxResults to determine the value that is effectively
+    being used.</p></td>
         </tr>
 
     
@@ -1095,7 +945,7 @@ removed.</p>
 
             
 
-            <td class="description last"><p>Called when the component has been retrieved.</p></td>
+            <td class="description last"><p>Called when the backlog issues have been retrieved.</p></td>
         </tr>
 
     
@@ -1136,7 +986,7 @@ removed.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_component.js.html">api/component.js</a>, <a href="api_component.js.html#line62">line 62</a>
+        <a href="api_board.js.html">api/board.js</a>, <a href="api_board.js.html#line139">line 139</a>
     </li></ul></dd>
     
 
@@ -1163,7 +1013,7 @@ removed.</p>
 
         
 <div class="param-desc">
-    <p>Resolved when the component has been retrieved.</p>
+    <p>Resolved when the backlog issues have been retrieved.</p>
 </div>
 
 
@@ -1192,7 +1042,7 @@ removed.</p>
     
 
     
-    <h4 class="name" id="getRelatedIssueCounts"><span class="type-signature"></span>getRelatedIssueCounts<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="getIssuesForBoard"><span class="type-signature"></span>getIssuesForBoard<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
     
 
     
@@ -1200,7 +1050,7 @@ removed.</p>
 
 
 <div class="description">
-    <p>Get counts of issues related to this component.</p>
+    <p>Get a list of all issues associated with an agile board</p>
 </div>
 
 
@@ -1257,7 +1107,7 @@ removed.</p>
 
             
 
-            <td class="description last"><p>The options sent to the Jira API</p>
+            <td class="description last"><p>The request options to send to the Jira API</p>
                 <h6>Properties</h6>
                 
 
@@ -1271,6 +1121,8 @@ removed.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1283,7 +1135,7 @@ removed.</p>
 
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>boardId</code></td>
             
 
             <td class="type">
@@ -1291,10 +1143,79 @@ removed.</p>
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The id of the component to edit.</p></td>
+            <td class="description last"><p>The agile board id.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>startAt</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The index of the first issue to return (0-based). must be 0 or a multiple of
+    maxResults</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>maxResults</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>A hint as to the the maximum number of issues to return in each call. Note that the
+    JIRA server reserves the right to impose a maxResults limit that is lower than the value that a client
+    provides, dues to lack or resources or any other condition. When this happens, your results will be
+    truncated. Callers should always check the returned maxResults to determine the value that is effectively
+    being used.</p></td>
         </tr>
 
     
@@ -1329,7 +1250,7 @@ removed.</p>
 
             
 
-            <td class="description last"><p>Called when the count has been retrieved.</p></td>
+            <td class="description last"><p>Called when the issues have been retrieved.</p></td>
         </tr>
 
     
@@ -1370,7 +1291,7 @@ removed.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_component.js.html">api/component.js</a>, <a href="api_component.js.html#line106">line 106</a>
+        <a href="api_board.js.html">api/board.js</a>, <a href="api_board.js.html#line73">line 73</a>
     </li></ul></dd>
     
 
@@ -1397,7 +1318,320 @@ removed.</p>
 
         
 <div class="param-desc">
-    <p>Resolved when the count has been retrieved.</p>
+    <p>Resolved when the issues have been retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="getSprintsForBoard"><span class="type-signature"></span>getSprintsForBoard<span class="signature">(opts, callback)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Get a list of sprints associated with an agile board</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The request options to send to the Jira API</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>boardId</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The agile board id.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>startAt</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The index of the first sprint to return (0-based). must be 0 or a multiple of
+    maxResults</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>maxResults</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>A hint as to the the maximum number of sprints to return in each call. Note that the
+    JIRA server reserves the right to impose a maxResults limit that is lower than the value that a client
+    provides, dues to lack or resources or any other condition. When this happens, your results will be
+    truncated. Callers should always check the returned maxResults to determine the value that is effectively
+    being used.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optionally filter by state, e.g. 'active'.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Called when the sprints have been retrieved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_board.js.html">api/board.js</a>, <a href="api_board.js.html#line105">line 105</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the sprints have been retrieved.</p>
 </div>
 
 

@@ -28,9 +28,7 @@
 
 <header>
     
-        <h2>
-        FilterClient
-        </h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>FilterClient<span class="signature">(jiraClient)</span><span class="type-signature"></span></h2>
         
     
 </header>
@@ -41,10 +39,10 @@
         
 
     
-    <h2>Constructor</h2>
-    
 
+    
     <h4 class="name" id="FilterClient"><span class="type-signature"></span>new FilterClient<span class="signature">(jiraClient)</span><span class="type-signature"></span></h4>
+    
 
     
 
@@ -114,6 +112,7 @@
 
 
 
+
 <dl class="details">
 
     
@@ -169,6 +168,8 @@
 
 
 
+
+
     
     </div>
 
@@ -178,7 +179,9 @@
 
     
 
-     
+    
+
+    
 
     
 
@@ -192,7 +195,276 @@
 
     
 
-    <h4 class="name" id="createFilter"><span class="type-signature"></span>createFilter<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="addSharePermission"><span class="type-signature"></span>addSharePermission<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Adds a share permission for the given filter</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The request options sent to the Jira API</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>filterId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the filter for which to reset columns.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>permission</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The share permission to apply</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Called when the columns have been reset.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_filter.js.html">api/filter.js</a>, <a href="api_filter.js.html#line143">line 143</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the columns have been reset.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="createFilter"><span class="type-signature"></span>createFilter<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -224,6 +496,8 @@ sharing permissions</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -248,6 +522,14 @@ sharing permissions</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -344,6 +626,7 @@ sharing permissions</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -359,6 +642,16 @@ sharing permissions</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -368,6 +661,7 @@ sharing permissions</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -425,6 +719,30 @@ sharing permissions</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the filter has been created.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -433,7 +751,9 @@ sharing permissions</p>
 
     
 
-    <h4 class="name" id="deleteFilter"><span class="type-signature"></span>deleteFilter<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="deleteFilter"><span class="type-signature"></span>deleteFilter<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -464,6 +784,8 @@ sharing permissions</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -488,6 +810,14 @@ sharing permissions</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -540,6 +870,7 @@ sharing permissions</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -555,6 +886,16 @@ sharing permissions</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -564,6 +905,7 @@ sharing permissions</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -598,7 +940,7 @@ sharing permissions</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_filter.js.html">api/filter.js</a>, <a href="api_filter.js.html#line76">line 76</a>
+        <a href="api_filter.js.html">api/filter.js</a>, <a href="api_filter.js.html#line79">line 79</a>
     </li></ul></dd>
     
 
@@ -621,6 +963,30 @@ sharing permissions</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the filter has been deleted.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -629,7 +995,9 @@ sharing permissions</p>
 
     
 
-    <h4 class="name" id="getDefaultShareScore"><span class="type-signature"></span>getDefaultShareScore<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="getDefaultShareScore"><span class="type-signature"></span>getDefaultShareScore<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -660,6 +1028,8 @@ sharing permissions</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -680,6 +1050,14 @@ sharing permissions</p>
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -698,6 +1076,16 @@ sharing permissions</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -707,6 +1095,7 @@ sharing permissions</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -741,7 +1130,7 @@ sharing permissions</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_filter.js.html">api/filter.js</a>, <a href="api_filter.js.html#line136">line 136</a>
+        <a href="api_filter.js.html">api/filter.js</a>, <a href="api_filter.js.html#line159">line 159</a>
     </li></ul></dd>
     
 
@@ -764,6 +1153,30 @@ sharing permissions</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the default share scope has been retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -772,7 +1185,9 @@ sharing permissions</p>
 
     
 
-    <h4 class="name" id="getFavouriteFilters"><span class="type-signature"></span>getFavouriteFilters<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="getFavouriteFilters"><span class="type-signature"></span>getFavouriteFilters<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -803,6 +1218,8 @@ sharing permissions</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -823,6 +1240,14 @@ sharing permissions</p>
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -841,6 +1266,16 @@ sharing permissions</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -850,6 +1285,7 @@ sharing permissions</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -884,7 +1320,7 @@ sharing permissions</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_filter.js.html">api/filter.js</a>, <a href="api_filter.js.html#line177">line 177</a>
+        <a href="api_filter.js.html">api/filter.js</a>, <a href="api_filter.js.html#line202">line 202</a>
     </li></ul></dd>
     
 
@@ -907,6 +1343,30 @@ sharing permissions</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the list of favourites has been retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -915,7 +1375,9 @@ sharing permissions</p>
 
     
 
-    <h4 class="name" id="getFilter"><span class="type-signature"></span>getFilter<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="getFilter"><span class="type-signature"></span>getFilter<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -946,6 +1408,8 @@ sharing permissions</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -970,6 +1434,14 @@ sharing permissions</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1022,6 +1494,7 @@ sharing permissions</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -1037,6 +1510,16 @@ sharing permissions</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1046,6 +1529,7 @@ sharing permissions</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -1080,7 +1564,7 @@ sharing permissions</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_filter.js.html">api/filter.js</a>, <a href="api_filter.js.html#line46">line 46</a>
+        <a href="api_filter.js.html">api/filter.js</a>, <a href="api_filter.js.html#line47">line 47</a>
     </li></ul></dd>
     
 
@@ -1103,6 +1587,30 @@ sharing permissions</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the filter has been retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -1111,7 +1619,9 @@ sharing permissions</p>
 
     
 
-    <h4 class="name" id="getFilterColumns"><span class="type-signature"></span>getFilterColumns<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="getFilterColumns"><span class="type-signature"></span>getFilterColumns<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -1143,6 +1653,8 @@ request.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1167,6 +1679,14 @@ request.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1219,6 +1739,7 @@ request.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -1234,6 +1755,16 @@ request.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1243,6 +1774,7 @@ request.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -1277,7 +1809,7 @@ request.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_filter.js.html">api/filter.js</a>, <a href="api_filter.js.html#line90">line 90</a>
+        <a href="api_filter.js.html">api/filter.js</a>, <a href="api_filter.js.html#line94">line 94</a>
     </li></ul></dd>
     
 
@@ -1300,6 +1832,30 @@ request.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the columns have been retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -1308,7 +1864,9 @@ request.</p>
 
     
 
-    <h4 class="name" id="resetFilterColumns"><span class="type-signature"></span>resetFilterColumns<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="resetFilterColumns"><span class="type-signature"></span>resetFilterColumns<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -1339,6 +1897,8 @@ request.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1363,6 +1923,14 @@ request.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1415,6 +1983,7 @@ request.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -1430,6 +1999,16 @@ request.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1439,6 +2018,7 @@ request.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -1473,7 +2053,7 @@ request.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_filter.js.html">api/filter.js</a>, <a href="api_filter.js.html#line122">line 122</a>
+        <a href="api_filter.js.html">api/filter.js</a>, <a href="api_filter.js.html#line128">line 128</a>
     </li></ul></dd>
     
 
@@ -1496,6 +2076,30 @@ request.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the columns have been reset.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -1504,7 +2108,9 @@ request.</p>
 
     
 
-    <h4 class="name" id="setDefaultShareScope"><span class="type-signature"></span>setDefaultShareScope<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="setDefaultShareScope"><span class="type-signature"></span>setDefaultShareScope<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -1535,6 +2141,8 @@ request.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1559,6 +2167,14 @@ request.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1611,6 +2227,7 @@ request.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -1626,6 +2243,16 @@ request.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1635,6 +2262,7 @@ request.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -1669,7 +2297,7 @@ request.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_filter.js.html">api/filter.js</a>, <a href="api_filter.js.html#line155">line 155</a>
+        <a href="api_filter.js.html">api/filter.js</a>, <a href="api_filter.js.html#line179">line 179</a>
     </li></ul></dd>
     
 
@@ -1692,6 +2320,30 @@ request.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the default share scope has been set.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -1700,7 +2352,9 @@ request.</p>
 
     
 
-    <h4 class="name" id="setFilterColumns"><span class="type-signature"></span>setFilterColumns<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="setFilterColumns"><span class="type-signature"></span>setFilterColumns<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -1731,6 +2385,8 @@ request.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1755,6 +2411,14 @@ request.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1831,6 +2495,7 @@ request.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -1846,6 +2511,16 @@ request.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1855,6 +2530,7 @@ request.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -1889,7 +2565,7 @@ request.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_filter.js.html">api/filter.js</a>, <a href="api_filter.js.html#line105">line 105</a>
+        <a href="api_filter.js.html">api/filter.js</a>, <a href="api_filter.js.html#line110">line 110</a>
     </li></ul></dd>
     
 
@@ -1912,6 +2588,30 @@ request.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the columns have been set</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -1920,7 +2620,9 @@ request.</p>
 
     
 
-    <h4 class="name" id="updateFilter"><span class="type-signature"></span>updateFilter<span class="signature">(opts, callback)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="updateFilter"><span class="type-signature"></span>updateFilter<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
 
     
 
@@ -1951,6 +2653,8 @@ request.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1975,6 +2679,14 @@ request.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -2051,6 +2763,7 @@ request.</p>
     
     </tbody>
 </table>
+
             </td>
         </tr>
 
@@ -2066,6 +2779,16 @@ request.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -2075,6 +2798,7 @@ request.</p>
     
     </tbody>
 </table>
+
 
 
 
@@ -2109,7 +2833,7 @@ request.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_filter.js.html">api/filter.js</a>, <a href="api_filter.js.html#line60">line 60</a>
+        <a href="api_filter.js.html">api/filter.js</a>, <a href="api_filter.js.html#line62">line 62</a>
     </li></ul></dd>
     
 
@@ -2132,6 +2856,30 @@ request.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the filter has been updated.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
 
 
@@ -2151,13 +2899,13 @@ request.</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AgileBoardClient.html">AgileBoardClient</a></li><li><a href="AgileSprintClient.html">AgileSprintClient</a></li><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WebhookClient.html">WebhookClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li><li><a href="WorkLogClient.html">WorkLogClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha13</a> on Wed Dec 09 2015 13:39:38 GMT-0600 (CST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jan 30 2018 10:10:04 GMT-0600 (CST)
 </footer>
 
 <script> prettyPrint(); </script>

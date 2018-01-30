@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: api/workflow.js</title>
+    <title>JSDoc: Class: WorkLogClient</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,57 +17,184 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: api/workflow.js</h1>
+    <h1 class="page-title">Class: WorkLogClient</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>"use strict";
+        <h2><span class="attribs"><span class="type-signature"></span></span>WorkLogClient<span class="signature">(jiraClient)</span><span class="type-signature"></span></h2>
+        
+    
+</header>
 
-module.exports = WorkflowClient;
+<article>
+    <div class="container-overview">
+    
+        
 
-/**
- * Used to access Jira REST endpoints in '/rest/api/2/workflow'
- *
- * @param {JiraClient} jiraClient
- * @constructor WorkflowClient
- */
-function WorkflowClient(jiraClient) {
-    this.jiraClient = jiraClient;
+    
 
-    /**
-     * Returns all workflows.
-     *
-     * @method getWorkflows
-     * @memberOf WorkflowClient#
-     * @param {Object} opts The request options sent to the Jira API
-     * @param {string} [opts.workflowName] The name of the workflow to retrieve.
-     * @param [callback] Called when the workflow(s) have been retrieved.
-     * @return {Promise} Resolved when the workflow(s) have been retrieved.
-     */
-    this.getWorkflows = function (opts, callback) {
-        var qs = {};
-        if (opts &amp;&amp; typeof opts === 'object' &amp;&amp; opts.hasOwnProperty('workflowName')) {
-            qs.workflowName = opts.workflowName;
-        }
-        var options = {
-            uri: this.jiraClient.buildURL('/workflow'),
-            method: 'GET',
-            json: true,
-            followAllRedirects: true,
-            qs: qs
-        };
+    
+    <h4 class="name" id="WorkLogClient"><span class="type-signature"></span>new WorkLogClient<span class="signature">(jiraClient)</span><span class="type-signature"></span></h4>
+    
 
-        return this.jiraClient.makeRequest(options, callback);
-    };
-}
-</code></pre>
-        </article>
-    </section>
+    
+
+
+
+<div class="description">
+    <p>Used to access Jira REST endpoints in '/rest/api/2/worklog'</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>jiraClient</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="JiraClient.html">JiraClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_worklog.js.html">api/worklog.js</a>, <a href="api_worklog.js.html#line5">line 5</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

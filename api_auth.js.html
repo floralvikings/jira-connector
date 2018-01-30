@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: api/workflow.js</title>
+    <title>JSDoc: Source: api/auth.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: api/workflow.js</h1>
+    <h1 class="page-title">Source: api/auth.js</h1>
 
     
 
@@ -28,38 +28,76 @@
         <article>
             <pre class="prettyprint source linenums"><code>"use strict";
 
-module.exports = WorkflowClient;
+var fs = require('fs');
+var path = require('path');
+
+module.exports = AuthClient;
 
 /**
- * Used to access Jira REST endpoints in '/rest/api/2/workflow'
+ * Used to access Jira REST endpoints in '/rest/auth/1/session'
  *
  * @param {JiraClient} jiraClient
- * @constructor WorkflowClient
+ * @constructor UserClient
  */
-function WorkflowClient(jiraClient) {
+function AuthClient(jiraClient) {
     this.jiraClient = jiraClient;
 
     /**
-     * Returns all workflows.
+     * Logs the current user out of JIRA, destroying the existing session, if any.
      *
-     * @method getWorkflows
-     * @memberOf WorkflowClient#
-     * @param {Object} opts The request options sent to the Jira API
-     * @param {string} [opts.workflowName] The name of the workflow to retrieve.
-     * @param [callback] Called when the workflow(s) have been retrieved.
-     * @return {Promise} Resolved when the workflow(s) have been retrieved.
+     * @method logout
+     * @memberOf Auth#
+     * @param [callback] Called when the user has been logged out.
+     * @return {Promise} Resolved when the user has been logged out.
      */
-    this.getWorkflows = function (opts, callback) {
-        var qs = {};
-        if (opts &amp;&amp; typeof opts === 'object' &amp;&amp; opts.hasOwnProperty('workflowName')) {
-            qs.workflowName = opts.workflowName;
-        }
+    this.logout = function (callback) {
         var options = {
-            uri: this.jiraClient.buildURL('/workflow'),
+            uri: this.jiraClient.buildAuthURL('/session'),
+            method: 'DELETE',
+            json: true,
+            followAllRedirects: true
+        };
+
+        return this.jiraClient.makeRequest(options, callback), 'User logged out.';
+    };
+
+    /**
+     * Creates a new session for a user in JIRA.
+     *
+     * @method login
+     * @memberOf Auth#
+     * @param opts The request options sent to the Jira API
+     * @param opts.username The name of the user to login.
+     * @param opts.password The password of the user.
+     * @param [callback] Called when the user has been logged in.
+     * @return {Promise} Resolved when the user has been logged in.
+     */
+    this.login = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildAuthURL('/session'),
+            method: 'POST',
+            json: true,
+            followAllRedirects: true,
+            body: opts
+        };
+
+        return this.jiraClient.makeRequest(options, callback, 'User logged in.');
+    };
+
+    /**
+     * Get current User. Returns information about the currently authenticated user's session.
+     *
+     * @method currentUser
+     * @memberOf Auth#
+     * @param [callback] Called when the current user has been retrieved.
+     * @return {Promise} Resolved when the user has been retrieved.
+     */
+    this.currentUser = function (callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/session'),
             method: 'GET',
             json: true,
             followAllRedirects: true,
-            qs: qs
         };
 
         return this.jiraClient.makeRequest(options, callback);

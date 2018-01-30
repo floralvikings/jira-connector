@@ -48,7 +48,8 @@ function GroupClient(jiraClient) {
      * @memberOf GroupClient#
      * @param opts The request options sent to jira
      * @param opts.group The group to create.  See {@link https://docs.atlassian.com/jira/REST/latest/#d2e2011}
-     * @param callback Called when the group is created
+     * @param [callback] Called when the group is created
+     * @return {Promise} Resolved when the group is created
      */
     this.createGroup = function (opts, callback) {
         var options = {
@@ -59,7 +60,7 @@ function GroupClient(jiraClient) {
             body: opts.group
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -73,7 +74,8 @@ function GroupClient(jiraClient) {
      * @param opts The request options sent to the Jira API
      * @param opts.groupName A name of requested group.
      * @param opts.expand Array of fields to expand. Currently only available expand is "users".
-     * @param callback Called when the group is retrieved.
+     * @param [callback] Called when the group is retrieved.
+     * @return {Promise} Resolved when the group is retrieved.
      */
     this.getGroup = function (opts, callback) {
         var qs = {
@@ -95,7 +97,7 @@ function GroupClient(jiraClient) {
             qs: qs
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -106,7 +108,8 @@ function GroupClient(jiraClient) {
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} opts.groupName A name of requested group.
      * @param {string} opts.userName The name of the user to add to the group.
-     * @param callback Called when the user has been added to the group.
+     * @param [callback] Called when the user has been added to the group.
+     * @return {Promise} Resolved when the user has been added to the group.
      */
     this.addUserToGroup = function (opts, callback) {
         var options = {
@@ -122,7 +125,7 @@ function GroupClient(jiraClient) {
             }
         };
 
-        this.jiraClient.makeRequest(options, callback);
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -133,7 +136,8 @@ function GroupClient(jiraClient) {
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} opts.groupName A name of requested group.
      * @param {string} opts.userName The name of the user to add to the group.
-     * @param callback Called when the user has been added to the group.
+     * @param [callback] Called when the user has been added to the group.
+     * @return {Promise} Resolved when the user has been added to the group.
      */
     this.removeUserFromGroup = function (opts, callback) {
         var options = {
@@ -147,7 +151,7 @@ function GroupClient(jiraClient) {
             }
         };
 
-        this.jiraClient.makeRequest(options, callback, 'User Removed from Group');
+        return this.jiraClient.makeRequest(options, callback, 'User Removed from Group');
     };
 
     /**
@@ -158,7 +162,8 @@ function GroupClient(jiraClient) {
      * @param {Object} opts The request options sent to the Jira API
      * @param {string} opts.groupName A group to delete.
      * @param {string} [opts.swapGroup] A group to transfer visibility restrictions of the group that is being deleted
-     * @param callback Called when the group has been deleted.
+     * @param [callback] Called when the group has been deleted.
+     * @return {Promise} Resolved when the group has been deleted.
      */
     this.deleteGroup = function (opts, callback) {
         var options = {
@@ -172,7 +177,7 @@ function GroupClient(jiraClient) {
             }
         };
 
-        this.jiraClient.makeRequest(options, callback, 'Group Deleted');
+        return this.jiraClient.makeRequest(options, callback, 'Group Deleted');
     };
 }</code></pre>
         </article>
@@ -184,13 +189,13 @@ function GroupClient(jiraClient) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AgileBoardClient.html">AgileBoardClient</a></li><li><a href="AgileSprintClient.html">AgileSprintClient</a></li><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WebhookClient.html">WebhookClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li><li><a href="WorkLogClient.html">WorkLogClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha13</a> on Wed Dec 09 2015 13:39:38 GMT-0600 (CST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jan 30 2018 10:10:04 GMT-0600 (CST)
 </footer>
 
 <script> prettyPrint(); </script>
