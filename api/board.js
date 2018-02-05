@@ -167,4 +167,38 @@ function AgileBoardClient(jiraClient) {
 
       return this.jiraClient.makeRequest(options, callback);
   };
+
+  /**
+   * Return all issues in a sprint for a specific board, for a given sprint id and board id.
+   *
+   * @method getIssuesForSprintForBoard
+   * @memberOf AgileSprintClient#
+   * @param {Object} opts The request options sent to the Jira API.
+   * @param opts.boardId The agile board id.
+   * @param opts.sprintId The sprint id.
+   * @param {string} jql Filters results using a JQL query.
+   * @param {boolean} validateQuery Specifies whether to valide the JQL query.
+   * @param {string} fields The list of fields to return for each issue.
+   * @param {string} expand A comma-separated list of the parameters to expand.
+   * @param [callback] Called when the issues are returned.
+   * @return {Promise} Resolved when the issues are returned.
+   */
+  this.getIssuesForSprintForBoard = function (opts, callback) {
+    var options = {
+      uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/sprint/' + opts.sprintId + '/issue'),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        startAt: opts.startAt,
+        maxResults: opts.maxResults,
+        jql: opts.jql,
+        validateQuery: opts.validateQuery,
+        fields: opts.fields,
+        expand: opts.expand
+      }
+    };
+
+    return this.jiraClient.makeRequest(options, callback);
+  };
 }
