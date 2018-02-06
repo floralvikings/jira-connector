@@ -35,6 +35,7 @@ var myPreferences = require('./api/myPreferences');
 var myself = require('./api/myself');
 var oauth_util = require('./lib/oauth_util');
 var password = require('./api/password');
+var permissions = require('./api/permissions');
 var priority = require('./api/priority');
 var project = require('./api/project');
 var projectCategory = require('./api/projectCategory');
@@ -88,6 +89,7 @@ var worklog = require('./api/worklog');
  * @property {MyPreferencesClient} myPreferences
  * @property {MyselfClient} myself
  * @property {PasswordClient} password
+ * @property {PermissionsClient} permissions
  * @property {PriorityClient} priority
  * @property {ProjectCategoryClient} projectCategory
  * @property {ProjectClient} project
@@ -212,6 +214,7 @@ var JiraClient = module.exports = function (config) {
     this.myPreferences = new myPreferences(this);
     this.myself = new myself(this);
     this.password = new password(this);
+    this.permissions = new permissions(this);
     this.priority = new priority(this);
     this.project = new project(this);
     this.projectCategory = new projectCategory(this);
