@@ -15,7 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "oauth": "^0.9.12",
-    "request": "^2.51.0"
+    "request": "^2.83.0"
   },
   "repository": {
     "type": "git",
