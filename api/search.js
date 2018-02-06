@@ -58,7 +58,7 @@ function SearchClient(jiraClient) {
             method: opts.method,
             json: true,
             followAllRedirects: true,
-            timeout: opts.timeout || 10,
+            timeout: opts.timeout || 10000,
         };
 
         var search_options = {

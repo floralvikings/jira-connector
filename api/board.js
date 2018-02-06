@@ -94,6 +94,7 @@ function AgileBoardClient(jiraClient) {
       json: true,
       followAllRedirects: true,
       useQuerystring: true,
+      timeout: opts.timeout || 10000,
       qs: {
         startAt: opts.startAt,
         maxResults: opts.maxResults,
