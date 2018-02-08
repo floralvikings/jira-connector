@@ -68,7 +68,7 @@ function PermissionSchemeClient(jiraClient) {
     /**
      * Get a PermissionScheme. This resource cannot be accessed anonymously.
      *
-     * @method getPermissionSchemeById
+     * @method getPermissionScheme
      * @memberOf PermissionSchemeClient#
      * @param opts The request options sent to the Jira API
      * @param opts.schemeId The id of the scheme to retrieve.
