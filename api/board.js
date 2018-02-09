@@ -138,4 +138,37 @@ function AgileBoardClient(jiraClient) {
 
     return this.jiraClient.makeRequest(options, callback);
   };
+
+    /**
+   * Get a list of projects associated board
+   *
+   * @method getProjectsForBoard
+   * @memberOf AgileBoardClient#
+   * @param opts The request options to send to the Jira API
+   * @param opts.boardId The agile board id.
+   * @param [opts.startAt] The index of the first sprint to return (0-based). must be 0 or a multiple of
+   *     maxResults
+   * @param [opts.maxResults] A hint as to the the maximum number of sprints to return in each call. Note that the
+   *     JIRA server reserves the right to impose a maxResults limit that is lower than the value that a client
+   *     provides, dues to lack or resources or any other condition. When this happens, your results will be
+   *     truncated. Callers should always check the returned maxResults to determine the value that is effectively
+   *     being used.
+   * @param callback Called when the sprints have been retrieved.
+   * @return {Promise} Resolved when the sprints have been retrieved.
+   */
+  this.getProjectsForBoard = function (opts, callback) {
+    var options = {
+      uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/project'),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        startAt: opts.startAt,
+        maxResults: opts.maxResults,
+      }
+    };
+
+    return this.jiraClient.makeRequest(options, callback);
+  };
+
 }
