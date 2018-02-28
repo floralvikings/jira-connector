@@ -43,6 +43,7 @@ var projectCategory = require('./api/projectCategory');
 var projectValidate = require('./api/projectValidate');
 var reindex = require('./api/reindex');
 var resolution = require('./api/resolution');
+var roles = require('./api/roles');
 var screens = require('./api/screens');
 var search = require('./api/search');
 var securityLevel = require('./api/securityLevel');
@@ -98,6 +99,7 @@ var worklog = require('./api/worklog');
  * @property {ProjectValidateClient} projectValidate
  * @property {ReindexClient} reindex
  * @property {ResolutionClient} resolution
+ * @property {RoleClient} roles
  * @property {ScreensClient} screens
  * @property {SearchClient} search
  * @property {SecurityLevelClient} securityLevel
@@ -224,6 +226,7 @@ var JiraClient = module.exports = function (config) {
     this.projectValidate = new projectValidate(this);
     this.reindex = new reindex(this);
     this.resolution = new resolution(this);
+    this.roles = new roles(this);
     this.screens = new screens(this);
     this.search = new search(this);
     this.securityLevel = new securityLevel(this);
