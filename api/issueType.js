@@ -45,7 +45,7 @@ function IssueTypeClient(jiraClient) {
      * @param {Function} [callback] Called when the issue type has been created.
      * @return {Promise} Resolved when the issue type has been created.
      */
-    this.createIssueType = function (opts, callback) {
+    this.createIssueType = function (issueType, callback) {
         var options = {
             uri: this.jiraClient.buildURL('/issuetype'),
             method: 'POST',
