@@ -87,8 +87,8 @@ function IssueTypeClient(jiraClient) {
      * @method deleteIssueType
      * @memberOf IssueTypeClient#
      * @param {Object} opts The options to send to the JIRA API
-     * @param {String} issueTypeId ID of the issueType to be deleted.
-     * @param {String} alternativeIssueTypeId the id of an issue type to which issues
+     * @param {String} opts.issueTypeId ID of the issueType to be deleted.
+     * @param {String} opts.alternativeIssueTypeId the id of an issue type to which issues
      *          associated with the removed issue type will be migrated.
      * @param {Function} [callback] Called when the issue type has been deleted.
      * @return {Promise} Resolved when the issue type has been deleted.
@@ -113,7 +113,8 @@ function IssueTypeClient(jiraClient) {
      * @method updateIssueType
      * @memberOf IssueTypeClient#
      * @param {Object} opts The options sent to the Jira API
-     * @param {Object} issueType Object containing details of the issueType.
+     * @param {String} opts.issueTypeId ID of the issue type to update.
+     * @param {Object} opts.issueType Object containing details of the issueType to be updated.
      *      Schema:
      *      * "name" - The name of the issue type
      *      * "description" - Some description about the issue type
@@ -126,7 +127,8 @@ function IssueTypeClient(jiraClient) {
             uri: this.jiraClient.buildURL('/issuetype/' + opts.issueTypeId),
             method: 'PUT',
             json: true,
-            followAllRedirects: true
+            followAllRedirects: true,
+            body: opts.issueType,
         };
 
         return this.jiraClient.makeRequest(options, callback);
