@@ -130,6 +130,8 @@ var worklog = require('./api/worklog');
  * @param {CookieJar} [config.cookie_jar] The CookieJar to use for every requests.
  * @param {Promise} [config.promise] Any function (constructor) compatible with Promise (bluebird, Q,...).
  *      Default - native Promise.
+ * @param {Request} [config.request] Any function (constructor) compatible with Request (request, supertest,...).
+ *      Default - require('request').
  */
 
 var JiraClient = module.exports = function (config) {
@@ -145,6 +147,7 @@ var JiraClient = module.exports = function (config) {
     this.authApiVersion = '1';
     this.webhookApiVersion = '1.0';
     this.promise = config.promise || Promise;
+    this.requestLib = config.request || request;
 
     if (config.oauth) {
         if (!config.oauth.consumer_key) {
@@ -328,6 +331,8 @@ var JiraClient = module.exports = function (config) {
      * @return {Promise} Resolved with APIs response or rejected with error
      */
     this.makeRequest = function (options, callback, successString) {
+        let requestLib = this.requestLib;
+
         if (this.oauthConfig) {
             options.oauth = this.oauthConfig;
         } else if (this.basic_auth) {
@@ -345,7 +350,7 @@ var JiraClient = module.exports = function (config) {
         }
 
         if (callback) {
-            request(options, function (err, response, body) {
+            requestLib(options, function (err, response, body) {
                 if (err || response.statusCode.toString()[0] != 2) {
                     return callback(err ? err : body, null, response);
                 }
@@ -363,7 +368,7 @@ var JiraClient = module.exports = function (config) {
         } else if (this.promise) {
             return new this.promise(function (resolve, reject) {
 
-                var req = request(options);
+                var req = requestLib(options);
 
                 req.on('response', function(response) {
 

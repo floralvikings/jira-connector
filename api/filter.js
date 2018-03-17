@@ -159,6 +159,22 @@ function FilterClient(jiraClient) {
         return this.jiraClient.makeRequest(options, callback, 'Columns Reset');
     };
 
+     /**
+     * Adds a share permission for the given filter
+     *
+     * @method addSharePermission
+     * @memberOf FilterClient#
+     * @param {Object} opts The request options sent to the Jira API
+     * @param {number} opts.filterId The id of the filter for which to reset columns.
+     * @param {Object} opts.permission The share permission to apply
+     * @param [callback] Called when the columns have been reset.
+     * @return {Promise} Resolved when the columns have been reset.
+     */
+    this.addSharePermission = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/permission', 'POST', opts.permission);
+        return this.jiraClient.makeRequest(options, callback, 'Share Permission Added');
+    }
+
     /**
      * Returns the default share scope of the logged-in user.
      *
