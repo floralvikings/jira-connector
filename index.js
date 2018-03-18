@@ -148,6 +148,7 @@ var JiraClient = module.exports = function (config) {
     this.webhookApiVersion = '1.0';
     this.promise = config.promise || Promise;
     this.requestLib = config.request || request;
+    this.rejectUnauthorized = config.rejectUnauthorized || true;
 
     if (config.oauth) {
         if (!config.oauth.consumer_key) {
@@ -332,6 +333,7 @@ var JiraClient = module.exports = function (config) {
      */
     this.makeRequest = function (options, callback, successString) {
         let requestLib = this.requestLib;
+        options.rejectUnauthorized = this.rejectUnauthorized;
 
         if (this.oauthConfig) {
             options.oauth = this.oauthConfig;
