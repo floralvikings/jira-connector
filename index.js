@@ -148,7 +148,7 @@ var JiraClient = module.exports = function (config) {
     this.webhookApiVersion = '1.0';
     this.promise = config.promise || Promise;
     this.requestLib = config.request || request;
-    this.rejectUnauthorized = config.rejectUnauthorized || true;
+    this.rejectUnauthorized = config.rejectUnauthorized;
 
     if (config.oauth) {
         if (!config.oauth.consumer_key) {
@@ -371,6 +371,11 @@ var JiraClient = module.exports = function (config) {
             return new this.promise(function (resolve, reject) {
 
                 var req = requestLib(options);
+                var requestObj = null;
+
+                req.on('request', function(request) {
+                  requestObj = request;
+                });
 
                 req.on('response', function(response) {
 
@@ -398,11 +403,45 @@ var JiraClient = module.exports = function (config) {
 
                         if (error) {
                             response.body = result;
-                            reject(JSON.stringify(response));
+                            if (options.debug) {
+                              reject({
+                                result: JSON.stringify(response),
+                                debug: {
+                                  options: options,
+                                  request: {
+                                    headers: requestObj._headers,
+                                    rawHeaders: requestObj._header,
+                                  },
+                                  response: {
+                                    headers: response.headers,
+                                    rawHeaders: response.rawHeaders,
+                                  },
+                                }
+                              });
+                            } else {
+                              reject(JSON.stringify(response));
+                            }
                             return;
                         }
 
+                      if (options.debug) {
+                        resolve({
+                          result,
+                          debug: {
+                            options: options,
+                            request: {
+                              headers: requestObj._headers,
+                              rawHeaders: requestObj._header,
+                            },
+                            response: {
+                              headers: response.headers,
+                              rawHeaders: response.rawHeaders,
+                            },
+                          }
+                        });
+                      } else {
                         resolve(result);
+                      }
                     });
 
                 });
