@@ -410,11 +410,9 @@ var JiraClient = module.exports = function (config) {
                                   options: options,
                                   request: {
                                     headers: requestObj._headers,
-                                    rawHeaders: requestObj._header,
                                   },
                                   response: {
                                     headers: response.headers,
-                                    rawHeaders: response.rawHeaders,
                                   },
                                 }
                               });
@@ -431,11 +429,9 @@ var JiraClient = module.exports = function (config) {
                             options: options,
                             request: {
                               headers: requestObj._headers,
-                              rawHeaders: requestObj._header,
                             },
                             response: {
                               headers: response.headers,
-                              rawHeaders: response.rawHeaders,
                             },
                           }
                         });
