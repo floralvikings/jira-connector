@@ -56,10 +56,10 @@ function SearchClient(jiraClient) {
 
         var options = {
             uri: this.jiraClient.buildURL('/search'),
-            method: opts.method, 
+            method: opts.method,
             json: true,
-            followAllRedirects: true
-
+            followAllRedirects: true,
+            timeout: opts.timeout || 10000,
         };
 
         var search_options = {

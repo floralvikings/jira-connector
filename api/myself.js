@@ -20,12 +20,13 @@ function MyselfClient(jiraClient) {
      * @param [callback] Called when the current user is retrieved.
      * @return {Promise} Resolved when the current user is retrieved.
      */
-    this.getMyself = function (opts, callback) {
+    this.getMyself = function (debug, callback) {
         var options = {
             uri: this.jiraClient.buildURL('/myself'),
             method: 'GET',
             json: true,
-            followAllRedirects: true
+            followAllRedirects: true,
+            debug: debug,
         };
 
         return this.jiraClient.makeRequest(options, callback);

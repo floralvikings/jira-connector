@@ -41,7 +41,13 @@ function MyPermissionsClient(jiraClient) {
             uri: this.jiraClient.buildURL('/mypermissions'),
             method: 'GET',
             json: true,
-            followAllRedirects: true
+            followAllRedirects: true,
+            qs: {
+                issueId: opts.issueId,
+                issueKey: opts.issueKey,
+                projectId: opts.projectId,
+                projectKey: opts.projectKey,
+            },
         };
 
         return this.jiraClient.makeRequest(options, callback);

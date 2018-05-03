@@ -148,6 +148,7 @@ var JiraClient = module.exports = function (config) {
     this.webhookApiVersion = '1.0';
     this.promise = config.promise || Promise;
     this.requestLib = config.request || request;
+    this.rejectUnauthorized = config.rejectUnauthorized;
 
     if (config.oauth) {
         if (!config.oauth.consumer_key) {
@@ -332,6 +333,7 @@ var JiraClient = module.exports = function (config) {
      */
     this.makeRequest = function (options, callback, successString) {
         let requestLib = this.requestLib;
+        options.rejectUnauthorized = this.rejectUnauthorized;
 
         if (this.oauthConfig) {
             options.oauth = this.oauthConfig;
@@ -369,6 +371,11 @@ var JiraClient = module.exports = function (config) {
             return new this.promise(function (resolve, reject) {
 
                 var req = requestLib(options);
+                var requestObj = null;
+
+                req.on('request', function(request) {
+                  requestObj = request;
+                });
 
                 req.on('response', function(response) {
 
@@ -396,11 +403,41 @@ var JiraClient = module.exports = function (config) {
 
                         if (error) {
                             response.body = result;
-                            reject(JSON.stringify(response));
+                            if (options.debug) {
+                              reject({
+                                result: JSON.stringify(response),
+                                debug: {
+                                  options: options,
+                                  request: {
+                                    headers: requestObj._headers,
+                                  },
+                                  response: {
+                                    headers: response.headers,
+                                  },
+                                }
+                              });
+                            } else {
+                              reject(JSON.stringify(response));
+                            }
                             return;
                         }
 
+                      if (options.debug) {
+                        resolve({
+                          result,
+                          debug: {
+                            options: options,
+                            request: {
+                              headers: requestObj._headers,
+                            },
+                            response: {
+                              headers: response.headers,
+                            },
+                          }
+                        });
+                      } else {
                         resolve(result);
+                      }
                     });
 
                 });

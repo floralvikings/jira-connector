@@ -60,6 +60,25 @@ function FilterClient(jiraClient) {
     };
 
     /**
+     * Returns all filters for the current user(only for cloud)
+     *
+     * @method getFilters
+     * @memberOf FilterClient#
+     * @param {Object} opts The request options sent to the Jira API
+     * @param [callback] Called when the filter has been retrieved.
+     * @return {Promise} Resolved when the filter has been retrieved.
+     */
+    this.getFilters = function (opts, callback) {
+       var options = {
+            uri: this.jiraClient.buildURL('/filter'),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true
+        };
+        return this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Updates an existing filter, and returns its new value.
      *
      * @method updateFilter
