@@ -299,12 +299,13 @@ is still valid!
   * getDefaultShareScope
   * setDefaultShareScope
   * getFavoriteFilters
-* group (/rest/api/2/group) (Experimental)
+* group (/rest/api/2/group)
   * createGroup
-  * getGroup
+  * getGroup [DEPRECATED, use getMembers]
   * addUserToGroup
   * removeUserFromGroup
   * deleteGroup
+  * getMembers
 * groups (/rest/api/2/groups)
   * findGroups
 * groupUserPicker (/rest/api/2/groupuserpicker)
@@ -365,6 +366,10 @@ is still valid!
 * issueType (/rest/api/2/issuetype)
   * getAllIssueTypes
   * getIssueType
+  * createIssueType
+  * deleteIssueType
+  * updateIssueType
+  * getAlternativeIssueTypes
 * jql (/rest/api/2/jql/autocompletedata)
   * getAutoCompleteData
 * licenseRole (/rest/api/2/licenserole)
@@ -385,6 +390,18 @@ is still valid!
   * changePassword
 * password (/rest/api/2/password)
   * getPasswordPolicy
+* permissions (/rest/api/2/permissions)
+  * getAllPermissions
+* permissionScheme (/rest/api/2/permissionscheme)
+ * getAllPermissionSchemes
+ * createPermissionScheme
+ * getPermissionScheme
+ * editPermissionScheme
+ * deletePermissionScheme
+ * getPermissionSchemeGrants
+ * createPermissionGrantInScheme
+ * deletePermissionGrantFromScheme
+ * getPermissionSchemeGrantById
 * priority (/rest/api/2/priority)
   * getAllPriorities
   * getPriority
@@ -409,6 +426,15 @@ is still valid!
 * resolution (/rest/api/2/resolution)
   * getAllResolutions
   * getResolution
+* roles (/rest/api/2/role) (a.k.a. ProjectRoles)
+  * getAll
+  * createRole
+  * getRoleById
+  * updateRole
+  * deleteRole
+  * getActors
+  * addActors
+  * removeActor
 * screens (/rest/api/2/screens)
   * getAvailableFields
   * getTabs

@@ -3,7 +3,7 @@
 module.exports = PermissionSchemeClient;
 
 /**
- * Used to access Jira REST endpoints in '/rest/api/2/permissions'
+ * Used to access Jira REST endpoints in '/rest/api/2/permissionscheme'
  *
  * @param {JiraClient} jiraClient
  * @constructor PermissionSchemeClient
