@@ -510,6 +510,10 @@ is still valid!
   * getDraftWorkflow
   * editDraftWorkflow
   * deleteDraftWorkflow
+* worklog (/rest/api/2/worklog)
+  * getWorklogDeleted
+  * worklogList
+  * getWorklogUpdated
 
 ## License
 
