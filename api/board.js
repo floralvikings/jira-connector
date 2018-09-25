@@ -149,6 +149,9 @@ function AgileBoardClient(jiraClient) {
    * @memberOf AgileBoardClient#
    * @param opts The request options to send to the Jira API
    * @param opts.boardId The agile board id.
+   * @param {string} jql Filters results using a JQL query.
+   * @param {boolean} validateQuery Specifies whether to valide the JQL query.
+   * @param {string} fields The list of fields to return for each issue.
    * @param [opts.startAt] The index of the first dashboard to return (0-based). must be 0 or a multiple of
    *     maxResults
    * @param [opts.maxResults] A hint as to the the maximum number of issues to return in each call. Note that the
@@ -167,7 +170,10 @@ function AgileBoardClient(jiraClient) {
       followAllRedirects: true,
       qs: {
         startAt: opts.startAt,
-        maxResults: opts.maxResults
+        maxResults: opts.maxResults,
+        jql: opts.jql,
+        validateQuery: opts.validateQuery,
+        fields: opts.fields
       }
     };
 
