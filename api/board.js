@@ -19,6 +19,9 @@ function AgileBoardClient(jiraClient) {
    * @param [opts.type] Limits returning boards of a specific type: `scrum` or `kanban`.
    * @param [opts.startAt] The index of the first dashboard to return (0-based). must be 0 or a multiple of
    *     maxResults
+   * @param [opts.name] Filters results to boards that match or partially match the specified name.
+   * @param [opts.projectKeyOrId] Filters results to boards that are relevant to a project. Relevance meaning that
+   *     the jql filter defined in board contains a reference to a project.
    * @param [opts.maxResults] A hint as to the the maximum number of dashboards to return in each call. Note that the
    *     JIRA server reserves the right to impose a maxResults limit that is lower than the value that a client
    *     provides, dues to lack or resources or any other condition. When this happens, your results will be
@@ -36,6 +39,8 @@ function AgileBoardClient(jiraClient) {
       qs: {
         type: opts.type,
         startAt: opts.startAt,
+        name: opts.name,
+        projectKeyOrId: opts.projectKeyOrId,
         maxResults: opts.maxResults
       }
     };
