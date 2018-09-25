@@ -352,6 +352,7 @@ is still valid!
   * setProperty
   * getProperty
   * deleteProperty
+  * getIssuePicker
 * issueLink (/rest/api/2/issueLink)
   * createIssueLink
   * getIssueLink
