@@ -40,6 +40,7 @@ function GroupClient(jiraClient) {
      * specified group and its subgroups if "users" expand option is provided. You can page through users list by using
      * indexes in expand param. For example to get users from index 10 to index 15 use "users[10:15]" expand value.
      * This will return 6 users (if there are at least 16 users in this group). Indexes are 0-based and inclusive.
+     * DEPRECATED. This resource is deprecated, please use group/member API instead. (15-Feb-2018)
      *
      * @method getGroup
      * @memberOf GroupClient#
@@ -63,6 +64,40 @@ function GroupClient(jiraClient) {
 
         var options = {
             uri: this.jiraClient.buildURL('/group'),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true,
+            qs: qs
+        };
+
+        return this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
+     * This resource returns a paginated list of users who are members of the specified group and its subgroups.
+     * Users in the page are ordered by user names.
+     * User of this resource is required to have sysadmin or admin permissions.
+     *
+     * @method getMembers
+     * @memberOf GroupClient#
+     * @param {Object} opts The request options sent to the Jira API
+     * @param {String} opts.groupName A name of requested group.
+     * @param {Boolean} opts.includeInactiveUsers inactive users will be included in the response if set to true. Default false.
+     * @param {Number} opts.startAt the index of the first user in group to return (0 based).
+     * @param {Number} opts.maxResults the maximum number of users to return (max 50).
+     * @param [callback] Called when the group is retrieved.
+     * @return {Promise} Resolved when the group is retrieved.
+     */
+    this.getMembers = function (opts, callback) {
+        var qs = {
+            groupname: opts.groupName,
+            includeInactiveUsers: opts.includeInactiveUsers,
+            startAt: opts.startAt,
+            maxResults: opts.maxResults,
+        };
+
+        var options = {
+            uri: this.jiraClient.buildURL('/group/member'),
             method: 'GET',
             json: true,
             followAllRedirects: true,

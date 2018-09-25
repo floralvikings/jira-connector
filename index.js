@@ -35,12 +35,15 @@ var myPreferences = require('./api/myPreferences');
 var myself = require('./api/myself');
 var oauth_util = require('./lib/oauth_util');
 var password = require('./api/password');
+var permissions = require('./api/permissions');
+var permissionScheme = require('./api/permission-scheme');
 var priority = require('./api/priority');
 var project = require('./api/project');
 var projectCategory = require('./api/projectCategory');
 var projectValidate = require('./api/projectValidate');
 var reindex = require('./api/reindex');
 var resolution = require('./api/resolution');
+var roles = require('./api/roles');
 var screens = require('./api/screens');
 var search = require('./api/search');
 var securityLevel = require('./api/securityLevel');
@@ -88,12 +91,15 @@ var worklog = require('./api/worklog');
  * @property {MyPreferencesClient} myPreferences
  * @property {MyselfClient} myself
  * @property {PasswordClient} password
+ * @property {PermissionsClient} permissions
+ * @property {PermissionSchemeClient} permissionScheme
  * @property {PriorityClient} priority
  * @property {ProjectCategoryClient} projectCategory
  * @property {ProjectClient} project
  * @property {ProjectValidateClient} projectValidate
  * @property {ReindexClient} reindex
  * @property {ResolutionClient} resolution
+ * @property {RoleClient} roles
  * @property {ScreensClient} screens
  * @property {SearchClient} search
  * @property {SecurityLevelClient} securityLevel
@@ -213,12 +219,15 @@ var JiraClient = module.exports = function (config) {
     this.myPreferences = new myPreferences(this);
     this.myself = new myself(this);
     this.password = new password(this);
+    this.permissions = new permissions(this);
+    this.permissionScheme = new permissionScheme(this);
     this.priority = new priority(this);
     this.project = new project(this);
     this.projectCategory = new projectCategory(this);
     this.projectValidate = new projectValidate(this);
     this.reindex = new reindex(this);
     this.resolution = new resolution(this);
+    this.roles = new roles(this);
     this.screens = new screens(this);
     this.search = new search(this);
     this.securityLevel = new securityLevel(this);
