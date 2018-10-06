@@ -89,6 +89,7 @@ function AgileBoardClient(jiraClient) {
    *     provides, dues to lack or resources or any other condition. When this happens, your results will be
    *     truncated. Callers should always check the returned maxResults to determine the value that is effectively
    *     being used.
+   * @param [opts.expand] The parameters to expand
    * @param [callback] Called when the issues have been retrieved.
    * @return {Promise} Resolved when the issues have been retrieved.
    */
@@ -101,7 +102,8 @@ function AgileBoardClient(jiraClient) {
       qs: {
         startAt: opts.startAt,
         maxResults: opts.maxResults,
-        jql: opts.jql
+        jql: opts.jql,
+        expand: opts.expand
       }
     };
 
