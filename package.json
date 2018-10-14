@@ -7,6 +7,12 @@
     "REST",
     "OAuth"
   ],
+  "files": [
+    "api/",
+    "lib/",
+    "index.js",
+    "jsdoc.json"
+  ],
   "main": "./index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
