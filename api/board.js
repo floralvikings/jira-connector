@@ -182,6 +182,29 @@ function AgileBoardClient(jiraClient) {
   };
 
   /**
+   * Get configuration for a board
+   *
+   * @method getBoardConfiguration
+   * @memberOf AgileBoardClient#
+   * @param opts The request options to send to the Jira API
+   * @param opts.boardId The agile board id.
+   * @param [callback] Called when the board configuration has been retrieved.
+   * @return {Promise} Resolved when the board configuration has been retrieved.
+   */
+  this.getBoardConfiguration = function(opts, callback) {
+    var options = {
+      uri: this.jiraClient.buildAgileURL(
+        "/board/" + opts.boardId + "/configuration"
+      ),
+      method: "GET",
+      json: true,
+      followAllRedirects: true
+    };
+
+    return this.jiraClient.makeRequest(options, callback);
+  };
+
+  /**
    * Creates a board
    *
    * @method createBoard
