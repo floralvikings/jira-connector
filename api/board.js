@@ -89,8 +89,11 @@ function AgileBoardClient(jiraClient) {
    *     provides, dues to lack or resources or any other condition. When this happens, your results will be
    *     truncated. Callers should always check the returned maxResults to determine the value that is effectively
    *     being used.
+   * @param [opts.jql] Filters results using a JQL query. If you define an order in your JQL query, it will override
+   *     the default order of the returned issues. Note that username and userkey have been deprecated as search terms
+   *     for this parameter. See the migration guide for details. Use accountId instead.
    * @param [opts.fields] The list of fields to return for each issue. By default, all navigable and Agile fields are
- *       returned.
+   *     returned.
    * @param [callback] Called when the issues have been retrieved.
    * @return {Promise} Resolved when the issues have been retrieved.
    */
@@ -104,7 +107,7 @@ function AgileBoardClient(jiraClient) {
         startAt: opts.startAt,
         maxResults: opts.maxResults,
         jql: opts.jql,
-        fields: opts.fields
+        fields: opts.fields.join(',')
       }
     };
 
