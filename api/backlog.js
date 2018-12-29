@@ -24,7 +24,7 @@ function AgileBacklogClient(jiraClient) {
   this.moveIssuesToBacklog = function (opts, callback) {
     var options = {
       uri: this.jiraClient.buildAgileURL("/backlog/issue"),
-      method: "GET",
+      method: "POST",
       json: true,
       followAllRedirects: true,
       qs: {
@@ -55,7 +55,7 @@ function AgileBacklogClient(jiraClient) {
   this.moveIssuesToBacklogForBoard = function (opts, callback) {
     var options = {
       uri: this.jiraClient.buildAgileURL("/backlog/" + opts.boardId + "/issue"),
-      method: "GET",
+      method: "POST",
       json: true,
       followAllRedirects: true,
       qs: {

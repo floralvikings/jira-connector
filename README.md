@@ -264,7 +264,7 @@ is still valid!
   * getAvatars
   * createTemporaryAvatar
   * cropTemporaryAvatar
-* backlog
+* backlog (/rest/agile/1.0/backlog)
   * moveIssuesToBacklog
   * moveIssuesToBacklogForBoard
 * board (/rest/agile/1.0/board)
