@@ -17,7 +17,7 @@ function AgileBacklogClient(jiraClient) {
    * @method moveIssuesToBacklog
    * @memberOf AgileBacklogClient#
    * @param opts The request options sent to the Jira API.
-   * @param opts.issues Array of strings with issues keys or ids
+   * @param [opts.issues] Array of strings with issues keys or ids
    * @param [callback] Called when the dashboard has been retrieved
    * @return {Promise} Resolved when the dashboard has been retrieved
    */
@@ -28,7 +28,7 @@ function AgileBacklogClient(jiraClient) {
       json: true,
       followAllRedirects: true,
       qs: {
-        issues: opts.issues.join(',')
+        issues: opts.issues ? opts.issues.join(',') : undefined
       }
     };
 
@@ -45,7 +45,7 @@ function AgileBacklogClient(jiraClient) {
    * @memberOf AgileBacklogClient#
    * @param opts The request options sent to the Jira API.
    * @param opts.boardId The agile board id.
-   * @param opts.issues Array of strings with issues keys or ids
+   * @param [opts.issues] Array of strings with issues keys or ids
    * @param [opts.rankBeforeIssue] string
    * @param [opts.rankAfterIssue] string
    * @param [opts.rankCustomFieldId] int64
@@ -59,7 +59,7 @@ function AgileBacklogClient(jiraClient) {
       json: true,
       followAllRedirects: true,
       qs: {
-        issues: opts.issues.join(','),
+        issues: opts.issues ? opts.issues.join(',') : undefined,
         rankBeforeIssue: opts.rankBeforeIssue,
         rankAfterIssue: opts.rankAfterIssue,
         rankCustomFieldId: opts.rankCustomFieldId
