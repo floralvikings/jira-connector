@@ -27,7 +27,7 @@ function AgileBacklogClient(jiraClient) {
       method: "POST",
       json: true,
       followAllRedirects: true,
-      qs: {
+      body: {
         issues: opts.issues ? opts.issues.join(',') : undefined
       }
     };
@@ -58,7 +58,7 @@ function AgileBacklogClient(jiraClient) {
       method: "POST",
       json: true,
       followAllRedirects: true,
-      qs: {
+      body: {
         issues: opts.issues ? opts.issues.join(',') : undefined,
         rankBeforeIssue: opts.rankBeforeIssue,
         rankAfterIssue: opts.rankAfterIssue,
