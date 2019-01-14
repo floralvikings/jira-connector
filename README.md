@@ -298,7 +298,7 @@ is still valid!
   * resetFilterColumns
   * getDefaultShareScope
   * setDefaultShareScope
-  * getFavoriteFilters
+  * getFavouriteFilters
 * group (/rest/api/2/group)
   * createGroup
   * getGroup [DEPRECATED, use getMembers]
