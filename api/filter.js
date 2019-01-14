@@ -227,7 +227,7 @@ function FilterClient(jiraClient) {
      * @param [callback] Called when the list of favourites has been retrieved.
      * @return {Promise} Resolved when the list of favourites has been retrieved.
      */
-    this.getFavoriteFilters = function (opts, callback) {
+    this.getFavouriteFilters = function (opts, callback) {
         var options = {
             uri: this.jiraClient.buildURL('/filter/favourite'),
             method: 'GET',
