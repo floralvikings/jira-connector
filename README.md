@@ -1,4 +1,4 @@
-# JavaScript Jira API Wrapper for NodeJS
+/# JavaScript Jira API Wrapper for NodeJS
 
 Node.JS module which provides easy-to-use access to the Jira REST API.
 
@@ -298,7 +298,7 @@ is still valid!
   * resetFilterColumns
   * getDefaultShareScope
   * setDefaultShareScope
-  * getFavoriteFilters
+  * getFavouriteFilters
 * group (/rest/api/2/group)
   * createGroup
   * getGroup [DEPRECATED, use getMembers]
