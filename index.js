@@ -28,6 +28,7 @@ var issueLink = require('./api/issueLink');
 var issueLinkType = require('./api/issueLinkType');
 var issueType = require('./api/issueType');
 var jql = require('./api/jql');
+var labels = require('./api/labels');
 var licenseRole = require('./api/licenseRole');
 var licenseValidator = require('./api/licenseValidator');
 var myPermissions = require('./api/myPermissions');
@@ -85,6 +86,7 @@ var worklog = require('./api/worklog');
  * @property {IssueLinkTypeClient} issueLinkType
  * @property {IssueTypeClient} issueType
  * @property {JqlClient} jql
+ * @property {LabelsClient} labels
  * @property {LicenseRoleClient} licenseRole
  * @property {LicenseValidatorClient} licenseValidator
  * @property {MyPermissionsClient} myPermissions
@@ -213,6 +215,7 @@ var JiraClient = module.exports = function (config) {
     this.issueLinkType = new issueLinkType(this);
     this.issueType = new issueType(this);
     this.jql = new jql(this);
+    this.labels = new labels(this);
     this.licenseRole = new licenseRole(this);
     this.licenseValidator = new licenseValidator(this);
     this.myPermissions = new myPermissions(this);
@@ -252,11 +255,12 @@ var JiraClient = module.exports = function (config) {
      * @method buildURL
      * @memberOf JiraClient#
      * @param path The path of the URL without concern for the root of the REST API.
+     * @param forcedVersion Use this param to force a particular version
      * @returns {string} The constructed URL.
      */
-    this.buildURL = function (path) {
+    this.buildURL = function (path, forcedVersion) {
         var apiBasePath = this.path_prefix + 'rest/api/';
-        var version = this.apiVersion;
+        var version = forcedVersion || this.apiVersion;
         var requestUrl = url.format({
             protocol: this.protocol,
             hostname: this.host,
