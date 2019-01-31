@@ -12,6 +12,7 @@ var attachment = require('./api/attachment');
 var auditing = require('./api/auditing');
 var auth = require('./api/auth');
 var avatar = require('./api/avatar');
+var backlog = require('./api/backlog');
 var board = require('./api/board');
 var comment = require('./api/comment');
 var component = require('./api/component');
@@ -200,6 +201,7 @@ var JiraClient = module.exports = function (config) {
     this.auditing = new auditing(this);
     this.auth = new auth(this);
     this.avatar = new avatar(this);
+    this.backlog = new backlog(this);
     this.board = new board(this);
     this.comment = new comment(this);
     this.component = new component(this);

@@ -1,12 +1,12 @@
 "use strict";
 
 module.exports = AgileEpicClient;
+
 /**
  * Used to access Jira REST endpoints in '/rest/agile/1.0/epic'
  * @param {JiraClient} jiraClient
  * @constructor AgileEpicClient
  */
-
 function AgileEpicClient(jiraClient) {
     this.jiraClient = jiraClient;
     /**
