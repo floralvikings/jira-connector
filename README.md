@@ -373,6 +373,8 @@ is still valid!
   * getAlternativeIssueTypes
 * jql (/rest/api/2/jql/autocompletedata)
   * getAutoCompleteData
+* labels (/rest/api/1.0/labels/suggest?query=)
+  * getLabels
 * licenseRole (/rest/api/2/licenserole)
   * getAllLicenseRoles
   * getLicenseRole
