@@ -269,7 +269,13 @@ is still valid!
   * moveIssuesToBacklogForBoard
 * board (/rest/agile/1.0/board)
   * getAllBoards
+  * createBoard
   * getBoard
+  * deleteBoard
+  * getIssuesForBacklog
+  * getConfiguration
+  * getEpics
+  * getIssuesWithoutEpic
   * getIssuesForBoard
   * getSprintsForBoard
 * comment (/rest/api/2/comment)
