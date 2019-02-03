@@ -22,13 +22,14 @@ function AgileBacklogClient(jiraClient) {
    * @return {Promise} Resolved when the dashboard has been retrieved
    */
   this.moveIssuesToBacklog = function (opts, callback) {
+    opts = opts || {};
     var options = {
       uri: this.jiraClient.buildAgileURL("/backlog/issue"),
       method: "POST",
       json: true,
       followAllRedirects: true,
       body: {
-        issues: opts.issues ? opts.issues.join(',') : undefined
+        issues: opts.issues
       }
     };
 
@@ -59,7 +60,7 @@ function AgileBacklogClient(jiraClient) {
       json: true,
       followAllRedirects: true,
       body: {
-        issues: opts.issues ? opts.issues.join(',') : undefined,
+        issues: opts.issues,
         rankBeforeIssue: opts.rankBeforeIssue,
         rankAfterIssue: opts.rankAfterIssue,
         rankCustomFieldId: opts.rankCustomFieldId
