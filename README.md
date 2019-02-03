@@ -264,9 +264,18 @@ is still valid!
   * getAvatars
   * createTemporaryAvatar
   * cropTemporaryAvatar
+* backlog (/rest/agile/1.0/backlog)
+  * moveIssuesToBacklog
+  * moveIssuesToBacklogForBoard
 * board (/rest/agile/1.0/board)
   * getAllBoards
+  * createBoard
   * getBoard
+  * deleteBoard
+  * getIssuesForBacklog
+  * getConfiguration
+  * getEpics
+  * getIssuesWithoutEpic
   * getIssuesForBoard
   * getSprintsForBoard
 * comment (/rest/api/2/comment)
@@ -373,6 +382,8 @@ is still valid!
   * getAlternativeIssueTypes
 * jql (/rest/api/2/jql/autocompletedata)
   * getAutoCompleteData
+* labels (/rest/api/1.0/labels/suggest?query=)
+  * getLabels
 * licenseRole (/rest/api/2/licenserole)
   * getAllLicenseRoles
   * getLicenseRole

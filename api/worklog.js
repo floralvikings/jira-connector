@@ -64,7 +64,7 @@ function WorklogClient(jiraClient) {
      * Returns worklogs id and update time of worklogs that were updated since given time. The returns set of worklogs is 
      * limited to 1000 elements. This API will not return worklogs deleted during last minute.
      *
-     * @method getWorklogDeleted
+     * @method getWorklogUpdated
      * @memberOf WorklogClient#
      * @param {Object} opts The request options sent to the Jira API
      * @param {number} opts.since A date time in unix timestamp format since when updated worklogs will be returned.
