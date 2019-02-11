@@ -370,8 +370,10 @@ var JiraClient = module.exports = function (config) {
             requestLib(options, function (err, response, body) {
                 if (
                     err
-                    || response.statusCode.toString()[0] !== "2"
-                    || response.statusCode.toString()[0] !== "3"
+                    || (
+                        response.statusCode.toString()[0] !== "2"
+                        && response.statusCode.toString()[0] !== "3"
+                    )
                 ) {
                     return callback(err ? err : body, null, response);
                 }
