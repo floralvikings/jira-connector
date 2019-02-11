@@ -15,7 +15,7 @@ function DashboardClient(jiraClient) {
      *
      * @method getAllDashboards
      * @memberOf DashboardClient#
-     * @param opts The request options to send to the Jira API
+     * @param [opts] The request options to send to the Jira API
      * @param [opts.filter] An optional filter that is applied to the list of dashboards. Valid values include
      *     "favourite" for returning only favourite dashboards, and "my" for returning dashboards that are owned by the
      *     calling user.
@@ -30,6 +30,8 @@ function DashboardClient(jiraClient) {
      * @return {Promise} Resolved when the dashboards have been retrieved.
      */
     this.getAllDashboards = function (opts, callback) {
+        opts = opts || {};
+
         var options = {
             uri: this.jiraClient.buildURL('/dashboard'),
             method: 'GET',
@@ -60,12 +62,7 @@ function DashboardClient(jiraClient) {
             uri: this.jiraClient.buildURL('/dashboard/' + opts.dashboardId),
             method: 'GET',
             json: true,
-            followAllRedirects: true,
-            qs: {
-                filter: opts.filter,
-                startAt: opts.startAt,
-                maxResults: opts.maxResults
-            }
+            followAllRedirects: true
         };
 
         return this.jiraClient.makeRequest(options, callback);
