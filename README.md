@@ -277,6 +277,7 @@ is still valid!
   * getEpics
   * getIssuesWithoutEpic
   * getIssuesForBoard
+  * getReportsForBoard
   * getSprintsForBoard
 * comment (/rest/api/2/comment)
   * getCommentPropertyKeys

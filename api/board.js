@@ -399,4 +399,25 @@ function AgileBoardClient(jiraClient) {
 
     return this.jiraClient.makeRequest(options, callback);
   };
+
+  /**
+   * Get reports for associated board
+   *
+   * @method getReportsForBoard
+   * @memberOf AgileBoardClient#
+   * @param {Object} opts The request options to send to the Jira API
+   * @param {number} opts.boardId The agile board id.
+   * @param {function} [callback] Called when the sprints have been retrieved.
+   * @return {Promise} Resolved when the sprints have been retrieved.
+   */
+  this.getReportsForBoard = function(opts, callback) {
+    var options = {
+      uri: this.jiraClient.buildAgileURL("/board/" + opts.boardId + "/reports"),
+      method: "GET",
+      json: true,
+      followAllRedirects: true
+    };
+
+    return this.jiraClient.makeRequest(options, callback);
+  };
 }
