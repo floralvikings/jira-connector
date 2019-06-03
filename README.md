@@ -292,6 +292,14 @@ is still valid!
   * getRelatedIssueCount
 * customFieldOption (/rest/api/2/customFieldOptions)
   * getCustomFieldOption
+* epic (/rest/agile/1.0/epic)
+  * getIssuesWithoutEpic
+  * removeIssuesFromEpic
+  * getEpic
+  * partiallyUpdateEpic
+  * getIssuesForEpic
+  * moveIssuesToEpic
+  * rankEpics
 * dashboard (/rest/api/2/dashboard)
   * getAllDashboards
   * getDashboard
