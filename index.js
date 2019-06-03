@@ -122,6 +122,7 @@ var worklog = require('./api/worklog');
  * @param {string} [config.protocol=https] The protocol used to accses the Jira API.
  * @param {number} [config.port=443] The port number used to connect to Jira.
  * @param {string} [config.path_prefix="/"] The prefix to use in front of the path, if Jira isn't at "/"
+ * @param {boolean} [config.strictSSL=true] 
  * @param {string} [config.version=2] The version of the Jira API to which you will be connecting.  Currently, only
  *     version 2 is supported.
  * @param config.auth The authentication information used tp connect to Jira. Must contain EITHER username and password
@@ -144,14 +145,16 @@ var worklog = require('./api/worklog');
  */
 
 var JiraClient = module.exports = function (config) {
-    if(!config.host) {
+    if (!config.host) {
         throw new Error(errorStrings.NO_HOST_ERROR);
     }
+
     this.host = config.host;
     this.protocol = config.protocol ? config.protocol : 'https';
     this.path_prefix = config.path_prefix ? config.path_prefix : '/';
     this.port = config.port;
     this.apiVersion = 2;
+    this.strictSSL = config.strictSSL || true;
     this.agileApiVersion = '1.0';
     this.authApiVersion = '1';
     this.webhookApiVersion = '1.0';
@@ -176,7 +179,7 @@ var JiraClient = module.exports = function (config) {
     } else if (config.basic_auth) {
         if (config.basic_auth.base64) {
             this.basic_auth = {
-              base64: config.basic_auth.base64
+                base64: config.basic_auth.base64
             }
         } else {
             if (!config.basic_auth.username) {
@@ -352,17 +355,18 @@ var JiraClient = module.exports = function (config) {
     this.makeRequest = function (options, callback, successString) {
         let requestLib = this.requestLib;
         options.rejectUnauthorized = this.rejectUnauthorized;
+        options.strictSSL = this.strictSSL;
 
         if (this.oauthConfig) {
             options.oauth = this.oauthConfig;
         } else if (this.basic_auth) {
             if (this.basic_auth.base64) {
-              if (!options.headers) {
-                options.headers = {}
-              }
-              options.headers['Authorization'] = 'Basic ' + this.basic_auth.base64
+                if (!options.headers) {
+                    options.headers = {}
+                }
+                options.headers['Authorization'] = 'Basic ' + this.basic_auth.base64
             } else {
-              options.auth = this.basic_auth;
+                options.auth = this.basic_auth;
             }
         }
         if (this.cookie_jar) {
@@ -381,13 +385,13 @@ var JiraClient = module.exports = function (config) {
                     return callback(err ? err : body, null, response);
                 }
 
-            if (typeof body == 'string') {
-                try {
-                    body = JSON.parse(body);
-                } catch (jsonErr) {
-                    return callback(jsonErr, null, response);
+                if (typeof body == 'string') {
+                    try {
+                        body = JSON.parse(body);
+                    } catch (jsonErr) {
+                        return callback(jsonErr, null, response);
+                    }
                 }
-            }
 
                 return callback(null, successString ? successString : body, response);
             });
@@ -397,11 +401,11 @@ var JiraClient = module.exports = function (config) {
                 var req = requestLib(options);
                 var requestObj = null;
 
-                req.on('request', function(request) {
-                  requestObj = request;
+                req.on('request', function (request) {
+                    requestObj = request;
                 });
 
-                req.on('response', function(response) {
+                req.on('response', function (response) {
 
                     // Saving error
                     var error = response.statusCode.toString()[0] !== '2';
@@ -420,7 +424,7 @@ var JiraClient = module.exports = function (config) {
                         if (result[0] === '[' || result[0] === '{') {
                             try {
                                 result = JSON.parse(result);
-                            } catch(e) {
+                            } catch (e) {
                                 // nothing to do
                             }
                         }
@@ -428,40 +432,40 @@ var JiraClient = module.exports = function (config) {
                         if (error) {
                             response.body = result;
                             if (options.debug) {
-                              reject({
-                                result: JSON.stringify(response),
-                                debug: {
-                                  options: options,
-                                  request: {
-                                    headers: requestObj._headers,
-                                  },
-                                  response: {
-                                    headers: response.headers,
-                                  },
-                                }
-                              });
+                                reject({
+                                    result: JSON.stringify(response),
+                                    debug: {
+                                        options: options,
+                                        request: {
+                                            headers: requestObj._headers,
+                                        },
+                                        response: {
+                                            headers: response.headers,
+                                        },
+                                    }
+                                });
                             } else {
-                              reject(JSON.stringify(response));
+                                reject(JSON.stringify(response));
                             }
                             return;
                         }
 
-                      if (options.debug) {
-                        resolve({
-                          result,
-                          debug: {
-                            options: options,
-                            request: {
-                              headers: requestObj._headers,
-                            },
-                            response: {
-                              headers: response.headers,
-                            },
-                          }
-                        });
-                      } else {
-                        resolve(result);
-                      }
+                        if (options.debug) {
+                            resolve({
+                                result,
+                                debug: {
+                                    options: options,
+                                    request: {
+                                        headers: requestObj._headers,
+                                    },
+                                    response: {
+                                        headers: response.headers,
+                                    },
+                                }
+                            });
+                        } else {
+                            resolve(result);
+                        }
                     });
 
                 });
