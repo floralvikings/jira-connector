@@ -151,7 +151,7 @@ var JiraClient = module.exports = function (config) {
     this.protocol = config.protocol ? config.protocol : 'https';
     this.path_prefix = config.path_prefix ? config.path_prefix : '/';
     this.port = config.port;
-    this.apiVersion = 2; // TODO Add support for other versions.
+    this.apiVersion = 2;
     this.agileApiVersion = '1.0';
     this.authApiVersion = '1';
     this.webhookApiVersion = '1.0';
@@ -257,7 +257,7 @@ var JiraClient = module.exports = function (config) {
      * @method buildURL
      * @memberOf JiraClient#
      * @param path The path of the URL without concern for the root of the REST API.
-     * @param forcedVersion Use this param to force a particular version
+     * @param {string | number} [forcedVersion] Use this param to force a particular version
      * @returns {string} The constructed URL.
      */
     this.buildURL = function (path, forcedVersion) {
@@ -279,11 +279,12 @@ var JiraClient = module.exports = function (config) {
      * @method buildAgileURL
      * @memberOf JiraClient#
      * @param path The path of the URL without concern for the root of the REST API.
+     * @param {string | number} [forcedVersion] Use this param to force a particular version
      * @returns {string} The constructed URL.
      */
-    this.buildAgileURL = function (path) {
+    this.buildAgileURL = function (path, forcedVersion) {
         var apiBasePath = this.path_prefix + 'rest/agile/';
-        var version = this.agileApiVersion;
+        var version = forcedVersion || this.agileApiVersion;
         var requestUrl = url.format({
             protocol: this.protocol,
             hostname: this.host,
@@ -300,11 +301,12 @@ var JiraClient = module.exports = function (config) {
      * @method buildAuthURL
      * @memberOf JiraClient#
      * @param path The path of the URL without concern for the root of the REST API.
+     * @param {string | number} [forcedVersion] Use this param to force a particular version
      * @returns {string} The constructed URL.
      */
-    this.buildAuthURL = function (path) {
+    this.buildAuthURL = function (path, forcedVersion) {
         var apiBasePath = this.path_prefix + 'rest/auth/';
-        var version = this.authApiVersion;
+        var version = forcedVersion || this.authApiVersion;
         var requestUrl = url.format({
             protocol: this.protocol,
             hostname: this.host,
@@ -321,11 +323,12 @@ var JiraClient = module.exports = function (config) {
      * @method buildWebhookURL
      * @memberOf JiraClient#
      * @param path The path of the URL without concern for the root of the REST API.
+     * @param {string | number} [forcedVersion] Use this param to force a particular version
      * @returns {string} The constructed URL.
      */
-    this.buildWebhookURL = function (path) {
+    this.buildWebhookURL = function (path, forcedVersion) {
         var apiBasePath = this.path_prefix + 'rest/webhooks/';
-        var version = this.webhookApiVersion;
+        var version = forcedVersion || this.webhookApiVersion;
         var requestUrl = url.format({
             protocol: this.protocol,
             hostname: this.host,
