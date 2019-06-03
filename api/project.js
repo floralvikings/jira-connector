@@ -23,6 +23,13 @@ function ProjectClient(jiraClient) {
     this.getAllProjects = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '', 'GET');
 
+        if (!Object.keys(options.body).length) {
+            delete options.body;
+        }
+        if (!Object.keys(options.qs).length) {
+            delete options.qs;
+        }
+
         return this.jiraClient.makeRequest(options, callback);
     };
 
@@ -36,7 +43,7 @@ function ProjectClient(jiraClient) {
      * @param [callback] Called when the project has been deleted.
      * @return {Promise} Resolved when the project has been deleted.
      */
-    this.deleteProject = function(opts, callback) {
+    this.deleteProject = function (opts, callback) {
         var options = this.buildRequestOptions(opts, '', 'DELETE');
         return this.jiraClient.makeRequest(options, callback, 'Project Deleted');
     };
@@ -76,9 +83,6 @@ function ProjectClient(jiraClient) {
         var options = this.buildRequestOptions(opts, '/properties', 'GET');
         return this.jiraClient.makeRequest(options, callback);
     };
-
-
-
 
     /**
      * Contains a full representation of a project in JSON format.
