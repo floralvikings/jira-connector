@@ -1001,7 +1001,7 @@ function IssueClient(jiraClient) {
      *     issueKey property; issueId will be used over issueKey if both are present.
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param {string} opts.filename The file name of attachment. If you pass an array of filenames, multiple attachments will be added.
+     * @param {string | Array<string>} opts.filename The file name of attachment. If you pass an array of filenames, multiple attachments will be added.
      * @param [callback] Called when the attachment has been attached.
      * @return {Promise} Resolved when the attachment has been attached.
      */
