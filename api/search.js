@@ -44,7 +44,7 @@ function SearchClient(jiraClient) {
      *     value is dictated by the JIRA property 'jira.search.views.default.max'. If you specify a value that is
      *     higher than this number, your search results will be truncated.
      * @param {boolean} [opts.validateQuery=true] Whether to validate the JQL query
-     * @param {array} [opts.fields] The list of fields to return for each issue. By default, all navigable fields are
+     * @param {Array<string>} [opts.fields] The list of fields to return for each issue. By default, all navigable fields are
      *     returned.
      * @param {array} [opts.expand] A list of the parameters to expand.
      * @param {array} [opts.properties] A list of the properties to include (5 max).
@@ -52,12 +52,16 @@ function SearchClient(jiraClient) {
      * @return {Promise} Resolved with the search results.
      */
     this.search = function (opts, callback) {
+        opts = opts || {};
         opts.method = opts.method || 'POST';
 
         var options = {
             uri: this.jiraClient.buildURL('/search'),
             method: opts.method,
             json: true,
+            headers: {
+                'Content-Type': 'application/json'
+            },
             followAllRedirects: true,
             timeout: opts.timeout || 10000,
         };
@@ -67,7 +71,7 @@ function SearchClient(jiraClient) {
             startAt: opts.startAt,
             maxResults: opts.maxResults,
             validateQuery: opts.validateQuery,
-            fields: opts.fields,
+            fields: opts.method === 'POST' ? opts.fields : opts.fields.join(','),
             expand: opts.expand,
             properties: opts.properties
         };
