@@ -20,6 +20,7 @@
   "author": "Caleb Brinkman <floralvikings@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "mime-types": "^2.1.24",
     "oauth": "^0.9.12",
     "request": "^2.83.0"
   },

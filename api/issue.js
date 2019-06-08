@@ -1,7 +1,8 @@
 "use strict";
 
-var errorStrings = require('./../lib/error');
 var fs = require('fs');
+var mime = require('mime-types');
+var errorStrings = require('./../lib/error');
 
 module.exports = IssueClient;
 
@@ -79,7 +80,7 @@ function IssueClient(jiraClient) {
                 maxResults: opts.maxResults
             },
             qs: {
-              boardId: opts.boardId
+                boardId: opts.boardId
             }
         };
 
@@ -295,7 +296,7 @@ function IssueClient(jiraClient) {
      * @return {Promise} Resolved when data has been retrieved
      */
     this.deleteIssue = function (opts, callback) {
-        var options = this.buildRequestOptions(opts, '', 'DELETE', null, {deleteSubtasks: opts.deleteSubtasks});
+        var options = this.buildRequestOptions(opts, '', 'DELETE', null, { deleteSubtasks: opts.deleteSubtasks });
 
         return this.jiraClient.makeRequest(options, callback, 'Issue Deleted');
     };
@@ -393,10 +394,10 @@ function IssueClient(jiraClient) {
      */
     this.addComment = function (opts, callback) {
         var options;
-        if(opts.comment.body) {
+        if (opts.comment.body) {
             options = this.buildRequestOptions(opts, '/comment', 'POST', opts.comment);
         } else {
-            options = this.buildRequestOptions(opts, '/comment', 'POST', {body: opts.comment});
+            options = this.buildRequestOptions(opts, '/comment', 'POST', { body: opts.comment });
         }
 
         return this.jiraClient.makeRequest(options, callback);
@@ -533,7 +534,7 @@ function IssueClient(jiraClient) {
      * @return {Promise} Resolved when the remote links are retrieved.
      */
     this.getRemoteLinks = function (opts, callback) {
-        var options = this.buildRequestOptions(opts, '/remotelink', 'GET', null, {globalId: opts.globalId});
+        var options = this.buildRequestOptions(opts, '/remotelink', 'GET', null, { globalId: opts.globalId });
 
         return this.jiraClient.makeRequest(options, callback);
     };
@@ -595,7 +596,7 @@ function IssueClient(jiraClient) {
             throw new Error(errorStrings.NO_GLOBAL_ID_ERROR);
         }
 
-        var options = this.buildRequestOptions(opts, '/remotelink', 'DELETE', null, {globalId: opts.globalId});
+        var options = this.buildRequestOptions(opts, '/remotelink', 'DELETE', null, { globalId: opts.globalId });
 
         return this.jiraClient.makeRequest(options, callback, 'RemoteLink Deleted');
     };
@@ -690,7 +691,7 @@ function IssueClient(jiraClient) {
      * @return {Promise} Resolved when the transitions are retrieved.
      */
     this.getTransitions = function (opts, callback) {
-        var options = this.buildRequestOptions(opts, '/transitions', 'GET', null, {transitionId: opts.transitionId});
+        var options = this.buildRequestOptions(opts, '/transitions', 'GET', null, { transitionId: opts.transitionId });
 
         return this.jiraClient.makeRequest(options, callback);
     };
@@ -716,7 +717,7 @@ function IssueClient(jiraClient) {
      */
     this.transitionIssue = function (opts, callback) {
         var options;
-        if(!opts.transition.transition) { // To keep backwards compatibility
+        if (!opts.transition.transition) { // To keep backwards compatibility
             options = this.buildRequestOptions(opts, '/transitions', 'POST', opts);
         } else {
             options = this.buildRequestOptions(opts, '/transitions', 'POST', opts.transition)
@@ -835,7 +836,7 @@ function IssueClient(jiraClient) {
         if (!opts.watcher) {
             throw new Error(errorStrings.NO_WATCHER_ERROR);
         }
-        var options = this.buildRequestOptions(opts, '/watchers', 'DELETE', null, {username: opts.watcher});
+        var options = this.buildRequestOptions(opts, '/watchers', 'DELETE', null, { username: opts.watcher });
 
         return this.jiraClient.makeRequest(options, callback, 'Watcher Removed');
     };
@@ -999,7 +1000,7 @@ function IssueClient(jiraClient) {
      *     issueKey property; issueId will be used over issueKey if both are present.
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param {string} opts.filename The file name of attachment. If you pass an array of filenames, multiple attachments will be added.
+     * @param {string | Array<string>} opts.filename The file name of attachment. If you pass an array of filenames, multiple attachments will be added.
      * @param [callback] Called when the attachment has been attached.
      * @return {Promise} Resolved when the attachment has been attached.
      */
@@ -1010,10 +1011,20 @@ function IssueClient(jiraClient) {
         var options = this.buildRequestOptions(opts, '/attachments', 'POST');
         delete options.body;
         if (opts.filename.constructor !== Array) opts.filename = [opts.filename];
-        var attachments = opts.filename.map (function (filename) {return fs.createReadStream(filename)});
-        options.formData = {file: attachments};
+        var attachments = opts.filename.map(function (filePath) {
+            var filename = filePath.split('/').reverse()[0];
+            var mimeType = mime.lookup(filename);
+            return {
+                value: fs.createReadStream(filePath),
+                options: {
+                    filename: filename,
+                    contentType: mimeType
+                }
+            }
+        });
+        options.formData = { file: attachments };
         options.headers = {
-            "X-Atlassian-Token": "nocheck"
+            'charset': 'utf-8'
         };
 
         return this.jiraClient.makeRequest(options, callback);
@@ -1119,34 +1130,34 @@ function IssueClient(jiraClient) {
         } else if (!opts.propertyValue) {
             throw new Error(errorStrings.NO_PROPERTY_VALUE_ERROR);
         }
-      var options = this.buildRequestOptions(
-        opts,
-        '/worklog/' + opts.worklogId + '/properties/' + opts.propertyKey,
-        'PUT',
-        opts.propertyValue
-      );
-      return this.jiraClient.makeRequest(options, callback, 'Property Set');
+        var options = this.buildRequestOptions(
+            opts,
+            '/worklog/' + opts.worklogId + '/properties/' + opts.propertyKey,
+            'PUT',
+            opts.propertyValue
+        );
+        return this.jiraClient.makeRequest(options, callback, 'Property Set');
     };
 
     this.getWorkLogProperties = function (opts, callback) {
-      var options = this.buildRequestOptions(
-        opts,
-        '/worklog/' + opts.worklogId + '/properties/',
-        'GET'
-      );
-      return this.jiraClient.makeRequest(options, callback);
+        var options = this.buildRequestOptions(
+            opts,
+            '/worklog/' + opts.worklogId + '/properties/',
+            'GET'
+        );
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     this.getWorkLogProperty = function (opts, callback) {
-      if (!opts.propertyKey) {
-          throw new Error(errorStrings.NO_PROPERTY_KEY_ERROR);
-      }
-      var options = this.buildRequestOptions(
-        opts,
-        '/worklog/' + opts.worklogId + '/properties/' + opts.propertyKey,
-        'GET'
-      );
-      return this.jiraClient.makeRequest(options, callback);
+        if (!opts.propertyKey) {
+            throw new Error(errorStrings.NO_PROPERTY_KEY_ERROR);
+        }
+        var options = this.buildRequestOptions(
+            opts,
+            '/worklog/' + opts.worklogId + '/properties/' + opts.propertyKey,
+            'GET'
+        );
+        return this.jiraClient.makeRequest(options, callback);
     };
 
     /**
@@ -1200,7 +1211,7 @@ function IssueClient(jiraClient) {
             json: true
         };
     }
-    
+
     /**
      * Returns suggested issues which match the auto-completion query for the 
      * user which executes this request. This REST method will check the user's 
