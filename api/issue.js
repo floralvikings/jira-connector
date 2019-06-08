@@ -335,25 +335,26 @@ function IssueClient(jiraClient) {
     /**
      * Assigns an issue to a user. You can use this resource to assign issues when the user submitting the request has
      * the assign permission but not the edit issue permission. If the name is "-1" automatic assignee is used. A null
-     * name will remove the assignee.
-     *
+     * name will remove the assignee. or
+     * You can use accountId of the user whom to assign the issue.
+     * See {@link https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/}
      * @method assignIssue
      * @memberof IssueClient#
-     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueId or
-     *        issueKey property; issueId will be used over issueKey if both are present.
+     * @param {Object} opts use assignee name or accountId to assign the issue 
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param {string} opts.assignee The name of the user to whom to assign the issue. -1 for default, null for no
-     *     assignee.
+     * @param {string} [opts.assignee] The name of the user to whom to assign the issue
+     * @param {string} [opts.accountId] The accountId of the user to whom to assign the issue. -1 for default, null for no assignee.
      * @param [callback] Called when the issue has been assigned.
      * @return {Promise} Resolved when the issue has been assigned.
      */
     this.assignIssue = function (opts, callback) {
-        if (!(typeof opts.assignee === "string" && opts.assignee.length || opts.assignee === null)) {
+        var assigneeIdOrName =  opts.accountId || opts.assignee;
+        if (!(typeof assigneeIdOrName === "string" && assigneeIdOrName.length || assigneeIdOrName === null)) {
             throw new Error(errorStrings.NO_ASSIGNEE_ERROR);
         }
-
-        var options = this.buildRequestOptions(opts, '/assignee', 'PUT', {name: opts.assignee});
+        var params = opts.accountId ? {accountId: opts.accountId} : {name: opts.assignee}
+        var options = this.buildRequestOptions(opts, '/assignee', 'PUT', params);
 
         return this.jiraClient.makeRequest(options, callback, 'Issue Assigned');
     };
