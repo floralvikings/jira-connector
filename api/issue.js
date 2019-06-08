@@ -1,7 +1,8 @@
 "use strict";
 
-var errorStrings = require('./../lib/error');
 var fs = require('fs');
+var mime = require('mime-types');
+var errorStrings = require('./../lib/error');
 
 module.exports = IssueClient;
 
@@ -1012,19 +1013,20 @@ function IssueClient(jiraClient) {
         var options = this.buildRequestOptions(opts, '/attachments', 'POST');
         delete options.body;
         if (opts.filename.constructor !== Array) opts.filename = [opts.filename];
-        var attachments = opts.filename.map(function (filename) {
+        var attachments = opts.filename.map(function (filePath) {
+            var filename = filePath.split('/').reverse()[0];
+            var mimeType = mime.lookup(filename);
             return {
-                value: fs.createReadStream(filename),
+                value: fs.createReadStream(filePath),
                 options: {
-                    filename: '<filename>',
-                    contentType: '<fileType>'
+                    filename: filename,
+                    contentType: mimeType
                 }
             }
         });
         options.formData = { file: attachments };
         options.headers = {
-            "X-Atlassian-Token": "nocheck",
-            'charset': 'UTF-8'
+            'charset': 'utf-8'
         };
 
         return this.jiraClient.makeRequest(options, callback);
