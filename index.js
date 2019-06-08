@@ -18,6 +18,7 @@ var comment = require('./api/comment');
 var component = require('./api/component');
 var customFieldOption = require('./api/customFieldOption');
 var dashboard = require('./api/dashboard');
+var epic = require('./api/epic');
 var errorStrings = require('./lib/error');
 var field = require('./api/field');
 var filter = require('./api/filter');
@@ -125,7 +126,7 @@ var worklog = require('./api/worklog');
  * @param {boolean} [config.strictSSL=true] 
  * @param {string} [config.version=2] The version of the Jira API to which you will be connecting.  Currently, only
  *     version 2 is supported.
- * @param config.auth The authentication information used tp connect to Jira. Must contain EITHER username and password
+ * @param {Object} [config.basic_auth] The authentication information used tp connect to Jira. Must contain EITHER username and password
  *     OR oauth information.  Oauth information will be used over username/password authentication.
  * @param {string} [config.basic_auth.username] The username of the user that will be authenticated. MUST be included
  *     if using username and password authentication.
@@ -210,6 +211,7 @@ var JiraClient = module.exports = function (config) {
     this.component = new component(this);
     this.customFieldOption = new customFieldOption(this);
     this.dashboard = new dashboard(this);
+    this.epic = new epic(this);
     this.field = new field(this);
     this.filter = new filter(this);
     this.group = new group(this);
