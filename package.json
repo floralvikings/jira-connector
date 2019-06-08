@@ -11,6 +11,7 @@
     "api/",
     "lib/",
     "index.js",
+    "index.d.ts",
     "jsdoc.json"
   ],
   "main": "./index.js",
