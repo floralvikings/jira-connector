@@ -709,15 +709,12 @@ function IssueClient(jiraClient) {
      *     issueKey property; issueId will be used over issueKey if both are present.
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param {string} opts.transition See {@link https://docs.atlassian.com/jira/REST/latest/#d2e698}
+     * @param {object} [opts.transition] See {@link https://docs.atlassian.com/jira/REST/latest/#d2e698}
+     * @param {string} [opts.transition.id] The ID of the issue transition. Required when specifying a transition to undertake. 
      * @param [callback] Called when the transitions are retrieved.
      * @return {Promise} Resolved when the transitions are retrieved.
      */
     this.transitionIssue = function (opts, callback) {
-        if (!opts.transition) {
-            throw new Error(errorStrings.NO_TRANSITION_ERROR);
-        }
-
         var options;
         if(!opts.transition.transition) { // To keep backwards compatibility
             options = this.buildRequestOptions(opts, '/transitions', 'POST', opts);
