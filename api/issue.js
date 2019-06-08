@@ -340,7 +340,6 @@ function IssueClient(jiraClient) {
      * See {@link https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/}
      * @method assignIssue
      * @memberof IssueClient#
-     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an           issueId or issueKey property; issueId will be used over issueKey if both are present.
      * @param {Object} opts use assignee name or accountId to assign the issue 
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
