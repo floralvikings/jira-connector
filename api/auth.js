@@ -30,7 +30,7 @@ function AuthClient(jiraClient) {
             followAllRedirects: true
         };
 
-        return this.jiraClient.makeRequest(options, callback), 'User logged out.';
+        return this.jiraClient.makeRequest(options, callback, 'User logged out.');
     };
 
     /**
