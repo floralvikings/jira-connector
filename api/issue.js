@@ -353,7 +353,7 @@ function IssueClient(jiraClient) {
         if (!(typeof assigneeIdOrName === "string" && assigneeIdOrName.length || assigneeIdOrName === null)) {
             throw new Error(errorStrings.NO_ASSIGNEE_ERROR);
         }
-        var params = opts.accountId ? {accountId: opts.accountId} : {assignee: opts.assignee}
+        var params = opts.accountId ? {accountId: opts.accountId} : {name: opts.assignee}
         var options = this.buildRequestOptions(opts, '/assignee', 'PUT', params);
 
         return this.jiraClient.makeRequest(options, callback, 'Issue Assigned');
