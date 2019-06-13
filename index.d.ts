@@ -1,4 +1,5 @@
 import { Epic } from './api/epic.d.ts';
+import { Issue } from './api/issue.d.ts';
 
 export = JiraClient;
 
@@ -47,7 +48,7 @@ declare class JiraClient {
     public group: any;
     public groupUserPicker: any;
     public groups: any;
-    public issue: any;
+    public issue: Issue;
     public issueLink: any;
     public issueLinkType: any;
     public issueType: any;

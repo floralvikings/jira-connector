@@ -350,11 +350,11 @@ function IssueClient(jiraClient) {
      * @return {Promise} Resolved when the issue has been assigned.
      */
     this.assignIssue = function (opts, callback) {
-        var assigneeIdOrName =  opts.accountId || opts.assignee;
+        var assigneeIdOrName = opts.accountId || opts.assignee;
         if (!(typeof assigneeIdOrName === "string" && assigneeIdOrName.length || assigneeIdOrName === null)) {
             throw new Error(errorStrings.NO_ASSIGNEE_ERROR);
         }
-        var params = opts.accountId ? {accountId: opts.accountId} : {name: opts.assignee}
+        var params = opts.accountId ? { accountId: opts.accountId } : { name: opts.assignee }
         var options = this.buildRequestOptions(opts, '/assignee', 'PUT', params);
 
         return this.jiraClient.makeRequest(options, callback, 'Issue Assigned');
@@ -879,19 +879,34 @@ function IssueClient(jiraClient) {
      *     remaining estimate field. e.g. "2d"
      * @param {string} [opts.reduceBy] (required when "manual" is selected for adjustEstimate) the amount to reduce the
      *     remaining estimate by e.g. "2d"
-     * @param {Object} opts.worklog See {@link: https://docs.atlassian.com/jira/REST/latest/#d2e1106}
      * @param [callback] Called after the worklog is added.
      * @return {Promise} Resolved after the worklog is added.
      */
     this.addWorkLog = function (opts, callback) {
-        if (!opts.worklog) {
-            throw new Error(errorStrings.NO_WORKLOG_ERROR);
-        }
-        var options = this.buildRequestOptions(opts, '/worklog', 'POST', opts.worklog, {
-            newEstimate: opts.newEstimate,
-            reduceBy: opts.reduceBy,
-            adjustEstimate: opts.adjustEstimate
-        });
+        var options = {
+            uri: this.jiraClient.buildURL('issue/' + opts.issueId || opts.issueKey + '/worklog'),
+            method: 'POST',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                notifyUsers: opts.notifyUsers,
+                adjustEstimate: opts.adjustEstimate,
+                newEstimate: opts.newEstimate,
+                reduceBy: opts.reduceBy,
+                expand: opts.expand,
+                overrideEditableFlag: opts.overrideEditableFlag
+            },
+            body: Object.assign(opts, {
+                issueId: undefined,
+                issueKey: undefined,
+                notifyUsers: undefined,
+                adjustEstimate: undefined,
+                newEstimate: undefined,
+                reduceBy: undefined,
+                expand: undefined,
+                overrideEditableFlag: undefined
+            })
+        };
 
         return this.jiraClient.makeRequest(options, callback, 'Worklog Added');
     };
@@ -910,10 +925,15 @@ function IssueClient(jiraClient) {
      * @return {Promise} Resolved after the worklog is retrieved.
      */
     this.getWorkLog = function (opts, callback) {
-        if (!opts.worklogId) {
-            throw new Error(errorStrings.NO_WORKLOG_ID_ERROR);
-        }
-        var options = this.buildRequestOptions(opts, '/worklog/' + opts.worklogId, 'GET');
+        var options = {
+            uri: this.jiraClient.buildURL('issue/' + opts.issueId || opts.issueKey + '/worklog/' + opts.id || opts.worklogId),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                expand: opts.expand
+            }
+        };
 
         return this.jiraClient.makeRequest(options, callback);
     };
@@ -927,7 +947,7 @@ function IssueClient(jiraClient) {
      *     issueKey property; issueId will be used over issueKey if both are present.
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param {string} opts.worklogId The id of the work log to retrieve.
+     * @param {string} opts.id The id of the work log to retrieve.
      * @param {string} [opts.adjustEstimate] Allows you to provide specific instructions to update the remaining time
      *     estimate of the issue. Valid values are
      *     * "new" - sets the estimate to a specific value
@@ -941,16 +961,28 @@ function IssueClient(jiraClient) {
      * @return {Promise} Resolved after the worklog is updated.
      */
     this.updateWorkLog = function (opts, callback) {
-        if (!opts.worklogId) {
-            throw new Error(errorStrings.NO_WORKLOG_ID_ERROR);
-        } else if (!opts.worklog) {
-            throw new Error(errorStrings.NO_WORKLOG_ERROR);
-        }
-
-        var options = this.buildRequestOptions(opts, '/worklog/' + opts.worklogId, 'PUT', opts.worklog, {
-            newEstimate: opts.newEstimate,
-            adjustEstimate: opts.adjustEstimate
-        });
+        var options = {
+            uri: this.jiraClient.buildURL('issue/' + opts.issueId || opts.issueKey + '/worklog/' + opts.id || opts.worklogId),
+            method: 'PUT',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                notifyUsers: opts.notifyUsers,
+                adjustEstimate: opts.adjustEstimate,
+                newEstimate: opts.newEstimate,
+                expand: opts.expand,
+                overrideEditableFlag: opts.overrideEditableFlag
+            },
+            body: Object.assign(opts, {
+                issueId: undefined,
+                issueKey: undefined,
+                notifyUsers: undefined,
+                adjustEstimate: undefined,
+                newEstimate: undefined,
+                expand: undefined,
+                overrideEditableFlag: undefined
+            })
+        };
 
         return this.jiraClient.makeRequest(options, callback);
     };
@@ -964,7 +996,7 @@ function IssueClient(jiraClient) {
      *     issueKey property; issueId will be used over issueKey if both are present.
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param {string} opts.worklogId The id of the work log to delete.
+     * @param {string} opts.id The id of the work log to delete.
      * @param {string} [opts.adjustEstimate] Allows you to provide specific instructions to update the remaining time
      *     estimate of the issue. Valid values are
      *     * "new" - sets the estimate to a specific value
@@ -980,14 +1012,20 @@ function IssueClient(jiraClient) {
      * @return {Promise} Resolved after the work log is deleted.
      */
     this.deleteWorkLog = function (opts, callback) {
-        if (!opts.worklogId) {
-            throw new Error(errorStrings.NO_WORKLOG_ID_ERROR);
-        }
-        var options = this.buildRequestOptions(opts, '/worklog/' + opts.worklogId, 'DELETE', null, {
-            newEstimate: opts.newEstimate,
-            increaseBy: opts.increaseBy,
-            adjustEstimate: opts.adjustEstimate
-        });
+        var options = {
+            uri: this.jiraClient.buildURL('issue/' + opts.issueId || opts.issueKey + '/worklog/' + opts.id || opts.worklogId),
+            method: 'DELETE',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                notifyUsers: opts.notifyUsers,
+                adjustEstimate: opts.adjustEstimate,
+                newEstimate: opts.newEstimate,
+                increaseBy: opts.increaseBy,
+                overrideEditableFlag: opts.overrideEditableFlag
+            }
+        };
+
         return this.jiraClient.makeRequest(options, callback, 'Work Log Deleted');
     };
 
