@@ -1,3 +1,5 @@
+import { Backlog } from './api/backlog.d.ts';
+import { Board } from './api/board.d.ts';
 import { Epic } from './api/epic.d.ts';
 
 export = JiraClient;
@@ -22,7 +24,7 @@ interface IConfig {
         token_secret: string;
     }
     cookie_jar?: any;
-    promise?: PromiseLike<any>;
+    promise?: PromiseLike<any> | any;
     request?: any;
     rejectUnauthorized?: any;
 }
@@ -35,8 +37,8 @@ declare class JiraClient {
     public auditing: any;
     public auth: any;
     public avatar: any;
-    public backlog: any;
-    public board: any;
+    public backlog: Backlog;
+    public board: Board;
     public comment: any;
     public component: any;
     public customFieldOption: any;

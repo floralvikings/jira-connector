@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 module.exports = AgileBoardClient;
 
@@ -15,7 +15,7 @@ function AgileBoardClient(jiraClient) {
    *
    * @method getAllBoards
    * @memberOf AgileBoardClient#
-   * @param opts The request options to send to the Jira API
+   * @param {Object} [opts] The request options to send to the Jira API
    * @param {string} [opts.type] Limits returning boards of a specific type: `scrum` or `kanban`.
    * @param {number} [opts.startAt] The index of the first dashboard to return (0-based). must be 0 or a multiple of
    *     maxResults
@@ -41,18 +41,20 @@ function AgileBoardClient(jiraClient) {
    * @param {function} [callback] Called when the dashboards have been retrieved.
    * @return {Promise} Resolved when the dashboards have been retrieved.
    */
-  this.getAllBoards = function(opts, callback) {
+  this.getAllBoards = function (opts, callback) {
+    opts = opts || {};
+
     var options = {
-      uri: this.jiraClient.buildAgileURL("/board"),
-      method: "GET",
+      uri: this.jiraClient.buildAgileURL('/board'),
+      method: 'GET',
       json: true,
       followAllRedirects: true,
       qs: {
-        type: opts.type,
         startAt: opts.startAt,
+        maxResults: opts.maxResults,
+        type: opts.type,
         name: opts.name,
         projectKeyOrId: opts.projectKeyOrId,
-        maxResults: opts.maxResults,
         accountIdLocation: opts.accountIdLocation,
         userkeyLocation: opts.userkeyLocation,
         usernameLocation: opts.usernameLocation,
@@ -84,10 +86,10 @@ function AgileBoardClient(jiraClient) {
    * @param {function} [callback] Called when the sprint has been created.
    * @return {Promise} Resolved when the sprint has been created.
    */
-  this.createBoard = function(name, type, filterId, location, callback) {
+  this.createBoard = function (name, type, filterId, location, callback) {
     var options = {
-      uri: this.jiraClient.buildAgileURL("/board"),
-      method: "POST",
+      uri: this.jiraClient.buildAgileURL('/board'),
+      method: 'POST',
       followAllRedirects: true,
       json: true,
       body: {
@@ -95,6 +97,22 @@ function AgileBoardClient(jiraClient) {
         type,
         filterId,
         location
+      }
+    };
+
+    return this.jiraClient.makeRequest(options, callback);
+  };
+
+  // TODO add JsDoc
+  this.getBoardByFilterId = function (opts, callback) {
+    var options = {
+      uri: this.jiraClient.buildAgileURL('board/filter/' + opts.filterId),
+      method: 'GET',
+      followAllRedirects: true,
+      json: true,
+      qs: {
+        startAt: opts.startAt,
+        maxResults: opts.maxResults
       }
     };
 
@@ -111,17 +129,12 @@ function AgileBoardClient(jiraClient) {
    * @param {function} [callback] Called when the dashboard has been retrieved
    * @return {Promise} Resolved when the dashboard has been retrieved
    */
-  this.getBoard = function(opts, callback) {
+  this.getBoard = function (opts, callback) {
     var options = {
-      uri: this.jiraClient.buildAgileURL("/board/" + opts.boardId),
-      method: "GET",
+      uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId),
+      method: 'GET',
       json: true,
       followAllRedirects: true,
-      qs: {
-        filter: opts.filter,
-        startAt: opts.startAt,
-        maxResults: opts.maxResults
-      }
     };
 
     return this.jiraClient.makeRequest(options, callback);
@@ -139,8 +152,8 @@ function AgileBoardClient(jiraClient) {
    */
   this.deleteBoard = function (opts, callback) {
     var options = {
-      uri: this.jiraClient.buildAgileURL("/board/" + opts.boardId),
-      method: "DELETE",
+      uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId),
+      method: 'DELETE',
       json: true,
       followAllRedirects: true
     };
@@ -168,17 +181,17 @@ function AgileBoardClient(jiraClient) {
    * @param {function} [callback] Called when the backlog issues have been retrieved.
    * @return {Promise} Resolved when the backlog issues have been retrieved.
    */
-  this.getIssuesForBacklog = function(opts, callback) {
+  this.getIssuesForBacklog = function (opts, callback) {
     let fields;
 
     if (opts.fields) {
-      if (typeof opts.fields === "string") fields = opts.fields; // backward compatibility
-      else fields = opts.fields.join(",");
+      if (typeof opts.fields === 'string') fields = opts.fields; // backward compatibility
+      else fields = opts.fields.join(',');
     }
 
     var options = {
-      uri: this.jiraClient.buildAgileURL("/board/" + opts.boardId + "/backlog"),
-      method: "GET",
+      uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/backlog'),
+      method: 'GET',
       json: true,
       followAllRedirects: true,
       qs: {
@@ -186,7 +199,8 @@ function AgileBoardClient(jiraClient) {
         maxResults: opts.maxResults,
         jql: opts.jql,
         validateQuery: opts.validateQuery,
-        fields
+        fields: fields,
+        expand: opts.expand
       }
     };
 
@@ -203,12 +217,12 @@ function AgileBoardClient(jiraClient) {
    * @param {function} [callback] Called when the board configuration has been retrieved.
    * @return {Promise} Resolved when the board configuration has been retrieved.
    */
-  this.getConfiguration = function(opts, callback) {
+  this.getConfiguration = function (opts, callback) {
     var options = {
       uri: this.jiraClient.buildAgileURL(
-          "/board/" + opts.boardId + "/configuration"
+        '/board/' + opts.boardId + '/configuration'
       ),
-      method: "GET",
+      method: 'GET',
       json: true,
       followAllRedirects: true
     };
@@ -235,9 +249,9 @@ function AgileBoardClient(jiraClient) {
   this.getEpics = function (opts, callback) {
     var options = {
       uri: this.jiraClient.buildAgileURL(
-          "/board/" + opts.boardId + "/epic"
+        '/board/' + opts.boardId + '/epic'
       ),
-      method: "GET",
+      method: 'GET',
       json: true,
       followAllRedirects: true,
       qs: {
@@ -275,9 +289,9 @@ function AgileBoardClient(jiraClient) {
   this.getIssuesWithoutEpic = function (opts, callback) {
     var options = {
       uri: this.jiraClient.buildAgileURL(
-          "/board/" + opts.boardId + "/epic/none/issue"
+        '/board/' + opts.boardId + '/epic/none/issue'
       ),
-      method: "GET",
+      method: 'GET',
       json: true,
       followAllRedirects: true,
       qs: {
@@ -289,6 +303,55 @@ function AgileBoardClient(jiraClient) {
         expand: opts.expand
       }
     };
+
+    return this.jiraClient.makeRequest(options, callback);
+  };
+
+  // TODO add JsDoc
+  this.getIssuesForEpic = function (opts, callback) {
+    var options = {
+      uri: 'board' + opts.boardId + '/epic/' + opts.epicId + '/issue',
+      method: 'GET',
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        startAt: opts.startAt,
+        maxResults: opts.maxResults,
+        jql: opts.jql,
+        validateQuery: opts.validateQuery,
+        fields: opts.fields ? opts.fields.join(',') : undefined,
+        expand: opts.expand
+      }
+    };
+
+    return this.jiraClient.makeRequest(options, callback);
+  };
+
+  // TODO add JsDoc
+  this.getFeaturesForBoard = function (opts, callback) {
+    var options = {
+      uri: 'board' + opts.boardId + '/features',
+      method: 'GET',
+      json: true,
+      followAllRedirects: true
+    }
+
+    return this.jiraClient.makeRequest(options, callback);
+  };
+
+  // TODO add JsDoc
+  this.toggleFeatures = function (opts, callback) {
+    var options = {
+      uri: 'board' + opts.boardId + '/features',
+      method: 'PUT',
+      json: true,
+      followAllRedirects: true,
+      body: {
+        boardId: opts.boardIdBody,
+        feature: opts.feature,
+        enabling: opts.enabling
+      }
+    }
 
     return this.jiraClient.makeRequest(options, callback);
   };
@@ -316,16 +379,17 @@ function AgileBoardClient(jiraClient) {
    * @param [callback] Called when the issues have been retrieved.
    * @return {Promise} Resolved when the issues have been retrieved.
    */
-  this.getIssuesForBoard = function(opts, callback) {
+  this.getIssuesForBoard = function (opts, callback) {
     var options = {
-      uri: this.jiraClient.buildAgileURL("/board/" + opts.boardId + "/issue"),
-      method: "GET",
+      uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/issue'),
+      method: 'GET',
       json: true,
       followAllRedirects: true,
       qs: {
         startAt: opts.startAt,
         maxResults: opts.maxResults,
         jql: opts.jql,
+        validateQuery: opts.validateQuery,
         fields: opts.fields ? opts.fields.join(',') : undefined,
         expand: opts.expand
       }
@@ -334,8 +398,126 @@ function AgileBoardClient(jiraClient) {
     return this.jiraClient.makeRequest(options, callback);
   };
 
+  // TODO add JsDoc
+  this.moveIssuesToBoard = function (opts, callback) {
+    var options = {
+      uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/issue'),
+      method: 'POST',
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        issues: opts.issues ? opts.issues.join(',') : undefined,
+        rankBeforeIssue: opts.rankBeforeIssue,
+        rankAfterIssue: opts.rankAfterIssue,
+        rankCustomFieldId: opts.rankCustomFieldId
+      }
+    };
+
+    return this.jiraClient.makeRequest(options, callback);
+  };
+
+  // TODO add JsDoc
+  this.getProjects = function (opts, callback) {
+    var options = {
+      uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/project'),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        startAt: opts.startAt,
+        maxResults: opts.maxResults
+      }
+    };
+
+    return this.jiraClient.makeRequest(options, callback);
+  };
+
+  // TODO add JsDoc
+  this.getProjectsFull = function (opts, callback) {
+    var options = {
+      uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/project/full'),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true
+    };
+
+    return this.jiraClient.makeRequest(options, callback);
+  };
+
+  this.getBoardPropertyKeys = function () {
+    var options = {
+      uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/properties'),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true
+    };
+
+    return this.jiraClient.makeRequest(options, callback);
+  }
+
+  this.getBoardProperty = function () {
+    var options = {
+      uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/properties/' + opts.propertyKey),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true
+    };
+
+    return this.jiraClient.makeRequest(options, callback);
+  }
+
+  this.setBoardProperty = function () {
+    var options = {
+      uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/properties/' + opts.propertyKey),
+      method: 'PUT',
+      json: true,
+      followAllRedirects: true
+    };
+
+    return this.jiraClient.makeRequest(options, callback);
+  }
+
+  this.deleteBoardProperty = function () {
+    var options = {
+      uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/properties/' + opts.propertyKey),
+      method: 'DELETE',
+      json: true,
+      followAllRedirects: true
+    };
+
+    return this.jiraClient.makeRequest(options, callback);
+  }
+
+  this.getAllQuickFilters = function () {
+    var options = {
+      uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/quickfilter'),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        startAt: params.startAt,
+        maxResults: params.maxResults
+      }
+    };
+
+    return this.jiraClient.makeRequest(options, callback);
+  }
+
+  this.getQuickFilter = function () {
+    var options = {
+      uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/quickfilter/' + opts.quickFilterId),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true
+    };
+
+    return this.jiraClient.makeRequest(options, callback);
+  }
+
   /**
    * Get a list of sprints associated with an agile board
+   * 
+   * @deprecated Use board.getAllSprints
    *
    * @method getSprintsForBoard
    * @memberOf AgileBoardClient#
@@ -352,20 +534,8 @@ function AgileBoardClient(jiraClient) {
    * @param callback Called when the sprints have been retrieved.
    * @return {Promise} Resolved when the sprints have been retrieved.
    */
-  this.getSprintsForBoard = function(opts, callback) {
-    var options = {
-      uri: this.jiraClient.buildAgileURL("/board/" + opts.boardId + "/sprint"),
-      method: "GET",
-      json: true,
-      followAllRedirects: true,
-      qs: {
-        startAt: opts.startAt,
-        maxResults: opts.maxResults,
-        state: opts.state
-      }
-    };
-
-    return this.jiraClient.makeRequest(options, callback);
+  this.getSprintsForBoard = function (opts, callback) {
+    return this.getAllSprints(opts, callback);
   };
 
   /**
@@ -385,10 +555,10 @@ function AgileBoardClient(jiraClient) {
    * @param callback Called when the sprints have been retrieved.
    * @return {Promise} Resolved when the sprints have been retrieved.
    */
-  this.getProjectsForBoard = function(opts, callback) {
+  this.getProjectsForBoard = function (opts, callback) {
     var options = {
-      uri: this.jiraClient.buildAgileURL("/board/" + opts.boardId + "/project"),
-      method: "GET",
+      uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/project'),
+      method: 'GET',
       json: true,
       followAllRedirects: true,
       qs: {
@@ -410,12 +580,66 @@ function AgileBoardClient(jiraClient) {
    * @param {function} [callback] Called when the sprints have been retrieved.
    * @return {Promise} Resolved when the sprints have been retrieved.
    */
-  this.getReportsForBoard = function(opts, callback) {
+  this.getReportsForBoard = function (opts, callback) {
     var options = {
-      uri: this.jiraClient.buildAgileURL("/board/" + opts.boardId + "/reports"),
-      method: "GET",
+      uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/reports'),
+      method: 'GET',
       json: true,
       followAllRedirects: true
+    };
+
+    return this.jiraClient.makeRequest(options, callback);
+  };
+
+  // TODO add JsDoc
+  this.getAllSprints = function (opts, callback) {
+    var options = {
+      uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/sprint'),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        startAt: opts.startAt,
+        maxResults: opts.maxResults,
+        state: opts.state
+      }
+    };
+
+    return this.jiraClient.makeRequest(options, callback);
+  };
+
+  // TODO add JsDoc
+  this.getIssuesForSprint = function () {
+    var options = {
+      uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/sprint/' + opts.sprintId + '/issue'),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        startAt: opts.startAt,
+        maxResults: opts.maxResults,
+        jql: opts.jql,
+        validateQuery: opts.validateQuery,
+        fields: opts.fields ? opts.fields.join(',') : undefined,
+        expand: opts.expand
+      }
+    };
+
+    return this.jiraClient.makeRequest(options, callback);
+  };
+
+  // TODO add JsDoc
+  this.getAllVersions = function (opts, callback) {
+    var options = {
+      uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/version'),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        startAt: opts.startAt,
+        maxResults: opts.maxResults,
+        released: opts.released
+      }
     };
 
     return this.jiraClient.makeRequest(options, callback);
