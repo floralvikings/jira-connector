@@ -920,7 +920,7 @@ function IssueClient(jiraClient) {
      *     issueKey property; issueId will be used over issueKey if both are present.
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param {string} opts.worklogId The id of the work log to retrieve.
+     * @param {string} opts.id The id of the work log to retrieve.
      * @param [callback] Called after the worklog is retrieved.
      * @return {Promise} Resolved after the worklog is retrieved.
      */
