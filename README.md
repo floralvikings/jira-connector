@@ -270,15 +270,30 @@ is still valid!
 * board (/rest/agile/1.0/board)
   * getAllBoards
   * createBoard
+  * getBoardByFilterId
   * getBoard
   * deleteBoard
   * getIssuesForBacklog
   * getConfiguration
   * getEpics
   * getIssuesWithoutEpic
+  * getIssuesForEpic
+  * getFeaturesForBoard
+  * toggleFeatures
   * getIssuesForBoard
+  * moveIssuesToBoard
+  * getProjects
+  * getProjectsFull
+  * getBoardPropertyKeys
+  * getBoardProperty
+  * setBoardProperty
+  * deleteBoardProperty
+  * getAllQuickFilters
+  * getQuickFilter
   * getReportsForBoard
-  * getSprintsForBoard
+  * getAllSprints
+  * getIssuesForSprint
+  * getAllVersions
 * comment (/rest/api/2/comment)
   * getCommentPropertyKeys
   * setCommentProperty
