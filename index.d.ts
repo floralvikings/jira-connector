@@ -1,7 +1,7 @@
-import { Backlog } from './api/backlog.d.ts';
-import { Board } from './api/board.d.ts';
-import { Epic } from './api/epic.d.ts';
-import { Issue } from './api/issue.d.ts';
+import { Backlog } from './api/backlog';
+import { Board } from './api/board';
+import { Epic } from './api/epic';
+import { Issue } from './api/issue';
 
 export = JiraClient;
 
