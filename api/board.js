@@ -199,7 +199,7 @@ function AgileBoardClient(jiraClient) {
         maxResults: opts.maxResults,
         jql: opts.jql,
         validateQuery: opts.validateQuery,
-        fields: opts.fields ? opts.fields.join(',') : undefined,
+        fields: fields,
         expand: opts.expand
       }
     };
