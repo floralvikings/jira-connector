@@ -278,6 +278,45 @@
 
         <tr>
             
+                <td class="name"><code>strictSSL</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    true
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>version</code></td>
             
 
@@ -311,22 +350,29 @@
             
 
             <td class="description last"><p>The version of the Jira API to which you will be connecting.  Currently, only
-    version 2 is supported.</p></td>
+version 2 is supported.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>auth</code></td>
+                <td class="name"><code>basic_auth</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
             
             </td>
 
             
                 <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
                 
@@ -342,14 +388,35 @@
             
 
             <td class="description last"><p>The authentication information used tp connect to Jira. Must contain EITHER username and password
-    OR oauth information.  Oauth information will be used over username/password authentication.</p></td>
-        </tr>
+OR oauth information.  Oauth information will be used over username/password authentication.</p>
+                <h6>Properties</h6>
+                
 
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>basic_auth.username</code></td>
+                <td class="name"><code>username</code></td>
             
 
             <td class="type">
@@ -373,21 +440,17 @@
                 </td>
             
 
-            
-                <td class="default">
-                
-                </td>
             
 
             <td class="description last"><p>The username of the user that will be authenticated. MUST be included
-    if using username and password authentication.</p></td>
+if using username and password authentication.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>basic_auth.password</code></td>
+                <td class="name"><code>password</code></td>
             
 
             <td class="type">
@@ -412,13 +475,16 @@
             
 
             
-                <td class="default">
-                
-                </td>
-            
 
             <td class="description last"><p>The password of the user that will be authenticated. MUST be included
-    if using username and password authentication.</p></td>
+if using username and password authentication.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -456,7 +522,7 @@
             
 
             <td class="description last"><p>The consumer key used in the Jira Application Link for oauth
-    authentication.  MUST be included if using OAuth.</p></td>
+authentication.  MUST be included if using OAuth.</p></td>
         </tr>
 
     
@@ -531,7 +597,7 @@
             
 
             <td class="description last"><p>The VERIFIED token used to connect to the Jira API.  MUST be included if using
-    OAuth.</p></td>
+OAuth.</p></td>
         </tr>
 
     
@@ -643,7 +709,7 @@
             
 
             <td class="description last"><p>Any function (constructor) compatible with Promise (bluebird, Q,...).
-     Default - native Promise.</p></td>
+Default - native Promise.</p></td>
         </tr>
 
     
@@ -681,7 +747,7 @@
             
 
             <td class="description last"><p>Any function (constructor) compatible with Request (request, supertest,...).
-     Default - require('request').</p></td>
+Default - require('request').</p></td>
         </tr>
 
     
@@ -1209,6 +1275,29 @@
 
         <tr>
             
+                <td class="name"><code>labels</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="LabelsClient.html">LabelsClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>licenseRole</code></td>
             
 
@@ -1347,6 +1436,52 @@
 
         <tr>
             
+                <td class="name"><code>permissions</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="PermissionsClient.html">PermissionsClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>permissionScheme</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="PermissionSchemeClient.html">PermissionSchemeClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>priority</code></td>
             
 
@@ -1469,6 +1604,29 @@
             
                 
 <span class="param-type"><a href="ResolutionClient.html">ResolutionClient</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>roles</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="RoleClient.html">RoleClient</a></span>
 
 
             
@@ -1816,7 +1974,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line59">line 59</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line65">line 65</a>
     </li></ul></dd>
     
 
@@ -1826,6 +1984,8 @@
 
     
 </dl>
+
+
 
 
 
@@ -1870,7 +2030,7 @@
     
 
     
-    <h4 class="name" id="buildAgileURL"><span class="type-signature"></span>buildAgileURL<span class="signature">(path)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    <h4 class="name" id="buildAgileURL"><span class="type-signature"></span>buildAgileURL<span class="signature">(path, forcedVersion<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {string}</span></h4>
     
 
     
@@ -1902,6 +2062,8 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1921,6 +2083,14 @@
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1929,155 +2099,39 @@
         </tr>
 
     
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line260">line 260</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>The constructed URL.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="buildAuthURL"><span class="type-signature"></span>buildAuthURL<span class="signature">(path)</span><span class="type-signature"> &rarr; {string}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Simple utility to build a REST endpoint URL for the Jira Auth API.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
 
         <tr>
             
-                <td class="name"><code>path</code></td>
+                <td class="name"><code>forcedVersion</code></td>
             
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+            
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The path of the URL without concern for the root of the REST API.</p></td>
+            <td class="description last"><p>Use this param to force a particular version</p></td>
         </tr>
 
     
@@ -2141,6 +2195,8 @@
 
 
 
+
+
 <h5>Returns:</h5>
 
         
@@ -2174,7 +2230,207 @@
     
 
     
-    <h4 class="name" id="buildURL"><span class="type-signature"></span>buildURL<span class="signature">(path)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    <h4 class="name" id="buildAuthURL"><span class="type-signature"></span>buildAuthURL<span class="signature">(path, forcedVersion<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Simple utility to build a REST endpoint URL for the Jira Auth API.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>path</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The path of the URL without concern for the root of the REST API.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>forcedVersion</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Use this param to force a particular version</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line303">line 303</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The constructed URL.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="buildURL"><span class="type-signature"></span>buildURL<span class="signature">(path, forcedVersion<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {string}</span></h4>
     
 
     
@@ -2206,6 +2462,8 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -2226,10 +2484,54 @@
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The path of the URL without concern for the root of the REST API.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>forcedVersion</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Use this param to force a particular version</p></td>
         </tr>
 
     
@@ -2270,7 +2572,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line239">line 239</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line259">line 259</a>
     </li></ul></dd>
     
 
@@ -2280,6 +2582,8 @@
 
     
 </dl>
+
+
 
 
 
@@ -2326,7 +2630,7 @@
     
 
     
-    <h4 class="name" id="buildWebhookURL"><span class="type-signature"></span>buildWebhookURL<span class="signature">(path)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    <h4 class="name" id="buildWebhookURL"><span class="type-signature"></span>buildWebhookURL<span class="signature">(path, forcedVersion<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {string}</span></h4>
     
 
     
@@ -2358,6 +2662,8 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -2378,10 +2684,54 @@
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The path of the URL without concern for the root of the REST API.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>forcedVersion</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Use this param to force a particular version</p></td>
         </tr>
 
     
@@ -2422,7 +2772,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line302">line 302</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line325">line 325</a>
     </li></ul></dd>
     
 
@@ -2432,6 +2782,8 @@
 
     
 </dl>
+
+
 
 
 
@@ -2645,7 +2997,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line323">line 323</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line347">line 347</a>
     </li></ul></dd>
     
 
@@ -2655,6 +3007,8 @@
 
     
 </dl>
+
+
 
 
 
@@ -2711,13 +3065,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AgileBoardClient.html">AgileBoardClient</a></li><li><a href="AgileSprintClient.html">AgileSprintClient</a></li><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WebhookClient.html">WebhookClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li><li><a href="WorkLogClient.html">WorkLogClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul><h3>Classes</h3><ul><li><a href="AgileBacklogClient.html">AgileBacklogClient</a></li><li><a href="AgileBoardClient.html">AgileBoardClient</a></li><li><a href="AgileEpicClient.html">AgileEpicClient</a></li><li><a href="AgileSprintClient.html">AgileSprintClient</a></li><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LabelsClient.html">LabelsClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PermissionSchemeClient.html">PermissionSchemeClient</a></li><li><a href="PermissionsClient.html">PermissionsClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="RoleClient.html">RoleClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WebhookClient.html">WebhookClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li><li><a href="WorkLogClient.html">WorkLogClient</a></li></ul><h3>Global</h3><ul><li><a href="global.html#getIssuesWithoutEpic">getIssuesWithoutEpic</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jan 30 2018 10:10:04 GMT-0600 (CST)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.2</a> on Thu Jun 20 2019 10:20:56 GMT+0300 (Moscow Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

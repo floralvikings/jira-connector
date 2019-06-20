@@ -45,7 +45,7 @@ function IssueTypeClient(jiraClient) {
      * @method getAllIssueTypes
      * @memberOf IssueTypeClient#
      * @param opts Ignored
-     * @param [callback] Called when the issue types have been retrieved.
+     * @param {Function} [callback] Called when the issue types have been retrieved.
      * @return {Promise} Resolved when the issue types have been retrieved.
      */
     this.getAllIssueTypes = function (opts, callback) {
@@ -60,18 +60,124 @@ function IssueTypeClient(jiraClient) {
     };
 
     /**
+     * Creates an issue type from a JSON representation and adds the issue newly
+     * created issue type to the default issue type scheme.
+     *
+     * @method createIssueType
+     * @memberOf IssueTypeClient#
+     * @param {Object} issueType Object containing details of the new issueType.
+     *      Schema:
+     *      * "name" - The name of the issue type
+     *      * "description" - Some description about the issue type
+     *      * "type" - Can have either "subtask" or "standard" as value
+     * @param {Function} [callback] Called when the issue type has been created.
+     * @return {Promise} Resolved when the issue type has been created.
+     */
+    this.createIssueType = function (issueType, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/issuetype'),
+            method: 'POST',
+            json: true,
+            followAllRedirects: true,
+            body: issueType,
+        };
+
+        return this.jiraClient.makeRequest(options, callback);
+    };
+    
+    /**
      * Get a full representation of the issue type that has the given id.
      *
      * @method getIssueType
      * @memberOf IssueTypeClient#
-     * @param opts The options sent to the Jira API
-     * @param opts.issueTypeId A String containing an issue type id
-     * @param [callback] Called when the issue type has been retrieved.
+     * @param {Object} opts The options sent to the Jira API
+     * @param {String} opts.issueTypeId A String containing an issue type id
+     * @param {Function} [callback] Called when the issue type has been retrieved.
      * @return {Promise} Resolved when the issue type has been retrieved.
      */
     this.getIssueType = function (opts, callback) {
         var options = {
             uri: this.jiraClient.buildURL('/issuetype/' + opts.issueTypeId),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true
+        };
+
+        return this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
+     * Deletes the specified issue type.
+     * If the issue type has any associated issues, these issues will be
+     * migrated to the alternative issue type specified in the parameter.
+     * You can determine the alternative issue types by calling the /rest/api/2/issuetype/{id}/alternatives resource.
+     *
+     * @method deleteIssueType
+     * @memberOf IssueTypeClient#
+     * @param {Object} opts The options to send to the JIRA API
+     * @param {String} opts.issueTypeId ID of the issueType to be deleted.
+     * @param {String} opts.alternativeIssueTypeId the id of an issue type to which issues
+     *          associated with the removed issue type will be migrated.
+     * @param {Function} [callback] Called when the issue type has been deleted.
+     * @return {Promise} Resolved when the issue type has been deleted.
+     */
+    this.deleteIssueType = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/issuetype/' + opts.issueTypeId),
+            method: 'DELETE',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                alternativeIssueTypeId: opts.alternativeIssueTypeId,
+            },
+        };
+
+        return this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
+     * Updates the specified issue type from a JSON representation.
+     *
+     * @method updateIssueType
+     * @memberOf IssueTypeClient#
+     * @param {Object} opts The options sent to the Jira API
+     * @param {String} opts.issueTypeId ID of the issue type to update.
+     * @param {Object} opts.issueType Object containing details of the issueType to be updated.
+     *      Schema:
+     *      * "name" - The name of the issue type
+     *      * "description" - Some description about the issue type
+     *      * "avatarId" - Integer containing the avatar ID
+     * @param {Function} [callback] Called when the issue type has been updated.
+     * @return {Promise} Resolved when the issue type has been updated.
+     */
+    this.updateIssueType = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/issuetype/' + opts.issueTypeId),
+            method: 'PUT',
+            json: true,
+            followAllRedirects: true,
+            body: opts.issueType,
+        };
+
+        return this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
+     * Returns a list of all alternative issue types for the given issue type id.
+     * The list will contain these issues types, to which issues assigned to the given
+     * issue type can be migrated. The suitable alternatives are issue types which are
+     * assigned to the same workflow, the same field configuration and the same screen scheme.
+     *
+     * @method getAlternativeIssueTypes
+     * @memberOf IssueTypeClient#
+     * @param {Object} opts The options sent to the Jira API
+     * @param {String} opts.issueTypeId A String containing an issue type id
+     * @param {Function} [callback] Called when the issue type has been retrieved.
+     * @return {Promise} Resolved when the issue type has been retrieved.
+     */
+    this.getAlternativeIssueTypes = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/issuetype/' + opts.issueTypeId + '/alternatives'),
             method: 'GET',
             json: true,
             followAllRedirects: true
@@ -89,13 +195,13 @@ function IssueTypeClient(jiraClient) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AgileBoardClient.html">AgileBoardClient</a></li><li><a href="AgileSprintClient.html">AgileSprintClient</a></li><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WebhookClient.html">WebhookClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li><li><a href="WorkLogClient.html">WorkLogClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul><h3>Classes</h3><ul><li><a href="AgileBacklogClient.html">AgileBacklogClient</a></li><li><a href="AgileBoardClient.html">AgileBoardClient</a></li><li><a href="AgileEpicClient.html">AgileEpicClient</a></li><li><a href="AgileSprintClient.html">AgileSprintClient</a></li><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LabelsClient.html">LabelsClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PermissionSchemeClient.html">PermissionSchemeClient</a></li><li><a href="PermissionsClient.html">PermissionsClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="RoleClient.html">RoleClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WebhookClient.html">WebhookClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li><li><a href="WorkLogClient.html">WorkLogClient</a></li></ul><h3>Global</h3><ul><li><a href="global.html#getIssuesWithoutEpic">getIssuesWithoutEpic</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jan 30 2018 10:10:04 GMT-0600 (CST)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.2</a> on Thu Jun 20 2019 10:20:55 GMT+0300 (Moscow Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

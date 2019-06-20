@@ -142,7 +142,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line8">line 8</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line9">line 9</a>
     </li></ul></dd>
     
 
@@ -152,6 +152,8 @@
 
     
 </dl>
+
+
 
 
 
@@ -267,7 +269,7 @@
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-    issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -368,6 +370,9 @@
             
                 
 <span class="param-type">string</span>
+|
+
+<span class="param-type">Array.&lt;string></span>
 
 
             
@@ -461,7 +466,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line995">line 995</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1032">line 1032</a>
     </li></ul></dd>
     
 
@@ -471,6 +476,8 @@
 
     
 </dl>
+
+
 
 
 
@@ -588,7 +595,7 @@
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-       issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -782,7 +789,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line380">line 380</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line382">line 382</a>
     </li></ul></dd>
     
 
@@ -792,6 +799,8 @@
 
     
 </dl>
+
+
 
 
 
@@ -909,7 +918,7 @@
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-    issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -1103,7 +1112,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line801">line 801</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line800">line 800</a>
     </li></ul></dd>
     
 
@@ -1113,6 +1122,8 @@
 
     
 </dl>
+
+
 
 
 
@@ -1230,7 +1241,7 @@
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-    issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -1351,12 +1362,12 @@
             
 
             <td class="description last"><p>Allows you to provide specific instructions to update the remaining time
-    estimate of the issue. Valid values are</p>
-<pre class="prettyprint source"><code>* &quot;new&quot; - sets the estimate to a specific value
+estimate of the issue. Valid values are
+* &quot;new&quot; - sets the estimate to a specific value
 * &quot;leave&quot;- leaves the estimate as is
 * &quot;manual&quot; - specify a specific amount to increase remaining estimate by
 * &quot;auto&quot;- Default option. Will automatically adjust the value based on the
-     new timeSpent specified on the worklog</code></pre></td>
+new timeSpent specified on the worklog</p></td>
         </tr>
 
     
@@ -1390,7 +1401,7 @@
             
 
             <td class="description last"><p>(required when &quot;new&quot; is selected for adjustEstimate) the new value for the
-    remaining estimate field. e.g. &quot;2d&quot;</p></td>
+remaining estimate field. e.g. &quot;2d&quot;</p></td>
         </tr>
 
     
@@ -1424,38 +1435,7 @@
             
 
             <td class="description last"><p>(required when &quot;manual&quot; is selected for adjustEstimate) the amount to reduce the
-    remaining estimate by e.g. &quot;2d&quot;</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>worklog</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>See {@link: https://docs.atlassian.com/jira/REST/latest/#d2e1106}</p></td>
+remaining estimate by e.g. &quot;2d&quot;</p></td>
         </tr>
 
     
@@ -1531,7 +1511,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line863">line 863</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line862">line 862</a>
     </li></ul></dd>
     
 
@@ -1541,6 +1521,8 @@
 
     
 </dl>
+
+
 
 
 
@@ -1597,7 +1579,9 @@
 <div class="description">
     <p>Assigns an issue to a user. You can use this resource to assign issues when the user submitting the request has
 the assign permission but not the edit issue permission. If the name is &quot;-1&quot; automatic assignee is used. A null
-name will remove the assignee.</p>
+name will remove the assignee. or
+You can use accountId of the user whom to assign the issue.
+See <a href="https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/">https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/</a></p>
 </div>
 
 
@@ -1659,8 +1643,7 @@ name will remove the assignee.</p>
 
             
 
-            <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-       issueKey property; issueId will be used over issueKey if both are present.</p>
+            <td class="description last"><p>use assignee name or accountId to assign the issue</p>
                 <h6>Properties</h6>
                 
 
@@ -1769,6 +1752,8 @@ name will remove the assignee.</p>
             
                 <td class="attributes">
                 
+                    &lt;optional><br>
+                
 
                 
 
@@ -1778,8 +1763,40 @@ name will remove the assignee.</p>
 
             
 
-            <td class="description last"><p>The name of the user to whom to assign the issue. -1 for default, null for no
-    assignee.</p></td>
+            <td class="description last"><p>The name of the user to whom to assign the issue</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>accountId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The accountId of the user to whom to assign the issue. -1 for default, null for no assignee.</p></td>
         </tr>
 
     
@@ -1855,7 +1872,7 @@ name will remove the assignee.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line335">line 335</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line336">line 336</a>
     </li></ul></dd>
     
 
@@ -1865,6 +1882,8 @@ name will remove the assignee.</p>
 
     
 </dl>
+
+
 
 
 
@@ -2048,7 +2067,7 @@ IssueResource#createIssue(IssueUpdateBean)}</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line194">line 194</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line195">line 195</a>
     </li></ul></dd>
     
 
@@ -2058,6 +2077,8 @@ IssueResource#createIssue(IssueUpdateBean)}</p>
 
     
 </dl>
+
+
 
 
 
@@ -2253,7 +2274,7 @@ See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e398">https://docs.a
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line111">line 111</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line112">line 112</a>
     </li></ul></dd>
     
 
@@ -2263,6 +2284,8 @@ See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e398">https://docs.a
 
     
 </dl>
+
+
 
 
 
@@ -2381,7 +2404,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-    issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -2575,7 +2598,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line540">line 540</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line542">line 542</a>
     </li></ul></dd>
     
 
@@ -2585,6 +2608,8 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
 
     
 </dl>
+
+
 
 
 
@@ -2702,7 +2727,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-       issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -2896,7 +2921,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line451">line 451</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line453">line 453</a>
     </li></ul></dd>
     
 
@@ -2906,6 +2931,8 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
 
     
 </dl>
+
+
 
 
 
@@ -3024,7 +3051,7 @@ You cannot delete an issue without its subtasks also being deleted.</p>
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-       issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -3145,8 +3172,8 @@ You cannot delete an issue without its subtasks also being deleted.</p>
             
 
             <td class="description last"><p>&quot;a String of true or false indicating that any subtasks should also
-       be deleted. If the issue has no subtasks this parameter is ignored. If the issue has subtasks and this
-       parameter is missing or false, then the issue will not be deleted and an error will be returned.&quot;</p></td>
+be deleted. If the issue has no subtasks this parameter is ignored. If the issue has subtasks and this
+parameter is missing or false, then the issue will not be deleted and an error will be returned.&quot;</p></td>
         </tr>
 
     
@@ -3222,7 +3249,7 @@ You cannot delete an issue without its subtasks also being deleted.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line281">line 281</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line282">line 282</a>
     </li></ul></dd>
     
 
@@ -3232,6 +3259,8 @@ You cannot delete an issue without its subtasks also being deleted.</p>
 
     
 </dl>
+
+
 
 
 
@@ -3349,7 +3378,7 @@ You cannot delete an issue without its subtasks also being deleted.</p>
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-    issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -3543,7 +3572,7 @@ You cannot delete an issue without its subtasks also being deleted.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line579">line 579</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line581">line 581</a>
     </li></ul></dd>
     
 
@@ -3553,6 +3582,8 @@ You cannot delete an issue without its subtasks also being deleted.</p>
 
     
 </dl>
+
+
 
 
 
@@ -3670,7 +3701,7 @@ You cannot delete an issue without its subtasks also being deleted.</p>
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-    issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -3864,7 +3895,7 @@ You cannot delete an issue without its subtasks also being deleted.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line649">line 649</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line651">line 651</a>
     </li></ul></dd>
     
 
@@ -3874,6 +3905,8 @@ You cannot delete an issue without its subtasks also being deleted.</p>
 
     
 </dl>
+
+
 
 
 
@@ -3991,7 +4024,7 @@ You cannot delete an issue without its subtasks also being deleted.</p>
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-    issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -4085,7 +4118,7 @@ You cannot delete an issue without its subtasks also being deleted.</p>
 
         <tr>
             
-                <td class="name"><code>worklogId</code></td>
+                <td class="name"><code>id</code></td>
             
 
             <td class="type">
@@ -4143,12 +4176,12 @@ You cannot delete an issue without its subtasks also being deleted.</p>
             
 
             <td class="description last"><p>Allows you to provide specific instructions to update the remaining time
-    estimate of the issue. Valid values are</p>
-<pre class="prettyprint source"><code>* &quot;new&quot; - sets the estimate to a specific value
+estimate of the issue. Valid values are
+* &quot;new&quot; - sets the estimate to a specific value
 * &quot;leave&quot;- leaves the estimate as is
 * &quot;manual&quot; - specify a specific amount to increase remaining estimate by
 * &quot;auto&quot;- Default option. Will automatically adjust the value based on the
-     new timeSpent specified on the worklog</code></pre></td>
+new timeSpent specified on the worklog</p></td>
         </tr>
 
     
@@ -4182,7 +4215,7 @@ You cannot delete an issue without its subtasks also being deleted.</p>
             
 
             <td class="description last"><p>(required when &quot;new&quot; is selected for adjustEstimate) the new value for the
-    remaining estimate field. e.g. &quot;2d&quot;</p></td>
+remaining estimate field. e.g. &quot;2d&quot;</p></td>
         </tr>
 
     
@@ -4216,7 +4249,7 @@ You cannot delete an issue without its subtasks also being deleted.</p>
             
 
             <td class="description last"><p>(required when &quot;manual&quot; is selected for adjustEstimate) the amount to reduce
-    the remaining estimate by e.g. &quot;2d&quot;</p></td>
+the remaining estimate by e.g. &quot;2d&quot;</p></td>
         </tr>
 
     
@@ -4292,7 +4325,7 @@ You cannot delete an issue without its subtasks also being deleted.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line959">line 959</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line990">line 990</a>
     </li></ul></dd>
     
 
@@ -4302,6 +4335,8 @@ You cannot delete an issue without its subtasks also being deleted.</p>
 
     
 </dl>
+
+
 
 
 
@@ -4419,7 +4454,7 @@ You cannot delete an issue without its subtasks also being deleted.</p>
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-       issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -4644,7 +4679,7 @@ You cannot delete an issue without its subtasks also being deleted.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line426">line 426</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line428">line 428</a>
     </li></ul></dd>
     
 
@@ -4654,6 +4689,8 @@ You cannot delete an issue without its subtasks also being deleted.</p>
 
     
 </dl>
+
+
 
 
 
@@ -4778,7 +4815,7 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-       issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -4972,7 +5009,7 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line303">line 303</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line304">line 304</a>
     </li></ul></dd>
     
 
@@ -4982,6 +5019,8 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
 
     
 </dl>
+
+
 
 
 
@@ -5099,7 +5138,7 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-       issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -5293,7 +5332,7 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line404">line 404</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line406">line 406</a>
     </li></ul></dd>
     
 
@@ -5303,6 +5342,8 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
 
     
 </dl>
+
+
 
 
 
@@ -5420,7 +5461,7 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-       issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -5614,7 +5655,7 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line361">line 361</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line363">line 363</a>
     </li></ul></dd>
     
 
@@ -5624,6 +5665,8 @@ section. Field should appear either in &quot;fields&quot; or &quot;update&quot;,
 
     
 </dl>
+
+
 
 
 
@@ -5803,9 +5846,9 @@ in the screen will not be in the createmeta.</p>
             
 
             <td class="description last"><p>combined with the projectKeys param, lists the projects with which to filter
-    the results. If absent, all projects are returned. This parameter can be specified multiple times, and/or be
-    a comma-separated list. Specifiying a project that does not exist (or that you cannot create issues in) is
-    not an error, but it will not be in the results.</p></td>
+the results. If absent, all projects are returned. This parameter can be specified multiple times, and/or be
+a comma-separated list. Specifiying a project that does not exist (or that you cannot create issues in) is
+not an error, but it will not be in the results.</p></td>
         </tr>
 
     
@@ -5839,9 +5882,9 @@ in the screen will not be in the createmeta.</p>
             
 
             <td class="description last"><p>combined with the projectIds param, lists the projects with which to filter
-    the results. If null, all projects are returned. This parameter can be specified multiple times, and/or be a
-    comma-separated list. Specifiying a project that does not exist (or that you cannot create issues in) is not
-    an error, but it will not be in the results.</p></td>
+the results. If null, all projects are returned. This parameter can be specified multiple times, and/or be a
+comma-separated list. Specifiying a project that does not exist (or that you cannot create issues in) is not
+an error, but it will not be in the results.</p></td>
         </tr>
 
     
@@ -5875,8 +5918,8 @@ in the screen will not be in the createmeta.</p>
             
 
             <td class="description last"><p>combinded with issuetypeNames, lists the issue types with which to filter
-    the results. If null, all issue types are returned. This parameter can be specified multiple times, and/or
-    be a comma-separated list. Specifiying an issue type that does not exist is not an error.</p></td>
+the results. If null, all issue types are returned. This parameter can be specified multiple times, and/or
+be a comma-separated list. Specifiying an issue type that does not exist is not an error.</p></td>
         </tr>
 
     
@@ -5910,8 +5953,8 @@ in the screen will not be in the createmeta.</p>
             
 
             <td class="description last"><p>combinded with issuetypeIds, lists the issue types with which to filter
-    the results. If null, all issue types are returned. This parameter can be specified multiple times, but is
-    NOT interpreted as a comma-separated list. Specifiying an issue type that does not exist is not an error.</p></td>
+the results. If null, all issue types are returned. This parameter can be specified multiple times, but is
+NOT interpreted as a comma-separated list. Specifiying an issue type that does not exist is not an error.</p></td>
         </tr>
 
     
@@ -6020,7 +6063,7 @@ in the screen will not be in the createmeta.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line143">line 143</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line144">line 144</a>
     </li></ul></dd>
     
 
@@ -6030,6 +6073,8 @@ in the screen will not be in the createmeta.</p>
 
     
 </dl>
+
+
 
 
 
@@ -6149,7 +6194,7 @@ will not be in the editemeta.</p>
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-       issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -6312,7 +6357,7 @@ will not be in the editemeta.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line473">line 473</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line475">line 475</a>
     </li></ul></dd>
     
 
@@ -6322,6 +6367,8 @@ will not be in the editemeta.</p>
 
     
 </dl>
+
+
 
 
 
@@ -6459,7 +6506,7 @@ current value of issue's key.</p>
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-       issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -6754,7 +6801,7 @@ current value of issue's key.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line220">line 220</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line221">line 221</a>
     </li></ul></dd>
     
 
@@ -6764,6 +6811,8 @@ current value of issue's key.</p>
 
     
 </dl>
+
+
 
 
 
@@ -6883,8 +6932,8 @@ field will be updated on an issue.</p>
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this
-       object must contain EITHER an issueId or issueKey property;
-       issueId will be used over issueKey if both are present.</p>
+object must contain EITHER an issueId or issueKey property;
+issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -7005,7 +7054,7 @@ field will be updated on an issue.</p>
             
 
             <td class="description last"><p>The id of the board required to
-       determine which field is used for estimation.</p></td>
+determine which field is used for estimation.</p></td>
         </tr>
 
     
@@ -7081,7 +7130,7 @@ field will be updated on an issue.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line16">line 16</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line17">line 17</a>
     </li></ul></dd>
     
 
@@ -7104,11 +7153,450 @@ field will be updated on an issue.</p>
 
 
 
+
+
 <h5>Returns:</h5>
 
         
 <div class="param-desc">
     <p>Resolved when the issue estimation has been retrieved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="getIssuePicker"><span class="type-signature"></span>getIssuePicker<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Returns suggested issues which match the auto-completion query for the
+user which executes this request. This REST method will check the user's
+history and the user's browsing context and select this issues, which
+match the query.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The options to pass to the API.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>query</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the query</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>currentJQL</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the JQL in context of which the request
+is executed. Only issues which match this JQL query will be
+included in results.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>currentIssueKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the key of the issue in context of
+which the request is executed. The issue which is in context
+will not be included in the auto-completion result, even if
+it matches the query.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>currentProjectId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the id of the project in context of
+which the request is executed. Suggested issues will be only
+from this project.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>showSubTasks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>if set to false, subtasks will not be
+included in the list.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>showSubTaskParent</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>if set to false and request is
+executed in context of a subtask, the parent issue will
+not be included in the auto-completion result, even if it
+matches the query.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Called when the issues have been retrieved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1253">line 1253</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when the issues have been retrieved.</p>
 </div>
 
 
@@ -7209,7 +7697,7 @@ experimental in the Jira API docs, use at your own risk.</p>
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-    issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -7372,7 +7860,7 @@ experimental in the Jira API docs, use at your own risk.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1024">line 1024</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1071">line 1071</a>
     </li></ul></dd>
     
 
@@ -7382,6 +7870,8 @@ experimental in the Jira API docs, use at your own risk.</p>
 
     
 </dl>
+
+
 
 
 
@@ -7501,7 +7991,7 @@ who retrieves the property is required to have permissions to read the issue.</p
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-    issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -7695,7 +8185,7 @@ who retrieves the property is required to have permissions to read the issue.</p
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1070">line 1070</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1117">line 1117</a>
     </li></ul></dd>
     
 
@@ -7705,6 +8195,8 @@ who retrieves the property is required to have permissions to read the issue.</p
 
     
 </dl>
+
+
 
 
 
@@ -7824,7 +8316,7 @@ required to have permissions to edit the issue.</p>
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-    issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -8018,7 +8510,7 @@ required to have permissions to edit the issue.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1094">line 1094</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1141">line 1141</a>
     </li></ul></dd>
     
 
@@ -8028,6 +8520,8 @@ required to have permissions to edit the issue.</p>
 
     
 </dl>
+
+
 
 
 
@@ -8145,7 +8639,7 @@ required to have permissions to edit the issue.</p>
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-    issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -8339,7 +8833,7 @@ required to have permissions to edit the issue.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line602">line 602</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line604">line 604</a>
     </li></ul></dd>
     
 
@@ -8349,6 +8843,8 @@ required to have permissions to edit the issue.</p>
 
     
 </dl>
+
+
 
 
 
@@ -8466,7 +8962,7 @@ required to have permissions to edit the issue.</p>
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-    issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -8585,8 +9081,8 @@ required to have permissions to edit the issue.</p>
             
 
             <td class="description last"><p>The id of the remote issue link to be returned. If null (not provided) all remote
-    links for the issue are returned. For a full explanation of Issue Link fields please refer to
-    <a href="https://developer.atlassian.com/display/JIRADEV/Fields+in+Remote+Issue+Links">https://developer.atlassian.com/display/JIRADEV/Fields+in+Remote+Issue+Links</a></p></td>
+links for the issue are returned. For a full explanation of Issue Link fields please refer to
+<a href="https://developer.atlassian.com/display/JIRADEV/Fields+in+Remote+Issue+Links">https://developer.atlassian.com/display/JIRADEV/Fields+in+Remote+Issue+Links</a></p></td>
         </tr>
 
     
@@ -8662,7 +9158,7 @@ required to have permissions to edit the issue.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line519">line 519</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line521">line 521</a>
     </li></ul></dd>
     
 
@@ -8672,6 +9168,8 @@ required to have permissions to edit the issue.</p>
 
     
 </dl>
+
+
 
 
 
@@ -8793,7 +9291,7 @@ the screen will not be in the metadata.</p>
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-    issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -8987,7 +9485,7 @@ the screen will not be in the metadata.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line672">line 672</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line674">line 674</a>
     </li></ul></dd>
     
 
@@ -8997,6 +9495,8 @@ the screen will not be in the metadata.</p>
 
     
 </dl>
+
+
 
 
 
@@ -9114,7 +9614,7 @@ the screen will not be in the metadata.</p>
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-    issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -9277,7 +9777,7 @@ the screen will not be in the metadata.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line765">line 765</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line764">line 764</a>
     </li></ul></dd>
     
 
@@ -9287,6 +9787,8 @@ the screen will not be in the metadata.</p>
 
     
 </dl>
+
+
 
 
 
@@ -9404,7 +9906,7 @@ the screen will not be in the metadata.</p>
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-    issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -9567,7 +10069,7 @@ the screen will not be in the metadata.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line783">line 783</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line782">line 782</a>
     </li></ul></dd>
     
 
@@ -9577,6 +10079,8 @@ the screen will not be in the metadata.</p>
 
     
 </dl>
+
+
 
 
 
@@ -9694,7 +10198,7 @@ the screen will not be in the metadata.</p>
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-    issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -9788,7 +10292,7 @@ the screen will not be in the metadata.</p>
 
         <tr>
             
-                <td class="name"><code>worklogId</code></td>
+                <td class="name"><code>id</code></td>
             
 
             <td class="type">
@@ -9888,7 +10392,7 @@ the screen will not be in the metadata.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line900">line 900</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line914">line 914</a>
     </li></ul></dd>
     
 
@@ -9898,6 +10402,8 @@ the screen will not be in the metadata.</p>
 
     
 </dl>
+
+
 
 
 
@@ -10015,7 +10521,7 @@ the screen will not be in the metadata.</p>
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-    issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -10178,7 +10684,7 @@ the screen will not be in the metadata.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line845">line 845</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line844">line 844</a>
     </li></ul></dd>
     
 
@@ -10188,6 +10694,8 @@ the screen will not be in the metadata.</p>
 
     
 </dl>
+
+
 
 
 
@@ -10305,7 +10813,7 @@ the screen will not be in the metadata.</p>
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-    issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -10499,7 +11007,7 @@ the screen will not be in the metadata.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line823">line 823</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line822">line 822</a>
     </li></ul></dd>
     
 
@@ -10509,6 +11017,8 @@ the screen will not be in the metadata.</p>
 
     
 </dl>
+
+
 
 
 
@@ -10628,7 +11138,7 @@ of the intended recipients have disabled notifications from Jira.</p>
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-       issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -10822,7 +11332,7 @@ of the intended recipients have disabled notifications from Jira.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line494">line 494</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line496">line 496</a>
     </li></ul></dd>
     
 
@@ -10832,6 +11342,8 @@ of the intended recipients have disabled notifications from Jira.</p>
 
     
 </dl>
+
+
 
 
 
@@ -10950,8 +11462,8 @@ and determines which field will be updated on an issue.</p>
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this
-       object must contain EITHER an issueId or issueKey property;
-       issueId will be used over issueKey if both are present.</p>
+object must contain EITHER an issueId or issueKey property;
+issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -11105,7 +11617,7 @@ and determines which field will be updated on an issue.</p>
             
 
             <td class="description last"><p>The id of the board required to
-       determine which field is used for estimation.</p></td>
+determine which field is used for estimation.</p></td>
         </tr>
 
     
@@ -11181,7 +11693,7 @@ and determines which field will be updated on an issue.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line51">line 51</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line52">line 52</a>
     </li></ul></dd>
     
 
@@ -11191,6 +11703,8 @@ and determines which field will be updated on an issue.</p>
 
     
 </dl>
+
+
 
 
 
@@ -11308,7 +11822,7 @@ and determines which field will be updated on an issue.</p>
             
 
             <td class="description last"><p>The ranking data in the form of PUT body to the
-       Jira API.</p></td>
+Jira API.</p></td>
         </tr>
 
     
@@ -11377,7 +11891,7 @@ and determines which field will be updated on an issue.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line89">line 89</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line90">line 90</a>
     </li></ul></dd>
     
 
@@ -11387,6 +11901,8 @@ and determines which field will be updated on an issue.</p>
 
     
 </dl>
+
+
 
 
 
@@ -11507,7 +12023,7 @@ the issue.</p>
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-    issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -11732,7 +12248,7 @@ the issue.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1042">line 1042</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1089">line 1089</a>
     </li></ul></dd>
     
 
@@ -11742,6 +12258,8 @@ the issue.</p>
 
     
 </dl>
+
+
 
 
 
@@ -11798,7 +12316,7 @@ the issue.</p>
 <div class="description">
     <p>Perform a transition on an issue. When performing the transition you can udate or set other issue fields.</p>
 <p>The fields that can be set on transtion, in either the fields parameter or the update parameter can be
-determined using the<strong> /rest/api/2/issue/{issueIdOrKey}/transitions?expand=transitions.fields resource</strong>. If a
+determined using the** /rest/api/2/issue/{issueIdOrKey}/transitions?expand=transitions.fields resource**. If a
 field is not configured to appear on the transition screen, then it will not be in the transition metadata, and
 a field validation error will occur if it is submitted.</p>
 </div>
@@ -11863,7 +12381,7 @@ a field validation error will occur if it is submitted.</p>
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-    issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -11963,7 +12481,7 @@ a field validation error will occur if it is submitted.</p>
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">object</span>
 
 
             
@@ -11971,6 +12489,8 @@ a field validation error will occur if it is submitted.</p>
 
             
                 <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
                 
@@ -11981,7 +12501,68 @@ a field validation error will occur if it is submitted.</p>
 
             
 
-            <td class="description last"><p>See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e698">https://docs.atlassian.com/jira/REST/latest/#d2e698</a></p></td>
+            <td class="description last"><p>See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e698">https://docs.atlassian.com/jira/REST/latest/#d2e698</a></p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The ID of the issue transition. Required when specifying a transition to undertake.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -12057,7 +12638,7 @@ a field validation error will occur if it is submitted.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line697">line 697</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line699">line 699</a>
     </li></ul></dd>
     
 
@@ -12067,6 +12648,8 @@ a field validation error will occur if it is submitted.</p>
 
     
 </dl>
+
+
 
 
 
@@ -12184,7 +12767,7 @@ a field validation error will occur if it is submitted.</p>
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-    issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -12347,7 +12930,7 @@ a field validation error will occur if it is submitted.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line729">line 729</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line728">line 728</a>
     </li></ul></dd>
     
 
@@ -12357,6 +12940,8 @@ a field validation error will occur if it is submitted.</p>
 
     
 </dl>
+
+
 
 
 
@@ -12475,7 +13060,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-    issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -12669,7 +13254,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line560">line 560</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line562">line 562</a>
     </li></ul></dd>
     
 
@@ -12679,6 +13264,8 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
 
     
 </dl>
+
+
 
 
 
@@ -12796,7 +13383,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-    issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -13021,7 +13608,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line625">line 625</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line627">line 627</a>
     </li></ul></dd>
     
 
@@ -13031,6 +13618,8 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
 
     
 </dl>
+
+
 
 
 
@@ -13148,7 +13737,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-    issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -13242,7 +13831,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
 
         <tr>
             
-                <td class="name"><code>worklogId</code></td>
+                <td class="name"><code>id</code></td>
             
 
             <td class="type">
@@ -13300,11 +13889,11 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
             
 
             <td class="description last"><p>Allows you to provide specific instructions to update the remaining time
-    estimate of the issue. Valid values are</p>
-<pre class="prettyprint source"><code>* &quot;new&quot; - sets the estimate to a specific value
+estimate of the issue. Valid values are
+* &quot;new&quot; - sets the estimate to a specific value
 * &quot;leave&quot;- leaves the estimate as is
 * &quot;auto&quot;- Default option. Will automatically adjust the value based on the
-     new timeSpent specified on the worklog</code></pre></td>
+new timeSpent specified on the worklog</p></td>
         </tr>
 
     
@@ -13338,7 +13927,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
             
 
             <td class="description last"><p>(required when &quot;new&quot; is selected for adjustEstimate) the new value for the
-    remaining estimate field. e.g. &quot;2d&quot;</p></td>
+remaining estimate field. e.g. &quot;2d&quot;</p></td>
         </tr>
 
     
@@ -13445,7 +14034,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line922">line 922</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line941">line 941</a>
     </li></ul></dd>
     
 
@@ -13455,6 +14044,8 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
 
     
 </dl>
+
+
 
 
 
@@ -13572,7 +14163,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
             
 
             <td class="description last"><p>The options to pass to the API.  Note that this object must contain EITHER an issueId or
-    issueKey property; issueId will be used over issueKey if both are present.</p>
+issueKey property; issueId will be used over issueKey if both are present.</p>
                 <h6>Properties</h6>
                 
 
@@ -13735,7 +14326,7 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line747">line 747</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line746">line 746</a>
     </li></ul></dd>
     
 
@@ -13745,6 +14336,8 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
 
     
 </dl>
+
+
 
 
 
@@ -13801,13 +14394,13 @@ link exists with that globalId, the remote issue link is updated. Otherwise, the
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AgileBoardClient.html">AgileBoardClient</a></li><li><a href="AgileSprintClient.html">AgileSprintClient</a></li><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WebhookClient.html">WebhookClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li><li><a href="WorkLogClient.html">WorkLogClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul><h3>Classes</h3><ul><li><a href="AgileBacklogClient.html">AgileBacklogClient</a></li><li><a href="AgileBoardClient.html">AgileBoardClient</a></li><li><a href="AgileEpicClient.html">AgileEpicClient</a></li><li><a href="AgileSprintClient.html">AgileSprintClient</a></li><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LabelsClient.html">LabelsClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PermissionSchemeClient.html">PermissionSchemeClient</a></li><li><a href="PermissionsClient.html">PermissionsClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="RoleClient.html">RoleClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WebhookClient.html">WebhookClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li><li><a href="WorkLogClient.html">WorkLogClient</a></li></ul><h3>Global</h3><ul><li><a href="global.html#getIssuesWithoutEpic">getIssuesWithoutEpic</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jan 30 2018 10:10:04 GMT-0600 (CST)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.2</a> on Thu Jun 20 2019 10:20:56 GMT+0300 (Moscow Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -26,7 +26,7 @@
     
 
 
-    <h3>jira-connector 2.7.0</h3>
+    <h3>jira-connector 2.14.1</h3>
 
 
 
@@ -43,71 +43,108 @@
 
 
     <section>
-        <article><h1>JavaScript Jira API Wrapper for NodeJS</h1><p>Node.JS module which provides easy-to-use access to the Jira REST API.</p>
-<h2>Important Change in Version 1.0.0</h2><p>Starting with version 1.0.0, all functions and parameters utilize <code>xxxId</code> instead of <code>xxxID</code>.
+        <article><h1>JavaScript Jira API Wrapper for NodeJS</h1>
+<p>Node.JS module which provides easy-to-use access to the Jira REST API.</p>
+<h2>Important Change in Version 1.0.0</h2>
+<p>Starting with version 1.0.0, all functions and parameters utilize <code>xxxId</code> instead of <code>xxxID</code>.
 Prior to this update, this naming convention was inconsistent and easily confused.</p>
 <p>Please update your code accordingly.</p>
-<h2>Installation</h2><p>Install with <a href="http://npmjs.org/">npm</a>:</p>
-<pre class="prettyprint source"><code>    $ npm install jira-connector</code></pre><p>Install via Git clone:</p>
-<pre class="prettyprint source"><code>    $ git clone https://github.com/floralvikings/jira-connector.git
+<h2>Installation</h2>
+<p>Install with <a href="http://npmjs.org/">npm</a>:</p>
+<pre class="prettyprint source lang-bash"><code>    $ npm install jira-connector
+</code></pre>
+<p>Install via Git clone:</p>
+<pre class="prettyprint source lang-bash"><code>    $ git clone https://github.com/floralvikings/jira-connector.git
     $ cd jira-connector
-    $ npm install</code></pre><h2>Documentation</h2><p>The documentation for jira-connector can be found in the source; If you'd like to view
+    $ npm install
+</code></pre>
+<h2>Documentation</h2>
+<p>The documentation for jira-connector can be found in the source; If you'd like to view
 the source as an HTML document, you can use <a href="http://usejsdoc.org/">JSDoc</a> to generate these
-pages.  Simply run:</p>
-<pre class="prettyprint source"><code>    $ jsdoc -c jsdoc.json</code></pre><p>In the jira-connector source directory.  This will create a <code>docs</code> directory, containing the HTML
+pages. Simply run:</p>
+<pre class="prettyprint source lang-bash"><code>    $ jsdoc -c jsdoc.json
+</code></pre>
+<p>In the jira-connector source directory. This will create a <code>docs</code> directory, containing the HTML
 markup for the docs.</p>
 <p>Also, the <a href="https://docs.atlassian.com/jira/REST/latest/">official Jira API docs</a> are very useful; many of
 the functions in jira-connector use the exact same format as the request bodies of these endpoints.</p>
-<h2>Example</h2><p>Retrieve an issue from Jira, and print its summary to the console.</p>
-<pre class="prettyprint source lang-javascript"><code>
+<h2>Example</h2>
+<p>Retrieve an issue from Jira, and print its summary to the console.</p>
+<pre class="prettyprint source lang-javascript"><code>// ES5
 var JiraClient = require('jira-connector');
 
-var jira = new JiraClient( {
-    host: 'jenjinstudios.atlassian.net'
+// ES6 or Typescript
+import JiraClient from 'jira-connector';
+
+// Initialize
+var jira = new JiraClient({
+    host: 'jenjinstudios.atlassian.net',
+    strictSSL: true // One of optional parameters
 });
 
+// ES5
 jira.issue.getIssue({
     issueKey: 'JWR-19'
 }, function(error, issue) {
     console.log(issue.fields.summary);
-});</code></pre><p>First, the <code>JiraApi</code> class is imported from the <code>jira-connector</code> module.  This class
+});
+
+// ES6
+jira.issue.getIssue(issueKey: 'JWR-19')
+    .then(issue => {
+        console.log(issue.fields.summary);
+    })
+    .catch(error => throw error);
+
+// ES8 or Typescript. NodeJS 7.6.0 or higher
+const issue = await jira.issue.getIssue({ issueKey: 'JWR-19' });
+</code></pre>
+<p>First, the <code>JiraApi</code> class is imported from the <code>jira-connector</code> module. This class
 provides access to the Jira REST endpoints, organized into related classes.</p>
 <p>The <code>issue</code> property of the <code>JiraApi</code> class is used to retrieve and modify Jira Issues.</p>
 <p>All of the methods in the jira-connector API classes take two arguments; the <code>opts</code> and <code>callback</code>.</p>
 <ul>
-<li>The <code>opts</code> argument specifies the options that will be used when communicating with the Jira API.  For a detailed
+<li>The <code>opts</code> argument specifies the options that will be used when communicating with the Jira API. For a detailed
 list of options, see the documentation for the method into which you are passing the options.</li>
 <li>The <code>callback</code> argument should be a function expecting two arguments; and error, and the results of the API
 request.</li>
 </ul>
-<h2>Authentication</h2><p>Depending on the Jira instance to which you are connecting, authentication may or may not be required
+<h2>Authentication</h2>
+<p>Depending on the Jira instance to which you are connecting, authentication may or may not be required
 for various API calls.</p>
 <p>jira-connector supports two forms of authentication:</p>
-<h3>Basic Authentication</h3><p>This is not recommended; it will require you to provide a username and password each time you connect to the
-Jira instance.  However, jira-connector supports it for users who are unable to use OAuth.</p>
+<h3>Basic Authentication</h3>
+<p>This is not recommended; it will require you to provide a username and password each time you connect to the
+Jira instance. However, jira-connector supports it for users who are unable to use OAuth.</p>
 <p>Example:</p>
-<pre class="prettyprint source lang-javascript"><code>var JiraClient = require('jira-connector');
+<pre class="prettyprint source lang-javascript"><code>var JiraClient = require(&quot;jira-connector&quot;);
 
-var jira = new JiraClient( {
-    host: 'jenjinstudios.atlassian.net',
-    basic_auth: {
-        username: 'SirUserOfName',
-        password: 'Password123'
-    }
-});</code></pre><h3>Basic Authentication (Base64)</h3><p>Also not recommended, but slightly better than the above; it will require you to provide a Base64 encoded username
+var jira = new JiraClient({
+  host: &quot;jenjinstudios.atlassian.net&quot;,
+  basic_auth: {
+    username: &quot;SirUserOfName&quot;,
+    password: &quot;Password123&quot;
+  }
+});
+</code></pre>
+<h3>Basic Authentication (Base64)</h3>
+<p>Also not recommended, but slightly better than the above; it will require you to provide a Base64 encoded username
 and password (a Base64 encoding in the format of &quot;username:password&quot;) each time you connect to the Jira instance.</p>
 <p>More examples <a href="https://developer.atlassian.com/jiradev/jira-apis/jira-rest-apis/jira-rest-api-tutorials/jira-rest-api-example-basic-authentication">here</a>.</p>
 <p>Example:</p>
-<pre class="prettyprint source lang-javascript"><code>var JiraClient = require('jira-connector');
+<pre class="prettyprint source lang-javascript"><code>var JiraClient = require(&quot;jira-connector&quot;);
 
-var jira = new JiraClient( {
-    host: 'jenjinstudios.atlassian.net',
-    basic_auth: {
-        base64: 'U2lyVXNlck9mTmFtZTpQYXNzd29yZDEyMw=='
-    }
+var jira = new JiraClient({
+  host: &quot;jenjinstudios.atlassian.net&quot;,
+  basic_auth: {
+    base64: &quot;U2lyVXNlck9mTmFtZTpQYXNzd29yZDEyMw==&quot;
+  }
 });
 
-// Base64 encoding of 'SirUserOfName:Password123'</code></pre><h3>OAuth Authentication</h3><p>This should be the preferred method of authentication; it is more secure and does not require disclosing
+// Base64 encoding of 'SirUserOfName:Password123'
+</code></pre>
+<h3>OAuth Authentication</h3>
+<p>This should be the preferred method of authentication; it is more secure and does not require disclosing
 your password.</p>
 <p>However, setting up OAuth access in Jira can be somewhat complicated; first the Jira administrator must create
 an Application Link; for instructions on how to do this, see
@@ -118,124 +155,182 @@ be helpful in configuring OAuth Access.</p>
 create the link, and the consumer key that was provided when the link was created.</p>
 <p>Once you have this data, you will need to generate an OAuth token and secret for your account; jira-connector provides
 helper functions for exactly this purpose:</p>
-<pre class="prettyprint source lang-javascript"><code>var JiraClient = require('./index.js');
+<pre class="prettyprint source lang-javascript"><code>var JiraClient = require(&quot;jira-connector&quot;);
 
-JiraClient.oauth_util.getAuthorizeURL({
-    host: 'jenjinstudios.atlassian.net',
+JiraClient.oauth_util.getAuthorizeURL(
+  {
+    host: &quot;jenjinstudios.atlassian.net&quot;,
     oauth: {
-        consumer_key: 'your-consumer-key',
-        private_key: '-----BEGIN RSA PRIVATE KEY-----\n' +
-        'SomePrivateKeyHere\n' +
-        '-----END RSA PRIVATE KEY-----'
+      consumer_key: &quot;your-consumer-key&quot;,
+      private_key:
+        &quot;-----BEGIN RSA PRIVATE KEY-----\n&quot; +
+        &quot;SomePrivateKeyHere\n&quot; +
+        &quot;-----END RSA PRIVATE KEY-----&quot;
     }
-}, function (error, oauth) {
+  },
+  function(error, oauth) {
     console.log(oauth);
-});</code></pre><p>This will output something similar to the following:</p>
+  }
+);
+</code></pre>
+<p>This will output something similar to the following:</p>
 <pre class="prettyprint source lang-javascript"><code>{
     url: 'https://jenjinstudios.atlassian.net/plugins/servlet/oauth/authorize?oauth_token=some-token-here',
     token: 'some-token-here',
     token_secret: 'some-secret-here'
-}</code></pre><p>You can then visit the specified URL, which will display a page asking you to allow or deny the request for access.
-Allowing access will display a verifier code.  Once you have this code, you can swap out your current OAuth token
+}
+</code></pre>
+<p>You can then visit the specified URL, which will display a page asking you to allow or deny the request for access.
+Allowing access will display a verifier code. Once you have this code, you can swap out your current OAuth token
 for an Access Token with all the permissions of your account; jira-connector provides a function to help with this:</p>
-<pre class="prettyprint source lang-javascript"><code>var JiraClient = require('./index.js');
+<pre class="prettyprint source lang-javascript"><code>var JiraClient = require(&quot;jira-connector&quot;);
 
-JiraClient.oauth_util.swapRequestTokenWithAccessToken({
-    host: 'jenjinstudios.atlassian.net',
+JiraClient.oauth_util.swapRequestTokenWithAccessToken(
+  {
+    host: &quot;jenjinstudios.atlassian.net&quot;,
     oauth: {
-        token: 'your-oauth-token',
-        token_secret: 'your-token-secret',
-        oauth_verifier: 'verifier-code-from-jira',
-        consumer_key: 'your-consumer-key',
-        private_key: '-----BEGIN RSA PRIVATE KEY-----\n' +
-        'SomePrivateKeyHere\n' +
-        '-----END RSA PRIVATE KEY-----'
+      token: &quot;your-oauth-token&quot;,
+      token_secret: &quot;your-token-secret&quot;,
+      oauth_verifier: &quot;verifier-code-from-jira&quot;,
+      consumer_key: &quot;your-consumer-key&quot;,
+      private_key:
+        &quot;-----BEGIN RSA PRIVATE KEY-----\n&quot; +
+        &quot;SomePrivateKeyHere\n&quot; +
+        &quot;-----END RSA PRIVATE KEY-----&quot;
     }
-}, function (error, accessToken) {
+  },
+  function(error, accessToken) {
     console.log(accessToken);
-});</code></pre><p>This will query Jira for an Access Token, which will then be printed to the screen.  Finally, you're ready to access
+  }
+);
+</code></pre>
+<p>This will query Jira for an Access Token, which will then be printed to the screen. Finally, you're ready to access
 Jira with OAuth!</p>
-<pre class="prettyprint source lang-javascript"><code>var JiraClient = require('./index.js');
+<pre class="prettyprint source lang-javascript"><code>var JiraClient = require(&quot;jira-connector&quot;);
 
 var jira = new JiraClient({
-    host: 'jenjinstudios.atlassian.net',
-    oauth: {
-        consumer_key: 'your-consumer-key',
-        private_key: '-----BEGIN RSA PRIVATE KEY-----\n' +
-        'SomePrivateKey\n' +
-        '-----END RSA PRIVATE KEY-----',
-        token: 'your-access-token',
-        token_secret: 'your-token-secret'
-    }
+  host: &quot;jenjinstudios.atlassian.net&quot;,
+  oauth: {
+    consumer_key: &quot;your-consumer-key&quot;,
+    private_key:
+      &quot;-----BEGIN RSA PRIVATE KEY-----\n&quot; +
+      &quot;SomePrivateKey\n&quot; +
+      &quot;-----END RSA PRIVATE KEY-----&quot;,
+    token: &quot;your-access-token&quot;,
+    token_secret: &quot;your-token-secret&quot;
+  }
 });
 
-// Jira is now authenticted with your account!</code></pre><h3>Cookie Jar</h3><p>You can also use a Cookie Jar for your request. It could be an easier way to prompt for a login only once, without the
+// Jira is now authenticted with your account!
+</code></pre>
+<h3>Cookie Jar</h3>
+<p>You can also use a Cookie Jar for your request. It could be an easier way to prompt for a login only once, without the
 pain of setting up an OAuth method.</p>
 <p>For example, using <code>though-cookie-filestore</code>:</p>
-<pre class="prettyprint source lang-javascript"><code>var JiraClient = require('../jira-connector'),
-    FileCookieStore = require('tough-cookie-filestore'),
+<pre class="prettyprint source lang-javascript"><code>var JiraClient = require(&quot;jira-connector&quot;);
+var FileCookieStore = require(&quot;tough-cookie-filestore&quot;);
 
-    request = require('request'),
-    path = require('path');
+var request = require(&quot;request&quot;);
+var path = require(&quot;path&quot;);
 
-var jar = request.jar(new FileCookieStore(path.join(__dirname, 'cookies.json')));
+var jar = request.jar(
+  new FileCookieStore(path.join(__dirname, &quot;cookies.json&quot;))
+);
 
 // For the first connection
-var jira = new JiraClient( {
-    host: 'jenjinstudios.atlassian.net',
-    basic_auth: {
-        username: 'SirUserOfName',
-        password: 'Password123'
-    },
-    cookie_jar: jar
+var jira = new JiraClient({
+  host: &quot;jenjinstudios.atlassian.net&quot;,
+  basic_auth: {
+    username: &quot;SirUserOfName&quot;,
+    password: &quot;Password123&quot;
+  },
+  cookie_jar: jar
 });
 
 // For the following connections
-var jira = new JiraClient( {
-    host: 'jenjinstudios.atlassian.net',
-    cookie_jar: jar
-});</code></pre><p>In this example, all your cookies are save in a file, <code>cookies.json</code>. Currently, the file <strong>MUST</strong> exist, it's a
+var jira = new JiraClient({
+  host: &quot;jenjinstudios.atlassian.net&quot;,
+  cookie_jar: jar
+});
+</code></pre>
+<p>In this example, all your cookies are save in a file, <code>cookies.json</code>. Currently, the file <strong>MUST</strong> exist, it's a
 limitation from <code>though-cookie-filestore</code>...</p>
 <p>You can now only use the Cookie Jar for all the following request, as long as the file exists and the cookie
 is still valid!</p>
-<h2>Supported API Calls</h2><ul>
-<li>applicationProperties (/rest/api/2/application-properties)<ul>
+<h2>Supported API Calls</h2>
+<ul>
+<li>applicationProperties (/rest/api/2/application-properties)
+<ul>
 <li>getProperties</li>
 <li>setProperty</li>
 </ul>
 </li>
-<li>attachment (/rest/api/2/atachment)<ul>
+<li>attachment (/rest/api/2/attachment)
+<ul>
 <li>getAttachment</li>
 <li>deleteAttachment</li>
 <li>getGlobalAttachmentMetadata</li>
 </ul>
 </li>
-<li>auditing (/rest/api/2/auditing)<ul>
+<li>auditing (/rest/api/2/auditing)
+<ul>
 <li>getAudits</li>
 <li>createAudit</li>
 </ul>
 </li>
-<li>avatar (/rest/api/2/avatar) (Untested; use at your own peril)<ul>
+<li>avatar (/rest/api/2/avatar) (Untested; use at your own peril)
+<ul>
 <li>getAvatars</li>
 <li>createTemporaryAvatar</li>
 <li>cropTemporaryAvatar</li>
 </ul>
 </li>
-<li>board (/rest/agile/1.0/board)<ul>
-<li>getAllBoards</li>
-<li>getBoard</li>
-<li>getIssuesForBoard</li>
-<li>getSprintsForBoard</li>
+<li>backlog (/rest/agile/1.0/backlog)
+<ul>
+<li>moveIssuesToBacklog</li>
+<li>moveIssuesToBacklogForBoard</li>
 </ul>
 </li>
-<li>comment (/rest/api/2/comment)<ul>
+<li>board (/rest/agile/1.0/board)
+<ul>
+<li>getAllBoards</li>
+<li>createBoard</li>
+<li>getBoardByFilterId</li>
+<li>getBoard</li>
+<li>deleteBoard</li>
+<li>getIssuesForBacklog</li>
+<li>getConfiguration</li>
+<li>getEpics</li>
+<li>getIssuesWithoutEpic</li>
+<li>getIssuesForEpic</li>
+<li>getFeaturesForBoard</li>
+<li>toggleFeatures</li>
+<li>getIssuesForBoard</li>
+<li>moveIssuesToBoard</li>
+<li>getProjects</li>
+<li>getProjectsFull</li>
+<li>getBoardPropertyKeys</li>
+<li>getBoardProperty</li>
+<li>setBoardProperty</li>
+<li>deleteBoardProperty</li>
+<li>getAllQuickFilters</li>
+<li>getQuickFilter</li>
+<li>getReportsForBoard</li>
+<li>getAllSprints</li>
+<li>getIssuesForSprint</li>
+<li>getAllVersions</li>
+</ul>
+</li>
+<li>comment (/rest/api/2/comment)
+<ul>
 <li>getCommentPropertyKeys</li>
 <li>setCommentProperty</li>
 <li>getCommentProperty</li>
 <li>deleteCommentProperty</li>
 </ul>
 </li>
-<li>component (/rest/api/2/component)<ul>
+<li>component (/rest/api/2/component)
+<ul>
 <li>getComponent</li>
 <li>createComponent</li>
 <li>editComponent</li>
@@ -243,21 +338,36 @@ is still valid!</p>
 <li>getRelatedIssueCount</li>
 </ul>
 </li>
-<li>customFieldOption (/rest/api/2/customFieldOptions)<ul>
+<li>customFieldOption (/rest/api/2/customFieldOptions)
+<ul>
 <li>getCustomFieldOption</li>
 </ul>
 </li>
-<li>dashboard (/rest/api/2/dashboard)<ul>
+<li>epic (/rest/agile/1.0/epic)
+<ul>
+<li>getIssuesWithoutEpic</li>
+<li>removeIssuesFromEpic</li>
+<li>getEpic</li>
+<li>partiallyUpdateEpic</li>
+<li>getIssuesForEpic</li>
+<li>moveIssuesToEpic</li>
+<li>rankEpics</li>
+</ul>
+</li>
+<li>dashboard (/rest/api/2/dashboard)
+<ul>
 <li>getAllDashboards</li>
 <li>getDashboard</li>
 </ul>
 </li>
-<li>field (/rest/api/2/field)<ul>
+<li>field (/rest/api/2/field)
+<ul>
 <li>getAllFields</li>
 <li>createCustomField</li>
 </ul>
 </li>
-<li>filter (/rest/api/2/filter)<ul>
+<li>filter (/rest/api/2/filter)
+<ul>
 <li>createFilter</li>
 <li>getFilter</li>
 <li>updateFilter</li>
@@ -270,23 +380,28 @@ is still valid!</p>
 <li>getFavoriteFilters</li>
 </ul>
 </li>
-<li>group (/rest/api/2/group) (Experimental)<ul>
+<li>group (/rest/api/2/group)
+<ul>
 <li>createGroup</li>
-<li>getGroup</li>
+<li>getGroup [DEPRECATED, use getMembers]</li>
 <li>addUserToGroup</li>
 <li>removeUserFromGroup</li>
 <li>deleteGroup</li>
+<li>getMembers</li>
 </ul>
 </li>
-<li>groups (/rest/api/2/groups)<ul>
+<li>groups (/rest/api/2/groups)
+<ul>
 <li>findGroups</li>
 </ul>
 </li>
-<li>groupUserPicker (/rest/api/2/groupuserpicker)<ul>
+<li>groupUserPicker (/rest/api/2/groupuserpicker)
+<ul>
 <li>findUsersAndGroups</li>
 </ul>
 </li>
-<li>issue (/rest/api/2/issue and /rest/agile/1.0/issue)<ul>
+<li>issue (/rest/api/2/issue and /rest/agile/1.0/issue)
+<ul>
 <li>getIssue (agile api, set <code>opts.agile: true</code>)</li>
 <li>getIssueEstimation (agile api)</li>
 <li>setIssueEstimation (agile api)</li>
@@ -329,15 +444,18 @@ is still valid!</p>
 <li>setProperty</li>
 <li>getProperty</li>
 <li>deleteProperty</li>
+<li>getIssuePicker</li>
 </ul>
 </li>
-<li>issueLink (/rest/api/2/issueLink)<ul>
+<li>issueLink (/rest/api/2/issueLink)
+<ul>
 <li>createIssueLink</li>
 <li>getIssueLink</li>
 <li>deleteIssueLink</li>
 </ul>
 </li>
-<li>issueLinkType (/rest/api/2/issueLinkType)<ul>
+<li>issueLinkType (/rest/api/2/issueLinkType)
+<ul>
 <li>getAvailableTypes</li>
 <li>createIssueLinkType</li>
 <li>getIssueLinkType</li>
@@ -345,51 +463,88 @@ is still valid!</p>
 <li>editIssueLinkType</li>
 </ul>
 </li>
-<li>issueType (/rest/api/2/issuetype)<ul>
+<li>issueType (/rest/api/2/issuetype)
+<ul>
 <li>getAllIssueTypes</li>
 <li>getIssueType</li>
+<li>createIssueType</li>
+<li>deleteIssueType</li>
+<li>updateIssueType</li>
+<li>getAlternativeIssueTypes</li>
 </ul>
 </li>
-<li>jql (/rest/api/2/jql/autocompletedata)<ul>
+<li>jql (/rest/api/2/jql/autocompletedata)
+<ul>
 <li>getAutoCompleteData</li>
 </ul>
 </li>
-<li>licenseRole (/rest/api/2/licenserole)<ul>
+<li>labels (/rest/api/1.0/labels/suggest?query=)
+<ul>
+<li>getLabels</li>
+</ul>
+</li>
+<li>licenseRole (/rest/api/2/licenserole)
+<ul>
 <li>getAllLicenseRoles</li>
 <li>getLicenseRole</li>
 <li>editLicenseRole</li>
 </ul>
 </li>
-<li>licenseValidator (/rest/api/2/licenseValidator)<ul>
+<li>licenseValidator (/rest/api/2/licenseValidator)
+<ul>
 <li>validateLicense</li>
 </ul>
 </li>
-<li>myPermissions (/rest/api/2/mypermissions)<ul>
+<li>myPermissions (/rest/api/2/mypermissions)
+<ul>
 <li>getMyPermissions</li>
 </ul>
 </li>
-<li>myPreferences (/rest/api/2/mypreferences)<ul>
+<li>myPreferences (/rest/api/2/mypreferences)
+<ul>
 <li>getPreference</li>
 <li>editPreference</li>
 <li>deletePreference</li>
 </ul>
 </li>
-<li>myself (/rest/api/2/myself)<ul>
+<li>myself (/rest/api/2/myself)
+<ul>
 <li>getMyself</li>
 <li>editMyslef</li>
 <li>changePassword</li>
 </ul>
 </li>
-<li>password (/rest/api/2/password)<ul>
+<li>password (/rest/api/2/password)
+<ul>
 <li>getPasswordPolicy</li>
 </ul>
 </li>
-<li>priority (/rest/api/2/priority)<ul>
+<li>permissions (/rest/api/2/permissions)
+<ul>
+<li>getAllPermissions</li>
+</ul>
+</li>
+<li>permissionScheme (/rest/api/2/permissionscheme)
+<ul>
+<li>getAllPermissionSchemes</li>
+<li>createPermissionScheme</li>
+<li>getPermissionScheme</li>
+<li>editPermissionScheme</li>
+<li>deletePermissionScheme</li>
+<li>getPermissionSchemeGrants</li>
+<li>createPermissionGrantInScheme</li>
+<li>deletePermissionGrantFromScheme</li>
+<li>getPermissionSchemeGrantById</li>
+</ul>
+</li>
+<li>priority (/rest/api/2/priority)
+<ul>
 <li>getAllPriorities</li>
 <li>getPriority</li>
 </ul>
 </li>
-<li>project (/rest/api/2/project)<ul>
+<li>project (/rest/api/2/project)
+<ul>
 <li>getAllProjects</li>
 <li>getProject</li>
 <li>getComponents</li>
@@ -401,26 +556,43 @@ is still valid!</p>
 <li>addToRole</li>
 </ul>
 </li>
-<li>projectCategory (/rest/api/2/projectCategory)<ul>
+<li>projectCategory (/rest/api/2/projectCategory)
+<ul>
 <li>getAllProjectCategories</li>
 <li>getProjectCategory</li>
 </ul>
 </li>
-<li>projectValidate (/rest/api/2/projectvalidate)<ul>
+<li>projectValidate (/rest/api/2/projectvalidate)
+<ul>
 <li>validateProjectKey</li>
 </ul>
 </li>
-<li>reindex (/rest/api/2/reindex)<ul>
+<li>reindex (/rest/api/2/reindex)
+<ul>
 <li>doReindex</li>
 <li>getReindex</li>
 </ul>
 </li>
-<li>resolution (/rest/api/2/resolution)<ul>
+<li>resolution (/rest/api/2/resolution)
+<ul>
 <li>getAllResolutions</li>
 <li>getResolution</li>
 </ul>
 </li>
-<li>screens (/rest/api/2/screens)<ul>
+<li>roles (/rest/api/2/role) (a.k.a. ProjectRoles)
+<ul>
+<li>getAll</li>
+<li>createRole</li>
+<li>getRoleById</li>
+<li>updateRole</li>
+<li>deleteRole</li>
+<li>getActors</li>
+<li>addActors</li>
+<li>removeActor</li>
+</ul>
+</li>
+<li>screens (/rest/api/2/screens)
+<ul>
 <li>getAvailableFields</li>
 <li>getTabs</li>
 <li>createTab</li>
@@ -434,24 +606,29 @@ is still valid!</p>
 <li>addFieldToDefaultTab</li>
 </ul>
 </li>
-<li>search (/rest/api/2/search)<ul>
+<li>search (/rest/api/2/search)
+<ul>
 <li>search</li>
 </ul>
 </li>
-<li>securityLevel (/rest/api/2/securitylevel)<ul>
+<li>securityLevel (/rest/api/2/securitylevel)
+<ul>
 <li>getSecurityLevel</li>
 </ul>
 </li>
-<li>serverInfo (/rest/api/2/serverInfo)<ul>
+<li>serverInfo (/rest/api/2/serverInfo)
+<ul>
 <li>getServerInfo</li>
 </ul>
 </li>
-<li>settings (/rest/api/2/settings)<ul>
+<li>settings (/rest/api/2/settings)
+<ul>
 <li>setBaseUrl</li>
 <li>getIssueNavColumns</li>
 </ul>
 </li>
-<li>sprint (/rest/agile/1.0/sprint)<ul>
+<li>sprint (/rest/agile/1.0/sprint)
+<ul>
 <li>createSprint</li>
 <li>getSprint</li>
 <li>updateSprint</li>
@@ -462,17 +639,20 @@ is still valid!</p>
 <li>swapSprint</li>
 </ul>
 </li>
-<li>status (/rest/api/2/status)<ul>
+<li>status (/rest/api/2/status)
+<ul>
 <li>getAllStatuses</li>
 <li>getStatus</li>
 </ul>
 </li>
-<li>statusCategory (/rest/api/2/statuscategory)<ul>
+<li>statusCategory (/rest/api/2/statuscategory)
+<ul>
 <li>getAllStatusCategories</li>
 <li>getStatusCategory</li>
 </ul>
 </li>
-<li>user (/rest/api/2/user)<ul>
+<li>user (/rest/api/2/user)
+<ul>
 <li>getUser</li>
 <li>deleteUser</li>
 <li>editUser</li>
@@ -492,7 +672,8 @@ is still valid!</p>
 <li>viewIssueSearch</li>
 </ul>
 </li>
-<li>version (/rest/api/2/version)<ul>
+<li>version (/rest/api/2/version)
+<ul>
 <li>createVersion</li>
 <li>moveVersion</li>
 <li>getVersion</li>
@@ -508,18 +689,21 @@ is still valid!</p>
 <li>getGlobalRemoteLink</li>
 </ul>
 </li>
-<li>webhook (/rest/webhooks/1.0/webhook)<ul>
+<li>webhook (/rest/webhooks/1.0/webhook)
+<ul>
 <li>getAllWebhooks</li>
 <li>getWebhook</li>
 <li>createWebhook</li>
 <li>deleteWebhook</li>
 </ul>
 </li>
-<li>workflow (/rest/api/2/workflow)<ul>
+<li>workflow (/rest/api/2/workflow)
+<ul>
 <li>getWorkflows</li>
 </ul>
 </li>
-<li>workflowScheme (/rest/api/2/workflowscheme)<ul>
+<li>workflowScheme (/rest/api/2/workflowscheme)
+<ul>
 <li>createWorkflowScheme</li>
 <li>editWorkflowScheme</li>
 <li>deleteWorkflowScheme</li>
@@ -547,8 +731,16 @@ is still valid!</p>
 <li>deleteDraftWorkflow</li>
 </ul>
 </li>
+<li>worklog (/rest/api/2/worklog)
+<ul>
+<li>getWorklogDeleted</li>
+<li>worklogList</li>
+<li>getWorklogUpdated</li>
 </ul>
-<h2>License</h2><p><a href="http://opensource.org/licenses/MIT">MIT license</a></p></article>
+</li>
+</ul>
+<h2>License</h2>
+<p><a href="http://opensource.org/licenses/MIT">MIT license</a></p></article>
     </section>
 
 
@@ -559,13 +751,13 @@ is still valid!</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AgileBoardClient.html">AgileBoardClient</a></li><li><a href="AgileSprintClient.html">AgileSprintClient</a></li><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WebhookClient.html">WebhookClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li><li><a href="WorkLogClient.html">WorkLogClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul><h3>Classes</h3><ul><li><a href="AgileBacklogClient.html">AgileBacklogClient</a></li><li><a href="AgileBoardClient.html">AgileBoardClient</a></li><li><a href="AgileEpicClient.html">AgileEpicClient</a></li><li><a href="AgileSprintClient.html">AgileSprintClient</a></li><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LabelsClient.html">LabelsClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PermissionSchemeClient.html">PermissionSchemeClient</a></li><li><a href="PermissionsClient.html">PermissionsClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="RoleClient.html">RoleClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WebhookClient.html">WebhookClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li><li><a href="WorkLogClient.html">WorkLogClient</a></li></ul><h3>Global</h3><ul><li><a href="global.html#getIssuesWithoutEpic">getIssuesWithoutEpic</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jan 30 2018 10:10:04 GMT-0600 (CST)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.2</a> on Thu Jun 20 2019 10:20:56 GMT+0300 (Moscow Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

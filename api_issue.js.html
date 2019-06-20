@@ -28,8 +28,9 @@
         <article>
             <pre class="prettyprint source linenums"><code>"use strict";
 
-var errorStrings = require('./../lib/error');
 var fs = require('fs');
+var mime = require('mime-types');
+var errorStrings = require('./../lib/error');
 
 module.exports = IssueClient;
 
@@ -107,7 +108,7 @@ function IssueClient(jiraClient) {
                 maxResults: opts.maxResults
             },
             qs: {
-              boardId: opts.boardId
+                boardId: opts.boardId
             }
         };
 
@@ -323,7 +324,7 @@ function IssueClient(jiraClient) {
      * @return {Promise} Resolved when data has been retrieved
      */
     this.deleteIssue = function (opts, callback) {
-        var options = this.buildRequestOptions(opts, '', 'DELETE', null, {deleteSubtasks: opts.deleteSubtasks});
+        var options = this.buildRequestOptions(opts, '', 'DELETE', null, { deleteSubtasks: opts.deleteSubtasks });
 
         return this.jiraClient.makeRequest(options, callback, 'Issue Deleted');
     };
@@ -363,25 +364,26 @@ function IssueClient(jiraClient) {
     /**
      * Assigns an issue to a user. You can use this resource to assign issues when the user submitting the request has
      * the assign permission but not the edit issue permission. If the name is "-1" automatic assignee is used. A null
-     * name will remove the assignee.
-     *
+     * name will remove the assignee. or
+     * You can use accountId of the user whom to assign the issue.
+     * See {@link https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/}
      * @method assignIssue
      * @memberof IssueClient#
-     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueId or
-     *        issueKey property; issueId will be used over issueKey if both are present.
+     * @param {Object} opts use assignee name or accountId to assign the issue 
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param {string} opts.assignee The name of the user to whom to assign the issue. -1 for default, null for no
-     *     assignee.
+     * @param {string} [opts.assignee] The name of the user to whom to assign the issue
+     * @param {string} [opts.accountId] The accountId of the user to whom to assign the issue. -1 for default, null for no assignee.
      * @param [callback] Called when the issue has been assigned.
      * @return {Promise} Resolved when the issue has been assigned.
      */
     this.assignIssue = function (opts, callback) {
-        if (!(typeof opts.assignee === "string" &amp;&amp; opts.assignee.length || opts.assignee === null)) {
+        var assigneeIdOrName = opts.accountId || opts.assignee;
+        if (!(typeof assigneeIdOrName === "string" &amp;&amp; assigneeIdOrName.length || assigneeIdOrName === null)) {
             throw new Error(errorStrings.NO_ASSIGNEE_ERROR);
         }
-
-        var options = this.buildRequestOptions(opts, '/assignee', 'PUT', {name: opts.assignee});
+        var params = opts.accountId ? { accountId: opts.accountId } : { name: opts.assignee }
+        var options = this.buildRequestOptions(opts, '/assignee', 'PUT', params);
 
         return this.jiraClient.makeRequest(options, callback, 'Issue Assigned');
     };
@@ -420,10 +422,10 @@ function IssueClient(jiraClient) {
      */
     this.addComment = function (opts, callback) {
         var options;
-        if(opts.comment.body) {
+        if (opts.comment.body) {
             options = this.buildRequestOptions(opts, '/comment', 'POST', opts.comment);
         } else {
-            options = this.buildRequestOptions(opts, '/comment', 'POST', {body: opts.comment});
+            options = this.buildRequestOptions(opts, '/comment', 'POST', { body: opts.comment });
         }
 
         return this.jiraClient.makeRequest(options, callback);
@@ -560,7 +562,7 @@ function IssueClient(jiraClient) {
      * @return {Promise} Resolved when the remote links are retrieved.
      */
     this.getRemoteLinks = function (opts, callback) {
-        var options = this.buildRequestOptions(opts, '/remotelink', 'GET', null, {globalId: opts.globalId});
+        var options = this.buildRequestOptions(opts, '/remotelink', 'GET', null, { globalId: opts.globalId });
 
         return this.jiraClient.makeRequest(options, callback);
     };
@@ -622,7 +624,7 @@ function IssueClient(jiraClient) {
             throw new Error(errorStrings.NO_GLOBAL_ID_ERROR);
         }
 
-        var options = this.buildRequestOptions(opts, '/remotelink', 'DELETE', null, {globalId: opts.globalId});
+        var options = this.buildRequestOptions(opts, '/remotelink', 'DELETE', null, { globalId: opts.globalId });
 
         return this.jiraClient.makeRequest(options, callback, 'RemoteLink Deleted');
     };
@@ -717,7 +719,7 @@ function IssueClient(jiraClient) {
      * @return {Promise} Resolved when the transitions are retrieved.
      */
     this.getTransitions = function (opts, callback) {
-        var options = this.buildRequestOptions(opts, '/transitions', 'GET', null, {transitionId: opts.transitionId});
+        var options = this.buildRequestOptions(opts, '/transitions', 'GET', null, { transitionId: opts.transitionId });
 
         return this.jiraClient.makeRequest(options, callback);
     };
@@ -736,17 +738,14 @@ function IssueClient(jiraClient) {
      *     issueKey property; issueId will be used over issueKey if both are present.
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param {string} opts.transition See {@link https://docs.atlassian.com/jira/REST/latest/#d2e698}
+     * @param {object} [opts.transition] See {@link https://docs.atlassian.com/jira/REST/latest/#d2e698}
+     * @param {string} [opts.transition.id] The ID of the issue transition. Required when specifying a transition to undertake. 
      * @param [callback] Called when the transitions are retrieved.
      * @return {Promise} Resolved when the transitions are retrieved.
      */
     this.transitionIssue = function (opts, callback) {
-        if (!opts.transition) {
-            throw new Error(errorStrings.NO_TRANSITION_ERROR);
-        }
-
         var options;
-        if(!opts.transition.transition) { // To keep backwards compatibility
+        if (!opts.transition.transition) { // To keep backwards compatibility
             options = this.buildRequestOptions(opts, '/transitions', 'POST', opts);
         } else {
             options = this.buildRequestOptions(opts, '/transitions', 'POST', opts.transition)
@@ -865,7 +864,7 @@ function IssueClient(jiraClient) {
         if (!opts.watcher) {
             throw new Error(errorStrings.NO_WATCHER_ERROR);
         }
-        var options = this.buildRequestOptions(opts, '/watchers', 'DELETE', null, {username: opts.watcher});
+        var options = this.buildRequestOptions(opts, '/watchers', 'DELETE', null, { username: opts.watcher });
 
         return this.jiraClient.makeRequest(options, callback, 'Watcher Removed');
     };
@@ -908,19 +907,34 @@ function IssueClient(jiraClient) {
      *     remaining estimate field. e.g. "2d"
      * @param {string} [opts.reduceBy] (required when "manual" is selected for adjustEstimate) the amount to reduce the
      *     remaining estimate by e.g. "2d"
-     * @param {Object} opts.worklog See {@link: https://docs.atlassian.com/jira/REST/latest/#d2e1106}
      * @param [callback] Called after the worklog is added.
      * @return {Promise} Resolved after the worklog is added.
      */
     this.addWorkLog = function (opts, callback) {
-        if (!opts.worklog) {
-            throw new Error(errorStrings.NO_WORKLOG_ERROR);
-        }
-        var options = this.buildRequestOptions(opts, '/worklog', 'POST', opts.worklog, {
-            newEstimate: opts.newEstimate,
-            reduceBy: opts.reduceBy,
-            adjustEstimate: opts.adjustEstimate
-        });
+        var options = {
+            uri: this.jiraClient.buildURL('issue/' + opts.issueId || opts.issueKey + '/worklog'),
+            method: 'POST',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                notifyUsers: opts.notifyUsers,
+                adjustEstimate: opts.adjustEstimate,
+                newEstimate: opts.newEstimate,
+                reduceBy: opts.reduceBy,
+                expand: opts.expand,
+                overrideEditableFlag: opts.overrideEditableFlag
+            },
+            body: Object.assign(opts, {
+                issueId: undefined,
+                issueKey: undefined,
+                notifyUsers: undefined,
+                adjustEstimate: undefined,
+                newEstimate: undefined,
+                reduceBy: undefined,
+                expand: undefined,
+                overrideEditableFlag: undefined
+            })
+        };
 
         return this.jiraClient.makeRequest(options, callback, 'Worklog Added');
     };
@@ -934,15 +948,20 @@ function IssueClient(jiraClient) {
      *     issueKey property; issueId will be used over issueKey if both are present.
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param {string} opts.worklogId The id of the work log to retrieve.
+     * @param {string} opts.id The id of the work log to retrieve.
      * @param [callback] Called after the worklog is retrieved.
      * @return {Promise} Resolved after the worklog is retrieved.
      */
     this.getWorkLog = function (opts, callback) {
-        if (!opts.worklogId) {
-            throw new Error(errorStrings.NO_WORKLOG_ID_ERROR);
-        }
-        var options = this.buildRequestOptions(opts, '/worklog/' + opts.worklogId, 'GET');
+        var options = {
+            uri: this.jiraClient.buildURL('issue/' + opts.issueId || opts.issueKey + '/worklog/' + opts.id || opts.worklogId),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                expand: opts.expand
+            }
+        };
 
         return this.jiraClient.makeRequest(options, callback);
     };
@@ -956,7 +975,7 @@ function IssueClient(jiraClient) {
      *     issueKey property; issueId will be used over issueKey if both are present.
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param {string} opts.worklogId The id of the work log to retrieve.
+     * @param {string} opts.id The id of the work log to retrieve.
      * @param {string} [opts.adjustEstimate] Allows you to provide specific instructions to update the remaining time
      *     estimate of the issue. Valid values are
      *     * "new" - sets the estimate to a specific value
@@ -970,16 +989,28 @@ function IssueClient(jiraClient) {
      * @return {Promise} Resolved after the worklog is updated.
      */
     this.updateWorkLog = function (opts, callback) {
-        if (!opts.worklogId) {
-            throw new Error(errorStrings.NO_WORKLOG_ID_ERROR);
-        } else if (!opts.worklog) {
-            throw new Error(errorStrings.NO_WORKLOG_ERROR);
-        }
-
-        var options = this.buildRequestOptions(opts, '/worklog/' + opts.worklogId, 'PUT', opts.worklog, {
-            newEstimate: opts.newEstimate,
-            adjustEstimate: opts.adjustEstimate
-        });
+        var options = {
+            uri: this.jiraClient.buildURL('issue/' + opts.issueId || opts.issueKey + '/worklog/' + opts.id || opts.worklogId),
+            method: 'PUT',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                notifyUsers: opts.notifyUsers,
+                adjustEstimate: opts.adjustEstimate,
+                newEstimate: opts.newEstimate,
+                expand: opts.expand,
+                overrideEditableFlag: opts.overrideEditableFlag
+            },
+            body: Object.assign(opts, {
+                issueId: undefined,
+                issueKey: undefined,
+                notifyUsers: undefined,
+                adjustEstimate: undefined,
+                newEstimate: undefined,
+                expand: undefined,
+                overrideEditableFlag: undefined
+            })
+        };
 
         return this.jiraClient.makeRequest(options, callback);
     };
@@ -993,7 +1024,7 @@ function IssueClient(jiraClient) {
      *     issueKey property; issueId will be used over issueKey if both are present.
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param {string} opts.worklogId The id of the work log to delete.
+     * @param {string} opts.id The id of the work log to delete.
      * @param {string} [opts.adjustEstimate] Allows you to provide specific instructions to update the remaining time
      *     estimate of the issue. Valid values are
      *     * "new" - sets the estimate to a specific value
@@ -1009,14 +1040,20 @@ function IssueClient(jiraClient) {
      * @return {Promise} Resolved after the work log is deleted.
      */
     this.deleteWorkLog = function (opts, callback) {
-        if (!opts.worklogId) {
-            throw new Error(errorStrings.NO_WORKLOG_ID_ERROR);
-        }
-        var options = this.buildRequestOptions(opts, '/worklog/' + opts.worklogId, 'DELETE', null, {
-            newEstimate: opts.newEstimate,
-            increaseBy: opts.increaseBy,
-            adjustEstimate: opts.adjustEstimate
-        });
+        var options = {
+            uri: this.jiraClient.buildURL('issue/' + opts.issueId || opts.issueKey + '/worklog/' + opts.id || opts.worklogId),
+            method: 'DELETE',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                notifyUsers: opts.notifyUsers,
+                adjustEstimate: opts.adjustEstimate,
+                newEstimate: opts.newEstimate,
+                increaseBy: opts.increaseBy,
+                overrideEditableFlag: opts.overrideEditableFlag
+            }
+        };
+
         return this.jiraClient.makeRequest(options, callback, 'Work Log Deleted');
     };
 
@@ -1029,7 +1066,7 @@ function IssueClient(jiraClient) {
      *     issueKey property; issueId will be used over issueKey if both are present.
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param {string} opts.filename The file name of attachment. If you pass an array of filenames, multiple attachments will be added.
+     * @param {string | Array&lt;string>} opts.filename The file name of attachment. If you pass an array of filenames, multiple attachments will be added.
      * @param [callback] Called when the attachment has been attached.
      * @return {Promise} Resolved when the attachment has been attached.
      */
@@ -1040,10 +1077,20 @@ function IssueClient(jiraClient) {
         var options = this.buildRequestOptions(opts, '/attachments', 'POST');
         delete options.body;
         if (opts.filename.constructor !== Array) opts.filename = [opts.filename];
-        var attachments = opts.filename.map (function (filename) {return fs.createReadStream(filename)});
-        options.formData = {file: attachments};
+        var attachments = opts.filename.map(function (filePath) {
+            var filename = filePath.split('/').reverse()[0];
+            var mimeType = mime.lookup(filename);
+            return {
+                value: fs.createReadStream(filePath),
+                options: {
+                    filename: filename,
+                    contentType: mimeType
+                }
+            }
+        });
+        options.formData = { file: attachments };
         options.headers = {
-            "X-Atlassian-Token": "nocheck"
+            'charset': 'utf-8'
         };
 
         return this.jiraClient.makeRequest(options, callback);
@@ -1143,6 +1190,42 @@ function IssueClient(jiraClient) {
         return this.jiraClient.makeRequest(options, callback, 'Property Deleted');
     };
 
+    this.setWorklogProperty = function (opts, callback) {
+        if (!opts.propertyKey) {
+            throw new Error(errorStrings.NO_PROPERTY_KEY_ERROR);
+        } else if (!opts.propertyValue) {
+            throw new Error(errorStrings.NO_PROPERTY_VALUE_ERROR);
+        }
+        var options = this.buildRequestOptions(
+            opts,
+            '/worklog/' + opts.worklogId + '/properties/' + opts.propertyKey,
+            'PUT',
+            opts.propertyValue
+        );
+        return this.jiraClient.makeRequest(options, callback, 'Property Set');
+    };
+
+    this.getWorkLogProperties = function (opts, callback) {
+        var options = this.buildRequestOptions(
+            opts,
+            '/worklog/' + opts.worklogId + '/properties/',
+            'GET'
+        );
+        return this.jiraClient.makeRequest(options, callback);
+    };
+
+    this.getWorkLogProperty = function (opts, callback) {
+        if (!opts.propertyKey) {
+            throw new Error(errorStrings.NO_PROPERTY_KEY_ERROR);
+        }
+        var options = this.buildRequestOptions(
+            opts,
+            '/worklog/' + opts.worklogId + '/properties/' + opts.propertyKey,
+            'GET'
+        );
+        return this.jiraClient.makeRequest(options, callback);
+    };
+
     /**
      * Build out the request options necessary to make a particular API call.
      *
@@ -1195,6 +1278,54 @@ function IssueClient(jiraClient) {
         };
     }
 
+    /**
+     * Returns suggested issues which match the auto-completion query for the 
+     * user which executes this request. This REST method will check the user's 
+     * history and the user's browsing context and select this issues, which 
+     * match the query.
+     *
+     * @method getIssuePicker
+     * @memberOf IssueClient#
+     * @param {Object} opts The options to pass to the API.
+     * @param {string} [opts.query] the query
+     * @param {string} [opts.currentJQL] the JQL in context of which the request 
+     *                 is executed. Only issues which match this JQL query will be 
+     *                 included in results.
+     * @param {string} [opts.currentIssueKey] the key of the issue in context of 
+     *                 which the request is executed. The issue which is in context 
+     *                 will not be included in the auto-completion result, even if 
+     *                 it matches the query.
+     * @param {string} [opts.currentProjectId] the id of the project in context of 
+     *                 which the request is executed. Suggested issues will be only 
+     *                 from this project.
+     * @param {boolean} [opts.showSubTasks] if set to false, subtasks will not be 
+     *                  included in the list.
+     * @param {boolean} [opts.showSubTaskParent] if set to false and request is 
+     *                  executed in context of a subtask, the parent issue will 
+     *                  not be included in the auto-completion result, even if it 
+     *                  matches the query.
+     * @param [callback] Called when the issues have been retrieved.
+     * @return {Promise} Resolved when the issues have been retrieved.
+     */
+    this.getIssuePicker = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/issue/picker'),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                query: opts.query,
+                currentJQL: opts.currentJQL,
+                currentIssueKey: opts.currentIssueKey,
+                currentProjectId: opts.currentProjectId,
+                showSubTasks: opts.showSubTasks,
+                showSubTaskParent: opts.showSubTaskParent
+            }
+        };
+
+        return this.jiraClient.makeRequest(options, callback);
+    };
+
 }
 </code></pre>
         </article>
@@ -1206,13 +1337,13 @@ function IssueClient(jiraClient) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AgileBoardClient.html">AgileBoardClient</a></li><li><a href="AgileSprintClient.html">AgileSprintClient</a></li><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WebhookClient.html">WebhookClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li><li><a href="WorkLogClient.html">WorkLogClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul><h3>Classes</h3><ul><li><a href="AgileBacklogClient.html">AgileBacklogClient</a></li><li><a href="AgileBoardClient.html">AgileBoardClient</a></li><li><a href="AgileEpicClient.html">AgileEpicClient</a></li><li><a href="AgileSprintClient.html">AgileSprintClient</a></li><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LabelsClient.html">LabelsClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PermissionSchemeClient.html">PermissionSchemeClient</a></li><li><a href="PermissionsClient.html">PermissionsClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="RoleClient.html">RoleClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WebhookClient.html">WebhookClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li><li><a href="WorkLogClient.html">WorkLogClient</a></li></ul><h3>Global</h3><ul><li><a href="global.html#getIssuesWithoutEpic">getIssuesWithoutEpic</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jan 30 2018 10:10:04 GMT-0600 (CST)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.2</a> on Thu Jun 20 2019 10:20:55 GMT+0300 (Moscow Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

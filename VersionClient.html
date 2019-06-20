@@ -170,6 +170,8 @@
 
 
 
+
+
     
     </div>
 
@@ -393,7 +395,7 @@ otherwise, it will be generated.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line131">line 131</a>
+        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line156">line 156</a>
     </li></ul></dd>
     
 
@@ -403,6 +405,8 @@ otherwise, it will be generated.</p>
 
     
 </dl>
+
+
 
 
 
@@ -660,6 +664,8 @@ otherwise, it will be generated.</p>
 
 
 
+
+
 <h5>Returns:</h5>
 
         
@@ -884,7 +890,7 @@ otherwise, it will be generated.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line195">line 195</a>
+        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line220">line 220</a>
     </li></ul></dd>
     
 
@@ -894,6 +900,8 @@ otherwise, it will be generated.</p>
 
     
 </dl>
+
+
 
 
 
@@ -1136,7 +1144,7 @@ otherwise, it will be generated.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line164">line 164</a>
+        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line189">line 189</a>
     </li></ul></dd>
     
 
@@ -1146,6 +1154,8 @@ otherwise, it will be generated.</p>
 
     
 </dl>
+
+
 
 
 
@@ -1383,7 +1393,7 @@ otherwise, it will be generated.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line180">line 180</a>
+        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line205">line 205</a>
     </li></ul></dd>
     
 
@@ -1393,6 +1403,8 @@ otherwise, it will be generated.</p>
 
     
 </dl>
+
+
 
 
 
@@ -1650,7 +1662,7 @@ otherwise, it will be generated.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line70">line 70</a>
+        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line95">line 95</a>
     </li></ul></dd>
     
 
@@ -1673,11 +1685,262 @@ otherwise, it will be generated.</p>
 
 
 
+
+
 <h5>Returns:</h5>
 
         
 <div class="param-desc">
     <p>Resolved when the version has been modified.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="getAllVersions"><span class="type-signature"></span>getAllVersions<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Get a all versions from specific board.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The request options sent to the Jira API.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>boardId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the board which contains versions to retrieve.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Called when all versions are retrieved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line55">line 55</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolved when all versions are retrieved.</p>
 </div>
 
 
@@ -1884,7 +2147,7 @@ otherwise, it will be generated.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line210">line 210</a>
+        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line235">line 235</a>
     </li></ul></dd>
     
 
@@ -1894,6 +2157,8 @@ otherwise, it will be generated.</p>
 
     
 </dl>
+
+
 
 
 
@@ -2118,7 +2383,7 @@ otherwise, it will be generated.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line86">line 86</a>
+        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line111">line 111</a>
     </li></ul></dd>
     
 
@@ -2128,6 +2393,8 @@ otherwise, it will be generated.</p>
 
     
 </dl>
+
+
 
 
 
@@ -2352,7 +2619,7 @@ otherwise, it will be generated.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line116">line 116</a>
+        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line141">line 141</a>
     </li></ul></dd>
     
 
@@ -2362,6 +2629,8 @@ otherwise, it will be generated.</p>
 
     
 </dl>
+
+
 
 
 
@@ -2604,7 +2873,7 @@ otherwise, it will be generated.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line148">line 148</a>
+        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line173">line 173</a>
     </li></ul></dd>
     
 
@@ -2614,6 +2883,8 @@ otherwise, it will be generated.</p>
 
     
 </dl>
+
+
 
 
 
@@ -2838,7 +3109,7 @@ otherwise, it will be generated.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line101">line 101</a>
+        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line126">line 126</a>
     </li></ul></dd>
     
 
@@ -2848,6 +3119,8 @@ otherwise, it will be generated.</p>
 
     
 </dl>
+
+
 
 
 
@@ -3085,7 +3358,7 @@ otherwise, it will be generated.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line55">line 55</a>
+        <a href="api_version.js.html">api/version.js</a>, <a href="api_version.js.html#line80">line 80</a>
     </li></ul></dd>
     
 
@@ -3095,6 +3368,8 @@ otherwise, it will be generated.</p>
 
     
 </dl>
+
+
 
 
 
@@ -3298,7 +3573,7 @@ otherwise, it will be generated.</p>
             
 
             <td class="description last"><p>An absolute position, which may have a value of 'First', 'Last', 'Earlier' or
-    'Later'. Must be provided if opts.after is missing.</p></td>
+'Later'. Must be provided if opts.after is missing.</p></td>
         </tr>
 
     
@@ -3332,7 +3607,7 @@ otherwise, it will be generated.</p>
             
 
             <td class="description last"><p>A version to place this version after. The value should be the self link of another
-    version. Must be provided if opts.position is missing</p></td>
+version. Must be provided if opts.position is missing</p></td>
         </tr>
 
     
@@ -3431,6 +3706,8 @@ otherwise, it will be generated.</p>
 
 
 
+
+
 <h5>Returns:</h5>
 
         
@@ -3474,13 +3751,13 @@ otherwise, it will be generated.</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AgileBoardClient.html">AgileBoardClient</a></li><li><a href="AgileSprintClient.html">AgileSprintClient</a></li><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WebhookClient.html">WebhookClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li><li><a href="WorkLogClient.html">WorkLogClient</a></li></ul><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul><h3>Classes</h3><ul><li><a href="AgileBacklogClient.html">AgileBacklogClient</a></li><li><a href="AgileBoardClient.html">AgileBoardClient</a></li><li><a href="AgileEpicClient.html">AgileEpicClient</a></li><li><a href="AgileSprintClient.html">AgileSprintClient</a></li><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LabelsClient.html">LabelsClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PermissionSchemeClient.html">PermissionSchemeClient</a></li><li><a href="PermissionsClient.html">PermissionsClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="RoleClient.html">RoleClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WebhookClient.html">WebhookClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li><li><a href="WorkLogClient.html">WorkLogClient</a></li></ul><h3>Global</h3><ul><li><a href="global.html#getIssuesWithoutEpic">getIssuesWithoutEpic</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jan 30 2018 10:10:04 GMT-0600 (CST)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.2</a> on Thu Jun 20 2019 10:20:56 GMT+0300 (Moscow Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

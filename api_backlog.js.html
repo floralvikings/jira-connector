@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: api/backlog.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: api/backlog.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+
+module.exports = AgileBacklogClient;
+
+/**
+ * Used to access Jira REST endpoints in '/rest/agile/1.0/backlog'
+ * @param {JiraClient} jiraClient
+ * @constructor AgileBacklogClient
+ */
+function AgileBacklogClient(jiraClient) {
+  this.jiraClient = jiraClient;
+
+  /**
+   * Move issues to the backlog. This operation is equivalent to remove future and active sprints from a given set of
+   * issues. At most 50 issues may be moved at once.
+   *
+   * @method moveIssuesToBacklog
+   * @memberOf AgileBacklogClient#
+   * @param opts The request options sent to the Jira API.
+   * @param [opts.issues] Array of strings with issues keys or ids
+   * @param [callback] Called when the dashboard has been retrieved
+   * @return {Promise} Resolved when the dashboard has been retrieved
+   */
+  this.moveIssuesToBacklog = function (opts, callback) {
+    opts = opts || {};
+    var options = {
+      uri: this.jiraClient.buildAgileURL("/backlog/issue"),
+      method: "POST",
+      json: true,
+      followAllRedirects: true,
+      body: {
+        issues: opts.issues
+      }
+    };
+
+    return this.jiraClient.makeRequest(options, callback);
+  };
+
+  /**
+   * Move issues to the backlog of a particular board (if they are already on that board).
+   * This operation is equivalent to remove future and active sprints from a given set of issues if the board has sprints
+   * If the board does not have sprints this will put the issues back into the backlog from the board. At most 50 issues
+   * may be moved at once.
+   *
+   * @method moveIssuesToBacklogForBoard
+   * @memberOf AgileBacklogClient#
+   * @param opts The request options sent to the Jira API.
+   * @param opts.boardId The agile board id.
+   * @param [opts.issues] Array of strings with issues keys or ids
+   * @param [opts.rankBeforeIssue] string
+   * @param [opts.rankAfterIssue] string
+   * @param [opts.rankCustomFieldId] int64
+   * @param [callback] Called when the dashboard has been retrieved
+   * @return {Promise} Resolved when the dashboard has been retrieved
+   */
+  this.moveIssuesToBacklogForBoard = function (opts, callback) {
+    var options = {
+      uri: this.jiraClient.buildAgileURL("/backlog/" + opts.boardId + "/issue"),
+      method: "POST",
+      json: true,
+      followAllRedirects: true,
+      body: {
+        issues: opts.issues,
+        rankBeforeIssue: opts.rankBeforeIssue,
+        rankAfterIssue: opts.rankAfterIssue,
+        rankCustomFieldId: opts.rankCustomFieldId
+      }
+    };
+
+    return this.jiraClient.makeRequest(options, callback);
+  };
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul><h3>Classes</h3><ul><li><a href="AgileBacklogClient.html">AgileBacklogClient</a></li><li><a href="AgileBoardClient.html">AgileBoardClient</a></li><li><a href="AgileEpicClient.html">AgileEpicClient</a></li><li><a href="AgileSprintClient.html">AgileSprintClient</a></li><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LabelsClient.html">LabelsClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PermissionSchemeClient.html">PermissionSchemeClient</a></li><li><a href="PermissionsClient.html">PermissionsClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="RoleClient.html">RoleClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WebhookClient.html">WebhookClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li><li><a href="WorkLogClient.html">WorkLogClient</a></li></ul><h3>Global</h3><ul><li><a href="global.html#getIssuesWithoutEpic">getIssuesWithoutEpic</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.2</a> on Thu Jun 20 2019 10:20:55 GMT+0300 (Moscow Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
