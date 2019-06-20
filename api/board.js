@@ -609,7 +609,7 @@ function AgileBoardClient(jiraClient) {
   };
 
   // TODO add JsDoc
-  this.getIssuesForSprint = function () {
+  this.getIssuesForSprint = function (opts, callback) {
     var options = {
       uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/sprint/' + opts.sprintId + '/issue'),
       method: 'GET',
