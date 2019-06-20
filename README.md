@@ -155,7 +155,7 @@ Once you have this data, you will need to generate an OAuth token and secret for
 helper functions for exactly this purpose:
 
 ```javascript
-var JiraClient = require("./index.js");
+var JiraClient = require("jira-connector");
 
 JiraClient.oauth_util.getAuthorizeURL(
   {
@@ -189,7 +189,7 @@ Allowing access will display a verifier code. Once you have this code, you can s
 for an Access Token with all the permissions of your account; jira-connector provides a function to help with this:
 
 ```javascript
-var JiraClient = require("./index.js");
+var JiraClient = require("jira-connector");
 
 JiraClient.oauth_util.swapRequestTokenWithAccessToken(
   {
@@ -215,7 +215,7 @@ This will query Jira for an Access Token, which will then be printed to the scre
 Jira with OAuth!
 
 ```javascript
-var JiraClient = require("./index.js");
+var JiraClient = require("jira-connector");
 
 var jira = new JiraClient({
   host: "jenjinstudios.atlassian.net",
@@ -241,7 +241,7 @@ pain of setting up an OAuth method.
 For example, using `though-cookie-filestore`:
 
 ```javascript
-var JiraClient = require("../jira-connector");
+var JiraClient = require("jira-connector");
 var FileCookieStore = require("tough-cookie-filestore");
 
 var request = require("request");
