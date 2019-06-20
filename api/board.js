@@ -444,7 +444,7 @@ function AgileBoardClient(jiraClient) {
     return this.jiraClient.makeRequest(options, callback);
   };
 
-  this.getBoardPropertyKeys = function () {
+  this.getBoardPropertyKeys = function (opts, callback) {
     var options = {
       uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/properties'),
       method: 'GET',
@@ -455,7 +455,7 @@ function AgileBoardClient(jiraClient) {
     return this.jiraClient.makeRequest(options, callback);
   }
 
-  this.getBoardProperty = function () {
+  this.getBoardProperty = function (opts, callback) {
     var options = {
       uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/properties/' + opts.propertyKey),
       method: 'GET',
@@ -466,7 +466,7 @@ function AgileBoardClient(jiraClient) {
     return this.jiraClient.makeRequest(options, callback);
   }
 
-  this.setBoardProperty = function () {
+  this.setBoardProperty = function (opts, callback) {
     var options = {
       uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/properties/' + opts.propertyKey),
       method: 'PUT',
@@ -477,7 +477,7 @@ function AgileBoardClient(jiraClient) {
     return this.jiraClient.makeRequest(options, callback);
   }
 
-  this.deleteBoardProperty = function () {
+  this.deleteBoardProperty = function (opts, callback) {
     var options = {
       uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/properties/' + opts.propertyKey),
       method: 'DELETE',
@@ -488,22 +488,22 @@ function AgileBoardClient(jiraClient) {
     return this.jiraClient.makeRequest(options, callback);
   }
 
-  this.getAllQuickFilters = function () {
+  this.getAllQuickFilters = function (opts, callback) {
     var options = {
       uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/quickfilter'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
       qs: {
-        startAt: params.startAt,
-        maxResults: params.maxResults
+        startAt: opts.startAt,
+        maxResults: opts.maxResults
       }
     };
 
     return this.jiraClient.makeRequest(options, callback);
   }
 
-  this.getQuickFilter = function () {
+  this.getQuickFilter = function (opts, callback) {
     var options = {
       uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/quickfilter/' + opts.quickFilterId),
       method: 'GET',
