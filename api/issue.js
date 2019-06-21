@@ -1039,16 +1039,11 @@ function IssueClient(jiraClient) {
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string | Array<string>} opts.filename The file name of attachment. If you pass an array of filenames, multiple attachments will be added.
-     * @param [callback] Called when the attachment has been attached.
+     * @param {Object} [opts.headers]
+     * @param {Function} [callback] Called when the attachment has been attached.
      * @return {Promise} Resolved when the attachment has been attached.
      */
     this.addAttachment = function (opts, callback) {
-        if (!opts.filename) {
-            throw new Error(errorStrings.NO_FILENAME_ERROR);
-        }
-        var options = this.buildRequestOptions(opts, '/attachments', 'POST');
-        delete options.body;
-        if (opts.filename.constructor !== Array) opts.filename = [opts.filename];
         var attachments = opts.filename.map(function (filePath) {
             var filename = filePath.split('/').reverse()[0];
             var mimeType = mime.lookup(filename);
@@ -1060,9 +1055,16 @@ function IssueClient(jiraClient) {
                 }
             }
         });
-        options.formData = { file: attachments };
-        options.headers = {
-            'charset': 'utf-8'
+
+        var options = {
+            uri: this.jiraClient.buildURL('issue/' + opts.issueId || opts.issueKey + '/attachments'),
+            method: 'POST',
+            json: true,
+            followAllRedirects: true,
+            headers: Object.assign({ charset: 'utf-8' }, opts.headers || {}),
+            formData: {
+                file: attachments
+            }
         };
 
         return this.jiraClient.makeRequest(options, callback);
