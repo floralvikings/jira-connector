@@ -18,6 +18,11 @@ interface IConfig {
         password?: string;
         base64?: string;
     };
+    basic_auth_api_token?: {
+        email?: string;
+        api_token?: string;
+        base64?: string;
+    };
     oauth?: {
         consumer_key: string;
         private_key: string;
