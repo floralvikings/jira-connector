@@ -14,13 +14,12 @@ interface IConfig {
     strictSSL?: boolean;
     version?: string;
     basic_auth?: {
+        api_token?: {
+            email?: string;
+            token?: string;
+        };
         username?: string;
         password?: string;
-        base64?: string;
-    };
-    basic_auth_api_token?: {
-        email?: string;
-        api_token?: string;
         base64?: string;
     };
     oauth?: {

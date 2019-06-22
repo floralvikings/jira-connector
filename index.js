@@ -128,16 +128,16 @@ var worklog = require('./api/worklog');
  *     version 2 is supported.
  * @param {Object} [config.basic_auth] The authentication information used tp connect to Jira. Must contain EITHER username and password
  *     OR oauth information.  Oauth information will be used over username/password authentication.
+ * @param {Object} [config.basic_auth.base64] base64 that contains email:api_token.
  * @param {string} [config.basic_auth.username] The username of the user that will be authenticated. MUST be included
  *     if using username and password authentication.
  * @param {string} [config.basic_auth.password] The password of the user that will be authenticated. MUST be included
  *     if using username and password authentication.
- * @param {Object} [config.basic_auth_api_token] The authentication information used tp connect to Jira. Must contain EITHER email and ApiToken
- *     OR base64 that contains email:api_token.
- * @param {string} [config.basic_auth_api_token.email] The email of the user that will be authenticated. MUST be included
+ * @param {Object} [config.basic_auth.api_token] The authentication information used tp connect to Jira. Must contain EITHER email and ApiToken
+ * @param {string} [config.basic_auth.api_token.email] The email of the user that will be authenticated. MUST be included
  *     if using email and api_toekn authentication.
- * @param {string} [config.basic_auth_api_token.api_token] The api token of the user that will be authenticated. MUST be included
- *     if using email and api_token authentication.
+ * @param {string} [config.basic_auth.api_token.token] The api token of the user that will be authenticated. MUST be included
+ *     if using email and token authentication.
  * @param {string} [config.oauth.consumer_key] The consumer key used in the Jira Application Link for oauth
  *     authentication.  MUST be included if using OAuth.
  * @param {string} [config.oauth.private_key] The private key used for OAuth security. MUST be included if using OAuth.
@@ -188,6 +188,18 @@ var JiraClient = module.exports = function (config) {
             this.basic_auth = {
                 base64: config.basic_auth.base64
             }
+        } else if (config.basic_auth.api_token) {
+            if (!config.basic_auth.api_token.email) {
+                throw new Error(errorStrings.NO_EMAIL_ERROR);
+            }
+            if (!config.basic_auth.api_token.token) {
+                throw new Error(errorStrings.NO_APITOKEN_ERROR);
+            }
+    
+            this.basic_auth = {
+                user: config.basic_auth.api_token.email,
+                pass: config.basic_auth.api_token.token
+            };
         } else {
             if (!config.basic_auth.username) {
                 throw new Error(errorStrings.NO_USERNAME_ERROR);
@@ -198,24 +210,6 @@ var JiraClient = module.exports = function (config) {
             this.basic_auth = {
                 user: config.basic_auth.username,
                 pass: config.basic_auth.password
-            };
-        }
-    }
-    else if (config.basic_auth_api_token) {
-        if (config.basic_auth_api_token.base64) {
-            this.basic_auth_api_token = {
-                base64: config.basic_auth_api_token.base64
-            }
-        } else {
-            if (!config.basic_auth_api_token.email) {
-                throw new Error(errorStrings.NO_EMAIL_ERROR);
-            } else if (!config.basic_auth_api_token.api_token) {
-                throw new Error(errorStrings.NO_APITOKEN_ERROR);
-            }
-
-            this.basic_auth_api_token = {
-                user: config.basic_auth_api_token.email,
-                pass: config.basic_auth_api_token.api_token
             };
         }
     }
@@ -391,19 +385,13 @@ var JiraClient = module.exports = function (config) {
                     options.headers = {}
                 }
                 options.headers['Authorization'] = 'Basic ' + this.basic_auth.base64
-            } else {
+            } else if (this.basic_auth.api_token) {
+                options.auth = this.basic_auth.api_token;
+            }
+            else {
                 options.auth = this.basic_auth;
             }
-        } else if (this.basic_auth_api_token) {
-            if (this.basic_auth_api_token.base64) {
-                if (!options.headers) {
-                    options.headers = {}
-                }
-                options.headers['Authorization'] = 'Basic ' + this.basic_auth_api_token.base64
-            } else {
-                options.auth = this.basic_auth_api_token;
-            }
-        }
+        } 
         if (this.cookie_jar) {
             options.jar = this.cookie_jar;
         }
