@@ -95,9 +95,9 @@ for various API calls.
 
 jira-connector supports two forms of authentication:
 
-### Basic Authentication (Deprecated) 
+### Basic Authentication (Deprecated)
 
-[Deprecated](https://confluence.atlassian.com/cloud/deprecation-of-basic-authentication-with-passwords-for-jira-and-confluence-apis-972355348.html). It will require you to 
+[Deprecated](https://confluence.atlassian.com/cloud/deprecation-of-basic-authentication-with-passwords-for-jira-and-confluence-apis-972355348.html). It will require you to
 provide a username and password each time you connect to the
 Jira instance. However, jira-connector supports it for users who are unable to use OAuth.
 
@@ -122,16 +122,15 @@ Jira instance. However, jira-connector supports it for users who are unable to u
 
 Example:
 
-
 ```javascript
 var JiraClient = require("jira-connector");
 
 var jira = new JiraClient({
-   host:"jenjinstudios.atlassian.net",
-   basic_auth:{
-      email:"email@email.com",
-      token:"api-token"
-   }
+  host: "jenjinstudios.atlassian.net",
+  basic_auth: {
+    email: "email@email.com",
+    token: "api-token"
+  }
 });
 ```
 
@@ -154,9 +153,8 @@ var jira = new JiraClient({
   }
 });
 
-// Base64 encoding of 'SirUserOfName:Password123' (for legacy server version) or 'email:api_token' (jira cloud)  
+// Base64 encoding of 'SirUserOfName:Password123' (for legacy server version) or 'email:api_token' (jira cloud)
 ```
-
 
 ### OAuth Authentication
 

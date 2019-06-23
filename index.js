@@ -190,12 +190,10 @@ var JiraClient = module.exports = function (config) {
         } else if (config.basic_auth.api_token || config.basic_auth.email) {
             if (!config.basic_auth.email) {
                 throw new Error(errorStrings.NO_EMAIL_ERROR);
-            }
-
-            if (!config.basic_auth.api_token) {
+            } else if (!config.basic_auth.api_token) {
                 throw new Error(errorStrings.NO_APITOKEN_ERROR);
             }
-            
+
             this.basic_auth = {
                 user: config.basic_auth.email,
                 pass: config.basic_auth.api_token
@@ -388,7 +386,8 @@ var JiraClient = module.exports = function (config) {
             } else {
                 options.auth = this.basic_auth;
             }
-        } 
+        }
+
         if (this.cookie_jar) {
             options.jar = this.cookie_jar;
         }
@@ -396,16 +395,14 @@ var JiraClient = module.exports = function (config) {
         if (callback) {
             requestLib(options, function (err, response, body) {
                 if (
-                    err
-                    || (
-                        response.statusCode.toString()[0] !== "2"
-                        && response.statusCode.toString()[0] !== "3"
-                    )
+                    err ||
+                    response.statusCode < 200 ||
+                    response.statusCode > 399
                 ) {
                     return callback(err ? err : body, null, response);
                 }
 
-                if (typeof body == 'string') {
+                if (typeof body === 'string') {
                     try {
                         body = JSON.parse(body);
                     } catch (jsonErr) {
@@ -417,7 +414,6 @@ var JiraClient = module.exports = function (config) {
             });
         } else if (this.promise) {
             return new this.promise(function (resolve, reject) {
-
                 var req = requestLib(options);
                 var requestObj = null;
 
@@ -426,9 +422,8 @@ var JiraClient = module.exports = function (config) {
                 });
 
                 req.on('response', function (response) {
-
                     // Saving error
-                    var error = response.statusCode.toString()[0] !== '2';
+                    var error = response.statusCode < 200 || response.statusCode > 399;
 
                     // Collecting data
                     var body = [];
@@ -437,7 +432,6 @@ var JiraClient = module.exports = function (config) {
 
                     // Data collected
                     response.on('end', function () {
-
                         var result = body.join('');
 
                         // Parsing JSON
@@ -487,16 +481,12 @@ var JiraClient = module.exports = function (config) {
                             resolve(result);
                         }
                     });
-
                 });
 
                 req.on('error', reject);
-
             });
         }
-
     };
-
 }).call(JiraClient.prototype);
 
 JiraClient.oauth_util = require('./lib/oauth_util');
