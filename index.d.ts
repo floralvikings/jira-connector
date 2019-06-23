@@ -14,6 +14,8 @@ interface IConfig {
     strictSSL?: boolean;
     version?: string;
     basic_auth?: {
+        email?: string;
+        api_token?: string;
         username?: string;
         password?: string;
         base64?: string;

@@ -95,9 +95,10 @@ for various API calls.
 
 jira-connector supports two forms of authentication:
 
-### Basic Authentication
+### Basic Authentication (Deprecated) 
 
-This is not recommended; it will require you to provide a username and password each time you connect to the
+[Deprecated](https://confluence.atlassian.com/cloud/deprecation-of-basic-authentication-with-passwords-for-jira-and-confluence-apis-972355348.html). It will require you to 
+provide a username and password each time you connect to the
 Jira instance. However, jira-connector supports it for users who are unable to use OAuth.
 
 Example:
@@ -114,10 +115,30 @@ var jira = new JiraClient({
 });
 ```
 
+### Basic Authentication With API Token
+
+This is not recommended; it will require you to provide a email and [api_token](https://confluence.atlassian.com/cloud/api-tokens-938839638.html) each time you connect to the
+Jira instance. However, jira-connector supports it for users who are unable to use OAuth.
+
+Example:
+
+
+```javascript
+var JiraClient = require("jira-connector");
+
+var jira = new JiraClient({
+   host:"jenjinstudios.atlassian.net",
+   basic_auth:{
+      email:"email@email.com",
+      token:"api-token"
+   }
+});
+```
+
 ### Basic Authentication (Base64)
 
 Also not recommended, but slightly better than the above; it will require you to provide a Base64 encoded username
-and password (a Base64 encoding in the format of "username:password") each time you connect to the Jira instance.
+and password or email and api_token (a Base64 encoding in the format of "username:password", or "email:api_token") each time you connect to the Jira instance.
 
 More examples [here](https://developer.atlassian.com/jiradev/jira-apis/jira-rest-apis/jira-rest-api-tutorials/jira-rest-api-example-basic-authentication).
 
@@ -133,8 +154,9 @@ var jira = new JiraClient({
   }
 });
 
-// Base64 encoding of 'SirUserOfName:Password123'
+// Base64 encoding of 'SirUserOfName:Password123' (for legacy server version) or 'email:api_token' (jira cloud)  
 ```
+
 
 ### OAuth Authentication
 
