@@ -211,15 +211,6 @@ function AgileEpicClient(jiraClient) {
     }
 
     /**
-     * {
-          epicId: number | string,
-          rankBeforeEpic?: string,
-          rankAfterEpic?: string,
-          rankCustomFieldId?: number
-        }
-     */
-
-    /**
      * Moves (ranks) an epic before or after a given epic.
      * 
      * If rankCustomFieldId is not defined, the default rank field will be used.

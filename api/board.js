@@ -448,6 +448,7 @@ function AgileBoardClient(jiraClient) {
     return this.jiraClient.makeRequest(options, callback);
   };
 
+  // TODO add JsDoc
   this.getBoardPropertyKeys = function (opts, callback) {
     var options = {
       uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/properties'),
@@ -459,6 +460,7 @@ function AgileBoardClient(jiraClient) {
     return this.jiraClient.makeRequest(options, callback);
   }
 
+  // TODO add JsDoc
   this.getBoardProperty = function (opts, callback) {
     var options = {
       uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/properties/' + opts.propertyKey),
@@ -470,6 +472,7 @@ function AgileBoardClient(jiraClient) {
     return this.jiraClient.makeRequest(options, callback);
   }
 
+  // TODO add JsDoc
   this.setBoardProperty = function (opts, callback) {
     var options = {
       uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/properties/' + opts.propertyKey),
@@ -481,6 +484,7 @@ function AgileBoardClient(jiraClient) {
     return this.jiraClient.makeRequest(options, callback);
   }
 
+  // TODO add JsDoc
   this.deleteBoardProperty = function (opts, callback) {
     var options = {
       uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/properties/' + opts.propertyKey),
@@ -492,6 +496,7 @@ function AgileBoardClient(jiraClient) {
     return this.jiraClient.makeRequest(options, callback);
   }
 
+  // TODO add JsDoc
   this.getAllQuickFilters = function (opts, callback) {
     var options = {
       uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/quickfilter'),
@@ -507,6 +512,7 @@ function AgileBoardClient(jiraClient) {
     return this.jiraClient.makeRequest(options, callback);
   }
 
+  // TODO add JsDoc
   this.getQuickFilter = function (opts, callback) {
     var options = {
       uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/quickfilter/' + opts.quickFilterId),
