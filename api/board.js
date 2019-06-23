@@ -268,7 +268,11 @@ function AgileBoardClient(jiraClient) {
    * Returns all issues that do not belong to any epic on a board, for a given board ID. This only includes issues that
    * the user has permission to view. Issues returned from this resource include Agile fields, like sprint,
    * closedSprints, flagged, and epic. By default, the returned issues are ordered by rank.
+   * 
+   * @method getIssuesWithoutEpic
+   * @memberOf AgileBoardClient#
    * @param opts
+   * @param {number | string} opts.boardId
    * @param {number} [opts.startAt] The starting index of the returned issues. Base index: 0. See the 'Pagination'
    *      section at the top of this page for more details.
    * @param {number} [opts.maxResults] The maximum number of issues to return per page. Default: 50. See the
