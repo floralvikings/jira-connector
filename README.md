@@ -129,7 +129,7 @@ var jira = new JiraClient({
   host: "jenjinstudios.atlassian.net",
   basic_auth: {
     email: "email@email.com",
-    token: "api-token"
+    api_token: "api-token"
   }
 });
 ```
