@@ -1,5 +1,5 @@
 export declare class Issue {
-    [method: string]: Promise<any>;
+    [method: string]: any;
     addWorkLog(opts: {
         [key: string]: any,
         issueId?: number | string,
