@@ -258,7 +258,7 @@ var jira = new JiraClient({
 You can also use a Cookie Jar for your request. It could be an easier way to prompt for a login only once, without the
 pain of setting up an OAuth method.
 
-For example, using `though-cookie-filestore`:
+For example, using `tough-cookie-filestore`:
 
 ```javascript
 var JiraClient = require("jira-connector");
@@ -289,7 +289,7 @@ var jira = new JiraClient({
 ```
 
 In this example, all your cookies are save in a file, `cookies.json`. Currently, the file **MUST** exist, it's a
-limitation from `though-cookie-filestore`...
+limitation from `tough-cookie-filestore`...
 
 You can now only use the Cookie Jar for all the following request, as long as the file exists and the cookie
 is still valid!
