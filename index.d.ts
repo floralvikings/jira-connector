@@ -9,6 +9,8 @@ interface IConfig {
     host: string;
     port?: number;
 
+    timeout?: number;
+
     protocol?: string;
     path_prefix?: string;
     strictSSL?: boolean;

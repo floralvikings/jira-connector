@@ -120,6 +120,7 @@ var worklog = require('./api/worklog');
  *
  * @param config The information needed to access the Jira API
  * @param {string} config.host The hostname of the Jira API.
+ * @param {number} [config.timeout] request timeout (milliseconds)
  * @param {string} [config.protocol=https] The protocol used to accses the Jira API.
  * @param {number} [config.port=443] The port number used to connect to Jira.
  * @param {string} [config.path_prefix="/"] The prefix to use in front of the path, if Jira isn't at "/"
@@ -156,6 +157,7 @@ var JiraClient = module.exports = function (config) {
     }
 
     this.host = config.host;
+    this.timeout = config.timeout;
     this.protocol = config.protocol ? config.protocol : 'https';
     this.path_prefix = config.path_prefix ? config.path_prefix : '/';
     this.port = config.port;
@@ -374,6 +376,7 @@ var JiraClient = module.exports = function (config) {
         let requestLib = this.requestLib;
         options.rejectUnauthorized = this.rejectUnauthorized;
         options.strictSSL = this.strictSSL;
+        options.timeout = this.timeout;
 
         if (this.oauthConfig) {
             options.oauth = this.oauthConfig;
