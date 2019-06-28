@@ -1057,12 +1057,17 @@ function IssueClient(jiraClient) {
             }
         });
 
+        var headers = {
+            charset: 'utf-8',
+            'X-Atlassian-Token': 'nocheck'
+        }
+
         var options = {
             uri: this.jiraClient.buildURL('/issue/' + (opts.issueId || opts.issueKey) + '/attachments'),
             method: 'POST',
             json: true,
             followAllRedirects: true,
-            headers: Object.assign({ charset: 'utf-8' }, opts.headers || {}),
+            headers: Object.assign(headers, opts.headers || {}),
             formData: {
                 file: attachments
             }
