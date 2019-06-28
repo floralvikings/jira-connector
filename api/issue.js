@@ -926,7 +926,7 @@ function IssueClient(jiraClient) {
      */
     this.getWorkLog = function (opts, callback) {
         var options = {
-            uri: this.jiraClient.buildURL('/issue/' + (opts.issueId || opts.issueKey) + '/worklog/' + (opts.id || opts.worklogId),
+            uri: this.jiraClient.buildURL('/issue/' + (opts.issueId || opts.issueKey) + '/worklog/' + (opts.id || opts.worklogId)),
             method: 'GET',
             json: true,
             followAllRedirects: true,
