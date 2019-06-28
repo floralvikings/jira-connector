@@ -884,7 +884,7 @@ function IssueClient(jiraClient) {
      */
     this.addWorkLog = function (opts, callback) {
         var options = {
-            uri: this.jiraClient.buildURL('issue/' + opts.issueId || opts.issueKey + '/worklog'),
+            uri: this.jiraClient.buildURL('/issue/' + (opts.issueId || opts.issueKey) + '/worklog'),
             method: 'POST',
             json: true,
             followAllRedirects: true,
@@ -926,7 +926,7 @@ function IssueClient(jiraClient) {
      */
     this.getWorkLog = function (opts, callback) {
         var options = {
-            uri: this.jiraClient.buildURL('issue/' + opts.issueId || opts.issueKey + '/worklog/' + opts.id || opts.worklogId),
+            uri: this.jiraClient.buildURL('/issue/' + (opts.issueId || opts.issueKey) + '/worklog/' + (opts.id || opts.worklogId),
             method: 'GET',
             json: true,
             followAllRedirects: true,
@@ -962,7 +962,7 @@ function IssueClient(jiraClient) {
      */
     this.updateWorkLog = function (opts, callback) {
         var options = {
-            uri: this.jiraClient.buildURL('issue/' + opts.issueId || opts.issueKey + '/worklog/' + opts.id || opts.worklogId),
+            uri: this.jiraClient.buildURL('/issue/' + (opts.issueId || opts.issueKey) + '/worklog/' + (opts.id || opts.worklogId)),
             method: 'PUT',
             json: true,
             followAllRedirects: true,
@@ -1013,7 +1013,7 @@ function IssueClient(jiraClient) {
      */
     this.deleteWorkLog = function (opts, callback) {
         var options = {
-            uri: this.jiraClient.buildURL('issue/' + opts.issueId || opts.issueKey + '/worklog/' + opts.id || opts.worklogId),
+            uri: this.jiraClient.buildURL('/issue/' + (opts.issueId || opts.issueKey) + '/worklog/' + (opts.id || opts.worklogId)),
             method: 'DELETE',
             json: true,
             followAllRedirects: true,
@@ -1057,7 +1057,7 @@ function IssueClient(jiraClient) {
         });
 
         var options = {
-            uri: this.jiraClient.buildURL('issue/' + opts.issueId || opts.issueKey + '/attachments'),
+            uri: this.jiraClient.buildURL('/issue/' + (opts.issueId || opts.issueKey) + '/attachments'),
             method: 'POST',
             json: true,
             followAllRedirects: true,
