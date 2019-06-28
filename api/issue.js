@@ -1044,7 +1044,8 @@ function IssueClient(jiraClient) {
      * @return {Promise} Resolved when the attachment has been attached.
      */
     this.addAttachment = function (opts, callback) {
-        var attachments = opts.filename.map(function (filePath) {
+        var filename = Array.isArray(opts.filename) ? opts.filename : [opts.filename];
+        var attachments = filename.map(function (filePath) {
             var filename = filePath.split('/').reverse()[0];
             var mimeType = mime.lookup(filename);
             return {
