@@ -71,8 +71,8 @@ export declare class Issue {
         issueId?: string | number,
         issueKey?: string | number,
         headers?: {
-            'X-Atlassian-Token': any,
-            charset: string | any,
+            'X-Atlassian-Token'?: string,
+            charset?: string,
             [key: string]: any
         }
     }, callback?: any): Promise<{
