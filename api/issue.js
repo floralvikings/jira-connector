@@ -884,7 +884,7 @@ function IssueClient(jiraClient) {
      */
     this.addWorkLog = function (opts, callback) {
         var options = {
-            uri: this.jiraClient.buildURL('issue/' + opts.issueId || opts.issueKey + '/worklog'),
+            uri: this.jiraClient.buildURL('/issue/' + (opts.issueId || opts.issueKey) + '/worklog'),
             method: 'POST',
             json: true,
             followAllRedirects: true,
@@ -926,7 +926,7 @@ function IssueClient(jiraClient) {
      */
     this.getWorkLog = function (opts, callback) {
         var options = {
-            uri: this.jiraClient.buildURL('issue/' + opts.issueId || opts.issueKey + '/worklog/' + opts.id || opts.worklogId),
+            uri: this.jiraClient.buildURL('/issue/' + (opts.issueId || opts.issueKey) + '/worklog/' + (opts.id || opts.worklogId)),
             method: 'GET',
             json: true,
             followAllRedirects: true,
@@ -962,7 +962,7 @@ function IssueClient(jiraClient) {
      */
     this.updateWorkLog = function (opts, callback) {
         var options = {
-            uri: this.jiraClient.buildURL('issue/' + opts.issueId || opts.issueKey + '/worklog/' + opts.id || opts.worklogId),
+            uri: this.jiraClient.buildURL('/issue/' + (opts.issueId || opts.issueKey) + '/worklog/' + (opts.id || opts.worklogId)),
             method: 'PUT',
             json: true,
             followAllRedirects: true,
@@ -1013,7 +1013,7 @@ function IssueClient(jiraClient) {
      */
     this.deleteWorkLog = function (opts, callback) {
         var options = {
-            uri: this.jiraClient.buildURL('issue/' + opts.issueId || opts.issueKey + '/worklog/' + opts.id || opts.worklogId),
+            uri: this.jiraClient.buildURL('/issue/' + (opts.issueId || opts.issueKey) + '/worklog/' + (opts.id || opts.worklogId)),
             method: 'DELETE',
             json: true,
             followAllRedirects: true,
@@ -1044,7 +1044,8 @@ function IssueClient(jiraClient) {
      * @return {Promise} Resolved when the attachment has been attached.
      */
     this.addAttachment = function (opts, callback) {
-        var attachments = opts.filename.map(function (filePath) {
+        var filename = Array.isArray(opts.filename) ? opts.filename : [opts.filename];
+        var attachments = filename.map(function (filePath) {
             var filename = filePath.split('/').reverse()[0];
             var mimeType = mime.lookup(filename);
             return {
@@ -1056,12 +1057,17 @@ function IssueClient(jiraClient) {
             }
         });
 
+        var headers = {
+            charset: 'utf-8',
+            'X-Atlassian-Token': 'nocheck'
+        }
+
         var options = {
-            uri: this.jiraClient.buildURL('issue/' + opts.issueId || opts.issueKey + '/attachments'),
+            uri: this.jiraClient.buildURL('/issue/' + (opts.issueId || opts.issueKey) + '/attachments'),
             method: 'POST',
             json: true,
             followAllRedirects: true,
-            headers: Object.assign({ charset: 'utf-8' }, opts.headers || {}),
+            headers: Object.assign(headers, opts.headers || {}),
             formData: {
                 file: attachments
             }
