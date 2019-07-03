@@ -896,7 +896,7 @@ function IssueClient(jiraClient) {
                 expand: opts.expand,
                 overrideEditableFlag: opts.overrideEditableFlag
             },
-            body: Object.assign(opts, {
+            body: opts.worklog || Object.assign(opts, {
                 issueId: undefined,
                 issueKey: undefined,
                 notifyUsers: undefined,
