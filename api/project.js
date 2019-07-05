@@ -14,13 +14,15 @@ function ProjectClient(jiraClient) {
      * Returns all projects which are visible for the currently logged in user. If no user is logged in, it returns the
      * list of projects that are visible when using anonymous access.
      *
+     * @deprecated
      * @method getAllProjects
      * @memberOf ProjectClient#
-     * @param opts The request options sent to the Jira API.
+     * @param [opts] The request options sent to the Jira API.
      * @param [callback] Called when the projects have been retrieved.
      * @return {Promise} Resolved when the projects have been retrieved.
      */
     this.getAllProjects = function (opts, callback) {
+        opts = opts || {};
         var options = this.buildRequestOptions(opts, '', 'GET');
 
         if (!Object.keys(options.body).length) {
@@ -29,6 +31,36 @@ function ProjectClient(jiraClient) {
         if (!Object.keys(options.qs).length) {
             delete options.qs;
         }
+
+        return this.jiraClient.makeRequest(options, callback);
+    };
+
+    this.updateProject = function(opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/project/' + opts.projectIdOrKey),
+            method: 'PUT',
+            followAllRedirects: true,
+            json: true,
+            qs: {
+                expand: opts.expand
+            },
+            body: {
+                key: opts.key,
+                name: opts.name,
+                projectTypeKey: opts.projectTypeKey,
+                projectTemplateKey: opts.projectTemplateKey,
+                description: opts.description,
+                lead: opts.lead,
+                leadAccountId: opts.leadAccountId,
+                url: opts.url,
+                assigneeType: opts.assigneeType,
+                avatarId: opts.avatarId,
+                issueSecurityScheme: opts.issueSecurityScheme,
+                permissionScheme: opts.permissionScheme,
+                notificationScheme: opts.notificationScheme,
+                categoryId: opts.categoryId
+            }
+        };
 
         return this.jiraClient.makeRequest(options, callback);
     };
@@ -58,6 +90,8 @@ function ProjectClient(jiraClient) {
      * @return {Promise} Resolved when the project has been created.
      */
     this.createProject = function (project, callback) {
+        opts = opts || {};
+        
         var options = {
             uri: this.jiraClient.buildURL('/project'),
             method: 'POST',
