@@ -1,6 +1,6 @@
 {
   "name": "jira-connector",
-  "version": "2.15.3",
+  "version": "2.15.5",
   "description": "Easy to use NodeJS wrapper for the Jira REST API.",
   "keywords": [
     "JIRA",
