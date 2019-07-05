@@ -2,6 +2,7 @@ import { Backlog } from './api/backlog';
 import { Board } from './api/board';
 import { Epic } from './api/epic';
 import { Issue } from './api/issue';
+import { Project } from './api/project';
 
 export = JiraClient;
 
@@ -69,7 +70,7 @@ declare class JiraClient {
     public permissions: any;
     public permissionScheme: any;
     public priority: any;
-    public project: any;
+    public project: Project;
     public projectCategory: any;
     public projectValidate: any;
     public reindex: any;
