@@ -780,6 +780,24 @@ function IssueClient(jiraClient) {
     };
 
     /**
+     * Returns the list of changelogs for the issue with the given key.
+     *
+     * @method getChangelog
+     * @memberOf IssueClient#
+     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueId or
+     *     issueKey property; issueId will be used over issueKey if both are present.
+     * @param {string} [opts.issueId] The id of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
+     * @param [callback] Called after the changelog is retrieved.
+     * @return {Promise} Resolved after the changelog is retrieved.
+     */
+    this.getChangelog = function (opts, callback) {
+        var options = this.buildRequestOptions(opts, '/changelog', 'GET');
+
+        return this.jiraClient.makeRequest(options, callback);
+    };
+    
+    /**
      * Returns the list of watchers for the issue with the given key.
      *
      * @method getWatchers
