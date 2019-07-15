@@ -788,12 +788,23 @@ function IssueClient(jiraClient) {
      *     issueKey property; issueId will be used over issueKey if both are present.
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param {Object} [opts.qs] Query parameters.  startAt (default 0), and maxResults (default=max=100)   
+     * @param {string} [opts.startAt] Pagination startAt (default 0)
+     * @param {string} [opts.maxResults] Pagination maxResults (default 100)
      * @param [callback] Called after the changelog is retrieved.
      * @return {Promise} Resolved after the changelog is retrieved.
      */
     this.getChangelog = function (opts, callback) {
-        var options = this.buildRequestOptions(opts, '/changelog', 'GET', '', opts.qs);
+        var endpoint = '/issue/' + (opts.issueId || opts.issueKey) + '/changelog';
+        var options = {
+            uri: this.jiraClient.buildURL(endpoint),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                startAt: opts.startAt,
+                maxResults: opts.maxResults
+            }
+        };
 
         return this.jiraClient.makeRequest(options, callback);
     };
