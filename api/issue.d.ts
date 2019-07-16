@@ -1,5 +1,13 @@
 export declare class Issue {
     [method: string]: any;
+    
+    getChangelog(opts: {
+        issueId?: number | string,
+        issueKey?: number | string,
+        startAt?: number,
+        maxResults?: number
+    }, callback?: any): Promise<any>;
+    
     addWorkLog(opts: {
         [key: string]: any,
         issueId?: number | string,

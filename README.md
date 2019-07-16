@@ -433,6 +433,7 @@ is still valid!
   - getProperty
   - deleteProperty
   - getIssuePicker
+  - getChangelog
 - issueLink (/rest/api/2/issueLink)
   - createIssueLink
   - getIssueLink
