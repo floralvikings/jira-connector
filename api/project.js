@@ -14,7 +14,6 @@ function ProjectClient(jiraClient) {
      * Returns all projects which are visible for the currently logged in user. If no user is logged in, it returns the
      * list of projects that are visible when using anonymous access.
      *
-     * @deprecated
      * @method getAllProjects
      * @memberOf ProjectClient#
      * @param [opts] The request options sent to the Jira API.

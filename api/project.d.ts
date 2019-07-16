@@ -1,9 +1,4 @@
 export declare class Project {
-    /**
-     * @deprecated
-     * @param opts 
-     * @param callback 
-     */
     getAllProjects(opts?: any, callback?: (err, data) => void): Promise<any>;
 
     updateProject(
