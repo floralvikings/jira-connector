@@ -496,6 +496,7 @@ is still valid!
   - getRoles
   - getRole
   - updateRole
+  - updateProject
   - addToRole
 - projectCategory (/rest/api/2/projectCategory)
   - getAllProjectCategories
