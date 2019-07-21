@@ -572,6 +572,7 @@ is still valid!
   - searchPermissions
   - searchPicker
   - search
+  - all
   - viewIssueSearch
 - version (/rest/api/2/version)
   - createVersion
