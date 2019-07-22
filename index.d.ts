@@ -3,6 +3,7 @@ import { Board } from './api/board';
 import { Epic } from './api/epic';
 import { Issue } from './api/issue';
 import { Project } from './api/project';
+import { User } from './api/user';
 
 export = JiraClient;
 
@@ -84,7 +85,7 @@ declare class JiraClient {
     public sprint: any;
     public status: any;
     public statusCategory: any;
-    public user: any;
+    public user: User;
     public version: any;
     public webhook: any;
     public workflow: any;
