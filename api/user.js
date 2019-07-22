@@ -534,6 +534,32 @@ function UserClient(jiraClient) {
         return this.jiraClient.makeRequest(options, callback);
     };
 
+     /**
+     * Returns a list of users that match the search string. This resource cannot be accessed anonymously.
+     *
+     * @method all
+     * @memberOf UserClient#
+     * @param {Object} opts The request options sent to the Jira API.
+     * @param {number} [opts.startAt=0] the index of the first user to return (0-based)
+     * @param {number} [opts.maxResults=50] the maximum number of users to return (defaults to 50).
+     * @param [callback] Called when the search results are retrieved.
+     * @return {Promise} Resolved when the search results are retrieved.
+     */
+    this.all = function (opts, callback) {
+        var options = {
+            uri: this.jiraClient.buildURL('/users/search'),
+            method: 'GET',
+            followAllRedirects: true,
+            json: true,
+            qs: {
+                maxResults: opts.maxResults,
+                startAt: opts.startAt
+            }
+        };
+
+        return this.jiraClient.makeRequest(options, callback);
+    };
+
     /**
      * Returns a list of active users that match the search string. This resource cannot be accessed anonymously. Given
      * an issue key this resource will provide a list of users that match the search string and have the browse issue
