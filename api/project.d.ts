@@ -1,5 +1,5 @@
 export declare class Project {
-    getAllProjects(opts?: any, callback?: (err, data) => void): Promise<any>;
+    getAllProjects(opts?: any, callback?: (err: any, data: any) => void): Promise<any>;
 
     updateProject(
         opts: {
@@ -20,31 +20,31 @@ export declare class Project {
             notificationScheme?: number;
             categoryId?: number;
         },
-        callback?: (err, data) => void
+        callback?: (err: any, data: any) => void
     ): Promise<any>;
 
     deleteProject(
         opts: { projectIdOrKey: string | number },
-        callback?: (err, data) => void
+        callback?: (err: any, data: any) => void
     ): Promise<any>;
 
-    createProject(opts?: any, callback?: (err, data) => void): Promise<any>;
+    createProject(opts?: any, callback?: (err: any, data: any) => void): Promise<any>;
 
-    getProjectProperties(opts: any, callback?: (err, data) => void): Promise<any>;
+    getProjectProperties(opts: any, callback?: (err: any, data: any) => void): Promise<any>;
 
-    getProject(opts: any, callback?: (err, data) => void): Promise<any>;
+    getProject(opts: any, callback?: (err: any, data: any) => void): Promise<any>;
 
-    getComponents(opts: any, callback?: (err, data) => void): Promise<any>;
+    getComponents(opts: any, callback?: (err: any, data: any) => void): Promise<any>;
 
-    getStatuses(opts: any, callback?: (err, data) => void): Promise<any>;
+    getStatuses(opts: any, callback?: (err: any, data: any) => void): Promise<any>;
 
-    getVersions(opts: any, callback?: (err, data) => void): Promise<any>;
+    getVersions(opts: any, callback?: (err: any, data: any) => void): Promise<any>;
 
-    getRoles(opts: any, callback?: (err, data) => void): Promise<any>;
+    getRoles(opts: any, callback?: (err: any, data: any) => void): Promise<any>;
 
-    getRole(opts: any, callback?: (err, data) => void): Promise<any>;
+    getRole(opts: any, callback?: (err: any, data: any) => void): Promise<any>;
 
-    updateRole(opts: any, callback?: (err, data) => void): Promise<any>;
+    updateRole(opts: any, callback?: (err: any, data: any) => void): Promise<any>;
 
-    addToRole(opts: any, callback?: (err, data) => void): Promise<any>;
+    addToRole(opts: any, callback?: (err: any, data: any) => void): Promise<any>;
 }
