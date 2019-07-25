@@ -89,8 +89,7 @@ function ProjectClient(jiraClient) {
      * @return {Promise} Resolved when the project has been created.
      */
     this.createProject = function (project, callback) {
-        opts = opts || {};
-        
+       
         var options = {
             uri: this.jiraClient.buildURL('/project'),
             method: 'POST',
