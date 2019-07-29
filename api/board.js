@@ -73,7 +73,7 @@ function AgileBoardClient(jiraClient) {
    * Creates a board
    *
    * @method createBoard
-   * @memberOf AgileSprintClient#
+   * @memberOf AgileBoardClient#
    * @param {string} name Must be less than 255 characters.
    * @param {string} type Valid values: scrum, kanban
    * @param {number} filterId ID of a filter that the user has permissions to view. Note, if the
@@ -472,13 +472,27 @@ function AgileBoardClient(jiraClient) {
     return this.jiraClient.makeRequest(options, callback);
   }
 
-  // TODO add JsDoc
+  /**
+   * Sets the value of the specified board's property. You can use this resource to store a
+   * custom data against the board identified by the id. The user who stores the data is required
+   * to have permissions to modify the board.
+   * 
+   * @method setBoardProperty
+   * @memberof AgileBoardClient
+   * @param {Object} opts
+   * @param {string | number} opts.boardId
+   * @param {string | number} opts.propertyKey
+   * @param {any} opts.property specified board's property.
+   * @param {callback} [callback]
+   * @returns {Promise}
+   */
   this.setBoardProperty = function (opts, callback) {
     var options = {
       uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/properties/' + opts.propertyKey),
       method: 'PUT',
       json: true,
-      followAllRedirects: true
+      followAllRedirects: true,
+      body: opts.property
     };
 
     return this.jiraClient.makeRequest(options, callback);

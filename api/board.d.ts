@@ -115,6 +115,7 @@ export declare class Board {
     setBoardProperty(opts: {
         boardId: number | string;
         propertyKey: string;
+        property: any;
     }, callback?: any): Promise<any>;
     deleteBoardProperty(opts: {
         boardId: number | string;

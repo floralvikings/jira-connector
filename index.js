@@ -63,6 +63,13 @@ var workflowScheme = require('./api/workflowScheme');
 var worklog = require('./api/worklog');
 
 /**
+ * @callback callback
+ * @param {any} err 
+ * @param {any} data
+ * @returns {void} 
+ */
+
+/**
  * Represents a client for the Jira REST API
  *
  * @constructor JiraClient
@@ -368,7 +375,7 @@ var JiraClient = module.exports = function (config) {
      * @method makeRequest
      * @memberOf JiraClient#
      * @param options The request options.
-     * @param [callback] Called with the APIs response.
+     * @param {callback} [callback] Called with the APIs response.
      * @param {string} [successString] If supplied, this is reported instead of the response body.
      * @return {Promise} Resolved with APIs response or rejected with error
      */
