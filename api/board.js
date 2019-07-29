@@ -483,7 +483,7 @@ function AgileBoardClient(jiraClient) {
    * @param {string | number} opts.boardId
    * @param {string | number} opts.propertyKey
    * @param {any} opts.property specified board's property.
-   * @param {(err, data) => void} [callback]
+   * @param {callback} [callback]
    * @returns {Promise}
    */
   this.setBoardProperty = function (opts, callback) {

@@ -517,7 +517,7 @@ function UserClient(jiraClient) {
      * @param {boolean} [opts.includeInactive=false] If true, then inactive users are included in the results (default
      *     false)
      * @param {string} [opts.property]
-     * @param {(err, data) => void} [callback] Called when the search results are retrieved.
+     * @param {callback} [callback] Called when the search results are retrieved.
      * @return {Promise} Resolved when the search results are retrieved.
      */
     this.search = function (opts, callback) {
@@ -550,7 +550,7 @@ function UserClient(jiraClient) {
      * @param {Object} opts The request options sent to the Jira API.
      * @param {number} [opts.startAt=0] the index of the first user to return (0-based)
      * @param {number} [opts.maxResults=50] the maximum number of users to return (defaults to 50).
-     * @param {(err, data) => void} [callback] Called when the search results are retrieved.
+     * @param {callback} [callback] Called when the search results are retrieved.
      * @return {Promise} Resolved when the search results are retrieved.
      */
     this.all = function (opts, callback) {
