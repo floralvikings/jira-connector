@@ -808,6 +808,36 @@ function IssueClient(jiraClient) {
     };
 
     /**
+     * Returns the list of changelogs for the issue with the given key.
+     *
+     * @method getChangelog
+     * @memberOf IssueClient#
+     * @param {Object} opts The options to pass to the API.  Note that this object must contain EITHER an issueId or
+     *     issueKey property; issueId will be used over issueKey if both are present.
+     * @param {string} [opts.issueId] The id of the issue.  EX: 10002
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
+     * @param {string} [opts.startAt] Pagination startAt (default 0)
+     * @param {string} [opts.maxResults] Pagination maxResults (default 100)
+     * @param [callback] Called after the changelog is retrieved.
+     * @return {Promise} Resolved after the changelog is retrieved.
+     */
+    this.getChangelog = function (opts, callback) {
+        var endpoint = '/issue/' + (opts.issueId || opts.issueKey) + '/changelog';
+        var options = {
+            uri: this.jiraClient.buildURL(endpoint),
+            method: 'GET',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                startAt: opts.startAt,
+                maxResults: opts.maxResults
+            }
+        };
+
+        return this.jiraClient.makeRequest(options, callback);
+    };
+    
+    /**
      * Returns the list of watchers for the issue with the given key.
      *
      * @method getWatchers
@@ -912,7 +942,7 @@ function IssueClient(jiraClient) {
      */
     this.addWorkLog = function (opts, callback) {
         var options = {
-            uri: this.jiraClient.buildURL('issue/' + opts.issueId || opts.issueKey + '/worklog'),
+            uri: this.jiraClient.buildURL('/issue/' + (opts.issueId || opts.issueKey) + '/worklog'),
             method: 'POST',
             json: true,
             followAllRedirects: true,
@@ -924,7 +954,7 @@ function IssueClient(jiraClient) {
                 expand: opts.expand,
                 overrideEditableFlag: opts.overrideEditableFlag
             },
-            body: Object.assign(opts, {
+            body: opts.worklog || Object.assign(opts, {
                 issueId: undefined,
                 issueKey: undefined,
                 notifyUsers: undefined,
@@ -954,7 +984,7 @@ function IssueClient(jiraClient) {
      */
     this.getWorkLog = function (opts, callback) {
         var options = {
-            uri: this.jiraClient.buildURL('issue/' + opts.issueId || opts.issueKey + '/worklog/' + opts.id || opts.worklogId),
+            uri: this.jiraClient.buildURL('/issue/' + (opts.issueId || opts.issueKey) + '/worklog/' + (opts.id || opts.worklogId)),
             method: 'GET',
             json: true,
             followAllRedirects: true,
@@ -990,7 +1020,7 @@ function IssueClient(jiraClient) {
      */
     this.updateWorkLog = function (opts, callback) {
         var options = {
-            uri: this.jiraClient.buildURL('issue/' + opts.issueId || opts.issueKey + '/worklog/' + opts.id || opts.worklogId),
+            uri: this.jiraClient.buildURL('/issue/' + (opts.issueId || opts.issueKey) + '/worklog/' + (opts.id || opts.worklogId)),
             method: 'PUT',
             json: true,
             followAllRedirects: true,
@@ -1041,7 +1071,7 @@ function IssueClient(jiraClient) {
      */
     this.deleteWorkLog = function (opts, callback) {
         var options = {
-            uri: this.jiraClient.buildURL('issue/' + opts.issueId || opts.issueKey + '/worklog/' + opts.id || opts.worklogId),
+            uri: this.jiraClient.buildURL('/issue/' + (opts.issueId || opts.issueKey) + '/worklog/' + (opts.id || opts.worklogId)),
             method: 'DELETE',
             json: true,
             followAllRedirects: true,
@@ -1072,7 +1102,8 @@ function IssueClient(jiraClient) {
      * @return {Promise} Resolved when the attachment has been attached.
      */
     this.addAttachment = function (opts, callback) {
-        var attachments = opts.filename.map(function (filePath) {
+        var filename = Array.isArray(opts.filename) ? opts.filename : [opts.filename];
+        var attachments = filename.map(function (filePath) {
             var filename = filePath.split('/').reverse()[0];
             var mimeType = mime.lookup(filename);
             return {
@@ -1084,12 +1115,17 @@ function IssueClient(jiraClient) {
             }
         });
 
+        var headers = {
+            charset: 'utf-8',
+            'X-Atlassian-Token': 'nocheck'
+        }
+
         var options = {
-            uri: this.jiraClient.buildURL('issue/' + opts.issueId || opts.issueKey + '/attachments'),
+            uri: this.jiraClient.buildURL('/issue/' + (opts.issueId || opts.issueKey) + '/attachments'),
             method: 'POST',
             json: true,
             followAllRedirects: true,
-            headers: Object.assign({ charset: 'utf-8' }, opts.headers || {}),
+            headers: Object.assign(headers, opts.headers || {}),
             formData: {
                 file: attachments
             }
@@ -1339,13 +1375,13 @@ function IssueClient(jiraClient) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul><h3>Classes</h3><ul><li><a href="AgileBacklogClient.html">AgileBacklogClient</a></li><li><a href="AgileBoardClient.html">AgileBoardClient</a></li><li><a href="AgileEpicClient.html">AgileEpicClient</a></li><li><a href="AgileSprintClient.html">AgileSprintClient</a></li><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LabelsClient.html">LabelsClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PermissionSchemeClient.html">PermissionSchemeClient</a></li><li><a href="PermissionsClient.html">PermissionsClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="RoleClient.html">RoleClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WebhookClient.html">WebhookClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li><li><a href="WorkLogClient.html">WorkLogClient</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul><h3>Classes</h3><ul><li><a href="AgileBacklogClient.html">AgileBacklogClient</a></li><li><a href="AgileBoardClient.html">AgileBoardClient</a></li><li><a href="AgileEpicClient.html">AgileEpicClient</a></li><li><a href="AgileSprintClient.html">AgileSprintClient</a></li><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LabelsClient.html">LabelsClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PermissionSchemeClient.html">PermissionSchemeClient</a></li><li><a href="PermissionsClient.html">PermissionsClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="RoleClient.html">RoleClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WebhookClient.html">WebhookClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li><li><a href="WorkLogClient.html">WorkLogClient</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.2</a> on Sun Jun 23 2019 11:51:26 GMT+0300 (Moscow Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Mon Jul 29 2019 11:25:12 GMT+0300 (Moscow Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
