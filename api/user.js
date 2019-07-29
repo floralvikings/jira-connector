@@ -505,7 +505,7 @@ function UserClient(jiraClient) {
      *
      * @method search
      * @memberOf UserClient#
-     * @param {Object} opts The request options sent to the Jira API.
+     * @param {Object} [opts] The request options sent to the Jira API.
      * @param {string} [opts.query]
      * @param {string} [opts.username] A query string used to search username, name or e-mail address
      * @param {string} [opts.accountId]
