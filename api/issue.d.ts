@@ -1,13 +1,57 @@
+export interface IHistoryMetadataParticipant {
+    [key: string]: any;
+    id?: string;
+    displayName?: string;
+    displayNameKey?: string;
+    type?: string;
+    avatarUrl?: string;
+    url?: string;
+}
+
+export interface IHistoryMetadata {
+    [key: string]: any;
+    type?: string;
+    description?: string;
+    descriptionKey?: string;
+    activityDescription?: string;
+    activityDescriptionKey?: string;
+    emailDescription?: string;
+    emailDescriptionKey?: string;
+    actor?: IHistoryMetadataParticipant,
+    generator?: IHistoryMetadataParticipant,
+    cause?: IHistoryMetadataParticipant,
+    extraData?: any;
+}
+
 export declare class Issue {
     [method: string]: any;
-    
+
+    editIssue(opts: {
+        issueKey?: string | number;
+        issueId?: string | number;
+        notifyUsers?: boolean;
+        overrideScreenSecurity?: boolean;
+        overrideEditableFlag?: boolean;
+        issue?: {
+            [key: string]: any;
+            transition?: {
+                [key: string]: any;
+                id?: string | number;
+            };
+            fields?: any;
+            update?: any;
+            historyMetadata?: IHistoryMetadata,
+            properties: any[];
+        }
+    }, callback?: (err, data) => void): Promise<any>;
+
     getChangelog(opts: {
         issueId?: number | string,
         issueKey?: number | string,
         startAt?: number,
         maxResults?: number
     }, callback?: any): Promise<any>;
-    
+
     addWorkLog(opts: {
         [key: string]: any,
         issueId?: number | string,

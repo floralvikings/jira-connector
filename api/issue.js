@@ -302,6 +302,7 @@ function IssueClient(jiraClient) {
     };
 
     /**
+     * TODO rework jsdoc
      *  Edits an issue from a JSON representation.
      *
      * The issue can either be updated by setting explicit the field value(s) or by using an operation to change the
@@ -325,13 +326,25 @@ function IssueClient(jiraClient) {
      * @return {Promise} Resolved when data has been retrieved
      */
     this.editIssue = function (opts, callback) {
-        if (!opts.issue) {
-            throw new Error(errorStrings.NO_ISSUE_ERROR);
-        }
-        var options = this.buildRequestOptions(opts, '', 'PUT', opts.issue, opts.qs);
+        var options = {
+            uri: this.jiraClient.buildURL('/issue' + (opts.issueId || opts.issueKey)),
+            method: 'PUT',
+            json: true,
+            followAllRedirects: true,
+            qs: Object.assign(
+                {},
+                opts,
+                {
+                    issueKey: undefined,
+                    issueId: undefined,
+                    issue: undefined
+                }
+            ),
+            body: opts.issue || opts.body
+        };
 
         return this.jiraClient.makeRequest(options, callback, 'Issue Updated');
-    };
+    }
 
     /**
      * Assigns an issue to a user. You can use this resource to assign issues when the user submitting the request has
@@ -808,7 +821,7 @@ function IssueClient(jiraClient) {
 
         return this.jiraClient.makeRequest(options, callback);
     };
-    
+
     /**
      * Returns the list of watchers for the issue with the given key.
      *
