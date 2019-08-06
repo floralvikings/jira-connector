@@ -1,5 +1,13 @@
 export declare class Project {
-    getAllProjects(opts?: any, callback?: (err: any, data: any) => void): Promise<any>;
+    getAllProjects(
+        opts?: {
+            expand?: string;
+            recent?: number;
+            properties?: string[];
+            apiVersion?: string | number | 2 | 3;
+        },
+        callback?: (err: any, data: any) => void
+    ): Promise<any>;
 
     updateProject(
         opts: {

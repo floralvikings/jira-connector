@@ -16,20 +16,26 @@ function ProjectClient(jiraClient) {
      *
      * @method getAllProjects
      * @memberOf ProjectClient#
-     * @param [opts] The request options sent to the Jira API.
-     * @param [callback] Called when the projects have been retrieved.
+     * @param {Object} [opts] The request options sent to the Jira API.
+     * @param {string} [opts.expand]
+     * @param {number} [opts.recent]
+     * @param {Array<string>} [opts.properties]
+     * @param {callback} [callback] Called when the projects have been retrieved.
      * @return {Promise} Resolved when the projects have been retrieved.
      */
     this.getAllProjects = function (opts, callback) {
         opts = opts || {};
-        var options = this.buildRequestOptions(opts, '', 'GET');
-
-        if (!Object.keys(options.body).length) {
-            delete options.body;
-        }
-        if (!Object.keys(options.qs).length) {
-            delete options.qs;
-        }
+        var options = {
+            uri: this.jiraClient.buildURL('/project', opts.apiVersion),
+            method: 'GET',
+            followAllRedirects: true,
+            json: true,
+            qs: {
+                expand: opts.expand,
+                recent: opts.recent,
+                properties: opts.properties && opts.properties.join(',')
+            }
+        };
 
         return this.jiraClient.makeRequest(options, callback);
     };
