@@ -26,108 +26,155 @@ export interface IHistoryMetadata {
 export declare class Issue {
     [method: string]: any;
 
-    editIssue(opts: {
-        issueKey?: string | number;
-        issueId?: string | number;
-        notifyUsers?: boolean;
-        overrideScreenSecurity?: boolean;
-        overrideEditableFlag?: boolean;
-        issue?: {
-            [key: string]: any;
-            transition?: {
+    editIssue(
+        opts: {
+            issueKey?: string | number;
+            issueId?: string | number;
+            notifyUsers?: boolean;
+            overrideScreenSecurity?: boolean;
+            overrideEditableFlag?: boolean;
+            issue?: {
                 [key: string]: any;
-                id?: string | number;
+                transition?: {
+                    [key: string]: any;
+                    id?: string | number;
+                };
+                fields?: any;
+                update?: any;
+                historyMetadata?: IHistoryMetadata,
+                properties: any[];
+            }
+        },
+        callback?: (err: any, data: any) => void
+    ): Promise<any>;
+
+    addComment(
+        opts: {
+            [key: string]: any;
+            issueId?: string;
+            issueKey?: string;
+            expand?: string;
+            body?: string;
+            visibility?: {
+                [key: string]: any;
+                type?: string | 'role' | 'group';
+                value?: string;
             };
-            fields?: any;
-            update?: any;
-            historyMetadata?: IHistoryMetadata,
-            properties: any[];
-        }
-    }, callback?: (err, data) => void): Promise<any>;
-
-    getChangelog(opts: {
-        issueId?: number | string,
-        issueKey?: number | string,
-        startAt?: number,
-        maxResults?: number
-    }, callback?: any): Promise<any>;
-
-    addWorkLog(opts: {
-        [key: string]: any,
-        issueId?: number | string,
-        issueKey?: number | string,
-        notifyUsers?: boolean,
-        adjustEstimate?: 'auto' | 'new' | 'manual' | 'leave',
-        newEstimate?: string,
-        reduceBy?: string,
-        expand?: string,
-        overrideEditableFlag?: boolean,
-        comment?: any,
-        visibility?: {
-            [key: string]: any,
-            type?: 'group' | 'role',
-            value?: string
+            properties?: any[];
         },
-        started?: string,
-        timeSpent?: string,
-        timeSpentSeconds?: number | string,
-        properties?: {
-            [key: string]: any
-        }[]
-    }, callback?: any): Promise<any>;
+        callback?: (err: any, data: any) => void
+    ): Promise<any>;
 
-    getWorklog(opts: {
-        issueId?: number | string,
-        issueKey?: number | string,
-        id: string,
-        expand?: string
-    }, callback?: any): Promise<any>;
-
-    updateWorklog(opts: {
-        [key: string]: any,
-        issueId?: number | string,
-        issueKey?: number | string,
-        id: string,
-        notifyUsers?: boolean,
-        adjustEstimate?: 'auto' | 'new' | 'manual' | 'leave',
-        newEstimate?: string,
-        expand?: string,
-        overrideEditableFlag?: boolean,
-        comment?: any,
-        visibility?: {
-            [key: string]: any,
-            type?: 'group' | 'role',
-            value?: string
+    deleteComment(
+        opts: {
+            issueId?: string | number;
+            issueKey?: string | number;
+            commentId: string | number;
         },
-        started?: string,
-        timeSpent?: string,
-        timeSpentSeconds?: number | string,
-        properties?: {
-            [key: string]: any
-        }[]
-    }, callback?: any): Promise<any>;
+        callback?: (err: any, data: any) => void
+    ): Promise<string>;
 
-    deleteWorklog(opts: {
-        issueId?: number | string,
-        issueKey?: number | string,
-        id: string,
-        notifyUsers?: boolean,
-        adjustEstimate?: string,
-        newEstimate?: string,
-        increaseBy?: string,
-        overrideEditableFlag?: boolean
-    }, callback?: any): Promise<any>;
+    getChangelog(
+        opts: {
+            issueId?: number | string,
+            issueKey?: number | string,
+            startAt?: number,
+            maxResults?: number
+        },
+        callback?: (err: any, data: any) => void
+    ): Promise<any>;
 
-    addAttachment(opts: {
-        filename: string | string[],
-        issueId?: string | number,
-        issueKey?: string | number,
-        headers?: {
-            'X-Atlassian-Token'?: string,
-            charset?: string,
-            [key: string]: any
-        }
-    }, callback?: any): Promise<{
+    addWorkLog(
+        opts: {
+            [key: string]: any,
+            issueId?: number | string,
+            issueKey?: number | string,
+            notifyUsers?: boolean,
+            adjustEstimate?: 'auto' | 'new' | 'manual' | 'leave',
+            newEstimate?: string,
+            reduceBy?: string,
+            expand?: string,
+            overrideEditableFlag?: boolean,
+            comment?: any,
+            visibility?: {
+                [key: string]: any,
+                type?: 'group' | 'role',
+                value?: string
+            },
+            started?: string,
+            timeSpent?: string,
+            timeSpentSeconds?: number | string,
+            properties?: {
+                [key: string]: any
+            }[]
+        },
+        callback?: (err: any, data: any) => void
+    ): Promise<any>;
+
+    getWorklog(
+        opts: {
+            issueId?: number | string,
+            issueKey?: number | string,
+            id: string,
+            expand?: string
+        },
+        callback?: (err: any, data: any) => void
+    ): Promise<any>;
+
+    updateWorklog(
+        opts: {
+            [key: string]: any,
+            issueId?: number | string,
+            issueKey?: number | string,
+            id: string,
+            notifyUsers?: boolean,
+            adjustEstimate?: 'auto' | 'new' | 'manual' | 'leave',
+            newEstimate?: string,
+            expand?: string,
+            overrideEditableFlag?: boolean,
+            comment?: any,
+            visibility?: {
+                [key: string]: any,
+                type?: 'group' | 'role',
+                value?: string
+            },
+            started?: string,
+            timeSpent?: string,
+            timeSpentSeconds?: number | string,
+            properties?: {
+                [key: string]: any
+            }[]
+        },
+        callback?: (err: any, data: any) => void
+    ): Promise<any>;
+
+    deleteWorklog(
+        opts: {
+            issueId?: number | string,
+            issueKey?: number | string,
+            id: string,
+            notifyUsers?: boolean,
+            adjustEstimate?: string,
+            newEstimate?: string,
+            increaseBy?: string,
+            overrideEditableFlag?: boolean
+        },
+        callback?: (err: any, data: any) => void
+    ): Promise<any>;
+
+    addAttachment(
+        opts: {
+            filename: string | string[],
+            issueId?: string | number,
+            issueKey?: string | number,
+            headers?: {
+                'X-Atlassian-Token'?: string,
+                charset?: string,
+                [key: string]: any
+            }
+        },
+        callback?: (err: any, data: any) => void
+    ): Promise<{
         [key: string]: any,
         self: string,
         id: string,
