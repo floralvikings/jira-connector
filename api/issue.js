@@ -351,7 +351,7 @@ function IssueClient(jiraClient) {
         };
 
         return this.jiraClient.makeRequest(options, callback, 'Issue Updated');
-    }
+    };
 
     /**
      * Assigns an issue to a user. You can use this resource to assign issues when the user submitting the request has
