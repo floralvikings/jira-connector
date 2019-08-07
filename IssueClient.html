@@ -504,7 +504,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1062">line 1062</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1105">line 1105</a>
     </li></ul></dd>
     
 
@@ -727,13 +727,13 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
 
         <tr>
             
-                <td class="name"><code>comment</code></td>
+                <td class="name"><code>expand</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
@@ -741,6 +741,8 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
 
             
                 <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
                 
@@ -751,7 +753,107 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
 
             
 
-            <td class="description last"><p>See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e482">https://docs.atlassian.com/jira/REST/latest/#d2e482</a></p></td>
+            <td class="description last"><p>Use expand to include additional information about comments
+in the response. This parameter accepts renderedBody, which returns the comment body rendered in HTML.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>body</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The comment text</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>visibility</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The group or role to which this comment is visible. Optional on create and update.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>properties</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>A list of comment properties. Optional on create and update.</p></td>
         </tr>
 
     
@@ -769,6 +871,11 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
             
 
             <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#callback">callback</a></span>
+
+
             
             </td>
 
@@ -827,7 +934,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line382">line 382</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line402">line 402</a>
     </li></ul></dd>
     
 
@@ -1150,7 +1257,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line830">line 830</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line873">line 873</a>
     </li></ul></dd>
     
 
@@ -1549,7 +1656,7 @@ remaining estimate by e.g. &quot;2d&quot;</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line892">line 892</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line935">line 935</a>
     </li></ul></dd>
     
 
@@ -1910,7 +2017,7 @@ See <a href="https://developer.atlassian.com/cloud/jira/platform/deprecation-not
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line336">line 336</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line356">line 356</a>
     </li></ul></dd>
     
 
@@ -2636,7 +2743,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line542">line 542</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line585">line 585</a>
     </li></ul></dd>
     
 
@@ -2959,7 +3066,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line453">line 453</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line494">line 494</a>
     </li></ul></dd>
     
 
@@ -3610,7 +3717,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line581">line 581</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line624">line 624</a>
     </li></ul></dd>
     
 
@@ -3933,7 +4040,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line651">line 651</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line694">line 694</a>
     </li></ul></dd>
     
 
@@ -4363,7 +4470,7 @@ the remaining estimate by e.g. &quot;2d&quot;</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1020">line 1020</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1063">line 1063</a>
     </li></ul></dd>
     
 
@@ -4717,7 +4824,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line428">line 428</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line469">line 469</a>
     </li></ul></dd>
     
 
@@ -4947,6 +5054,105 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
 
         <tr>
             
+                <td class="name"><code>notifyUsers</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>overrideScreenSecurity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>overrideEditableFlag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>issue</code></td>
             
 
@@ -4962,6 +5168,8 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
             
                 <td class="attributes">
                 
+                    &lt;optional><br>
+                
 
                 
 
@@ -4971,7 +5179,200 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
 
             
 
-            <td class="description last"><p>See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e656">https://docs.atlassian.com/jira/REST/latest/#d2e656</a></p></td>
+            <td class="description last"><p>See <a href="https://docs.atlassian.com/jira/REST/latest/#d2e656">https://docs.atlassian.com/jira/REST/latest/#d2e656</a></p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>transition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fields</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>update</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>historyMetadata</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>properties</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -4989,6 +5390,11 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
             
 
             <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#callback">callback</a></span>
+
+
             
             </td>
 
@@ -5405,7 +5811,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line782">line 782</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line825">line 825</a>
     </li></ul></dd>
     
 
@@ -5728,7 +6134,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line406">line 406</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line447">line 447</a>
     </li></ul></dd>
     
 
@@ -6051,7 +6457,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line363">line 363</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line383">line 383</a>
     </li></ul></dd>
     
 
@@ -6753,7 +7159,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line475">line 475</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line518">line 518</a>
     </li></ul></dd>
     
 
@@ -7963,7 +8369,7 @@ matches the query.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1291">line 1291</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1334">line 1334</a>
     </li></ul></dd>
     
 
@@ -8256,7 +8662,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1109">line 1109</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1152">line 1152</a>
     </li></ul></dd>
     
 
@@ -8581,7 +8987,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1155">line 1155</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1198">line 1198</a>
     </li></ul></dd>
     
 
@@ -8906,7 +9312,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1179">line 1179</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1222">line 1222</a>
     </li></ul></dd>
     
 
@@ -9229,7 +9635,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line604">line 604</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line647">line 647</a>
     </li></ul></dd>
     
 
@@ -9554,7 +9960,7 @@ links for the issue are returned. For a full explanation of Issue Link fields pl
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line521">line 521</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line564">line 564</a>
     </li></ul></dd>
     
 
@@ -9881,7 +10287,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line674">line 674</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line717">line 717</a>
     </li></ul></dd>
     
 
@@ -10173,7 +10579,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line764">line 764</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line807">line 807</a>
     </li></ul></dd>
     
 
@@ -10465,7 +10871,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line812">line 812</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line855">line 855</a>
     </li></ul></dd>
     
 
@@ -10788,7 +11194,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line944">line 944</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line987">line 987</a>
     </li></ul></dd>
     
 
@@ -11080,7 +11486,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line874">line 874</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line917">line 917</a>
     </li></ul></dd>
     
 
@@ -11403,7 +11809,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line852">line 852</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line895">line 895</a>
     </li></ul></dd>
     
 
@@ -11728,7 +12134,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line496">line 496</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line539">line 539</a>
     </li></ul></dd>
     
 
@@ -12644,7 +13050,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1127">line 1127</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1170">line 1170</a>
     </li></ul></dd>
     
 
@@ -13034,7 +13440,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line699">line 699</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line742">line 742</a>
     </li></ul></dd>
     
 
@@ -13326,7 +13732,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line728">line 728</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line771">line 771</a>
     </li></ul></dd>
     
 
@@ -13650,7 +14056,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line562">line 562</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line605">line 605</a>
     </li></ul></dd>
     
 
@@ -14004,7 +14410,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line627">line 627</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line670">line 670</a>
     </li></ul></dd>
     
 
@@ -14430,7 +14836,7 @@ remaining estimate field. e.g. &quot;2d&quot;</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line971">line 971</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line1014">line 1014</a>
     </li></ul></dd>
     
 
@@ -14722,7 +15128,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line746">line 746</a>
+        <a href="api_issue.js.html">api/issue.js</a>, <a href="api_issue.js.html#line789">line 789</a>
     </li></ul></dd>
     
 
@@ -14796,7 +15202,7 @@ issueKey property; issueId will be used over issueKey if both are present.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Mon Jul 29 2019 11:25:12 GMT+0300 (Moscow Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Aug 07 2019 08:42:02 GMT+0300 (Moscow Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
