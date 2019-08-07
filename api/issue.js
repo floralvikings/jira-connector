@@ -320,15 +320,35 @@ function IssueClient(jiraClient) {
      *        issueKey property; issueId will be used over issueKey if both are present.
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param {Object} opts.issue See {@link https://docs.atlassian.com/jira/REST/latest/#d2e656}
-     * @param [callback] Called when data has been retrieved
+     * @param {boolean} [opts.notifyUsers]
+     * @param {boolean} [opts.overrideScreenSecurity]
+     * @param {boolean} [opts.overrideEditableFlag]
+     * @param {Object} [opts.issue] See {@link https://docs.atlassian.com/jira/REST/latest/#d2e656}
+     * @param {Object} [opts.issue.transition]
+     * @param {Object} [opts.issue.fields]
+     * @param {Object} [opts.issue.update]
+     * @param {Object} [opts.issue.historyMetadata]
+     * @param {Object} [opts.issue.properties]
+     * @param {callback} [callback] Called when data has been retrieved
      * @return {Promise} Resolved when data has been retrieved
      */
     this.editIssue = function (opts, callback) {
-        if (!opts.issue) {
-            throw new Error(errorStrings.NO_ISSUE_ERROR);
-        }
-        var options = this.buildRequestOptions(opts, '', 'PUT', opts.issue, opts.qs);
+        var options = {
+            uri: this.jiraClient.buildURL('/issue/' + (opts.issueId || opts.issueKey)),
+            method: 'PUT',
+            json: true,
+            followAllRedirects: true,
+            qs: Object.assign(
+                {},
+                opts,
+                {
+                    issueKey: undefined,
+                    issueId: undefined,
+                    issue: undefined
+                }
+            ),
+            body: opts.issue || opts.body
+        };
 
         return this.jiraClient.makeRequest(options, callback, 'Issue Updated');
     };
@@ -388,17 +408,38 @@ function IssueClient(jiraClient) {
      *        issueKey property; issueId will be used over issueKey if both are present.
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
      * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
-     * @param {Object} opts.comment See {@link https://docs.atlassian.com/jira/REST/latest/#d2e482}
-     * @param [callback] Called when data has been retrieved
+     * @param {string} [opts.expand] Use expand to include additional information about comments
+     * in the response. This parameter accepts renderedBody, which returns the comment body rendered in HTML.
+     * @param {string} [opts.body] The comment text
+     * @param {string} [opts.visibility] The group or role to which this comment is visible. Optional on create and update.
+     * @param {string} [opts.properties] A list of comment properties. Optional on create and update.
+     * @param {callback} [callback] Called when data has been retrieved
      * @return {Promise} Resolved when data has been retrieved
      */
     this.addComment = function (opts, callback) {
-        var options;
-        if (opts.comment.body) {
-            options = this.buildRequestOptions(opts, '/comment', 'POST', opts.comment);
-        } else {
-            options = this.buildRequestOptions(opts, '/comment', 'POST', { body: opts.comment });
-        }
+        var options = {
+            uri: this.jiraClient.buildURL('/issue/' + (opts.issueId || opts.issueKey) + '/comment'),
+            method: 'POST',
+            json: true,
+            followAllRedirects: true,
+            qs: {
+                expand: opts.expand
+            },
+            body: Object.assign(
+                {
+                    body: opts.body || opts.comment, // backward compatibility (opts.comment should be removed in next major version)
+                    visibility: opts.visibility,
+                    properties: opts.properties,
+                },
+                opts,
+                {
+                    expand: undefined,
+                    comment: undefined,
+                    issueId: undefined,
+                    issueKey: undefined
+                }
+            )
+        };
 
         return this.jiraClient.makeRequest(options, callback);
     };
@@ -464,10 +505,12 @@ function IssueClient(jiraClient) {
      * @return {Promise} Resolved when the comment is retrieved.
      */
     this.deleteComment = function (opts, callback) {
-        if (!opts.commentId) {
-            throw new Error(errorStrings.NO_COMMENT_ID);
-        }
-        var options = this.buildRequestOptions(opts, '/comment/' + opts.commentId, 'DELETE');
+        var options = {
+            uri: this.jiraClient.buildURL('/issue/' + (opts.issueId || opts.issueKey) + '/comment/' + opts.commentId),
+            method: 'DELETE',
+            json: true,
+            followAllRedirects: true
+        };
 
         return this.jiraClient.makeRequest(options, callback, 'Comment Deleted');
     };
@@ -808,7 +851,7 @@ function IssueClient(jiraClient) {
 
         return this.jiraClient.makeRequest(options, callback);
     };
-    
+
     /**
      * Returns the list of watchers for the issue with the given key.
      *
