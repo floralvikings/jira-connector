@@ -1,3 +1,21 @@
+export interface JiraBoard {
+  id: number;
+  self: string;
+  name: string;
+  type: string;
+  location: BoardLocation;
+}
+
+export interface BoardLocation {
+  projectId: number;
+  displayName: string;
+  projectName: string;
+  projectKey: string;
+  projectTypeKey: string;
+  avatarURI: string;
+  name: string;
+}
+
 export declare class Board {
     getAllBoards(opts?: {
         startAt?: number;
@@ -31,7 +49,7 @@ export declare class Board {
     }, callback?: any): Promise<any>;
     getBoard(opts: {
         boardId: number | string;
-    }, callback?: any): Promise<any>;
+    }, callback?: any): Promise<JiraBoard>;
     deleteBoard(opts: {
         boardId: number | string;
     }, callback?: any): Promise<any>;
