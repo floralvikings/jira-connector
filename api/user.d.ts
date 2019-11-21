@@ -32,7 +32,7 @@ export declare class User {
 			userKey?: string;
 			expand?: string;
 		},
-		callback?: (err: any, data: any) => void
+		callback?: (err: any, data: UserInfo | any) => void
 	): Promise<UserInfo | any>;
 
 	deleteUser(opts: any, callback?: (err: any, data: any) => void): Promise<any>;
