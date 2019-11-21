@@ -1,5 +1,40 @@
+export interface UserInfo {
+	self: string;
+	key: string;
+	accountId: string;
+	name: string;
+	emailAddress: string;
+	avatarUrls: AvatarUrls;
+	displayName: string;
+	active: boolean;
+	timeZone: string;
+	groups: ApplicationRoles;
+	applicationRoles: ApplicationRoles;
+}
+
+export interface ApplicationRoles {
+	size: number;
+	items: any[];
+}
+
+export interface AvatarUrls {
+	"48x48": string;
+	"24x24": string;
+	"16x16": string;
+	"32x32": string;
+}
+
 export declare class User {
-	getUser(opts: any, callback?: (err: any, data: any) => void): Promise<any>;
+	getUser(
+		opts: {
+			accountId?: string;
+			username?: string;
+			userKey?: string;
+			expand?: string;
+		},
+		callback?: (err: any, data: any) => void
+	): Promise<UserInfo | any>;
+
 	deleteUser(opts: any, callback?: (err: any, data: any) => void): Promise<any>;
 	createUser(opts: any, callback?: (err: any, data: any) => void): Promise<any>;
 	editUser(opts: any, callback?: (err: any, data: any) => void): Promise<any>;
