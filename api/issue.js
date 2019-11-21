@@ -25,7 +25,7 @@ function IssueClient(jiraClient) {
      *        object must contain EITHER an issueId or issueKey property;
      *        issueId will be used over issueKey if both are present.
      * @param {string} [opts.issueId] The id of the issue.  EX: 10002
-     * @param {string} [opts.issueKey] The Key of teh issue.  EX: JWR-3
+     * @param {string} [opts.issueKey] The Key of the issue.  EX: JWR-3
      * @param {string} [opts.boardId] The id of the board required to
      *        determine which field is used for estimation.
      * @param [callback] Called when the issue estimation has been retrieved.
