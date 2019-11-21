@@ -185,6 +185,28 @@ function ProjectClient(jiraClient) {
     };
 
     /**
+     * Contains a paginated representation of a the specified project's versions.
+     *
+     * @method getVersionsPaginated
+     * @memberOf ProjectClient#
+     * @param opts The request options sent to the Jira API.
+     * @param opts.projectIdOrKey The project id or project key
+     * @param [callback] Called when the paginated representation of all versions have been retrieved.
+     * @return {Promise} Resolved when the paginated representation of all versions have been retrieved.
+     */
+    this.getVersionsPaginated = function (opts, callback) {
+        var qs = {
+            startAt: opts.startAt,
+            maxResults: opts.maxResults,
+            orderBy: opts.orderBy,
+            query: opts.query,
+            status: opts.status
+        }
+        var options = this.buildRequestOptions(opts, '/version', 'GET', {}, qs);
+        return this.jiraClient.makeRequest(options, callback);
+    };
+
+    /**
      * Contains a list of roles in this project with links to full details.
      *
      * @method getRoles
