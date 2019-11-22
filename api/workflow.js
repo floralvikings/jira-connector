@@ -1,3 +1,7 @@
+// @ts-nocheck
+
+/** @typedef { import('../') } JiraClient */
+
 'use strict';
 
 module.exports = WorkflowClient;

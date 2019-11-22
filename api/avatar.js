@@ -1,3 +1,7 @@
+// @ts-nocheck
+
+/** @typedef { import('../') } JiraClient */
+
 'use strict';
 
 const fs = require('fs');

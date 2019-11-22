@@ -32,6 +32,7 @@
     "request": "^2.83.0"
   },
   "devDependencies": {
+    "@types/request": "^2.48.3",
     "@typescript-eslint/eslint-plugin": "^2.8.0",
     "@typescript-eslint/parser": "^2.8.0",
     "eslint": "^6.7.0",

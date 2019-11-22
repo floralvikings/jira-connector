@@ -9,6 +9,7 @@
       "@src/*": ["./src/*"],
       "@test/*": ["./test/*"]
     },
+    "checkJs": true,
     "allowJs": true,
     "strict": true,
     "resolveJsonModule": true,

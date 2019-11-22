@@ -1,3 +1,7 @@
+// @ts-nocheck
+
+/** @typedef { import('../') } JiraClient */
+
 'use strict';
 
 const errorStrings = require('./../lib/error');
