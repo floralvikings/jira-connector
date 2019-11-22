@@ -197,7 +197,7 @@ function ProjectClient(jiraClient) {
      * @param {string} opt.query Filter the results using a literal string. Versions with matching name or description are returned (case insensitive).
      * @param {string} opt.status A list of status values used to filter the results by version status
      * @param {Array}  opt.expand The fields to expand
-     * @param {Function} [callback] Called when the paginated representation of all versions have been retrieved.
+     * @param {callback} [callback] Called when the paginated representation of all versions have been retrieved.
      * @return {Promise} Resolved when the paginated representation of all versions have been retrieved.
      */
     this.getVersionsPaginated = function (opts, callback) {
