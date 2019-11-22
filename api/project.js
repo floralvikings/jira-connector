@@ -191,12 +191,12 @@ function ProjectClient(jiraClient) {
      * @memberOf ProjectClient#
      * @param {Object} opts The request options sent to the Jira API.
      * @param {string} opts.projectIdOrKey The project id or project key
-     * @param {number} opt.startAt The index of the first item to return in a page of results
-     * @param {number} opt.maxResults The maximum number of items to return per page
-     * @param {string} opt.orderBy Order the results by a field
-     * @param {string} opt.query Filter the results using a literal string. Versions with matching name or description are returned (case insensitive).
-     * @param {string} opt.status A list of status values used to filter the results by version status
-     * @param {Array}  opt.expand The fields to expand
+     * @param {number} [opt.startAt] The index of the first item to return in a page of results
+     * @param {number} [opt.maxResults] The maximum number of items to return per page
+     * @param {string} [opt.orderBy] Order the results by a field
+     * @param {string} [opt.query] Filter the results using a literal string. Versions with matching name or description are returned (case insensitive).
+     * @param {string} [opt.status] A list of status values used to filter the results by version status
+     * @param {Array}  [opt.expand] The fields to expand
      * @param {callback} [callback] Called when the paginated representation of all versions have been retrieved.
      * @return {Promise} Resolved when the paginated representation of all versions have been retrieved.
      */
