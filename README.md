@@ -492,8 +492,9 @@ is still valid!
   - getAllProjects
   - getProject
   - getComponents
-  - getVersions
   - getStatuses
+  - getVersions
+  - getVersionsPaginated
   - getRoles
   - getRole
   - updateRole
