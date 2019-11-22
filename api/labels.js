@@ -22,8 +22,11 @@ function LabelsClient(jiraClient) {
    * @return {Promise} Resolved when labels are retrieved
    */
   this.getLabels = function(opts, callback) {
-    var options = {
-      uri: this.jiraClient.buildURL('/labels/suggest?query=' + opts.query, '1.0'),
+    const options = {
+      uri: this.jiraClient.buildURL(
+        '/labels/suggest?query=' + opts.query,
+        '1.0'
+      ),
       method: 'GET',
       json: true,
       followAllRedirects: true

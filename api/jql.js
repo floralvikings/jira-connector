@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 module.exports = JqlClient;
 
@@ -9,25 +9,25 @@ module.exports = JqlClient;
  * @constructor JqlClient
  */
 function JqlClient(jiraClient) {
-    this.jiraClient = jiraClient;
+  this.jiraClient = jiraClient;
 
-    /**
-     * Returns the auto complete data required for JQL searches.
-     *
-     * @method getAutoCompleteData
-     * @memberOf JqlClient#
-     * @param opts The options sent to the Jira API.  Ignored by this function.
-     * @param [callback] Called when the autocomplete data is returned.
-     * @return {Promise} Resolved when the autocomplete data is returned.
-     */
-    this.getAutoCompleteData = function (opts, callback) {
-        var options = {
-            uri: this.jiraClient.buildURL('/jql/autocompletedata'),
-            method: 'GET',
-            json: true,
-            followAllRedirects: true
-        };
+  /**
+   * Returns the auto complete data required for JQL searches.
+   *
+   * @method getAutoCompleteData
+   * @memberOf JqlClient#
+   * @param opts The options sent to the Jira API.  Ignored by this function.
+   * @param [callback] Called when the autocomplete data is returned.
+   * @return {Promise} Resolved when the autocomplete data is returned.
+   */
+  this.getAutoCompleteData = function(opts, callback) {
+    const options = {
+      uri: this.jiraClient.buildURL('/jql/autocompletedata'),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true
+    };
 
-        return this.jiraClient.makeRequest(options, callback)
-    }
+    return this.jiraClient.makeRequest(options, callback);
+  };
 }

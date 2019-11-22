@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 module.exports = SecurityLevelClient;
 
@@ -9,26 +9,26 @@ module.exports = SecurityLevelClient;
  * @constructor SecurityLevelClient
  */
 function SecurityLevelClient(jiraClient) {
-    this.jiraClient = jiraClient;
+  this.jiraClient = jiraClient;
 
-    /**
-     * Get a full representation of the security level that has the given id.
-     *
-     * @method getSecurityLevel
-     * @memberOf SecurityLevelClient#
-     * @param opts The request options to send to the Jira API.
-     * @param opts.securityLevelId The id of the security level to retrieve
-     * @param [callback] Called when the security level has been retrieved.
-     * @return {Promise} Resolved when the security level has been retrieved.
-     */
-    this.getSecurityLevel = function (opts, callback) {
-        var options = {
-            uri: this.jiraClient.buildURL('/securitylevel/' + opts.securityLevelId),
-            method: 'GET',
-            json: true,
-            followAllRedirects: true
-        };
+  /**
+   * Get a full representation of the security level that has the given id.
+   *
+   * @method getSecurityLevel
+   * @memberOf SecurityLevelClient#
+   * @param opts The request options to send to the Jira API.
+   * @param opts.securityLevelId The id of the security level to retrieve
+   * @param [callback] Called when the security level has been retrieved.
+   * @return {Promise} Resolved when the security level has been retrieved.
+   */
+  this.getSecurityLevel = function(opts, callback) {
+    const options = {
+      uri: this.jiraClient.buildURL('/securitylevel/' + opts.securityLevelId),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true
+    };
 
-        return this.jiraClient.makeRequest(options, callback);
-    }
+    return this.jiraClient.makeRequest(options, callback);
+  };
 }

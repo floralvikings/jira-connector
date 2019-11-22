@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 module.exports = RoleClient;
 
@@ -20,8 +20,8 @@ function RoleClient(jiraClient) {
    * @param [callback] Called when the permissions have been returned.
    * @return {Promise} Resolved when the permissions have been returned.
    */
-  this.getAll = function (opts, callback) {
-    var options = {
+  this.getAll = function(opts, callback) {
+    const options = {
       uri: this.jiraClient.buildURL('/role'),
       method: 'GET',
       json: true,
@@ -29,7 +29,7 @@ function RoleClient(jiraClient) {
     };
 
     return this.jiraClient.makeRequest(options, callback);
-  }
+  };
 
   /**
    * Creates a new ProjectRole to be available in Jira.
@@ -42,8 +42,8 @@ function RoleClient(jiraClient) {
    * @param [callback] Called when the scheme has been created.
    * @return {Promise} Resolved when the scheme has been created.
    */
-  this.createRole = function (opts, callback) {
-    var options = {
+  this.createRole = function(opts, callback) {
+    const options = {
       uri: this.jiraClient.buildURL('/role'),
       method: 'POST',
       json: true,
@@ -52,7 +52,7 @@ function RoleClient(jiraClient) {
     };
 
     return this.jiraClient.makeRequest(options, callback);
-  }
+  };
 
   /**
    * Get a specific ProjectRole available in Jira.
@@ -63,12 +63,12 @@ function RoleClient(jiraClient) {
    * @param [callback] Called when the permissions have been returned.
    * @return {Promise} Resolved when the permissions have been returned.
    */
-  this.getRoleById = function (opts, callback) {
-    var options = {
+  this.getRoleById = function(opts, callback) {
+    const options = {
       uri: this.jiraClient.buildURL('/role/' + opts.roleId),
       method: 'GET',
       json: true,
-      followAllRedirects: true,
+      followAllRedirects: true
     };
 
     return this.jiraClient.makeRequest(options, callback);
@@ -85,31 +85,31 @@ function RoleClient(jiraClient) {
    * @param [callback] Called when the permissions have been returned.
    * @return {Promise} Resolved when the permissions have been returned.
    */
-  this.updateRole = function (opts, callback) {
-    var options = {
+  this.updateRole = function(opts, callback) {
+    const options = {
       uri: this.jiraClient.buildURL('/role/' + opts.roleId),
       method: 'PUT',
       json: true,
       followAllRedirects: true,
-      body: opts.role,
+      body: opts.role
     };
 
     return this.jiraClient.makeRequest(options, callback);
   };
 
   /**
-  * Deletes a role. May return 403 in the future
-  *
-  * @method deleteRole
-  * @memberOf RoleClient#
-  * @param {Object} opts The request options sent to the Jira API.
-  * @param {String} opts.roldId Identifier for the role.
-  * @param {String} opts.swap if given, removes a role even if it is used in scheme by replacing the role with the given one
-  * @param [callback] Called when the permissions have been returned.
-  * @return {Promise} Resolved when the permissions have been returned.
-  */
-  this.deleteRole = function (opts, callback) {
-    var options = {
+   * Deletes a role. May return 403 in the future
+   *
+   * @method deleteRole
+   * @memberOf RoleClient#
+   * @param {Object} opts The request options sent to the Jira API.
+   * @param {String} opts.roldId Identifier for the role.
+   * @param {String} opts.swap if given, removes a role even if it is used in scheme by replacing the role with the given one
+   * @param [callback] Called when the permissions have been returned.
+   * @return {Promise} Resolved when the permissions have been returned.
+   */
+  this.deleteRole = function(opts, callback) {
+    const options = {
       uri: this.jiraClient.buildURL('/role/' + opts.roleId),
       method: 'DELETE',
       json: true,
@@ -123,76 +123,76 @@ function RoleClient(jiraClient) {
   };
 
   /**
-  * Gets default actors for the given role.
-  *
-  * @method getActors
-  * @memberOf RoleClient#
-  * @param {Object} opts The request options sent to the Jira API.
-  * @param {String} opts.roldId Identifier for the role.
-  * @param [callback] Called when the permissions have been returned.
-  * @return {Promise} Resolved when the permissions have been returned.
-  */
-  this.getActors = function (opts, callback) {
-    var options = {
+   * Gets default actors for the given role.
+   *
+   * @method getActors
+   * @memberOf RoleClient#
+   * @param {Object} opts The request options sent to the Jira API.
+   * @param {String} opts.roldId Identifier for the role.
+   * @param [callback] Called when the permissions have been returned.
+   * @return {Promise} Resolved when the permissions have been returned.
+   */
+  this.getActors = function(opts, callback) {
+    const options = {
       uri: this.jiraClient.buildURL('/role/' + opts.roleId + '/actors'),
       method: 'GET',
       json: true,
-      followAllRedirects: true,
+      followAllRedirects: true
     };
 
     return this.jiraClient.makeRequest(options, callback);
   };
 
   /**
-  * Adds default actors to the given role.
-  * The request data should contain a list of usernames or a list of groups to add.
-  *
-  * @method addActors
-  * @memberOf RoleClient#
-  * @param {Object} opts The request options sent to the Jira API.
-  * @param {String} opts.roldId Identifier for the role.
-  * @param {Array} opts.group Array of group ids.
-  * @param {Array} opts.user Array of user ids.
-  * @param [callback] Called when the permissions have been returned.
-  * @return {Promise} Resolved when the permissions have been returned.
-  */
-  this.addActors = function (opts, callback) {
-    var options = {
+   * Adds default actors to the given role.
+   * The request data should contain a list of usernames or a list of groups to add.
+   *
+   * @method addActors
+   * @memberOf RoleClient#
+   * @param {Object} opts The request options sent to the Jira API.
+   * @param {String} opts.roldId Identifier for the role.
+   * @param {Array} opts.group Array of group ids.
+   * @param {Array} opts.user Array of user ids.
+   * @param [callback] Called when the permissions have been returned.
+   * @return {Promise} Resolved when the permissions have been returned.
+   */
+  this.addActors = function(opts, callback) {
+    const options = {
       uri: this.jiraClient.buildURL('/role/' + opts.roleId + '/actors'),
       method: 'POST',
       json: true,
       followAllRedirects: true,
       body: {
         user: opts.user,
-        group: opts.group,
-      },
+        group: opts.group
+      }
     };
 
     return this.jiraClient.makeRequest(options, callback);
   };
 
   /**
-  * Removes default actor from the given role.
-  *
-  * @method removeActor
-  * @memberOf RoleClient#
-  * @param {Object} opts The request options sent to the Jira API.
-  * @param {String} opts.roldId Identifier for the role.
-  * @param {String} opts.group group id.
-  * @param {String} opts.user user id.
-  * @param [callback] Called when the permissions have been returned.
-  * @return {Promise} Resolved when the permissions have been returned.
-  */
-  this.removeActor = function (opts, callback) {
-    var options = {
+   * Removes default actor from the given role.
+   *
+   * @method removeActor
+   * @memberOf RoleClient#
+   * @param {Object} opts The request options sent to the Jira API.
+   * @param {String} opts.roldId Identifier for the role.
+   * @param {String} opts.group group id.
+   * @param {String} opts.user user id.
+   * @param [callback] Called when the permissions have been returned.
+   * @return {Promise} Resolved when the permissions have been returned.
+   */
+  this.removeActor = function(opts, callback) {
+    const options = {
       uri: this.jiraClient.buildURL('/role/' + opts.roleId + '/actors'),
       method: 'DELETE',
       json: true,
       followAllRedirects: true,
       qs: {
         user: opts.user,
-        group: opts.group,
-      },
+        group: opts.group
+      }
     };
 
     return this.jiraClient.makeRequest(options, callback);

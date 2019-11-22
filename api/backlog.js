@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 module.exports = AgileBacklogClient;
 
@@ -21,15 +21,14 @@ function AgileBacklogClient(jiraClient) {
    * @param [callback] Called when the dashboard has been retrieved
    * @return {Promise} Resolved when the dashboard has been retrieved
    */
-  this.moveIssuesToBacklog = function (opts, callback) {
-    opts = opts || {};
-    var options = {
-      uri: this.jiraClient.buildAgileURL("/backlog/issue"),
-      method: "POST",
+  this.moveIssuesToBacklog = function(opts, callback) {
+    const options = {
+      uri: this.jiraClient.buildAgileURL('/backlog/issue'),
+      method: 'POST',
       json: true,
       followAllRedirects: true,
       body: {
-        issues: opts.issues
+        issues: (opts || {}).issues
       }
     };
 
@@ -53,10 +52,10 @@ function AgileBacklogClient(jiraClient) {
    * @param [callback] Called when the dashboard has been retrieved
    * @return {Promise} Resolved when the dashboard has been retrieved
    */
-  this.moveIssuesToBacklogForBoard = function (opts, callback) {
-    var options = {
-      uri: this.jiraClient.buildAgileURL("/backlog/" + opts.boardId + "/issue"),
-      method: "POST",
+  this.moveIssuesToBacklogForBoard = function(opts, callback) {
+    const options = {
+      uri: this.jiraClient.buildAgileURL('/backlog/' + opts.boardId + '/issue'),
+      method: 'POST',
       json: true,
       followAllRedirects: true,
       body: {

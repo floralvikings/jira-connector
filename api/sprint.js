@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 module.exports = AgileSprintClient;
 
@@ -20,8 +20,8 @@ function AgileSprintClient(jiraClient) {
    * @param [callback] Called when the sprint has been created.
    * @return {Promise} Resolved when the sprint has been created.
    */
-  this.createSprint = function (sprint, callback) {
-    var options = {
+  this.createSprint = function(sprint, callback) {
+    const options = {
       uri: this.jiraClient.buildAgileURL('/sprint'),
       method: 'POST',
       followAllRedirects: true,
@@ -42,8 +42,8 @@ function AgileSprintClient(jiraClient) {
    * @param [callback] Called when the sprint has been retrieved.
    * @return {Promise} Resolved when the sprint has been retrieved.
    */
-  this.getSprint = function (opts, callback) {
-    var options = {
+  this.getSprint = function(opts, callback) {
+    const options = {
       uri: this.jiraClient.buildAgileURL('/sprint/' + opts.sprintId),
       method: 'GET',
       json: true,
@@ -69,11 +69,11 @@ function AgileSprintClient(jiraClient) {
    * @param [callback] Called when the sprint has been updated.
    * @return {Promise} Resolved when the sprint has been updated.
    */
-  this.updateSprint = function (sprint, callback) {
-    var sprintId = sprint.sprintId;
+  this.updateSprint = function(sprint, callback) {
+    const sprintId = sprint.sprintId;
     delete sprint.sprintId;
 
-    var options = {
+    const options = {
       uri: this.jiraClient.buildAgileURL('/sprint/' + sprintId),
       method: 'PUT',
       followAllRedirects: true,
@@ -95,11 +95,11 @@ function AgileSprintClient(jiraClient) {
    * @param callback Called when the sprint has been updated.
    * @return {Promise} Resolved when the sprint has been updated.
    */
-  this.partiallyUpdateSprint = function (sprint, callback) {
-    var sprintId = sprint.sprintId;
+  this.partiallyUpdateSprint = function(sprint, callback) {
+    const sprintId = sprint.sprintId;
     delete sprint.sprintId;
 
-    var options = {
+    const options = {
       uri: this.jiraClient.buildAgileURL('/sprint/' + sprintId),
       method: 'POST',
       followAllRedirects: true,
@@ -120,8 +120,8 @@ function AgileSprintClient(jiraClient) {
    * @param [callback] Called when the sprint is deleted.
    * @return {Promise} Resolved when the sprint is deleted.
    */
-  this.deleteSprint = function (opts, callback) {
-    var options = {
+  this.deleteSprint = function(opts, callback) {
+    const options = {
       uri: this.jiraClient.buildAgileURL('/sprint/' + opts.sprintId),
       method: 'DELETE',
       json: true,
@@ -150,8 +150,8 @@ function AgileSprintClient(jiraClient) {
    * @param [callback] Called when the issues are returned.
    * @return {Promise} Resolved when the issues are returned.
    */
-  this.getSprintIssues = function (opts, callback) {
-    var options = {
+  this.getSprintIssues = function(opts, callback) {
+    const options = {
       uri: this.jiraClient.buildAgileURL('/sprint/' + opts.sprintId + '/issue'),
       method: 'GET',
       json: true,
@@ -180,11 +180,11 @@ function AgileSprintClient(jiraClient) {
    * @param [callback] Called when the sprint has been retrieved.
    * @return {Promise} Resolved when the sprint has been retrieved.
    */
-  this.moveSprintIssues = function (opts, callback) {
-    var sprintId = opts.sprintId;
+  this.moveSprintIssues = function(opts, callback) {
+    const sprintId = opts.sprintId;
     delete opts.sprintId;
 
-    var options = {
+    const options = {
       uri: this.jiraClient.buildAgileURL('/sprint/' + sprintId + '/issue'),
       method: 'POST',
       followAllRedirects: true,
@@ -206,11 +206,11 @@ function AgileSprintClient(jiraClient) {
    * @param [callback] Called when the sprint has been retrived.
    * @return {Promise} Resolved when the sprint has been retrived.
    */
-  this.swapSprint = function (swapped, callback) {
-    var sprintId = swapped.sprintId;
+  this.swapSprint = function(swapped, callback) {
+    const sprintId = swapped.sprintId;
     delete swapped.sprintId;
 
-    var options = {
+    const options = {
       uri: this.jiraClient.buildAgileURL('/sprint/' + sprintId + '/swap'),
       method: 'POST',
       followAllRedirects: true,
@@ -220,5 +220,4 @@ function AgileSprintClient(jiraClient) {
 
     return this.jiraClient.makeRequest(options, callback);
   };
-
 }
