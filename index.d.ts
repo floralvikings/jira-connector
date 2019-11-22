@@ -4,6 +4,7 @@ import { Epic } from './api/epic';
 import { Issue } from './api/issue';
 import { Project } from './api/project';
 import { User } from './api/user';
+import { Search } from './api/search';
 
 export = JiraClient;
 
@@ -78,7 +79,7 @@ declare class JiraClient {
     public resolution: any;
     public roles: any;
     public screens: any;
-    public search: any;
+    public search: Search;
     public securityLevel: any;
     public serverInfo: any;
     public settings: any;
