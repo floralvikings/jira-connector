@@ -17,7 +17,7 @@ function IssueTypeClient(jiraClient) {
      * @method getAllIssueTypes
      * @memberOf IssueTypeClient#
      * @param {Object} [opts] Ignored
-     * @param {Function} [callback] Called when the issue types have been retrieved.
+     * @param {callback} [callback] Called when the issue types have been retrieved.
      * @return {Promise} Resolved when the issue types have been retrieved.
      */
     this.getAllIssueTypes = function (opts, callback) {
@@ -41,7 +41,7 @@ function IssueTypeClient(jiraClient) {
      * @param {string} opts.name The name of the issue type
      * @param {string} [opts.description] The description of the issue type
      * @param {'subtype'|'standard'} [opts.type] The type of the issue type
-     * @param {Function} [callback] Called when the issue type has been created.
+     * @param {callback} [callback] Called when the issue type has been created.
      * @return {Promise} Resolved when the issue type has been created.
      */
     this.createIssueType = function (opts, callback) {
@@ -63,7 +63,7 @@ function IssueTypeClient(jiraClient) {
      * @memberOf IssueTypeClient#
      * @param {Object} opts The options sent to the Jira API
      * @param {string} opts.issueTypeId A String containing an issue type id
-     * @param {Function} [callback] Called when the issue type has been retrieved.
+     * @param {callback} [callback] Called when the issue type has been retrieved.
      * @return {Promise} Resolved when the issue type has been retrieved.
      */
     this.getIssueType = function (opts, callback) {
@@ -88,7 +88,7 @@ function IssueTypeClient(jiraClient) {
      * @param {string} [opts.issueType.name] The name of the issue type
      * @param {string} [opts.issueType.avatarId] The id of the avatar for the issue type
      * @param {string} [opts.issueType.description] The description of the issue type
-     * @param {Function} [callback] Called when the issue type has been updated.
+     * @param {callback} [callback] Called when the issue type has been updated.
      * @return {Promise} Resolved when the issue type has been updated.
      */
     this.updateIssueType = function (opts, callback) {
@@ -115,7 +115,7 @@ function IssueTypeClient(jiraClient) {
      * @param {string} opts.issueTypeId ID of the issueType to be deleted.
      * @param {string} [opts.alternativeIssueTypeId] the id of an issue type to which issues
      *          associated with the removed issue type will be migrated.
-     * @param {Function} [callback] Called when the issue type has been deleted.
+     * @param {callback} [callback] Called when the issue type has been deleted.
      * @return {Promise} Resolved when the issue type has been deleted.
      */
     this.deleteIssueType = function (opts, callback) {
@@ -142,7 +142,7 @@ function IssueTypeClient(jiraClient) {
      * @memberOf IssueTypeClient#
      * @param {Object} opts The options sent to the Jira API
      * @param {string} opts.issueTypeId A String containing an issue type id
-     * @param {Function} [callback] Called when the issue type has been retrieved.
+     * @param {callback} [callback] Called when the issue type has been retrieved.
      * @return {Promise} Resolved when the issue type has been retrieved.
      */
     this.getAlternativeIssueTypes = function (opts, callback) {
