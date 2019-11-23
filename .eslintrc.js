@@ -7,17 +7,18 @@ module.exports = {
     ecmaVersion: 2019,
     sourceType: 'module'
   },
-  env: { node: true },
+  env: { node: true, es6: true },
   plugins: [
     '@typescript-eslint', //
-    'prettier',
-    'eslint-plugin-eslint-comments'
+    'eslint-comments',
+    'prettier'
   ],
   extends: [
-    'plugin:@typescript-eslint/recommended',
+    'eslint:recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:eslint-comments/recommended',
     'plugin:prettier/recommended',
-    'prettier/@typescript-eslint',
-    'plugin:eslint-comments/recommended'
+    'prettier/@typescript-eslint'
   ],
   overrides: [
     {

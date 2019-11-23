@@ -180,7 +180,9 @@ const JiraClient = (module.exports = function(config) {
   this.pathPrefix = config.pathPrefix ? config.pathPrefix : '/';
   this.port = config.port;
   this.apiVersion = 2;
-  this.strictSSL = config.hasOwnProperty('strictSSL') ? config.strictSSL : true;
+  this.strictSSL = Object.prototype.hasOwnProperty.call(config, 'strictSSL')
+    ? config.strictSSL
+    : true;
   this.agileApiVersion = '1.0';
   this.authApiVersion = '1';
   this.webhookApiVersion = '1.0';
