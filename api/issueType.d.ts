@@ -1,6 +1,6 @@
 import { JiraIssueType } from '../index';
 
-export declare class Issue {
+declare class IssueTypeClient {
     getAllIssueTypes(
         opts?: {},
         callback?: (err: any, data: JiraIssueType[]) => void
@@ -45,3 +45,5 @@ export declare class Issue {
         callback?: (err: any, data: JiraIssueType[]) => void
     ): Promise<JiraIssueType[]>;
 }
+
+export = IssueTypeClient
