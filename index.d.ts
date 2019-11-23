@@ -5,6 +5,7 @@ import { Issue } from './api/issue';
 import { Project } from './api/project';
 import { User } from './api/user';
 import { Search } from './api/search';
+import IssueTypeClient = require('./api/issueType');
 
 export = JiraClient;
 
@@ -60,7 +61,7 @@ declare class JiraClient {
     public issue: Issue;
     public issueLink: any;
     public issueLinkType: any;
-    public issueType: any;
+    public issueType: IssueTypeClient;
     public jql: any;
     public labels: any;
     public licenseRole: any;
@@ -105,5 +106,24 @@ declare namespace JiraClient {
         function getAuthorizeURL(config: any, callback: any): any;
 
         function swapRequestTokenWithAccessToken(config: any, callback: any): void;
+    }
+
+    export interface JiraIssueType {
+        self: string;
+        id: string;
+        description: string;
+        iconUrl: string;
+        name: string;
+        subtask: boolean;
+        avatarId: number;
+        entityId?: string;
+        scope?: JiraScope;
+    }
+
+    export type JiraScope = JiraProjectScope;
+
+    export interface JiraProjectScope {
+        type: 'PROJECT';
+        project: { id: string };
     }
 }
