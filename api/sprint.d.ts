@@ -2,7 +2,7 @@ import { JiraSprint, Callback } from '../index';
 
 type SprintId = string | number;
 
-export declare class Sprint {
+declare class AgileSprintClient {
     createSprint(
         sprint: Pick<
             JiraSprint,
@@ -70,3 +70,5 @@ export declare class Sprint {
         callback?: Callback
     ): Promise<any>;
 }
+
+export = AgileSprintClient

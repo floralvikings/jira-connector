@@ -3,7 +3,7 @@ import { Board } from './api/board';
 import { Epic } from './api/epic';
 import { Issue } from './api/issue';
 import { Project } from './api/project';
-import { Sprint } from './api/sprint';
+import AgileSprintClient = require('./api/sprint');
 import { User } from './api/user';
 import { Search } from './api/search';
 import IssueTypeClient = require('./api/issueType');
@@ -85,7 +85,7 @@ declare class JiraClient {
     public securityLevel: any;
     public serverInfo: any;
     public settings: any;
-    public sprint: Sprint;
+    public sprint: AgileSprintClient;
     public status: any;
     public statusCategory: any;
     public user: User;
