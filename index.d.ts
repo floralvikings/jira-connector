@@ -109,6 +109,8 @@ declare namespace JiraClient {
         function swapRequestTokenWithAccessToken(config: any, callback: any): void;
     }
 
+    export type Callback<TData = any> = (err: any, data: TData) => void;
+
     export interface JiraIssueType {
         self: string;
         id: string;

@@ -1,4 +1,4 @@
-import { JiraSprint } from '../index';
+import { JiraSprint, Callback } from '../index';
 
 type SprintId = string | number;
 
@@ -12,7 +12,7 @@ export declare class Sprint {
             | 'originBoardId'
             | 'goal'
         >,
-        callback?: any
+        callback?: Callback
     ): Promise<any>;
     getSprint(
         opts: {
@@ -21,15 +21,15 @@ export declare class Sprint {
             startAt?: number;
             maxResults?: number;
         },
-        callback?: any
+        callback?: Callback<JiraSprint>
     ): Promise<JiraSprint>;
     updateSprint(
         opts: { sprintId: SprintId } & Partial<JiraSprint>,
-        callback?: any
+        callback?: Callback<JiraSprint>
     ): Promise<JiraSprint>;
     partiallyUpdateSprint(
         opts: { sprintId: SprintId } & Partial<JiraSprint>,
-        callback?: any
+        callback?: Callback<JiraSprint>
     ): Promise<JiraSprint>;
     deleteSprint(
         opts: {
@@ -38,7 +38,7 @@ export declare class Sprint {
             startAt?: number;
             maxResults?: number;
         },
-        callback?: any
+        callback?: Callback
     ): Promise<any>;
     getSprintIssues(
         opts: {
@@ -50,7 +50,7 @@ export declare class Sprint {
             fields?: string[];
             expand?: string;
         },
-        callback?: any
+        callback?: Callback
     ): Promise<any>;
     moveSprintIssues(
         opts: {
@@ -60,13 +60,13 @@ export declare class Sprint {
             rankAfterIssue?: string;
             rankCustomFieldId?: string;
         },
-        callback?: any
+        callback?: Callback
     ): Promise<any>;
     swapSprint(
         opts: {
             sprintId: SprintId;
             sprintToSwapWith: string;
         },
-        callback?: any
+        callback?: Callback
     ): Promise<any>;
 }
