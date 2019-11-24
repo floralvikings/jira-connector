@@ -4,6 +4,7 @@ import { Board } from './api/board';
 import { Epic } from './api/epic';
 import { Issue } from './api/issue';
 import { Project } from './api/project';
+import AgileSprintClient = require('./api/sprint');
 import { User } from './api/user';
 import { Search } from './api/search';
 import IssueTypeClient = require('./api/issueType');
@@ -85,7 +86,7 @@ declare class JiraClient {
     public securityLevel: any;
     public serverInfo: any;
     public settings: any;
-    public sprint: any;
+    public sprint: AgileSprintClient;
     public status: any;
     public statusCategory: any;
     public user: User;
@@ -175,5 +176,16 @@ declare namespace JiraClient {
 
     export interface Properties {
         [key: string]: string;
+                         }
+    export interface JiraSprint {
+        id: string;
+        self: string;
+        state: 'active' | 'closed' | 'future';
+        name: string;
+        startDate: string;
+        endDate: string;
+        originBoardId: number;
+        goal: string;
+        completeDate?: string;
     }
 }
