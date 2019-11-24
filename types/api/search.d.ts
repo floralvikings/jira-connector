@@ -27,7 +27,7 @@ interface ISearchResult {
     schema: any;
 }
 
-export declare class Search {
+export class Search {
     search(
         opts: {
             method?: 'GET' | 'POST' | 'get' | 'post'

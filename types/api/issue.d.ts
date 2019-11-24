@@ -1,4 +1,4 @@
-export interface IHistoryMetadataParticipant {
+export interface HistoryMetadataParticipant {
     [key: string]: any;
     id?: string;
     displayName?: string;
@@ -8,7 +8,7 @@ export interface IHistoryMetadataParticipant {
     url?: string;
 }
 
-export interface IHistoryMetadata {
+export interface HistoryMetadata {
     [key: string]: any;
     type?: string;
     description?: string;
@@ -17,13 +17,13 @@ export interface IHistoryMetadata {
     activityDescriptionKey?: string;
     emailDescription?: string;
     emailDescriptionKey?: string;
-    actor?: IHistoryMetadataParticipant,
-    generator?: IHistoryMetadataParticipant,
-    cause?: IHistoryMetadataParticipant,
+    actor?: HistoryMetadataParticipant;
+    generator?: HistoryMetadataParticipant;
+    cause?: HistoryMetadataParticipant;
     extraData?: any;
 }
 
-export declare class Issue {
+export class Issue {
     [method: string]: any;
 
     editIssue(
@@ -41,7 +41,7 @@ export declare class Issue {
                 };
                 fields?: any;
                 update?: any;
-                historyMetadata?: IHistoryMetadata,
+                historyMetadata?: HistoryMetadata,
                 properties: any[];
             }
         },

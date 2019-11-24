@@ -1,4 +1,4 @@
-export declare class Epic {
+export class Epic {
     getIssuesWithoutEpic(opts?: {
         startAt?: number;
         maxResults?: number;
