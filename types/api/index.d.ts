@@ -1,3 +1,4 @@
+export * from './attachment';
 export * from './backlog';
 export * from './board';
 export * from './epic';

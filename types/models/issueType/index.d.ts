@@ -1,7 +1,4 @@
-export interface Scope {
-  type: 'PROJECT';
-  project: { id: string };
-}
+import { Scope } from "./scope";
 
 export interface IssueType {
   self: string;
