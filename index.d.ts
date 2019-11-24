@@ -1,3 +1,4 @@
+import ApplicationPropertiesClient = require('./api/applicationProperties');
 import { Backlog } from './api/backlog';
 import { Board } from './api/board';
 import { Epic } from './api/epic';
@@ -41,7 +42,7 @@ interface IConfig {
 declare class JiraClient {
     constructor(config: IConfig);
 
-    public applicationProperties: any;
+    public applicationProperties: ApplicationPropertiesClient;
     public attachment: any;
     public auditing: any;
     public auth: any;
