@@ -1,3 +1,4 @@
+export * from './applicationProperties';
 export * from './attachment';
 export * from './backlog';
 export * from './board';

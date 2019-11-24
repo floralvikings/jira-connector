@@ -1,5 +1,6 @@
 import { Config } from './config';
 import {
+    ApplicationProperties,
     Attachment,
     Backlog,
     Board,
@@ -19,7 +20,7 @@ export * from './models';
 export default class JiraClient {
     constructor(config: Config);
 
-    applicationProperties: any;
+    applicationProperties: ApplicationProperties;
     attachment: Attachment;
     auditing: any;
     auth: any;
