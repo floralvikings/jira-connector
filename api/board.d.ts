@@ -1,19 +1,21 @@
+import { Callback } from '../index';
+
 export interface JiraBoard {
-  id: number;
-  self: string;
-  name: string;
-  type: string;
-  location: BoardLocation;
+    id: number;
+    self: string;
+    name: string;
+    type: string;
+    location: BoardLocation;
 }
 
 export interface BoardLocation {
-  projectId: number;
-  displayName: string;
-  projectName: string;
-  projectKey: string;
-  projectTypeKey: string;
-  avatarURI: string;
-  name: string;
+    projectId: number;
+    displayName: string;
+    projectName: string;
+    projectKey: string;
+    projectTypeKey: string;
+    avatarURI: string;
+    name: string;
 }
 
 export declare class Board {
@@ -31,7 +33,7 @@ export declare class Board {
         negateLocationFiltering?: boolean;
         orderBy?: string;
         expand?: string;
-    }, callback?: any): Promise<any>;
+    }, callback?: Callback): Promise<any>;
     createBoard(
         name: string,
         type: string,
@@ -40,19 +42,19 @@ export declare class Board {
             type: string;
             projectKeyOrId: string;
         },
-        callback?: any
+        callback?: Callback
     ): Promise<any>;
     getBoardByFilterId(opts: {
         filterId: number;
         startAt?: number;
         maxResults?: number;
-    }, callback?: any): Promise<any>;
+    }, callback?: Callback): Promise<any>;
     getBoard(opts: {
         boardId: number | string;
-    }, callback?: any): Promise<JiraBoard>;
+    }, callback?: Callback): Promise<JiraBoard>;
     deleteBoard(opts: {
         boardId: number | string;
-    }, callback?: any): Promise<any>;
+    }, callback?: Callback): Promise<any>;
     getIssuesForBacklog(opts: {
         boardId: number | string;
         startAt?: number;
@@ -61,16 +63,16 @@ export declare class Board {
         validateQuery?: boolean;
         fields?: string[];
         expand?: string;
-    }, callback?: any): Promise<any>;
+    }, callback?: Callback): Promise<any>;
     getConfiguration(opts: {
         boardId: number | string;
-    }, callback?: any): Promise<any>;
+    }, callback?: Callback): Promise<any>;
     getEpics(opts: {
         boardId: number | string;
         startAt?: number;
         maxResults?: number;
         done?: string;
-    }, callback?: any): Promise<any>;
+    }, callback?: Callback): Promise<any>;
     getIssuesWithoutEpic(opts: {
         boardId: number | string;
         startAt?: number;
@@ -79,7 +81,7 @@ export declare class Board {
         validateQuery?: boolean;
         fields?: string[];
         expand?: string;
-    }, callback?: any): Promise<any>;
+    }, callback?: Callback): Promise<any>;
     getIssuesForEpic(opts: {
         boardId: number | string;
         epicId: number | string;
@@ -89,16 +91,16 @@ export declare class Board {
         validateQuery?: boolean;
         fields?: string[];
         expand?: string;
-    }, callback?: any): Promise<any>;
+    }, callback?: Callback): Promise<any>;
     getFeaturesForBoard(opts: {
         boardId: number | string;
-    }, callback?: any): Promise<any>;
+    }, callback?: Callback): Promise<any>;
     toggleFeatures(opts: {
         boardId: number | string;
         boardIdBody?: number | string;
         feature?: string;
         enabling?: boolean;
-    }, callback?: any): Promise<any>;
+    }, callback?: Callback): Promise<any>;
     getIssuesForBoard(opts: {
         boardId: number | string;
         startAt?: number;
@@ -107,56 +109,56 @@ export declare class Board {
         validateQuery?: boolean;
         fields?: string[];
         expand?: string;
-    }, callback?: any): Promise<any>;
+    }, callback?: Callback): Promise<any>;
     moveIssuesToBoard(opts: {
         boardId: number | string;
         issues?: string[];
         rankBeforeIssue?: string;
         rankAfterIssue?: string;
         rankCustomFieldId?: number | string;
-    }, callback?: any): Promise<any>;
+    }, callback?: Callback): Promise<any>;
     getProjects(opts: {
         boardId: number | string;
         startAt?: number;
         maxResults?: number;
-    }, callback?: any): Promise<any>;
+    }, callback?: Callback): Promise<any>;
     getProjectsFull(opts: {
         boardId: number | string;
-    }, callback?: any): Promise<any>;
+    }, callback?: Callback): Promise<any>;
     getBoardPropertyKeys(opts: {
         boardId: number | string;
-    }, callback?: any): Promise<any>;
+    }, callback?: Callback): Promise<any>;
     getBoardProperty(opts: {
         boardId: number | string;
         propertyKey: string;
-    }, callback?: any): Promise<any>;
+    }, callback?: Callback): Promise<any>;
     setBoardProperty(opts: {
         boardId: number | string;
         propertyKey: string;
         property: any;
-    }, callback?: any): Promise<any>;
+    }, callback?: Callback): Promise<any>;
     deleteBoardProperty(opts: {
         boardId: number | string;
         propertyKey: string;
-    }, callback?: any): Promise<any>;
+    }, callback?: Callback): Promise<any>;
     getAllQuickFilters(opts: {
         boardId: number | string;
         startAt?: number;
         maxResults?: number;
-    }, callback?: any): Promise<any>;
+    }, callback?: Callback): Promise<any>;
     getQuickFilter(opts: {
         boardId: number | string;
         quickFilterId: number | string;
-    }, callback?: any): Promise<any>;
+    }, callback?: Callback): Promise<any>;
     getReportsForBoard(opts: {
         boardId: number | string;
-    }, callback?: any): Promise<any>;
+    }, callback?: Callback): Promise<any>;
     getAllSprints(opts: {
         boardId: number | string;
         startAt?: number;
         maxResults?: number;
         state?: string;
-    }, callback?: any): Promise<any>;
+    }, callback?: Callback): Promise<any>;
     getIssuesForSprint(opts: {
         boardId: number | string;
         sprintId: number | string;
@@ -166,11 +168,11 @@ export declare class Board {
         validateQuery?: boolean;
         fields?: string[];
         expand?: string;
-    }, callback?: any): Promise<any>;
+    }, callback?: Callback): Promise<any>;
     getAllVersions(opts: {
         boardId: number | string;
         startAt?: number;
         maxResults?: number;
         released?: string;
-    }, callback?: any): Promise<any>;
+    }, callback?: Callback): Promise<any>;
 }
