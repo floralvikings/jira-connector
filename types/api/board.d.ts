@@ -1,4 +1,4 @@
-import { JiraBoard, Callback } from "types";
+import { Board as BoardType, Callback } from "types";
 
 export class Board {
     getAllBoards(opts?: {
@@ -33,7 +33,7 @@ export class Board {
     }, callback?: any): Promise<any>;
     getBoard(opts: {
         boardId: number | string;
-    }, callback?: Callback<JiraBoard>): Promise<JiraBoard>;
+    }, callback?: Callback<BoardType>): Promise<BoardType>;
     deleteBoard(opts: {
         boardId: number | string;
     }, callback?: any): Promise<any>;

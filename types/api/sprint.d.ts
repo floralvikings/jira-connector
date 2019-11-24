@@ -1,11 +1,11 @@
-import { JiraSprint, Callback } from '../index';
+import { Sprint as SprintType, Callback } from '../index';
 
 export type SprintId = string | number;
 
 export class Sprint {
     createSprint(
         sprint: Pick<
-            JiraSprint,
+        SprintType,
             | 'name' //
             | 'startDate'
             | 'endDate'
@@ -21,16 +21,16 @@ export class Sprint {
             startAt?: number;
             maxResults?: number;
         },
-        callback?: Callback<JiraSprint>
-    ): Promise<JiraSprint>;
+        callback?: Callback<SprintType>
+    ): Promise<SprintType>;
     updateSprint(
-        opts: { sprintId: SprintId } & Partial<JiraSprint>,
-        callback?: Callback<JiraSprint>
-    ): Promise<JiraSprint>;
+        opts: { sprintId: SprintId } & Partial<SprintType>,
+        callback?: Callback<SprintType>
+    ): Promise<SprintType>;
     partiallyUpdateSprint(
-        opts: { sprintId: SprintId } & Partial<JiraSprint>,
-        callback?: Callback<JiraSprint>
-    ): Promise<JiraSprint>;
+        opts: { sprintId: SprintId } & Partial<SprintType>,
+        callback?: Callback<SprintType>
+    ): Promise<SprintType>;
     deleteSprint(
         opts: {
             sprintId: SprintId;

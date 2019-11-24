@@ -104,9 +104,9 @@ export class Issue {
             started?: string,
             timeSpent?: string,
             timeSpentSeconds?: number | string,
-            properties?: {
+            properties?: Array<{
                 [key: string]: any
-            }[]
+            }>
         },
         callback?: (err: any, data: any) => void
     ): Promise<any>;
@@ -141,9 +141,9 @@ export class Issue {
             started?: string,
             timeSpent?: string,
             timeSpentSeconds?: number | string,
-            properties?: {
+            properties?: Array<{
                 [key: string]: any
-            }[]
+            }>
         },
         callback?: (err: any, data: any) => void
     ): Promise<any>;
@@ -174,7 +174,7 @@ export class Issue {
             }
         },
         callback?: (err: any, data: any) => void
-    ): Promise<{
+    ): Promise<Array<{
         [key: string]: any,
         self: string,
         id: string,
@@ -198,5 +198,5 @@ export class Issue {
         mimeType: string,
         content: string,
         thumbnail: string
-    }[] | any>;
+    }>>;
 }

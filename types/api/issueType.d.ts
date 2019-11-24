@@ -1,4 +1,4 @@
-import { JiraIssueType, Callback } from '../index';
+import { IssueType as JiraIssueType, Callback } from 'types';
 
 export class IssueType {
     getAllIssueTypes(
