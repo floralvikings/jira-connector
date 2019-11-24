@@ -176,7 +176,8 @@ declare namespace JiraClient {
 
     export interface Properties {
         [key: string]: string;
-                         }
+    }
+
     export interface JiraSprint {
         id: string;
         self: string;
