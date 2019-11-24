@@ -1,3 +1,4 @@
+import AttachmentClient = require('./api/attachment');
 import { Backlog } from './api/backlog';
 import { Board } from './api/board';
 import { Epic } from './api/epic';
@@ -42,7 +43,7 @@ declare class JiraClient {
     constructor(config: IConfig);
 
     public applicationProperties: any;
-    public attachment: any;
+    public attachment: AttachmentClient;
     public auditing: any;
     public auth: any;
     public avatar: any;
@@ -108,6 +109,8 @@ declare namespace JiraClient {
         function swapRequestTokenWithAccessToken(config: any, callback: any): void;
     }
 
+    export type Callback<TData = any> = (err: any, data: TData) => void;
+
     export interface JiraIssueType {
         self: string;
         id: string;
@@ -120,10 +123,57 @@ declare namespace JiraClient {
         scope?: JiraScope;
     }
 
+    export interface AttachmentMetadata {
+        id: number;
+        self: string;
+        filename: string;
+        author: Author;
+        created: string;
+        size: number;
+        mimeType: string;
+        properties: Properties;
+        content: string;
+        thumbnail: string;
+    }
+
+    export interface AttachmentSettings {
+        enabled: boolean;
+        uploadLimit: number;
+    }
+
     export type JiraScope = JiraProjectScope;
 
     export interface JiraProjectScope {
         type: 'PROJECT';
         project: { id: string };
+    }
+
+    export interface Author {
+        self: string;
+        key: string;
+        accountId: string;
+        accountType: string;
+        name: string;
+        emailAddress: string;
+        avatarUrls: { [key: string]: string };
+        displayName: string;
+        active: boolean;
+        timeZone: string;
+        locale: string;
+        groups: ApplicationRoles;
+        applicationRoles: ApplicationRoles;
+        expand: string;
+    }
+
+    export interface ApplicationRoles {
+        size: number;
+        items: Properties[];
+        pagingCallback: Properties;
+        callback: Properties;
+        "max-results": number;
+    }
+
+    export interface Properties {
+        [key: string]: string;
     }
 }
