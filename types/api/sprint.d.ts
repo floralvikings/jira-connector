@@ -1,11 +1,12 @@
-import { JiraSprint, Callback } from '../index';
+import { Callback } from 'types';
+import { Sprint as SprintModel } from 'types/models';
 
-type SprintId = string | number;
+export type SprintId = string | number;
 
-declare class AgileSprintClient {
+export class Sprint {
     createSprint(
         sprint: Pick<
-            JiraSprint,
+        SprintModel,
             | 'name' //
             | 'startDate'
             | 'endDate'
@@ -21,16 +22,16 @@ declare class AgileSprintClient {
             startAt?: number;
             maxResults?: number;
         },
-        callback?: Callback<JiraSprint>
-    ): Promise<JiraSprint>;
+        callback?: Callback<SprintModel>
+    ): Promise<SprintModel>;
     updateSprint(
-        opts: { sprintId: SprintId } & Partial<JiraSprint>,
-        callback?: Callback<JiraSprint>
-    ): Promise<JiraSprint>;
+        opts: { sprintId: SprintId } & Partial<SprintModel>,
+        callback?: Callback<SprintModel>
+    ): Promise<SprintModel>;
     partiallyUpdateSprint(
-        opts: { sprintId: SprintId } & Partial<JiraSprint>,
-        callback?: Callback<JiraSprint>
-    ): Promise<JiraSprint>;
+        opts: { sprintId: SprintId } & Partial<SprintModel>,
+        callback?: Callback<SprintModel>
+    ): Promise<SprintModel>;
     deleteSprint(
         opts: {
             sprintId: SprintId;
@@ -70,5 +71,3 @@ declare class AgileSprintClient {
         callback?: Callback
     ): Promise<any>;
 }
-
-export = AgileSprintClient

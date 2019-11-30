@@ -1,10 +1,11 @@
-import { JiraIssueType } from '../index';
+import { Callback } from 'types';
+import { IssueType as IssueTypeModel } from 'types/models';
 
-declare class IssueTypeClient {
+export class IssueType {
     getAllIssueTypes(
         opts?: {},
-        callback?: (err: any, data: JiraIssueType[]) => void
-    ): Promise<JiraIssueType[]>;
+        callback?: Callback<IssueTypeModel[]>,
+    ): Promise<IssueTypeModel[]>;
 
     createIssueType(
         opts: {
@@ -12,13 +13,13 @@ declare class IssueTypeClient {
             description?: string;
             type?: 'subtype' | 'standard';
         },
-        callback?: (err: any, data: JiraIssueType) => void
-    ): Promise<JiraIssueType>;
+        callback?: Callback<IssueTypeModel>,
+    ): Promise<IssueTypeModel>;
 
     getIssueType(
         opts: { issueTypeId: string },
-        callback?: (err: any, data: JiraIssueType) => void
-    ): Promise<JiraIssueType>;
+        callback?: Callback<IssueTypeModel>,
+    ): Promise<IssueTypeModel>;
 
     updateIssueType(
         opts: {
@@ -29,21 +30,19 @@ declare class IssueTypeClient {
                 avatarId: string | number;
             }>;
         },
-        callback?: (err: any, data: JiraIssueType) => void
-    ): Promise<JiraIssueType>;
+        callback?: Callback<IssueTypeModel>,
+    ): Promise<IssueTypeModel>;
 
     deleteIssueType(
         opts: {
             issueTypeId: string;
             alternativeIssueTypeId?: string;
         },
-        callback?: (err: any, data: any) => void
-    ): Promise<any>;
+        callback?: Callback<void>,
+    ): Promise<void>;
 
     getAlternativeIssueTypes(
         opts: { issueTypeId: string },
-        callback?: (err: any, data: JiraIssueType[]) => void
-    ): Promise<JiraIssueType[]>;
+        callback?: Callback<IssueTypeModel[]>,
+    ): Promise<IssueTypeModel[]>;
 }
-
-export = IssueTypeClient

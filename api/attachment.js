@@ -18,9 +18,9 @@ function AttachmentClient(jiraClient) {
      *
      * @method getAttachment
      * @memberOf AttachmentClient#
-     * @param opts The options for the API request.
-     * @param opts.attachmentId The id of the attachment to retrieve
-     * @param [callback] Called when the attachment metadata is retrieved.
+     * @param {Object} opts The options for the API request.
+     * @param {string} opts.attachmentId The id of the attachment to retrieve
+     * @param {callback} [callback] Called when the attachment metadata is retrieved.
      * @return {Promise} Resolved when the attachment metadata is retrieved.
      */
     this.getAttachment = function (opts, callback) {
@@ -43,9 +43,9 @@ function AttachmentClient(jiraClient) {
      *
      * @method deleteAttachment
      * @memberOf AttachmentClient#
-     * @param opts The options for the API request.
-     * @param opts.attachmentId The id of the attachment to delete
-     * @param [callback] Called when the attachment is deleted.
+     * @param {Object} opts The options for the API request.
+     * @param {string} opts.attachmentId The id of the attachment to delete
+     * @param {callback} [callback] Called when the attachment is deleted.
      * @return {Promise} Resolved when the attachment is deleted.
      */
     this.deleteAttachment = function (opts, callback) {
@@ -70,8 +70,8 @@ function AttachmentClient(jiraClient) {
      *
      * @method getGlobalAttachmentMetadata
      * @memberOf AttachmentClient#
-     * @param opts This API request actually takes no options; this parameter is ignored.
-     * @param [callback] Called when the metadata is retrieved.
+     * @param {Object} [opts] This API request actually takes no options; this parameter is ignored.
+     * @param {callback} [callback] Called when the metadata is retrieved.
      * @return {Promise} Resolved when the metadata is retrieved.
      */
     this.getGlobalAttachmentMetadata = function (opts, callback) {

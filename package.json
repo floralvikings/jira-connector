@@ -10,17 +10,21 @@
   "files": [
     "api/",
     "lib/",
+    "types/",
     "index.js",
-    "index.d.ts",
     "jsdoc.json"
   ],
   "main": "./index.js",
-  "types": "./index.d.ts",
+  "types": "./types/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "dtslint types"
   },
   "author": "Caleb Brinkman <floralvikings@gmail.com>",
   "license": "MIT",
+  "devDependencies": {
+    "@types/request": "^2.48.3",
+    "dtslint": "^2.0.2"
+  },
   "dependencies": {
     "mime-types": "^2.1.24",
     "oauth": "^0.9.12",

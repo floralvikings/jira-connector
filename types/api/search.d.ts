@@ -1,4 +1,6 @@
-interface Issue {
+import { Callback } from "types";
+
+export interface IssueResponse {
     expand: string;
     id: string;
     self: string;
@@ -16,18 +18,18 @@ interface Issue {
     fields: any;
 }
 
-interface ISearchResult {
+export interface SearchResult {
     expand: string;
     startAt: number;
     maxResults: number;
     total: number;
-    issues: Issue[];
+    issues: IssueResponse[];
     warningMessages: string[];
     names: any;
     schema: any;
 }
 
-export declare class Search {
+export class Search {
     search(
         opts: {
             method?: 'GET' | 'POST' | 'get' | 'post'
@@ -39,6 +41,6 @@ export declare class Search {
             properties?: string[];
             fieldsByKeys?: boolean;
         },
-        callback?: (err: any, data: any) => void
-    ): Promise<ISearchResult | any>;
+        callback?: Callback<SearchResult>
+    ): Promise<SearchResult>;
 }

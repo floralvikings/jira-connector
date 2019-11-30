@@ -14,13 +14,13 @@ function ApplicationPropertiesClient(jiraClient) {
      * Gets an application property.
      * @method getProperties
      * @memberOf ApplicationPropertiesClient#
-     * @param [opts] The options used to make the request.
-     * @param [opts.key] A String containing the property key.
-     * @param [opts.permissionLevel] When fetching a list specifies the permission level of all items in the list.
-     * @param [opts.keyFilter] When fetching a list allows the list to be filtered by the property's start of key e.g.
+     * @param {Object} [opts] The options used to make the request.
+     * @param {string} [opts.key] A String containing the property key.
+     * @param {string} [opts.permissionLevel] When fetching a list specifies the permission level of all items in the list.
+     * @param {string} [opts.keyFilter] When fetching a list allows the list to be filtered by the property's start of key e.g.
      *     "jira.lf.*" whould fetch only those permissions that are editable and whose keys start with "jira.lf.". This
      *     is a regex
-     * @param [callback] Called when the properties are retrieved.
+     * @param {callback} [callback] Called when the properties are retrieved.
      * @return {Promise} Resolved when the properties are retrieved.
      */
     this.getProperties = function (opts, callback) {
@@ -52,7 +52,7 @@ function ApplicationPropertiesClient(jiraClient) {
      *
      * @method getProperties
      * @memberOf ApplicationPropertiesClient#
-     * @param opts The options for modifying the application property.
+     * @param {Object} opts The options for modifying the application property.
      * @param opts.id The id of the property to be modified
      * @param opts.property The new data for the property.  See
      *     {@link https://docs.atlassian.com/jira/REST/latest/#d2e4891}

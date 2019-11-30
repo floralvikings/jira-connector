@@ -1,4 +1,6 @@
-export interface IHistoryMetadataParticipant {
+import { Callback } from 'types';
+
+export interface HistoryMetadataParticipant {
     [key: string]: any;
     id?: string;
     displayName?: string;
@@ -8,7 +10,7 @@ export interface IHistoryMetadataParticipant {
     url?: string;
 }
 
-export interface IHistoryMetadata {
+export interface HistoryMetadata {
     [key: string]: any;
     type?: string;
     description?: string;
@@ -17,13 +19,13 @@ export interface IHistoryMetadata {
     activityDescriptionKey?: string;
     emailDescription?: string;
     emailDescriptionKey?: string;
-    actor?: IHistoryMetadataParticipant,
-    generator?: IHistoryMetadataParticipant,
-    cause?: IHistoryMetadataParticipant,
+    actor?: HistoryMetadataParticipant;
+    generator?: HistoryMetadataParticipant;
+    cause?: HistoryMetadataParticipant;
     extraData?: any;
 }
 
-export declare class Issue {
+export class Issue {
     [method: string]: any;
 
     editIssue(
@@ -41,11 +43,11 @@ export declare class Issue {
                 };
                 fields?: any;
                 update?: any;
-                historyMetadata?: IHistoryMetadata,
+                historyMetadata?: HistoryMetadata,
                 properties: any[];
             }
         },
-        callback?: (err: any, data: any) => void
+        callback?: Callback
     ): Promise<any>;
 
     addComment(
@@ -62,7 +64,7 @@ export declare class Issue {
             };
             properties?: any[];
         },
-        callback?: (err: any, data: any) => void
+        callback?: Callback
     ): Promise<any>;
 
     deleteComment(
@@ -71,7 +73,7 @@ export declare class Issue {
             issueKey?: string | number;
             commentId: string | number;
         },
-        callback?: (err: any, data: any) => void
+        callback?: Callback
     ): Promise<string>;
 
     getChangelog(
@@ -81,7 +83,7 @@ export declare class Issue {
             startAt?: number,
             maxResults?: number
         },
-        callback?: (err: any, data: any) => void
+        callback?: Callback
     ): Promise<any>;
 
     addWorkLog(
@@ -104,11 +106,11 @@ export declare class Issue {
             started?: string,
             timeSpent?: string,
             timeSpentSeconds?: number | string,
-            properties?: {
+            properties?: Array<{
                 [key: string]: any
-            }[]
+            }>
         },
-        callback?: (err: any, data: any) => void
+        callback?: Callback
     ): Promise<any>;
 
     getWorklog(
@@ -118,7 +120,7 @@ export declare class Issue {
             id: string,
             expand?: string
         },
-        callback?: (err: any, data: any) => void
+        callback?: Callback
     ): Promise<any>;
 
     updateWorklog(
@@ -141,11 +143,11 @@ export declare class Issue {
             started?: string,
             timeSpent?: string,
             timeSpentSeconds?: number | string,
-            properties?: {
+            properties?: Array<{
                 [key: string]: any
-            }[]
+            }>
         },
-        callback?: (err: any, data: any) => void
+        callback?: Callback
     ): Promise<any>;
 
     deleteWorklog(
@@ -159,7 +161,7 @@ export declare class Issue {
             increaseBy?: string,
             overrideEditableFlag?: boolean
         },
-        callback?: (err: any, data: any) => void
+        callback?: Callback
     ): Promise<any>;
 
     addAttachment(
@@ -173,8 +175,8 @@ export declare class Issue {
                 [key: string]: any
             }
         },
-        callback?: (err: any, data: any) => void
-    ): Promise<{
+        callback?: Callback
+    ): Promise<Array<{
         [key: string]: any,
         self: string,
         id: string,
@@ -198,5 +200,5 @@ export declare class Issue {
         mimeType: string,
         content: string,
         thumbnail: string
-    }[] | any>;
+    }>>;
 }
