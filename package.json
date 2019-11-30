@@ -22,6 +22,7 @@
   "author": "Caleb Brinkman <floralvikings@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/request": "^2.48.3",
     "dtslint": "^2.0.2"
   },
   "dependencies": {
