@@ -1,11 +1,12 @@
-import { Sprint as SprintType, Callback } from '../index';
+import { Callback } from 'types';
+import { Sprint as SprintModel } from 'types/models';
 
 export type SprintId = string | number;
 
 export class Sprint {
     createSprint(
         sprint: Pick<
-        SprintType,
+        SprintModel,
             | 'name' //
             | 'startDate'
             | 'endDate'
@@ -21,16 +22,16 @@ export class Sprint {
             startAt?: number;
             maxResults?: number;
         },
-        callback?: Callback<SprintType>
-    ): Promise<SprintType>;
+        callback?: Callback<SprintModel>
+    ): Promise<SprintModel>;
     updateSprint(
-        opts: { sprintId: SprintId } & Partial<SprintType>,
-        callback?: Callback<SprintType>
-    ): Promise<SprintType>;
+        opts: { sprintId: SprintId } & Partial<SprintModel>,
+        callback?: Callback<SprintModel>
+    ): Promise<SprintModel>;
     partiallyUpdateSprint(
-        opts: { sprintId: SprintId } & Partial<SprintType>,
-        callback?: Callback<SprintType>
-    ): Promise<SprintType>;
+        opts: { sprintId: SprintId } & Partial<SprintModel>,
+        callback?: Callback<SprintModel>
+    ): Promise<SprintModel>;
     deleteSprint(
         opts: {
             sprintId: SprintId;

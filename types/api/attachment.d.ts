@@ -1,4 +1,5 @@
-import { Callback, AttachmentMetadata } from "types";
+import { Callback } from "types";
+import { AttachmentMetadata } from 'types/models';
 
 export class Attachment {
   getAttachment(
