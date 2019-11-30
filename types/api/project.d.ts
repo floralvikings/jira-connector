@@ -1,4 +1,5 @@
-import { Callback, PageBeanVersion } from "../index";
+import { Callback } from "types";
+import { PageBeanVersion } from 'types/models';
 
 export class Project {
     getAllProjects(

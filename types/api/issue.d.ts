@@ -1,3 +1,5 @@
+import { Callback } from 'types';
+
 export interface HistoryMetadataParticipant {
     [key: string]: any;
     id?: string;
@@ -45,7 +47,7 @@ export class Issue {
                 properties: any[];
             }
         },
-        callback?: (err: any, data: any) => void
+        callback?: Callback
     ): Promise<any>;
 
     addComment(
@@ -62,7 +64,7 @@ export class Issue {
             };
             properties?: any[];
         },
-        callback?: (err: any, data: any) => void
+        callback?: Callback
     ): Promise<any>;
 
     deleteComment(
@@ -71,7 +73,7 @@ export class Issue {
             issueKey?: string | number;
             commentId: string | number;
         },
-        callback?: (err: any, data: any) => void
+        callback?: Callback
     ): Promise<string>;
 
     getChangelog(
@@ -81,7 +83,7 @@ export class Issue {
             startAt?: number,
             maxResults?: number
         },
-        callback?: (err: any, data: any) => void
+        callback?: Callback
     ): Promise<any>;
 
     addWorkLog(
@@ -108,7 +110,7 @@ export class Issue {
                 [key: string]: any
             }>
         },
-        callback?: (err: any, data: any) => void
+        callback?: Callback
     ): Promise<any>;
 
     getWorklog(
@@ -118,7 +120,7 @@ export class Issue {
             id: string,
             expand?: string
         },
-        callback?: (err: any, data: any) => void
+        callback?: Callback
     ): Promise<any>;
 
     updateWorklog(
@@ -145,7 +147,7 @@ export class Issue {
                 [key: string]: any
             }>
         },
-        callback?: (err: any, data: any) => void
+        callback?: Callback
     ): Promise<any>;
 
     deleteWorklog(
@@ -159,7 +161,7 @@ export class Issue {
             increaseBy?: string,
             overrideEditableFlag?: boolean
         },
-        callback?: (err: any, data: any) => void
+        callback?: Callback
     ): Promise<any>;
 
     addAttachment(
@@ -173,7 +175,7 @@ export class Issue {
                 [key: string]: any
             }
         },
-        callback?: (err: any, data: any) => void
+        callback?: Callback
     ): Promise<Array<{
         [key: string]: any,
         self: string,
