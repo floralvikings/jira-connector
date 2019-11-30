@@ -1,4 +1,6 @@
+import { Callback } from './callback';
 import { Config } from './config';
+import { CoreOptions } from 'request';
 import {
     Attachment,
     Backlog,
@@ -10,6 +12,7 @@ import {
     Search,
     Sprint,
     User,
+    Version,
 } from './api';
 
 export * from './config';
@@ -66,7 +69,7 @@ export default class JiraClient {
     status: any;
     statusCategory: any;
     user: User;
-    version: any;
+    version: Version;
     webhook: any;
     workflow: any;
     workflowScheme: any;
@@ -76,7 +79,7 @@ export default class JiraClient {
     buildAuthURL(path: string, forcedVersion?: number | string): string;
     buildURL(path: string, forcedVersion?: number | string): string;
     buildWebhookURL(path: string, forcedVersion?: number | string): string;
-    makeRequest(options: { [key: string]: any }, callback?: any, successString?: string): any;
+    makeRequest(options: CoreOptions, callback?: Callback, successString?: string): Promise<any>;
 
     static oauth_util: {
         getAuthorizeURL(config: any, callback: any): any,

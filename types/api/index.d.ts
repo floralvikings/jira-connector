@@ -8,3 +8,4 @@ export * from './project';
 export * from './search';
 export * from './sprint';
 export * from './user';
+export * from './version';

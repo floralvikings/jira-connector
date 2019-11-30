@@ -1,3 +1,5 @@
+import { IssuesStatusForFixVersion, Operation } from "types";
+
 export interface Sprint {
   id: string;
   self: string;
@@ -56,21 +58,4 @@ export interface Value {
   moveUnfixedIssuesTo: string;
   operations: Operation[];
   issuesStatusForFixVersion: IssuesStatusForFixVersion;
-}
-
-export interface IssuesStatusForFixVersion {
-  unmapped: number;
-  toDo: number;
-  inProgress: number;
-  done: number;
-}
-
-export interface Operation {
-  id: string;
-  styleClass: string;
-  iconClass: string;
-  label: string;
-  title: string;
-  href: string;
-  weight: number;
 }
