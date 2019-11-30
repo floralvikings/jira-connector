@@ -16,7 +16,7 @@ function VersionClient(jiraClient) {
      * @method createVersion
      * @memberOf VersionClient#
      * @param {Object} opts Details about a project version.
-     * @param {string} [opts.version] Body. ySee {@link https://docs.atlassian.com/jira/REST/latest/#d2e3549}
+     * @param {string} [opts.version] Body. See {@link https://docs.atlassian.com/jira/REST/latest/#d2e3549}
      * @param {string} [opts.expand] 
      * @param {string} [opts.description] The description of the version. Optional when creating or updating a version.
      * @param {string} [opts.name] The unique name of the version. Required when creating a version. Optional when updating a version. The maximum length is 255 characters.
