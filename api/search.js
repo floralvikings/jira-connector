@@ -80,7 +80,7 @@ function SearchClient(jiraClient) {
             fields,
             expand,
             properties,
-            fieldsByKeys: !!opts.fieldsByKeys
+            fieldsByKeys: opts.fieldsByKeys
         };
 
         if (opts.method === 'POST') {

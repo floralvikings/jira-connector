@@ -453,8 +453,9 @@ is still valid!
   - getAlternativeIssueTypes
 - jql (/rest/api/2/jql/autocompletedata)
   - getAutoCompleteData
-- labels (/rest/api/1.0/labels/suggest?query=)
+- labels (/rest/api/1.0/labels/suggest?query= and /rest/api/2/label)
   - getLabels
+  - getAllLabels
 - licenseRole (/rest/api/2/licenserole)
   - getAllLicenseRoles
   - getLicenseRole

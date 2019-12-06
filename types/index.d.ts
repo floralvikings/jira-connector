@@ -9,6 +9,7 @@ import {
   Epic,
   Issue,
   IssueType,
+  Labels,
   Project,
   Search,
   Sprint,
@@ -22,7 +23,6 @@ export * from './models';
 
 export default class JiraClient {
   constructor(config: Config);
-
   applicationProperties: ApplicationProperties;
   attachment: Attachment;
   auditing: any;
@@ -45,7 +45,7 @@ export default class JiraClient {
   issueLinkType: any;
   issueType: IssueType;
   jql: any;
-  labels: any;
+  labels: Labels;
   licenseRole: any;
   licenseValidator: any;
   myPermissions: any;
