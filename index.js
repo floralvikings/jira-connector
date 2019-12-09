@@ -5,6 +5,7 @@ var url = require('url');
 
 // Npm packages
 var request = require('request');
+const jwt = require('atlassian-jwt');
 
 // Custom packages
 var applicationProperties = require('./api/application-properties');
@@ -64,9 +65,9 @@ var worklog = require('./api/worklog');
 
 /**
  * @callback callback
- * @param {any} err 
+ * @param {any} err
  * @param {any} data
- * @returns {void} 
+ * @returns {void}
  */
 
 /**
@@ -141,9 +142,9 @@ var worklog = require('./api/worklog');
  *     if using username and password authentication.
  * @param {string} [config.basic_auth.password] (DEPRECATED) The password of the user that will be authenticated. MUST be included
  *     if using username and password authentication.
- * @param {string} [config.basic_auth.email] The email of the user that will be authenticated. MUST be included 
+ * @param {string} [config.basic_auth.email] The email of the user that will be authenticated. MUST be included
  *     if using email and api_token authentication.
- * @param {string} [config.basic_auth.api_token] The api token of the user that will be authenticated. MUST be included 
+ * @param {string} [config.basic_auth.api_token] The api token of the user that will be authenticated. MUST be included
  *     if using email and api_token authentication.
  * @param {string} [config.oauth.consumer_key] The consumer key used in the Jira Application Link for oauth
  *     authentication.  MUST be included if using OAuth.
@@ -151,6 +152,9 @@ var worklog = require('./api/worklog');
  * @param {string} [config.oauth.token] The VERIFIED token used to connect to the Jira API.  MUST be included if using
  *     OAuth.
  * @param {string} [config.oauth.token_secret] The secret for the above token.  MUST be included if using Oauth.
+ * @param {string} [config.jwt.iss] The Jira app key (can be found in the app descriptor). MUST be included
+ * @param {string} [config.jwt.secret] The JWT secret token. MUST be included
+ * @param {string} [config.jwt.expiry_time_seconds] The JWT token expiry time in seconds. OPTIONAL (default 30 seconds)
  * @param {CookieJar} [config.cookie_jar] The CookieJar to use for every requests.
  * @param {Promise} [config.promise] Any function (constructor) compatible with Promise (bluebird, Q,...).
  *      Default - native Promise.
@@ -191,35 +195,54 @@ var JiraClient = module.exports = function (config) {
         this.oauthConfig = config.oauth;
         this.oauthConfig.signature_method = 'RSA-SHA1';
 
-    } else if (config.basic_auth) {
-        if (config.basic_auth.base64) {
-            this.basic_auth = {
-                base64: config.basic_auth.base64
-            }
-        } else if (config.basic_auth.api_token || config.basic_auth.email) {
-            if (!config.basic_auth.email) {
-                throw new Error(errorStrings.NO_EMAIL_ERROR);
-            } else if (!config.basic_auth.api_token) {
-                throw new Error(errorStrings.NO_APITOKEN_ERROR);
-            }
+	} else if (config.basic_auth) {
+		if (config.basic_auth.base64) {
+			this.basic_auth = {
+				base64: config.basic_auth.base64
+			}
+		} else if (config.basic_auth.api_token || config.basic_auth.email) {
+			if (!config.basic_auth.email) {
+				throw new Error(errorStrings.NO_EMAIL_ERROR);
+			} else if (!config.basic_auth.api_token) {
+				throw new Error(errorStrings.NO_APITOKEN_ERROR);
+			}
 
-            this.basic_auth = {
-                user: config.basic_auth.email,
-                pass: config.basic_auth.api_token
-            };
-        } else {
-            if (!config.basic_auth.username) {
-                throw new Error(errorStrings.NO_USERNAME_ERROR);
-            } else if (!config.basic_auth.password) {
-                throw new Error(errorStrings.NO_PASSWORD_ERROR);
-            }
+			this.basic_auth = {
+				user: config.basic_auth.email,
+				pass: config.basic_auth.api_token
+			};
+		} else {
+			if (!config.basic_auth.username) {
+				throw new Error(errorStrings.NO_USERNAME_ERROR);
+			} else if (!config.basic_auth.password) {
+				throw new Error(errorStrings.NO_PASSWORD_ERROR);
+			}
 
-            this.basic_auth = {
-                user: config.basic_auth.username,
-                pass: config.basic_auth.password
-            };
-        }
-    }
+			this.basic_auth = {
+				user: config.basic_auth.username,
+				pass: config.basic_auth.password
+			};
+		}
+	} else if (config.jwt) {
+		if (config.jwt.secret && config.jwt.iss) {
+			let expiry_time_seconds = 30;
+			if (config.jwt.expiry_time_seconds && config.jwt.expiry_time_seconds > 0) {
+				expiry_time_seconds = config.jwt.expiry_time_seconds;
+			}
+
+			this.jwt = {
+				iss: config.jwt.iss,
+				secret: config.jwt.secret,
+				expiry_time_seconds
+			};
+		} else {
+			if (!config.jwt.secret) {
+				throw new Error(errorStrings.NO_JWT_SECRET_KEY_ERROR);
+			} else if (!config.jwt.iss) {
+				throw new Error(errorStrings.NO_JWT_ISS_KEY_ERROR);
+			}
+		}
+	}
 
     if (config.cookie_jar) {
         this.cookie_jar = config.cookie_jar;
@@ -387,16 +410,33 @@ var JiraClient = module.exports = function (config) {
 
         if (this.oauthConfig) {
             options.oauth = this.oauthConfig;
-        } else if (this.basic_auth) {
-            if (this.basic_auth.base64) {
-                if (!options.headers) {
-                    options.headers = {}
-                }
-                options.headers['Authorization'] = 'Basic ' + this.basic_auth.base64
-            } else {
-                options.auth = this.basic_auth;
-            }
-        }
+		} else if (this.basic_auth) {
+			if (this.basic_auth.base64) {
+				if (!options.headers) {
+					options.headers = {}
+				}
+				options.headers['Authorization'] = 'Basic ' + this.basic_auth.base64
+			} else {
+				options.auth = this.basic_auth;
+			}
+		} else if (this.jwt) {
+			const url = new URL(options.uri);
+			const nowInSeconds = Math.floor(Date.now() / 1000)
+			const iat = nowInSeconds;
+			const exp = nowInSeconds + this.jwt.expiry_time_seconds;
+			const tokenData = {
+				'iss': this.jwt.iss, // app key
+				'iat': iat,
+				'exp': exp,
+				'qsh': jwt.createQueryStringHash({
+					method: options.method,
+					pathname: url.pathname
+				})
+			};
+
+			const token = jwt.encode(tokenData, this.jwt.secret);
+			options.headers['Authorization'] = 'JWT ' + token;
+		}
 
         if (this.cookie_jar) {
             options.jar = this.cookie_jar;
