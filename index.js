@@ -154,7 +154,7 @@ var worklog = require('./api/worklog');
  * @param {string} [config.oauth.token_secret] The secret for the above token.  MUST be included if using Oauth.
  * @param {string} [config.jwt.iss] The Jira app key (can be found in the app descriptor). MUST be included
  * @param {string} [config.jwt.secret] The JWT secret token. MUST be included
- * @param {string} [config.jwt.expiry_time_seconds] The JWT token expiry time in seconds. OPTIONAL (default 30 seconds)
+ * @param {string} [config.jwt.expiry_time_seconds] The JWT token expiry time in seconds. OPTIONAL (default 180 seconds)
  * @param {CookieJar} [config.cookie_jar] The CookieJar to use for every requests.
  * @param {Promise} [config.promise] Any function (constructor) compatible with Promise (bluebird, Q,...).
  *      Default - native Promise.
@@ -225,7 +225,7 @@ var JiraClient = module.exports = function (config) {
 		}
 	} else if (config.jwt) {
 		if (config.jwt.secret && config.jwt.iss) {
-			let expiry_time_seconds = 30;
+			let expiry_time_seconds = 3*60; // expires in 3 minutes on default
 			if (config.jwt.expiry_time_seconds && config.jwt.expiry_time_seconds > 0) {
 				expiry_time_seconds = config.jwt.expiry_time_seconds;
 			}
