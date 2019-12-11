@@ -198,7 +198,7 @@
     
 
     
-    <h4 class="name" id="createIssueType"><span class="type-signature"></span>createIssueType<span class="signature">(issueType, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="createIssueType"><span class="type-signature"></span>createIssueType<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
     
 
     
@@ -245,7 +245,7 @@ created issue type to the default issue type scheme.</p>
 
         <tr>
             
-                <td class="name"><code>issueType</code></td>
+                <td class="name"><code>opts</code></td>
             
 
             <td class="type">
@@ -269,11 +269,135 @@ created issue type to the default issue type scheme.</p>
 
             
 
-            <td class="description last"><p>Object containing details of the new issueType.
-Schema:
-* &quot;name&quot; - The name of the issue type
-* &quot;description&quot; - Some description about the issue type
-* &quot;type&quot; - Can have either &quot;subtask&quot; or &quot;standard&quot; as value</p></td>
+            <td class="description last"><p>Object containing details of the new issueType.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The name of the issue type</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>description</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The description of the issue type</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">'subtype'</span>
+|
+
+<span class="param-type">'standard'</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The type of the issue type</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -286,7 +410,7 @@ Schema:
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type"><a href="global.html#callback">callback</a></span>
 
 
             
@@ -492,6 +616,8 @@ You can determine the alternative issue types by calling the /rest/api/2/issuety
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -510,12 +636,20 @@ You can determine the alternative issue types by calling the /rest/api/2/issuety
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -533,12 +667,22 @@ You can determine the alternative issue types by calling the /rest/api/2/issuety
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -564,7 +708,7 @@ associated with the removed issue type will be migrated.</p></td>
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type"><a href="global.html#callback">callback</a></span>
 
 
             
@@ -625,7 +769,7 @@ associated with the removed issue type will be migrated.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issueType.js.html">api/issueType.js</a>, <a href="api_issueType.js.html#line81">line 81</a>
+        <a href="api_issueType.js.html">api/issueType.js</a>, <a href="api_issueType.js.html#line106">line 106</a>
     </li></ul></dd>
     
 
@@ -683,7 +827,7 @@ associated with the removed issue type will be migrated.</p></td>
     
 
     
-    <h4 class="name" id="getAllIssueTypes"><span class="type-signature"></span>getAllIssueTypes<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="getAllIssueTypes"><span class="type-signature"></span>getAllIssueTypes<span class="signature">(opts<span class="signature-attributes">opt</span>, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
     
 
     
@@ -734,10 +878,17 @@ associated with the removed issue type will be migrated.</p></td>
 
             <td class="type">
             
+                
+<span class="param-type">Object</span>
+
+
+            
             </td>
 
             
                 <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
                 
@@ -761,7 +912,7 @@ associated with the removed issue type will be migrated.</p></td>
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type"><a href="global.html#callback">callback</a></span>
 
 
             
@@ -985,7 +1136,7 @@ assigned to the same workflow, the same field configuration and the same screen 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
 
 
             
@@ -1015,7 +1166,7 @@ assigned to the same workflow, the same field configuration and the same screen 
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type"><a href="global.html#callback">callback</a></span>
 
 
             
@@ -1076,7 +1227,7 @@ assigned to the same workflow, the same field configuration and the same screen 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issueType.js.html">api/issueType.js</a>, <a href="api_issueType.js.html#line137">line 137</a>
+        <a href="api_issueType.js.html">api/issueType.js</a>, <a href="api_issueType.js.html#line135">line 135</a>
     </li></ul></dd>
     
 
@@ -1236,7 +1387,7 @@ assigned to the same workflow, the same field configuration and the same screen 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
 
 
             
@@ -1266,7 +1417,7 @@ assigned to the same workflow, the same field configuration and the same screen 
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type"><a href="global.html#callback">callback</a></span>
 
 
             
@@ -1327,7 +1478,7 @@ assigned to the same workflow, the same field configuration and the same screen 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issueType.js.html">api/issueType.js</a>, <a href="api_issueType.js.html#line60">line 60</a>
+        <a href="api_issueType.js.html">api/issueType.js</a>, <a href="api_issueType.js.html#line59">line 59</a>
     </li></ul></dd>
     
 
@@ -1487,7 +1638,7 @@ assigned to the same workflow, the same field configuration and the same screen 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
 
 
             
@@ -1520,11 +1671,134 @@ assigned to the same workflow, the same field configuration and the same screen 
 
             
 
-            <td class="description last"><p>Object containing details of the issueType to be updated.
-Schema:
-* &quot;name&quot; - The name of the issue type
-* &quot;description&quot; - Some description about the issue type
-* &quot;avatarId&quot; - Integer containing the avatar ID</p></td>
+            <td class="description last"><p>Object containing details of the issueType to be updated.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The name of the issue type</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>avatarId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the avatar for the issue type</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>description</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The description of the issue type</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -1544,7 +1818,7 @@ Schema:
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type"><a href="global.html#callback">callback</a></span>
 
 
             
@@ -1605,7 +1879,7 @@ Schema:
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_issueType.js.html">api/issueType.js</a>, <a href="api_issueType.js.html#line110">line 110</a>
+        <a href="api_issueType.js.html">api/issueType.js</a>, <a href="api_issueType.js.html#line80">line 80</a>
     </li></ul></dd>
     
 
@@ -1679,7 +1953,7 @@ Schema:
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Aug 07 2019 08:42:02 GMT+0300 (Moscow Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Dec 11 2019 20:24:41 GMT+0300 (Moscow Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -281,6 +281,11 @@ Jira API.</p></td>
 
             <td class="type">
             
+                
+<span class="param-type"><a href="global.html#callback">callback</a></span>
+
+
+            
             </td>
 
             
@@ -480,6 +485,8 @@ Jira API.</p></td>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -505,10 +512,117 @@ Jira API.</p></td>
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The id of the sprint.  EX: 331</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>filter</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>startAt</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>maxResults</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
         </tr>
 
     
@@ -526,6 +640,11 @@ Jira API.</p></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#callback">callback</a></span>
+
+
             
             </td>
 
@@ -584,7 +703,7 @@ Jira API.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_sprint.js.html">api/sprint.js</a>, <a href="api_sprint.js.html#line113">line 113</a>
+        <a href="api_sprint.js.html">api/sprint.js</a>, <a href="api_sprint.js.html#line116">line 116</a>
     </li></ul></dd>
     
 
@@ -726,6 +845,8 @@ Jira API.</p></td>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -743,13 +864,125 @@ Jira API.</p></td>
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+
+
+            
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
 
             <td class="description last"><p>The sprint id.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>filter</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>startAt</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>maxResults</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
         </tr>
 
     
@@ -767,6 +1000,11 @@ Jira API.</p></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#callback">callback</a></span>
+
+
             
             </td>
 
@@ -883,7 +1121,7 @@ Jira API.</p></td>
     
 
     
-    <h4 class="name" id="getSprintIssues"><span class="type-signature"></span>getSprintIssues<span class="signature">(opts, jql, validateQuery, fields, expand, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="getSprintIssues"><span class="type-signature"></span>getSprintIssues<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
     
 
     
@@ -967,6 +1205,8 @@ Jira API.</p></td>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -984,8 +1224,21 @@ Jira API.</p></td>
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+
+
+            
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -994,10 +1247,69 @@ Jira API.</p></td>
         </tr>
 
     
-    </tbody>
-</table>
 
+        <tr>
+            
+                <td class="name"><code>startAt</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
             </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>maxResults</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
         </tr>
 
     
@@ -1018,6 +1330,8 @@ Jira API.</p></td>
 
             
                 <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
                 
@@ -1050,6 +1364,8 @@ Jira API.</p></td>
             
                 <td class="attributes">
                 
+                    &lt;optional><br>
+                
 
                 
 
@@ -1080,6 +1396,8 @@ Jira API.</p></td>
 
             
                 <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
                 
@@ -1112,6 +1430,8 @@ Jira API.</p></td>
             
                 <td class="attributes">
                 
+                    &lt;optional><br>
+                
 
                 
 
@@ -1125,6 +1445,13 @@ Jira API.</p></td>
         </tr>
 
     
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
 
         <tr>
             
@@ -1132,6 +1459,11 @@ Jira API.</p></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#callback">callback</a></span>
+
+
             
             </td>
 
@@ -1190,7 +1522,7 @@ Jira API.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_sprint.js.html">api/sprint.js</a>, <a href="api_sprint.js.html#line139">line 139</a>
+        <a href="api_sprint.js.html">api/sprint.js</a>, <a href="api_sprint.js.html#line145">line 145</a>
     </li></ul></dd>
     
 
@@ -1362,6 +1694,68 @@ Jira API.</p>
             
                 <td class="attributes">
                 
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The sprint id.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issues</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;string></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Ids of the issues to move.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rankBeforeIssue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
                     &lt;optional><br>
                 
 
@@ -1373,7 +1767,73 @@ Jira API.</p>
 
             
 
-            <td class="description last"><p>The sprint id.</p></td>
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rankAfterIssue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rankCustomField</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
         </tr>
 
     
@@ -1391,6 +1851,11 @@ Jira API.</p>
             
 
             <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#callback">callback</a></span>
+
+
             
             </td>
 
@@ -1449,7 +1914,7 @@ Jira API.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_sprint.js.html">api/sprint.js</a>, <a href="api_sprint.js.html#line172">line 172</a>
+        <a href="api_sprint.js.html">api/sprint.js</a>, <a href="api_sprint.js.html#line180">line 180</a>
     </li></ul></dd>
     
 
@@ -1507,7 +1972,7 @@ Jira API.</p>
     
 
     
-    <h4 class="name" id="partiallyUpdateSprint"><span class="type-signature"></span>partiallyUpdateSprint<span class="signature">(sprint, callback)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="partiallyUpdateSprint"><span class="type-signature"></span>partiallyUpdateSprint<span class="signature">(sprint, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
     
 
     
@@ -1539,6 +2004,8 @@ Jira API.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1563,6 +2030,14 @@ Jira API.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1641,8 +2116,23 @@ Jira API.</p>
 
             <td class="type">
             
+                
+<span class="param-type"><a href="global.html#callback">callback</a></span>
+
+
+            
             </td>
 
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1688,7 +2178,7 @@ Jira API.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_sprint.js.html">api/sprint.js</a>, <a href="api_sprint.js.html#line87">line 87</a>
+        <a href="api_sprint.js.html">api/sprint.js</a>, <a href="api_sprint.js.html#line90">line 90</a>
     </li></ul></dd>
     
 
@@ -1746,7 +2236,7 @@ Jira API.</p>
     
 
     
-    <h4 class="name" id="swapSprint"><span class="type-signature"></span>swapSprint<span class="signature">(swapped, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="swapSprint"><span class="type-signature"></span>swapSprint<span class="signature">(opts, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
     
 
     
@@ -1793,7 +2283,7 @@ sprint.</p>
 
         <tr>
             
-                <td class="name"><code>swapped</code></td>
+                <td class="name"><code>opts</code></td>
             
 
             <td class="type">
@@ -1831,8 +2321,6 @@ sprint.</p>
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
         
 
@@ -1858,15 +2346,28 @@ sprint.</p>
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
 
-                
+            
 
+            <td class="description last"><p>The id of the sprint.  EX: 311</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sprintToSwapWith</code></td>
+            
+
+            <td class="type">
+            
                 
-                </td>
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
             
 
             
@@ -1890,6 +2391,11 @@ sprint.</p>
 
             <td class="type">
             
+                
+<span class="param-type"><a href="global.html#callback">callback</a></span>
+
+
+            
             </td>
 
             
@@ -1906,7 +2412,7 @@ sprint.</p>
 
             
 
-            <td class="description last"><p>Called when the sprint has been retrived.</p></td>
+            <td class="description last"><p>Called when the sprint has been retrieved.</p></td>
         </tr>
 
     
@@ -1947,7 +2453,7 @@ sprint.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_sprint.js.html">api/sprint.js</a>, <a href="api_sprint.js.html#line198">line 198</a>
+        <a href="api_sprint.js.html">api/sprint.js</a>, <a href="api_sprint.js.html#line210">line 210</a>
     </li></ul></dd>
     
 
@@ -1976,7 +2482,7 @@ sprint.</p>
 
         
 <div class="param-desc">
-    <p>Resolved when the sprint has been retrived.</p>
+    <p>Resolved when the sprint has been retrieved.</p>
 </div>
 
 
@@ -2090,8 +2596,6 @@ Jira API.</p>
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
         
 
@@ -2117,16 +2621,6 @@ Jira API.</p>
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
 
             
 
@@ -2148,6 +2642,11 @@ Jira API.</p>
             
 
             <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#callback">callback</a></span>
+
+
             
             </td>
 
@@ -2206,7 +2705,7 @@ Jira API.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_sprint.js.html">api/sprint.js</a>, <a href="api_sprint.js.html#line61">line 61</a>
+        <a href="api_sprint.js.html">api/sprint.js</a>, <a href="api_sprint.js.html#line64">line 64</a>
     </li></ul></dd>
     
 
@@ -2280,7 +2779,7 @@ Jira API.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Aug 07 2019 08:42:02 GMT+0300 (Moscow Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Dec 11 2019 20:24:41 GMT+0300 (Moscow Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
