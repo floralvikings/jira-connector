@@ -435,6 +435,9 @@ var JiraClient = module.exports = function (config) {
 			};
 
 			const token = jwt.encode(tokenData, this.jwt.secret);
+			if (!options.headers) {
+				options.headers = {}
+			}
 			options.headers['Authorization'] = 'JWT ' + token;
 		}
 
