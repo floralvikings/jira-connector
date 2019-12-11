@@ -132,7 +132,7 @@ var worklog = require('./api/worklog');
  * @param {number} [config.port=443] The port number used to connect to Jira.
  * @param {string} [config.path_prefix="/"] The prefix to use in front of the path, if Jira isn't at "/"
  * @param {boolean} [config.strictSSL=true] It is recommended not to turn it off for no reason (https://github.com/request/request/issues/251).
- * @param {string} [config.version=2] The version of the Jira API to which you will be connecting.  Currently, only
+ * @param {number} [config.version=2] The version of the Jira API to which you will be connecting.  Currently, only
  *     version 2 is supported.
  * @param {Object} [config.basic_auth] The authentication information used tp connect to Jira. Must contain EITHER username and password
  *     OR oauth information.  Oauth information will be used over username/password authentication.

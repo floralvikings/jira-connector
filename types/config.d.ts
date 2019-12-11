@@ -29,7 +29,7 @@ export interface Config {
    * The version of the Jira API to which you will be connecting.  Currently, only 
    * version 2 is supported.
    */
-  version?: string;
+  version?: number;
   /**
    * The authentication information used tp connect to Jira. Must contain EITHER username and password 
    * OR oauth information.  Oauth information will be used over username/password authentication.
