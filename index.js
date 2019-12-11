@@ -420,25 +420,24 @@ var JiraClient = module.exports = function (config) {
 				options.auth = this.basic_auth;
 			}
 		} else if (this.jwt) {
-			const url = new URL(options.uri);
-			const nowInSeconds = Math.floor(Date.now() / 1000)
-			const iat = nowInSeconds;
-			const exp = nowInSeconds + this.jwt.expiry_time_seconds;
-			const tokenData = {
-				'iss': this.jwt.iss, // app key
-				'iat': iat,
-				'exp': exp,
-				'qsh': jwt.createQueryStringHash({
-					method: options.method,
-					pathname: url.pathname
-				})
-			};
+			const { query, pathname } = url.parse(options.uri, true);
+			const nowInSeconds = Math.floor(Date.now() / 1000);
 
-			const token = jwt.encode(tokenData, this.jwt.secret);
+			const jwtToken = jwt.encode({
+				iss: this.jwt.iss,
+				iat: nowInSeconds,
+				exp: nowInSeconds + this.jwt.expiry_time_seconds,
+				qsh: jwt.createQueryStringHash({
+					method: options.method,
+					originalUrl: pathname,
+					query
+				})
+			}, this.jwt.secret);
+
 			if (!options.headers) {
-				options.headers = {}
+				options.headers = {};
 			}
-			options.headers['Authorization'] = 'JWT ' + token;
+			options.headers['Authorization'] = `JWT ${jwtToken}`;
 		}
 
         if (this.cookie_jar) {
