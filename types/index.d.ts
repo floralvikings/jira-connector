@@ -4,6 +4,7 @@ import { CoreOptions } from 'request';
 import {
   ApplicationProperties,
   Attachment,
+  AuditingClient,
   Backlog,
   Board,
   Epic,
@@ -14,7 +15,7 @@ import {
   Search,
   Sprint,
   User,
-  Version,
+  Version
 } from './api';
 
 export * from './config';
@@ -25,7 +26,7 @@ export default class JiraClient {
   constructor(config: Config);
   applicationProperties: ApplicationProperties;
   attachment: Attachment;
-  auditing: any;
+  auditing: AuditingClient;
   auth: any;
   avatar: any;
   backlog: Backlog;
