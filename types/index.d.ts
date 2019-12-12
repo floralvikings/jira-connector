@@ -5,6 +5,7 @@ import {
   ApplicationProperties,
   Attachment,
   AuditingClient,
+  AuthClient,
   Backlog,
   Board,
   Epic,
@@ -27,7 +28,7 @@ export default class JiraClient {
   applicationProperties: ApplicationProperties;
   attachment: Attachment;
   auditing: AuditingClient;
-  auth: any;
+  auth: AuthClient;
   avatar: any;
   backlog: Backlog;
   board: Board;

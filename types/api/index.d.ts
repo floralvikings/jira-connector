@@ -1,6 +1,7 @@
 export * from './applicationProperties';
 export * from './attachment';
 export * from './auditing';
+export * from './auth';
 export * from './backlog';
 export * from './board';
 export * from './epic';
