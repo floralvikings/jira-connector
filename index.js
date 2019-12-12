@@ -226,15 +226,10 @@ var JiraClient = module.exports = function (config) {
         }
     } else if (config.jwt) {
       if (config.jwt.secret && config.jwt.iss) {
-        let expiry_time_seconds = 3 * 60; // expires in 3 minutes on default
-        if (config.jwt.expiry_time_seconds && config.jwt.expiry_time_seconds > 0) {
-          expiry_time_seconds = config.jwt.expiry_time_seconds;
-        }
-
         this.jwt = {
           iss: config.jwt.iss,
           secret: config.jwt.secret,
-          expiry_time_seconds
+          expiry_time_seconds: config.jwt.expiry_time_seconds || 3 * 60
         };
       } else {
         if (!config.jwt.secret) {
