@@ -1,5 +1,5 @@
-import { Callback } from "types";
-import { Board as BoardModel } from "types/models";
+import { Callback } from "../callback";
+import { Board as BoardModel } from "../models";
 
 export class Board {
   getAllBoards(

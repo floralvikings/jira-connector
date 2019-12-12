@@ -1,5 +1,5 @@
-import { Callback } from "types";
-import { Version as VersionModel } from 'types/models';
+import { Callback } from "../callback";
+import { Version as VersionModel } from "../models";
 
 export class Version {
   createVersion(

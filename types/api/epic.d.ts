@@ -1,4 +1,4 @@
-import { Callback } from 'types';
+import { Callback } from "../callback";
 
 export class Epic {
   getIssuesWithoutEpic(opts?: {

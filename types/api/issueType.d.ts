@@ -1,5 +1,5 @@
-import { Callback } from 'types';
-import { IssueType as IssueTypeModel } from 'types/models';
+import { Callback } from "../callback";
+import { IssueType as IssueTypeModel } from "../models";
 
 export class IssueType {
   getAllIssueTypes(
