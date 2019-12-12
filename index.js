@@ -6,6 +6,7 @@ var url = require('url');
 // Npm packages
 var request = require('request');
 const jwt = require('atlassian-jwt');
+const queryString = require('query-string');
 
 // Custom packages
 var applicationProperties = require('./api/application-properties');
@@ -420,16 +421,17 @@ var JiraClient = module.exports = function (config) {
 				options.auth = this.basic_auth;
 			}
 		} else if (this.jwt) {
-			const url = new URL(options.uri)
+			const pathname = new URL(options.uri).pathname;
 			const nowInSeconds = Math.floor(Date.now() / 1000);
-
+			const queryParam = queryString.parse(queryString.stringify(options.qs));
 			const jwtToken = jwt.encode({
 				iss: this.jwt.iss,
 				iat: nowInSeconds,
 				exp: nowInSeconds + this.jwt.expiry_time_seconds,
 				qsh: jwt.createQueryStringHash({
 					method: options.method,
-					pathname: url.pathname
+					pathname,
+					query: queryParam || {}
 				})
 			}, this.jwt.secret);
 

@@ -30,6 +30,7 @@
     "atlassian-jwt": "^1.0.2",
     "mime-types": "^2.1.24",
     "oauth": "^0.9.12",
+    "query-string": "^6.9.0",
     "request": "^2.83.0"
   },
   "repository": {
