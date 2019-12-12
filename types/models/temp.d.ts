@@ -1,4 +1,5 @@
-import { IssuesStatusForFixVersion, Operation } from "types";
+import { IssuesStatusForFixVersion, Operation } from "./version";
+
 
 export interface Sprint {
   id: string;

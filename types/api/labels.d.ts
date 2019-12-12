@@ -1,5 +1,5 @@
-import { Callback } from 'types';
-import { PageBeanString } from 'types/models';
+import { Callback } from "../callback";
+import { PageBeanString } from "../models";
 
 export class Labels {
   getLabels(

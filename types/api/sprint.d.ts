@@ -1,5 +1,5 @@
-import { Callback } from 'types';
-import { Sprint as SprintModel } from 'types/models';
+import { Callback } from "../callback";
+import { Sprint as SprintModel } from "../models";
 
 export type SprintId = string | number;
 

@@ -1,4 +1,4 @@
-import { Callback } from "types";
+import { Callback } from "../callback";
 
 export interface IssueResponse {
   expand: string;
@@ -40,6 +40,8 @@ export class Search {
       expand?: string[];
       properties?: string[];
       fieldsByKeys?: boolean;
+      timeout?: number;
+      fields?: string[];
     },
     callback?: Callback<SearchResult>
   ): Promise<SearchResult>;
