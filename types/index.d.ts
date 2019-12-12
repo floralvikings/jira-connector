@@ -6,6 +6,7 @@ import {
   Attachment,
   AuditingClient,
   AuthClient,
+  AvatarClient,
   Backlog,
   Board,
   Epic,
@@ -16,7 +17,7 @@ import {
   Search,
   Sprint,
   User,
-  Version
+  Version,
 } from './api';
 
 export * from './config';
@@ -29,7 +30,7 @@ export default class JiraClient {
   attachment: Attachment;
   auditing: AuditingClient;
   auth: AuthClient;
-  avatar: any;
+  avatar: AvatarClient;
   backlog: Backlog;
   board: Board;
   comment: any;
