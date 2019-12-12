@@ -1,6 +1,5 @@
 import { IssuesStatusForFixVersion, Operation } from "./version";
 
-
 export interface Sprint {
   id: string;
   self: string;
