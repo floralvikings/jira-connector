@@ -22,8 +22,8 @@ export interface Config {
     token_secret: string;
   };
   jwt?: {
-    iss?: string;
-    secret?: string;
+    iss: string;
+    secret: string;
     expiry_time_seconds?: number;
   };
   cookie_jar?: any;
