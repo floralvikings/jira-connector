@@ -153,8 +153,9 @@ var worklog = require('./api/worklog');
  * @param {string} [config.oauth.token] The VERIFIED token used to connect to the Jira API.  MUST be included if using
  *     OAuth.
  * @param {string} [config.oauth.token_secret] The secret for the above token.  MUST be included if using Oauth.
- * @param {string} [config.jwt.iss] The Jira app key (can be found in the app descriptor). MUST be included
- * @param {string} [config.jwt.secret] The JWT secret token. MUST be included
+ * @param {Object} [config.jwt] The JWT configuration object that contains iss:secret
+ * @param {string} config.jwt.iss The Jira app key (can be found in the app descriptor). MUST be included
+ * @param {string} config.jwt.secret The JWT secret token. MUST be included
  * @param {string} [config.jwt.expiry_time_seconds] The JWT token expiry time in seconds. OPTIONAL (default 180 seconds)
  * @param {CookieJar} [config.cookie_jar] The CookieJar to use for every requests.
  * @param {Promise} [config.promise] Any function (constructor) compatible with Promise (bluebird, Q,...).
