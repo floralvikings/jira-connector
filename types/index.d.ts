@@ -6,6 +6,7 @@ import {
   Attachment,
   Backlog,
   Board,
+  DevelopmentInformation,
   Epic,
   Issue,
   IssueType,
@@ -34,6 +35,7 @@ export default class JiraClient {
   component: any;
   customFieldOption: any;
   dashboard: any;
+  developmentInformation: DevelopmentInformation;
   epic: Epic;
   field: any;
   filter: any;
@@ -76,6 +78,7 @@ export default class JiraClient {
   workflowScheme: any;
   worklog: any;
 
+  buildAbstractURL(path: string): string;
   buildAgileURL(path: string, forcedVersion?: number | string): string;
   buildAuthURL(path: string, forcedVersion?: number | string): string;
   buildURL(path: string, forcedVersion?: number | string): string;

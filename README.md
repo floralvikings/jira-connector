@@ -47,33 +47,37 @@ Retrieve an issue from Jira, and print its summary to the console.
 
 ```javascript
 // ES5
-var JiraClient = require('jira-connector');
+var JiraClient = require("jira-connector");
 
 // ES6 or Typescript
-import JiraClient from 'jira-connector';
+import JiraClient from "jira-connector";
 
 // Initialize
 var jira = new JiraClient({
-    host: 'jenjinstudios.atlassian.net',
-    strictSSL: true // One of optional parameters
+  host: "jenjinstudios.atlassian.net",
+  strictSSL: true // One of optional parameters
 });
 
 // ES5
-jira.issue.getIssue({
-    issueKey: 'JWR-19'
-}, function(error, issue) {
+jira.issue.getIssue(
+  {
+    issueKey: "JWR-19"
+  },
+  function(error, issue) {
     console.log(issue.fields.summary);
-});
+  }
+);
 
 // ES6
-jira.issue.getIssue(issueKey: 'JWR-19')
-    .then(issue => {
-        console.log(issue.fields.summary);
-    })
-    .catch(error => throw error);
+jira.issue
+  .getIssue((issueKey: "JWR-19"))
+  .then(issue => {
+    console.log(issue.fields.summary);
+  })
+  .catch(error => throw error);
 
 // ES8 or Typescript. NodeJS 7.6.0 or higher
-const issue = await jira.issue.getIssue({ issueKey: 'JWR-19' });
+const issue = await jira.issue.getIssue({ issueKey: "JWR-19" });
 ```
 
 First, the `JiraApi` class is imported from the `jira-connector` module. This class
@@ -182,10 +186,7 @@ JiraClient.oauth_util.getAuthorizeURL(
     host: "jenjinstudios.atlassian.net",
     oauth: {
       consumer_key: "your-consumer-key",
-      private_key:
-        "-----BEGIN RSA PRIVATE KEY-----\n" +
-        "SomePrivateKeyHere\n" +
-        "-----END RSA PRIVATE KEY-----"
+      private_key: "-----BEGIN RSA PRIVATE KEY-----\n" + "SomePrivateKeyHere\n" + "-----END RSA PRIVATE KEY-----"
     }
   },
   function(error, oauth) {
@@ -219,10 +220,7 @@ JiraClient.oauth_util.swapRequestTokenWithAccessToken(
       token_secret: "your-token-secret",
       oauth_verifier: "verifier-code-from-jira",
       consumer_key: "your-consumer-key",
-      private_key:
-        "-----BEGIN RSA PRIVATE KEY-----\n" +
-        "SomePrivateKeyHere\n" +
-        "-----END RSA PRIVATE KEY-----"
+      private_key: "-----BEGIN RSA PRIVATE KEY-----\n" + "SomePrivateKeyHere\n" + "-----END RSA PRIVATE KEY-----"
     }
   },
   function(error, accessToken) {
@@ -241,10 +239,7 @@ var jira = new JiraClient({
   host: "jenjinstudios.atlassian.net",
   oauth: {
     consumer_key: "your-consumer-key",
-    private_key:
-      "-----BEGIN RSA PRIVATE KEY-----\n" +
-      "SomePrivateKey\n" +
-      "-----END RSA PRIVATE KEY-----",
+    private_key: "-----BEGIN RSA PRIVATE KEY-----\n" + "SomePrivateKey\n" + "-----END RSA PRIVATE KEY-----",
     token: "your-access-token",
     token_secret: "your-token-secret"
   }
@@ -257,9 +252,9 @@ var jira = new JiraClient({
 
 JWT (JSON Web Token) for [authenticate apps](https://developer.atlassian.com/cloud/jira/platform/authentication-for-apps/).
 
-- ```iss``` - The Jira app key. Can be found in the [app descriptor](https://developer.atlassian.com/cloud/jira/platform/app-descriptor/).
-- ```secret``` - The connected shared secret as stored by the app during the installation handshake.
-- ```expiry_time_seconds``` - Optional. Token expiry time in seconds (default 180 seconds).
+- `iss` - The Jira app key. Can be found in the [app descriptor](https://developer.atlassian.com/cloud/jira/platform/app-descriptor/).
+- `secret` - The connected shared secret as stored by the app during the installation handshake.
+- `expiry_time_seconds` - Optional. Token expiry time in seconds (default 180 seconds).
 
 Example:
 
@@ -289,9 +284,7 @@ var FileCookieStore = require("tough-cookie-filestore");
 var request = require("request");
 var path = require("path");
 
-var jar = request.jar(
-  new FileCookieStore(path.join(__dirname, "cookies.json"))
-);
+var jar = request.jar(new FileCookieStore(path.join(__dirname, "cookies.json")));
 
 // For the first connection
 var jira = new JiraClient({
@@ -386,6 +379,13 @@ is still valid!
 - dashboard (/rest/api/2/dashboard)
   - getAllDashboards
   - getDashboard
+- developmentInformation (/rest/devinfo)
+  - store
+  - getRepository
+  - deleteRepository
+  - deleteByProperties
+  - checkExists
+  - deleteEntity
 - field (/rest/api/2/field)
   - getAllFields
   - createCustomField
