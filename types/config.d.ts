@@ -21,6 +21,11 @@ export interface Config {
     token: string;
     token_secret: string;
   };
+  jwt?: {
+    iss: string;
+    secret: string;
+    expiry_time_seconds?: number;
+  };
   cookie_jar?: any;
   promise?: PromiseLike<any>;
   request?: any;

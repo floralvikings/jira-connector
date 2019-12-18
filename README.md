@@ -250,7 +250,29 @@ var jira = new JiraClient({
   }
 });
 
-// Jira is now authenticted with your account!
+// Jira is now authenticated with your account!
+```
+
+### JWT Authentication
+
+JWT (JSON Web Token) for [authenticate apps](https://developer.atlassian.com/cloud/jira/platform/authentication-for-apps/).
+
+- ```iss``` - The Jira app key. Can be found in the [app descriptor](https://developer.atlassian.com/cloud/jira/platform/app-descriptor/).
+- ```secret``` - The connected shared secret as stored by the app during the installation handshake.
+- ```expiry_time_seconds``` - Optional. Token expiry time in seconds (default 180 seconds).
+
+Example:
+
+```javascript
+const JiraClient = require("jira-connector");
+
+const jira = new JiraClient({
+  host: "jenjinstudios.atlassian.net",
+  jwt: {
+    iss: "atlassian-connect-app",
+    secret: "your-jwt-secret"
+  }
+});
 ```
 
 ### Cookie Jar
