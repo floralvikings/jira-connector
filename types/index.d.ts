@@ -4,6 +4,9 @@ import { CoreOptions } from 'request';
 import {
   ApplicationProperties,
   Attachment,
+  Auditing,
+  Auth,
+  Avatar,
   Backlog,
   Board,
   DevelopmentInformation,
@@ -26,9 +29,9 @@ export default class JiraClient {
   constructor(config: Config);
   applicationProperties: ApplicationProperties;
   attachment: Attachment;
-  auditing: any;
-  auth: any;
-  avatar: any;
+  auditing: Auditing;
+  auth: Auth;
+  avatar: Avatar;
   backlog: Backlog;
   board: Board;
   comment: any;

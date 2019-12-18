@@ -7,7 +7,7 @@ export interface Config {
   protocol?: string;
   path_prefix?: string;
   strictSSL?: boolean;
-  version?: string;
+  version?: number | string;
   basic_auth?: {
     email?: string;
     api_token?: string;
