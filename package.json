@@ -23,15 +23,15 @@
   "author": "Caleb Brinkman <floralvikings@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@types/request": "2.48.4",
+    "@types/request": "^2.48.4",
     "dtslint": "^2.0.2"
   },
   "dependencies": {
     "atlassian-jwt": "^1.0.2",
-    "mime-types": "2.1.25",
-    "oauth": "0.9.15",
+    "mime-types": "^2.1.25",
+    "oauth": "^0.9.15",
     "query-string": "^6.9.0",
-    "request": "2.88.0"
+    "request": "^2.88.0"
   },
   "repository": {
     "type": "git",
