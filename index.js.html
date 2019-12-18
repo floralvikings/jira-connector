@@ -29,10 +29,12 @@
             <pre class="prettyprint source linenums"><code>"use strict";
 
 // Core packages
-var url = require('url');
+const url = require('url');
 
 // Npm packages
-var request = require('request');
+const request = require('request');
+const jwt = require('atlassian-jwt');
+const queryString = require('query-string');
 
 // Custom packages
 var applicationProperties = require('./api/application-properties');
@@ -46,6 +48,7 @@ var comment = require('./api/comment');
 var component = require('./api/component');
 var customFieldOption = require('./api/customFieldOption');
 var dashboard = require('./api/dashboard');
+const developmentInformation = require('./api/developmentInformation');
 var epic = require('./api/epic');
 var errorStrings = require('./lib/error');
 var field = require('./api/field');
@@ -92,9 +95,9 @@ var worklog = require('./api/worklog');
 
 /**
  * @callback callback
- * @param {any} err 
+ * @param {any} err
  * @param {any} data
- * @returns {void} 
+ * @returns {void}
  */
 
 /**
@@ -113,6 +116,7 @@ var worklog = require('./api/worklog');
  * @property {ComponentClient} component
  * @property {CustomFieldOptionClient} customFieldOption
  * @property {DashboardClient} dashboard
+ * @property {DevelopmentInformationClient} developmentInformation
  * @property {FieldClient} field
  * @property {FilterClient} filter
  * @property {GroupClient} group
@@ -160,7 +164,7 @@ var worklog = require('./api/worklog');
  * @param {number} [config.port=443] The port number used to connect to Jira.
  * @param {string} [config.path_prefix="/"] The prefix to use in front of the path, if Jira isn't at "/"
  * @param {boolean} [config.strictSSL=true] It is recommended not to turn it off for no reason (https://github.com/request/request/issues/251).
- * @param {string} [config.version=2] The version of the Jira API to which you will be connecting.  Currently, only
+ * @param {number | string} [config.version=2] The version of the Jira API to which you will be connecting.  Currently, only
  *     version 2 is supported.
  * @param {Object} [config.basic_auth] The authentication information used tp connect to Jira. Must contain EITHER username and password
  *     OR oauth information.  Oauth information will be used over username/password authentication.
@@ -169,9 +173,9 @@ var worklog = require('./api/worklog');
  *     if using username and password authentication.
  * @param {string} [config.basic_auth.password] (DEPRECATED) The password of the user that will be authenticated. MUST be included
  *     if using username and password authentication.
- * @param {string} [config.basic_auth.email] The email of the user that will be authenticated. MUST be included 
+ * @param {string} [config.basic_auth.email] The email of the user that will be authenticated. MUST be included
  *     if using email and api_token authentication.
- * @param {string} [config.basic_auth.api_token] The api token of the user that will be authenticated. MUST be included 
+ * @param {string} [config.basic_auth.api_token] The api token of the user that will be authenticated. MUST be included
  *     if using email and api_token authentication.
  * @param {string} [config.oauth.consumer_key] The consumer key used in the Jira Application Link for oauth
  *     authentication.  MUST be included if using OAuth.
@@ -179,6 +183,10 @@ var worklog = require('./api/worklog');
  * @param {string} [config.oauth.token] The VERIFIED token used to connect to the Jira API.  MUST be included if using
  *     OAuth.
  * @param {string} [config.oauth.token_secret] The secret for the above token.  MUST be included if using Oauth.
+ * @param {Object} [config.jwt] The JWT configuration object that contains iss:secret
+ * @param {string} config.jwt.iss The Jira app key (can be found in the app descriptor). MUST be included
+ * @param {string} config.jwt.secret The JWT secret token. MUST be included
+ * @param {string} [config.jwt.expiry_time_seconds] The JWT token expiry time in seconds. OPTIONAL (default 180 seconds)
  * @param {CookieJar} [config.cookie_jar] The CookieJar to use for every requests.
  * @param {Promise} [config.promise] Any function (constructor) compatible with Promise (bluebird, Q,...).
  *      Default - native Promise.
@@ -247,6 +255,20 @@ var JiraClient = module.exports = function (config) {
                 pass: config.basic_auth.password
             };
         }
+    } else if (config.jwt) {
+      if (config.jwt.secret &amp;&amp; config.jwt.iss) {
+        this.jwt = {
+          iss: config.jwt.iss,
+          secret: config.jwt.secret,
+          expiry_time_seconds: config.jwt.expiry_time_seconds || 3 * 60
+        };
+      } else {
+        if (!config.jwt.secret) {
+          throw new Error(errorStrings.NO_JWT_SECRET_KEY_ERROR);
+        } else if (!config.jwt.iss) {
+          throw new Error(errorStrings.NO_JWT_ISS_KEY_ERROR);
+        }
+      }
     }
 
     if (config.cookie_jar) {
@@ -264,6 +286,7 @@ var JiraClient = module.exports = function (config) {
     this.component = new component(this);
     this.customFieldOption = new customFieldOption(this);
     this.dashboard = new dashboard(this);
+    this.developmentInformation = new developmentInformation(this);
     this.epic = new epic(this);
     this.field = new field(this);
     this.filter = new filter(this);
@@ -330,6 +353,26 @@ var JiraClient = module.exports = function (config) {
 
         return decodeURIComponent(requestUrl);
     };
+
+     /**
+     * Simple utility to build a REST endpoint URL for the Jira API without prefixes.
+     *
+     * @method buildAbstractURL
+     * @memberOf JiraClient#
+     * @param path The path of the URL without concern for the root of the REST API.
+     * @returns {string} The constructed URL.
+     */
+    this.buildAbstractURL = function(path) {
+      const apiBasePath = this.path_prefix + 'rest/';
+      const requestUrl = url.format({
+          protocol: this.protocol,
+          hostname: this.host,
+          port: this.port,
+          pathname: apiBasePath + path
+      });
+
+      return decodeURIComponent(requestUrl);
+    }
 
     /**
      * Simple utility to build a REST endpoint URL for the Jira Agile API.
@@ -424,6 +467,25 @@ var JiraClient = module.exports = function (config) {
             } else {
                 options.auth = this.basic_auth;
             }
+        } else if (this.jwt) {
+            const pathname = new URL(options.uri).pathname;
+            const nowInSeconds = Math.floor(Date.now() / 1000);
+            const queryParam = queryString.parse(queryString.stringify(options.qs));
+            const jwtToken = jwt.encode({
+              iss: this.jwt.iss,
+              iat: nowInSeconds,
+              exp: nowInSeconds + this.jwt.expiry_time_seconds,
+              qsh: jwt.createQueryStringHash({
+                method: options.method,
+                pathname,
+                query: queryParam || {}
+              })
+            }, this.jwt.secret);
+
+            if (!options.headers) {
+              options.headers = {};
+            }
+            options.headers['Authorization'] = `JWT ${jwtToken}`;
         }
 
         if (this.cookie_jar) {
@@ -540,13 +602,13 @@ exports.oauth_util = oauth_util;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul><h3>Classes</h3><ul><li><a href="AgileBacklogClient.html">AgileBacklogClient</a></li><li><a href="AgileBoardClient.html">AgileBoardClient</a></li><li><a href="AgileEpicClient.html">AgileEpicClient</a></li><li><a href="AgileSprintClient.html">AgileSprintClient</a></li><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LabelsClient.html">LabelsClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PermissionSchemeClient.html">PermissionSchemeClient</a></li><li><a href="PermissionsClient.html">PermissionsClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="RoleClient.html">RoleClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WebhookClient.html">WebhookClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li><li><a href="WorkLogClient.html">WorkLogClient</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="OauthUtil.html">OauthUtil</a></li></ul><h3>Classes</h3><ul><li><a href="AgileBacklogClient.html">AgileBacklogClient</a></li><li><a href="AgileBoardClient.html">AgileBoardClient</a></li><li><a href="AgileEpicClient.html">AgileEpicClient</a></li><li><a href="AgileSprintClient.html">AgileSprintClient</a></li><li><a href="ApplicationPropertiesClient.html">ApplicationPropertiesClient</a></li><li><a href="AttachmentClient.html">AttachmentClient</a></li><li><a href="AuditingClient.html">AuditingClient</a></li><li><a href="AvatarClient.html">AvatarClient</a></li><li><a href="CommentClient.html">CommentClient</a></li><li><a href="ComponentClient.html">ComponentClient</a></li><li><a href="CustomFieldOptionClient.html">CustomFieldOptionClient</a></li><li><a href="DashboardClient.html">DashboardClient</a></li><li><a href="DevelopmentInformationClient.html">DevelopmentInformationClient</a></li><li><a href="FieldClient.html">FieldClient</a></li><li><a href="FilterClient.html">FilterClient</a></li><li><a href="GroupClient.html">GroupClient</a></li><li><a href="GroupsClient.html">GroupsClient</a></li><li><a href="GroupUserPickerClient.html">GroupUserPickerClient</a></li><li><a href="IssueClient.html">IssueClient</a></li><li><a href="IssueLinkClient.html">IssueLinkClient</a></li><li><a href="IssueLinkTypeClient.html">IssueLinkTypeClient</a></li><li><a href="IssueTypeClient.html">IssueTypeClient</a></li><li><a href="JiraClient.html">JiraClient</a></li><li><a href="JqlClient.html">JqlClient</a></li><li><a href="LabelsClient.html">LabelsClient</a></li><li><a href="LicenseRoleClient.html">LicenseRoleClient</a></li><li><a href="LicenseValidatorClient.html">LicenseValidatorClient</a></li><li><a href="MyPermissionsClient.html">MyPermissionsClient</a></li><li><a href="MyPreferencesClient.html">MyPreferencesClient</a></li><li><a href="MyselfClient.html">MyselfClient</a></li><li><a href="PasswordClient.html">PasswordClient</a></li><li><a href="PermissionSchemeClient.html">PermissionSchemeClient</a></li><li><a href="PermissionsClient.html">PermissionsClient</a></li><li><a href="PriorityClient.html">PriorityClient</a></li><li><a href="ProjectCategoryClient.html">ProjectCategoryClient</a></li><li><a href="ProjectClient.html">ProjectClient</a></li><li><a href="ProjectValidateClient.html">ProjectValidateClient</a></li><li><a href="ReindexClient.html">ReindexClient</a></li><li><a href="ResolutionClient.html">ResolutionClient</a></li><li><a href="RoleClient.html">RoleClient</a></li><li><a href="ScreensClient.html">ScreensClient</a></li><li><a href="SearchClient.html">SearchClient</a></li><li><a href="SecurityLevelClient.html">SecurityLevelClient</a></li><li><a href="ServerInfoClient.html">ServerInfoClient</a></li><li><a href="SettingsClient.html">SettingsClient</a></li><li><a href="StatusCategoryClient.html">StatusCategoryClient</a></li><li><a href="StatusClient.html">StatusClient</a></li><li><a href="UserClient.html">UserClient</a></li><li><a href="VersionClient.html">VersionClient</a></li><li><a href="WebhookClient.html">WebhookClient</a></li><li><a href="WorkflowClient.html">WorkflowClient</a></li><li><a href="WorkflowSchemeClient.html">WorkflowSchemeClient</a></li><li><a href="WorkLogClient.html">WorkLogClient</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Dec 11 2019 20:24:40 GMT+0300 (Moscow Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Dec 18 2019 15:45:00 GMT+0300 (Moscow Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

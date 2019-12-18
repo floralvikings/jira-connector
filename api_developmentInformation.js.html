@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: api/password.js</title>
+    <title>JSDoc: Source: api/developmentInformation.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: api/password.js</h1>
+    <h1 class="page-title">Source: api/developmentInformation.js</h1>
 
     
 
@@ -28,43 +28,124 @@
         <article>
             <pre class="prettyprint source linenums"><code>"use strict";
 
-module.exports = PasswordClient;
+module.exports = DevelopmentInformationClient;
 
 /**
- * Used to access Jira REST endpoints in '/rest/api/2/password'
- *
+ * Used to access Jira REST endpoints in ' /rest/devinfo/0.10'
  * @param {JiraClient} jiraClient
- * @constructor PasswordClient
+ * @constructor DevelopmentInformationClient
  */
-function PasswordClient(jiraClient) {
-    this.jiraClient = jiraClient;
+function DevelopmentInformationClient(jiraClient) {
+  this.jiraClient = jiraClient;
 
-    /**
-     * Returns user-friendly statements governing the system's password policy.
-     *
-     * @method getPasswordPolicy
-     * @memberOf PasswordClient#
-     * @param opts The request options to send to the Jira API
-     * @param {boolean} [opts.hasOldPassword=false] Whether or not the user will be required to enter their current
-     *     password. Use false (the default) if this is a new user or if an administrator is forcibly changing another
-     *     user's password.
-     * @param [callback] Called when the password policy has been retrieved.
-     * @return {Promise} Resolved when the password policy has been retrieved.
-     */
-    this.getPasswordPolicy = function (opts, callback) {
-        var options = {
-            uri: this.jiraClient.buildURL('/password/policy'),
-            method: 'GET',
-            json: true,
-            followAllRedirects: true,
-            qs: {
-                hasOldPassword: opts.hasOldPassword
-            }
-        };
+  this.store = function (params, callback) {
+    const options = {
+      uri: this.jiraClient.buildAbstractURL("/devinfo/0.10/bulk"),
+      method: 'POST',
+      headers: {
+        Authorization: params.Authorization
+      },
+      json: true,
+      followAllRedirects: true,
+      body: {
+        repositories: params.repositories,
+        preventTransitions: params.preventTransitions,
+        properties: params.properties,
+        providerMetadata: params.providerMetadata,
+      }
+    };
 
-        return this.jiraClient.makeRequest(options, callback);
-    }
-}</code></pre>
+    return this.jiraClient.makeRequest(options, callback);
+  }
+
+  this.getRepository = function (params, callback) {
+    const options = {
+      uri: this.jiraClient.buildAbstractURL("/devinfo/0.10/repository/" + params.repositoryId),
+      method: 'GET',
+      headers: {
+        Authorization: params.Authorization
+      },
+      json: true,
+      followAllRedirects: true
+    };
+
+    return this.jiraClient.makeRequest(options, callback);
+  }
+
+  this.deleteRepository = function (params, callback) {
+    const options = {
+      uri: this.jiraClient.buildAbstractURL("/devinfo/0.10/repository/" + params.repositoryId),
+      method: 'DELETE',
+      headers: {
+        Authorization: params.Authorization
+      },
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        _updateSequenceId: params._updateSequenceId
+      }
+    };
+
+    return this.jiraClient.makeRequest(options, callback);
+  }
+
+  this.deleteByProperties = function (params, callback) {
+    const options = {
+      uri: this.jiraClient.buildAbstractURL("/devinfo/0.10/bulkByProperties"),
+      method: 'DELETE',
+      headers: {
+        Authorization: params.Authorization
+      },
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        _updateSequenceId: params._updateSequenceId
+      }
+    };
+
+    return this.jiraClient.makeRequest(options, callback);
+  }
+
+  this.checkExists = function (params, callback) {
+    const options = {
+      uri: this.jiraClient.buildAbstractURL("/devinfo/0.10/existsByProperties"),
+      method: 'GET',
+      headers: {
+        Authorization: params.Authorization
+      },
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        _updateSequenceId: params._updateSequenceId
+      }
+    };
+
+    return this.jiraClient.makeRequest(options, callback);
+  }
+
+  this.deleteEntity = function (params, callback) {
+    const options = {
+      uri: this.jiraClient.buildAbstractURL(
+        "/devinfo/0.10/repository/" +
+        params.repositoryId + "/" +
+        params.entityType + "/" +
+        params.entityId
+      ),
+      method: 'DELETE',
+      headers: {
+        Authorization: params.Authorization
+      },
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        _updateSequenceId: params._updateSequenceId
+      }
+    };
+
+    return this.jiraClient.makeRequest(options, callback);
+  }
+}
+</code></pre>
         </article>
     </section>
 
@@ -80,7 +161,7 @@ function PasswordClient(jiraClient) {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Dec 18 2019 15:45:01 GMT+0300 (Moscow Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Dec 18 2019 15:45:00 GMT+0300 (Moscow Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
