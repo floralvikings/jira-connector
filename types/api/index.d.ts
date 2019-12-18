@@ -2,6 +2,7 @@ export * from './applicationProperties';
 export * from './attachment';
 export * from './backlog';
 export * from './board';
+export * from './developmentInformation';
 export * from './epic';
 export * from './issue';
 export * from './issueType';

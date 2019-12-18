@@ -1,10 +1,10 @@
 "use strict";
 
 // Core packages
-var url = require('url');
+const url = require('url');
 
 // Npm packages
-var request = require('request');
+const request = require('request');
 const jwt = require('atlassian-jwt');
 const queryString = require('query-string');
 
@@ -20,6 +20,7 @@ var comment = require('./api/comment');
 var component = require('./api/component');
 var customFieldOption = require('./api/customFieldOption');
 var dashboard = require('./api/dashboard');
+const developmentInformation = require('./api/developmentInformation');
 var epic = require('./api/epic');
 var errorStrings = require('./lib/error');
 var field = require('./api/field');
@@ -87,6 +88,7 @@ var worklog = require('./api/worklog');
  * @property {ComponentClient} component
  * @property {CustomFieldOptionClient} customFieldOption
  * @property {DashboardClient} dashboard
+ * @property {DevelopmentInformationClient} developmentInformation
  * @property {FieldClient} field
  * @property {FilterClient} filter
  * @property {GroupClient} group
@@ -256,6 +258,7 @@ var JiraClient = module.exports = function (config) {
     this.component = new component(this);
     this.customFieldOption = new customFieldOption(this);
     this.dashboard = new dashboard(this);
+    this.developmentInformation = new developmentInformation(this);
     this.epic = new epic(this);
     this.field = new field(this);
     this.filter = new filter(this);
@@ -322,6 +325,26 @@ var JiraClient = module.exports = function (config) {
 
         return decodeURIComponent(requestUrl);
     };
+
+     /**
+     * Simple utility to build a REST endpoint URL for the Jira API without prefixes.
+     *
+     * @method buildAbstractURL
+     * @memberOf JiraClient#
+     * @param path The path of the URL without concern for the root of the REST API.
+     * @returns {string} The constructed URL.
+     */
+    this.buildAbstractURL = function(path) {
+      const apiBasePath = this.path_prefix + 'rest/';
+      const requestUrl = url.format({
+          protocol: this.protocol,
+          hostname: this.host,
+          port: this.port,
+          pathname: apiBasePath + path
+      });
+
+      return decodeURIComponent(requestUrl);
+    }
 
     /**
      * Simple utility to build a REST endpoint URL for the Jira Agile API.
