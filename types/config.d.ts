@@ -30,4 +30,5 @@ export interface Config {
   promise?: PromiseLike<any>;
   request?: any;
   rejectUnauthorized?: any;
+  forceGDPRCompliantAPI?: boolean;
 }
