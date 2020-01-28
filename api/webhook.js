@@ -43,7 +43,7 @@ function WebhookClient(jiraClient) {
      */
     this.getWebhook = function (opts, callback) {
         var options = {
-            uri: this.jiraClient.buildWebhookURL('/webhook/' + opts.webhookId),
+            uri: opts.webhookURI || this.jiraClient.buildWebhookURL('/webhook/' + opts.webhookId),
             method: 'GET',
             json: true,
             followAllRedirects: true
@@ -93,7 +93,7 @@ function WebhookClient(jiraClient) {
      */
     this.deleteWebhook = function (opts, callback) {
         var options = {
-            uri: this.jiraClient.buildWebhookURL('/webhook/' + opts.webhookId),
+            uri: opts.webhookURI || this.jiraClient.buildWebhookURL('/webhook/' + opts.webhookId),
             method: 'DELETE',
             json: true,
             followAllRedirects: true
