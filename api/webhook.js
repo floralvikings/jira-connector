@@ -37,13 +37,14 @@ function WebhookClient(jiraClient) {
      * @method getWebhook
      * @memberOf WebhookClient#
      * @param opts The options sent to the JIRA API.
-     * @param opts.webhookId The numerical webhook ID.
+     * @param opts.webhookURI The URI of the webhook to delete.
+     * @param opts.webhookId The numerical webhook ID. This is only used if webhookURI is falsey.
      * @param [callback] Called when the webhook has been retrieved.
      * @return {Promise} Resolved when the webhook has been retrieved.
      */
     this.getWebhook = function (opts, callback) {
         var options = {
-            uri: this.jiraClient.buildWebhookURL('/webhook/' + opts.webhookId),
+            uri: opts.webhookURI || this.jiraClient.buildWebhookURL('/webhook/' + opts.webhookId),
             method: 'GET',
             json: true,
             followAllRedirects: true
@@ -87,13 +88,14 @@ function WebhookClient(jiraClient) {
      * @method deleteWebhook
      * @memberOf WebhookClient#
      * @param opts The options sent to the JIRA API.
-     * @param opts.webhookId The numerical webhook ID.
-     * @param [callback] Called when the webhook has been retrieved.
-     * @return {Promise} Resolved when the webhook has been retrieved.
+     * @param opts.webhookURI The URI of the webhook to delete.
+     * @param opts.webhookId The numerical webhook ID. This is only used if webhookURI is falsey.
+     * @param [callback] Called when the webhook has been deleted.
+     * @return {Promise} Resolved when the webhook has been deleted.
      */
     this.deleteWebhook = function (opts, callback) {
         var options = {
-            uri: this.jiraClient.buildWebhookURL('/webhook/' + opts.webhookId),
+            uri: opts.webhookURI || this.jiraClient.buildWebhookURL('/webhook/' + opts.webhookId),
             method: 'DELETE',
             json: true,
             followAllRedirects: true
