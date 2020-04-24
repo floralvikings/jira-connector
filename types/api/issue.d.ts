@@ -25,8 +25,37 @@ export interface HistoryMetadata {
   extraData?: any;
 }
 
+export interface JiraTransition {
+  id: string;
+  name: string;
+  to: object;
+  hasScreen: boolean;
+  isGlobal: boolean;
+  isInitial: boolean;
+  isConditional: boolean;
+}
+
+export interface JiraIssueTransitionsList {
+  expand: 'transitions';
+  transitions: JiraTransition[];
+}
+
 export class Issue {
   [method: string]: any;
+
+  getIssue(
+    options: ({ issueKey: string } | { issueId: string }) & ({
+      expand?: string;
+      maxResults?: number;
+      fields?: string[];
+      [k: string]: unknown;
+    })
+  ): Promise<any>;
+  getTransitions(
+    options: ({ issueKey: string } | { issueId: string }) & { transitionId?: string }
+  ): Promise<JiraIssueTransitionsList>;
+  transitionIssue(options: ({ issueKey: string } | { issueId: string }) & { transition: { id: string } }): Promise<any>;
+  createIssue(issue: { fields: object }): Promise<any>;
 
   editIssue(
     opts: {
