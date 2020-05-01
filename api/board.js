@@ -314,7 +314,7 @@ function AgileBoardClient(jiraClient) {
   // TODO add JsDoc
   this.getIssuesForEpic = function (opts, callback) {
     var options = {
-      uri: 'board' + opts.boardId + '/epic/' + opts.epicId + '/issue',
+      uri: this.jiraClient.buildAgileURL('/board/' + opts.boardId + '/epic/' + opts.epicId + '/issue'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -334,7 +334,7 @@ function AgileBoardClient(jiraClient) {
   // TODO add JsDoc
   this.getFeaturesForBoard = function (opts, callback) {
     var options = {
-      uri: 'board' + opts.boardId + '/features',
+      uri: this.jiraClient.buildAgileURL('/board' + opts.boardId + '/features'),
       method: 'GET',
       json: true,
       followAllRedirects: true
@@ -346,7 +346,7 @@ function AgileBoardClient(jiraClient) {
   // TODO add JsDoc
   this.toggleFeatures = function (opts, callback) {
     var options = {
-      uri: 'board' + opts.boardId + '/features',
+      uri: this.jiraClient.buildAgileURL('/board' + opts.boardId + '/features'),
       method: 'PUT',
       json: true,
       followAllRedirects: true,
