@@ -490,7 +490,6 @@ function WorkflowSchemeClient(jiraClient) {
     this.buildRequestOptions = function (opts, path, method, body, qs) {
         var basePath = '/workflowscheme/' + opts.workflowSchemeId;
         if (!qs) qs = {};
-        if (!body) body = {};
 
         if (opts.fields) {
             qs.fields = '';
@@ -509,9 +508,9 @@ function WorkflowSchemeClient(jiraClient) {
         }
 
         return {
+            ...(body && { body }),
             uri: this.jiraClient.buildURL(basePath + path),
             method: method,
-            body: body,
             qs: qs,
             followAllRedirects: true,
             json: true

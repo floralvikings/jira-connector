@@ -1298,7 +1298,6 @@ function IssueClient(jiraClient) {
         var idOrKey = opts.issueId || opts.issueKey;
         var basePath = '/issue/' + idOrKey;
         if (!qs) qs = {};
-        if (!body) body = {};
 
         if (opts.fields) {
             qs.fields = '';
@@ -1322,9 +1321,9 @@ function IssueClient(jiraClient) {
         }
 
         return {
+            ...(body && { body }),
             uri: this.jiraClient.buildURL(basePath + path),
             method: method,
-            body: body,
             qs: qs,
             followAllRedirects: true,
             json: true

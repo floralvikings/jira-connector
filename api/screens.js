@@ -220,7 +220,6 @@ function ScreensClient(jiraClient) {
     this.buildRequestOptions = function (opts, path, method, body, qs) {
         var basePath = '/screens/' + opts.screenId;
         if (!qs) qs = {};
-        if (!body) body = {};
 
         if (opts.fields) {
             qs.fields = '';
@@ -239,9 +238,9 @@ function ScreensClient(jiraClient) {
         }
 
         return {
+            ...(body && { body }),
             uri: this.jiraClient.buildURL(basePath + path),
             method: method,
-            body: body,
             qs: qs,
             followAllRedirects: true,
             json: true
