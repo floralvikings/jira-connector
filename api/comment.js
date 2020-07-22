@@ -111,7 +111,6 @@ function CommentClient(jiraClient) {
         }
         var basePath = '/comment/' + opts.commentId + "/properties";
         if (!qs) qs = {};
-        if (!body) body = {};
 
         if (opts.fields) {
             qs.fields = '';
@@ -128,9 +127,9 @@ function CommentClient(jiraClient) {
         }
 
         return {
+            ...(body && { body }),
             uri: this.jiraClient.buildURL(basePath + path),
             method: method,
-            body: body,
             qs: qs,
             followAllRedirects: true,
             json: true

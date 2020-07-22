@@ -299,7 +299,6 @@ function ProjectClient(jiraClient) {
         var basePath = opts.projectIdOrKey ? '/project/' + opts.projectIdOrKey : '/project';
 
         if (!qs) qs = {};
-        if (!body) body = {};
 
         if (opts.fields) {
             qs.fields = '';
@@ -318,9 +317,9 @@ function ProjectClient(jiraClient) {
         }
 
         return {
+            ...(body && { body }),
             uri: this.jiraClient.buildURL(basePath + path),
             method: method,
-            body: body,
             qs: qs,
             followAllRedirects: true,
             json: true
