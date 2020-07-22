@@ -1,3 +1,9 @@
+# Thanks All!
+
+I no longer have the time, energy or interest to maintain this project, so I'm going to be archiving it.
+
+As an alternative to jira-connector, try: https://github.com/MrRefactoring/jira.js
+
 # JavaScript Jira API Wrapper for NodeJS
 
 Node.JS module which provides easy-to-use access to the Jira REST API.
