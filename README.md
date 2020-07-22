@@ -105,7 +105,7 @@ for various API calls.
 
 jira-connector supports two forms of authentication:
 
-### Basic Authentication (Deprecated)
+### Basic Authentication (Deprecated, Server only)
 
 [Deprecated](https://confluence.atlassian.com/cloud/deprecation-of-basic-authentication-with-passwords-for-jira-and-confluence-apis-972355348.html). It will require you to
 provide a username and password each time you connect to the
@@ -164,6 +164,23 @@ var jira = new JiraClient({
 });
 
 // Base64 encoding of 'SirUserOfName:Password123' (for legacy server version) or 'email:api_token' (jira cloud)
+```
+
+You can easily create the base64 encoded string.
+
+Linux/Unix/MacOS:
+
+```bash
+echo -n email@email.com:api-token | base64
+```
+
+Windows 7 and later:
+
+```powershell
+$Text = ‘email@email.com:api-token’
+$Bytes = [System.Text.Encoding]::UTF8.GetBytes($Text)
+$EncodedText = [Convert]::ToBase64String($Bytes)
+$EncodedText
 ```
 
 ### OAuth Authentication
