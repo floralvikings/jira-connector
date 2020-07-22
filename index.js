@@ -164,6 +164,7 @@ var worklog = require('./api/worklog');
  *      Default - native Promise.
  * @param {Request} [config.request] Any function (constructor) compatible with Request (request, supertest,...).
  *      Default - require('request').
+ * @param {boolean} [config.forceGDPRCompliantAPI] Whether or not to force REST APIs to only use GDPR-compliant functionality
  */
 
 var JiraClient = module.exports = function (config) {
@@ -184,6 +185,7 @@ var JiraClient = module.exports = function (config) {
     this.promise = config.promise || Promise;
     this.requestLib = config.request || request;
     this.rejectUnauthorized = config.rejectUnauthorized;
+    this.forceGDPRCompliantAPI = !!config.forceGDPRCompliantAPI;
 
     if (config.oauth) {
         if (!config.oauth.consumer_key) {
@@ -462,6 +464,13 @@ var JiraClient = module.exports = function (config) {
 
         if (this.cookie_jar) {
             options.jar = this.cookie_jar;
+        }
+
+        if (this.forceGDPRCompliantAPI) {
+            if (!options.headers) {
+                options.headers = {};
+            }
+            options.headers['x-atlassian-force-account-id'] = true;
         }
 
         if (callback) {
